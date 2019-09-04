@@ -7,7 +7,7 @@ import './app.scss';
 // == Composant
 const App = () => (
   <div id="app">
-    App React
+    O'Feel
   </div>
 );
 
