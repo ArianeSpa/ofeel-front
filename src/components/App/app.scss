@@ -1,5 +1,11 @@
-#app {
-  font-size: 1.2em;
-  text-align: center;
-  margin: 1em;
+@import 'src/styles/vars';
+
+#app{
+  background-image: $background-color-body;
+  height : 100vh;
+  width:100%;
+  // font-family: $livvic;
+  font-size: 2em;
+  color: white;
+  // padding : 20px;
 }

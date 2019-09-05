@@ -1,0 +1,24 @@
+@import 'src/styles/vars';
+
+.header{
+    display :flex;
+    flex-direction:row;
+    padding: 10px 20px 0 20px ;
+    justify-content: space-between;    
+}
+
+
+.ui.text.menu.navbar{
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-left: 200px;
+    font-family: $livvic;
+    .item.navbar{
+        color: white;
+        font-size: 1.2em;
+        text-transform: uppercase;
+
+    }
+}
+
