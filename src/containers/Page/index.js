@@ -2,13 +2,13 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-/* import Page from 'src/components/Page'; */
+import Page from 'src/components/Page';
 
 // Action Creators
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  message: state.message,
+  logged: state.userReducer.logged,
 });
 
 /* === Actions === */

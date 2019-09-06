@@ -1,21 +1,32 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import logo from 'src/assets/images/logo_fond_transparent2.png';
+
 
 import './header.scss';
 
-const Header = () => (
+const Header = ({ logged }) => (
   <div className="header">
-    {/* <HeaderSemanticUi as="h1" textAlign="left" icon>
-      <Icon name="github" />
-    </HeaderSemanticUi> */}
-    <img src="src/assets/images/logo_fond_transparent2.png" alt="" />
+
+    <img src={logo} alt="" />
+    {/* <div>OFEEL</div> */}
     <Menu text className="navbar">
-      <Menu.Item className="navbar" name="Accueil" />
-      <Menu.Item className="navbar" name="Tableau de bord" />
-      <Menu.Item className="navbar" name="Articles" />
-      <Menu.Item className="navbar" name="Contact" />
+      {!logged && (
+        <Menu.Item as={NavLink} exact to="/" className="navbar" name="Accueil" />
+      )}
+      {logged && (
+        <Menu.Item as={NavLink} to="/dashboard" className="navbar" name="Tableau de bord" />
+      )}
+      <Menu.Item as={NavLink} to="/articles" className="navbar" name="Articles" />
+      <Menu.Item as={NavLink} to="/contact" className="navbar" name="Contact" />
     </Menu>
   </div>
 );
+
+Header.propTypes = {
+  logged: PropTypes.bool.isRequired,
+};
 
 export default Header;

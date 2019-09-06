@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 import SignUp from 'src/components/Page/Home/SignUp';
-import Login from 'src/components/Page/Home/Login';
+import Login from 'src/containers/Home/Login';
 import WelcomeBoard from 'src/components/Page/Dashboard';
 import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
 import Goals from 'src/components/Page/Dashboard/Goals';
@@ -25,29 +25,31 @@ import './page.scss';
 
 const Page = ({ logged }) => (
   <Switch>
-    {/* <Route path="/" exact component={logged ? WelcomeBoard : Login} /> */}
-    {/* {logged && (
-      <Redirect from="/signup" to="/dashboard" />
-    )} */}
+    {/* Si je ne suis pas connecté, home affiche la page de login /> */}
     {!logged && (
       <Route path="/" exact component={Login} />
     )}
     {!logged && (
       <Route path="/signup" exact component={SignUp} />
     )}
-    {!logged && (
-      <Route path="/dashboard/" exact component={WelcomeBoard} />
+
+    {/* Si je suis connecté, home me redirige automatiquement vers l'accueil du dashboard */}
+    {logged && (
+      <Redirect exact from="/" to="/dashboard" />
     )}
-    {!logged && (
+    {logged && (
+      <Route path="/dashboard" exact component={WelcomeBoard} />
+    )}
+    {logged && (
       <Route path="/dashboard/myfeeling" exact component={MyFeeling} />
     )}
-    {!logged && (
+    {logged && (
       <Route path="/dashboard/goals" exact component={Goals} />
     )}
-    {!logged && (
+    {logged && (
       <Route path="/dashboard/mealplan" exact component={MealPlan} />
     )}
-    {!logged && (
+    {logged && (
       <Route path="/dashboard/workout" exact component={Workout} />
     )}
 
@@ -69,7 +71,7 @@ const Page = ({ logged }) => (
 );
 
 Page.propTypes = {
-  logged: PropTypes.bool.isRequired,
+  logged: PropTypes.bool/*.isRequired*/,
 };
 
 export default Page;

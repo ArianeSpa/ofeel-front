@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Header from 'src/components/Header';
+import Dashboard from 'src/components/Page/Dashboard';
 
 // Action Creators
 
@@ -15,10 +15,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 // Container
-const HeaderContainer = connect(
+const DashboardContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Header);
+)(Dashboard);
 
 // == Export
-export default HeaderContainer;
+export default DashboardContainer;

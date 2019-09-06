@@ -3,8 +3,8 @@ import React from 'react';
 
 // == Import : local
 import './app.scss';
-import Header from 'src/components/Header';
-import Page from 'src/components/Page';
+import Header from 'src/containers/Header';
+import Page from 'src/containers/Page';
 
 // == Composant
 const App = () => (

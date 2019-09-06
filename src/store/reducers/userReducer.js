@@ -1,19 +1,38 @@
-/* // reducer concernant la gestion du user
+// reducer concernant la gestion du user
+
 // == Initial State
 const initialState = {
-  logged: false,
+  logged: true,
+  username: '',
+  password: '',
+  token: '',
 };
 
 // == Types
-const DO_SOMETHING = 'DO_SOMETHING';
+const CHANGE_USERNAME = 'CHANGE_USERNAME';
+const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+const SAVE_USER = 'SAVE_USER';
 
-// == Reducer
-const reducer = (state = initialState, action = {}) => {
+
+export const AUTHENTICATE = 'AUTHENTICATE';
+
+const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case CHANGE_USERNAME:
       return {
         ...state,
-        message: action.message,
+        [action.name]: action.value,
+      };
+    case CHANGE_PASSWORD:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    case SAVE_USER:
+      return {
+        ...state,
+        logged: true,
+        token: action.token,
       };
 
     default:
@@ -21,16 +40,25 @@ const reducer = (state = initialState, action = {}) => {
   }
 };
 
-// == Action Creators
-export const doSomething = message => ({
-  type: DO_SOMETHING,
-  message,
+export const authenticate = () => ({
+  type: AUTHENTICATE,
 });
 
+export const saveUser = (token) => ({
+  type: SAVE_USER,
+  token,
+});
 
-// == Selectors
+export const changeValueUsername = (name, value) => ({
+  type: CHANGE_USERNAME,
+  value,
+  name,
+});
 
+export const changeValuePassword = (name, value) => ({
+  type: CHANGE_PASSWORD,
+  value,
+  name,
+});
 
-// == Export
 export default userReducer;
- */
