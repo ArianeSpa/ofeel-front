@@ -1,5 +1,7 @@
 import React from 'react';
-import { Segment, List, Image } from 'semantic-ui-react';
+import {
+  Segment, List, Image,
+} from 'semantic-ui-react';
 import iconFB from 'src/assets/icon/fb.png';
 import iconTW from 'src/assets/icon/tw.png';
 import iconInsta from 'src/assets/icon/insta.png';
@@ -25,7 +27,6 @@ const Footer = () => (
           target="_blank"
           size="mini"
           src={iconTW}
-          alt="image"
         />
       </List.Item>
       <List.Item>

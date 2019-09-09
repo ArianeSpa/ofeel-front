@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { 
+  Button, Form, Segment, Divider
+} from 'semantic-ui-react';
 
 import './form.scss';
 
@@ -19,6 +21,9 @@ const SignUp = () => (
       <Form.Checkbox label="J'accepte les conditions générales" />
       <Button type="submit" className="submit">Submit</Button>
     </Form>
+    <Divider horizontal >
+        Déjà inscrit ? <a href="/" className="signupLink">Connectez-vous !</a>
+    </Divider>
   </Segment>
 );
 

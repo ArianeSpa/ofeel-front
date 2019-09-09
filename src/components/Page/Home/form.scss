@@ -1,33 +1,52 @@
 @import 'src/styles/vars';
 
-.ui.inverted.segment.block{
-    height: 300px;
-    width : 600px;
-    background: none;
-    background-image: $background-color-dashboard;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-    margin:auto;
-}
+.ui{
+    &.inverted.segment.block{
+        height: 300px;
+        width : 600px;
+        background: none;
+        background-image: $background-color-dashboard;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
+        margin:auto;
 
-.ui.inverted.segment.block.login{
-    width : 500px;
-}
+        &.login{
+            width : 500px;
+        }
 
-.ui.inverted.segment.block.contact{
-  height: 350px;
-}
+        &.contact{
+            height: 350px;
+        }
+    }
+    &.button.submit {
+        margin: auto;
+        display: block;
+        background-image: $feeling-color;
+        border: 1px solid transparent;
+        &:hover{
+            background-color: transparent;
+            border: 1px solid $yellow-color;
+            color: $yellow-color;
+        }
+    }
 
-.ui.button.submit {
-    margin: auto;
-    display: block;
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    &:hover{
-        background-color: transparent;
-        border: 1px solid $yellow-color;
-        color: $yellow-color;
+    &.horizontal.divider{
+        text-transform: capitalize;
+        color:#00d29c;
+        
     }
 }
+
+.signupLink{
+    color:#00d29c;
+    &:hover{
+        color: #00ff85;
+    }
+}
+
+
+
+
+

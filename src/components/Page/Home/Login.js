@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Checkbox, Form, Segment,
+  Button, Checkbox, Form, Segment, Divider, Link
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -32,7 +32,10 @@ const Login = ({
           <Checkbox label="Se souvenir de moi" />
         </Form.Field>
         <Button type="submit" className="submit">Submit</Button>
-      </Form>
+      </Form>      
+      <Divider horizontal >
+        Pas encore inscrit ? <a href="/signup" className="signupLink">Créez un compte !</a>
+      </Divider>
     </Segment>
   );
 };

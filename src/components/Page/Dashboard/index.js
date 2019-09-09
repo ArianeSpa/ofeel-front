@@ -1,29 +1,56 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Grid, Segment, Icon } from 'semantic-ui-react';
+import { Route, Switch } from 'react-router-dom';
+
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+import Welcome from 'src/components/Page/Dashboard/Welcome';
+import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
+import Goals from 'src/components/Page/Dashboard/Goals';
+import MealPlan from 'src/components/Page/Dashboard/MealPlan';
+import Workout from 'src/components/Page/Dashboard/Workout';
+import './dashboard.scss';
 
 
-const Dashboard = () => (
-  <div>
-    <div>Dashboard</div>
-    <Menu text className="navbar">
-      {/* {!logged && (
-      <Menu.Item as={NavLink} exact to="/" className="navbar" name="Accueil" />
-      )}
-      {logged && (
-      <Menu.Item as={NavLink} to="/dashboard" className="navbar" name="Tableau de bord" />
-      )} */}
-      <Menu.Item as={NavLink} to="/dashboard/goals" className="dashboardItem" name="goals" />
-      <Menu.Item as={NavLink} to="/dashboard/myfeeling" className="dashboardItem" name="myfeeling" />
-      <Menu.Item as={NavLink} to="/dashboard/mealplan" className="dashboardItem" name="mealplan" />
-      <Menu.Item as={NavLink} to="/dashboard/workout" className="dashboardItem" name="workout" />
-    </Menu>
-  </div>
-);
 
-// Dashboard.propTypes = {
-//   logged: PropTypes.bool.isRequired,
-// };
+const Dashboard = () => {
+
+  //création des onglets
+  const createSegment = (tag) => {
+    const link = "/dashboard/"+tag;
+    return(
+        <Segment as={NavLink} to={link} className={tag+"Segment dashboardItem"} id={ window.location.href.includes(tag) ? "focus" : "" } name={tag}>
+              <div className="border" id={ window.location.href.includes(tag) ? tag : "" } ></div>
+              <div className="iconTag">
+                <Icon id={ window.location.href.includes(tag) ? tag+"Icon" : "" } name={ tag==="myfeeling" ? "user" : tag==="goals" ? "crosshairs" : tag==="mealplan" ? "food" : "futbol"}/>
+              </div>
+        </Segment>
+  )};
+  
+  
+  return(
+    <Segment inverted className="dashboard">
+      <Grid columns={2} >
+        <Grid.Row stretched className="pers">
+          <Grid.Column className="left">
+            {createSegment("myfeeling")}
+            {createSegment("goals")}
+            {createSegment("mealplan")}
+            {createSegment("workout")}
+          </Grid.Column>
+          <Grid.Column className="right">
+            <Switch>
+              <Route path="/dashboard" exact component={Welcome} />
+              <Route path="/dashboard/myfeeling" exact component={MyFeeling} />
+              <Route path="/dashboard/goals" exact component={Goals} />
+              <Route path="/dashboard/mealplan" exact component={MealPlan} />
+              <Route path="/dashboard/workout" exact component={Workout} />
+            </Switch>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
+)};
+
 
 export default Dashboard;

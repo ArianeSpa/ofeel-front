@@ -1,7 +1,8 @@
 import React from 'react';
 
+
 const MealPlan = () => (
-  <div>MealPlan</div>
+  <div>Meal Plan</div>
 );
 
 export default MealPlan;

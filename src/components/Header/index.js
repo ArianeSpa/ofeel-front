@@ -10,7 +10,7 @@ import './header.scss';
 const Header = ({ logged }) => (
   <div className="header">
 
-    <img src={logo} alt="" />
+    <img src={logo} alt="OFeel" />
     {/* <div>OFEEL</div> */}
     <Menu text className="navbar">
       {!logged && (
