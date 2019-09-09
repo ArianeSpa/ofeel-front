@@ -14,6 +14,7 @@ const CHANGE_USERNAME = 'CHANGE_USERNAME';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
+const LOG_OUT = 'LOG_OUT';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -42,6 +43,11 @@ const userReducer = (state = initialState, action = {}) => {
         logged: true,
         token: action.token,
       };
+    case LOG_OUT:
+      return {
+        ...state,
+        logged: false,
+      };
 
     default:
       return state;
@@ -54,6 +60,10 @@ export const authenticate = () => ({
 
 export const accountCreation = () => ({
   type: CREATE_ACCOUNT,
+});
+
+export const endSession = () => ({
+  type: LOG_OUT,
 });
 
 export const saveUser = (token) => ({

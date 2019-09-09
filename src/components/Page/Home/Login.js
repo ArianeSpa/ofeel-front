@@ -41,10 +41,10 @@ const Login = ({
 };
 
 Login.propTypes = {
-  changeInputUsername: PropTypes.func/*.isRequired*/,
-  changeInputPassword: PropTypes.func/*.isRequired*/,
-  username: PropTypes.string/*.isRequired*/,
-  password: PropTypes.string/*.isRequired*/,
+  changeInputUsername: PropTypes.func.isRequired,
+  changeInputPassword: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
   doAuthenticate: PropTypes.func.isRequired,
 };
 

@@ -43,10 +43,10 @@ const SignUp = ({
 };
 
 SignUp.propTypes = {
-  changeInputUsername: PropTypes.func/*.isRequired*/,
-  changeInputEmail: PropTypes.func/*.isRequired*/,
-  username: PropTypes.string/*.isRequired*/,
-  email: PropTypes.string/*.isRequired*/,
+  changeInputUsername: PropTypes.func.isRequired,
+  changeInputEmail: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   createAccount: PropTypes.func.isRequired,
 };
 

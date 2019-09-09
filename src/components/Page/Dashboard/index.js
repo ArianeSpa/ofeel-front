@@ -1,8 +1,7 @@
 import React from 'react';
 import { Grid, Segment, Icon } from 'semantic-ui-react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 
-import { NavLink } from 'react-router-dom';
 
 import Welcome from 'src/components/Page/Dashboard/Welcome';
 import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
@@ -12,31 +11,30 @@ import Workout from 'src/components/Page/Dashboard/Workout';
 import './dashboard.scss';
 
 
-
 const Dashboard = () => {
-
-  //création des onglets
+  // création des onglets
   const createSegment = (tag) => {
-    const link = "/dashboard/"+tag;
-    return(
-        <Segment as={NavLink} to={link} className={tag+"Segment dashboardItem"} id={ window.location.href.includes(tag) ? "focus" : "" } name={tag}>
-              <div className="border" id={ window.location.href.includes(tag) ? tag : "" } ></div>
-              <div className="iconTag">
-                <Icon id={ window.location.href.includes(tag) ? tag+"Icon" : "" } name={ tag==="myfeeling" ? "user" : tag==="goals" ? "crosshairs" : tag==="mealplan" ? "food" : "futbol"}/>
-              </div>
-        </Segment>
-  )};
-  
-  
-  return(
+    const link = `/dashboard/${tag}`;
+    return (
+      <Segment as={NavLink} to={link} className={`${tag}Segment dashboardItem`} id={window.location.href.includes(tag) ? 'focus' : ''} name={tag}>
+        <div className="border" id={window.location.href.includes(tag) ? tag : ''} />
+        <div className="iconTag">
+          <Icon id={window.location.href.includes(tag) ? `${tag}Icon` : ''} name={tag === 'myfeeling' ? 'user' : tag === 'goals' ? 'crosshairs' : tag === 'mealplan' ? 'food' : 'futbol'} />
+        </div>
+      </Segment>
+    );
+  };
+
+
+  return (
     <Segment inverted className="dashboard">
-      <Grid columns={2} >
+      <Grid columns={2}>
         <Grid.Row stretched className="pers">
           <Grid.Column className="left">
-            {createSegment("myfeeling")}
-            {createSegment("goals")}
-            {createSegment("mealplan")}
-            {createSegment("workout")}
+            {createSegment('myfeeling')}
+            {createSegment('goals')}
+            {createSegment('mealplan')}
+            {createSegment('workout')}
           </Grid.Column>
           <Grid.Column className="right">
             <Switch>
@@ -50,7 +48,9 @@ const Dashboard = () => {
         </Grid.Row>
       </Grid>
     </Segment>
-)};
+  );
+ 
+};
 
 
 export default Dashboard;
