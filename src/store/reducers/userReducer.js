@@ -5,16 +5,19 @@ const initialState = {
   logged: false,
   username: '',
   password: '',
+  email: '',
   token: '',
 };
 
 // == Types
 const CHANGE_USERNAME = 'CHANGE_USERNAME';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
+export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
 
 const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -24,6 +27,11 @@ const userReducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case CHANGE_PASSWORD:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    case CHANGE_EMAIL:
       return {
         ...state,
         [action.name]: action.value,
@@ -44,6 +52,10 @@ export const authenticate = () => ({
   type: AUTHENTICATE,
 });
 
+export const accountCreation = () => ({
+  type: CREATE_ACCOUNT,
+});
+
 export const saveUser = (token) => ({
   type: SAVE_USER,
   token,
@@ -60,5 +72,11 @@ export const changeValuePassword = (name, value) => ({
   value,
   name,
 });
+export const changeValueEmail = (name, value) => ({
+  type: CHANGE_EMAIL,
+  value,
+  name,
+});
+
 
 export default userReducer;

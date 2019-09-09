@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Checkbox, Form, Segment, Divider, Link
+  Button, Checkbox, Form, Segment, Divider,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import './form.scss';
 
 const Login = ({
-  changeInputUsername, changeInputPassword, username, password, doAuthenticate
+  changeInputUsername, changeInputPassword, username, password, doAuthenticate,
 }) => {
   const handleChangeUsername = (event) => {
     const { value } = event.target;
@@ -32,7 +32,7 @@ const Login = ({
           <Checkbox label="Se souvenir de moi" />
         </Form.Field>
         <Button type="submit" className="submit">Submit</Button>
-      </Form>      
+      </Form>
       <Divider horizontal >
         Pas encore inscrit ? <a href="/signup" className="signupLink">Créez un compte !</a>
       </Divider>

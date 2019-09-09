@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { AUTHENTICATE, saveUser } from 'src/store/reducers/userReducer';
+import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
+
+const bodyFormData = new FormData();
 
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -20,6 +22,28 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       // .finally(() => {
       //   store.dispatch(finishLoad());
       // });
+      break;
+    case CREATE_ACCOUNT:
+      bodyFormData.append('user_login', store.getState().userReducer.username);
+      bodyFormData.append('user_email', store.getState().userReducer.email);
+      console.log(bodyFormData.values());
+      axios({
+        method: 'post',
+        url: 'http://remi-gaspart.vpnuser.oclock.io/Apotheose/Ofeel/wp/wp-login.php?action=register',
+        data: bodyFormData,
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      })
+        .then((response) => {
+          console.log('yeah');
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     default:
       next(action);

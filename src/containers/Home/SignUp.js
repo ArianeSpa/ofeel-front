@@ -2,23 +2,37 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-/* import SignUp from 'src/components/SignUp'; */
+import SignUp from 'src/components/Page/Home/SignUp';
+import { changeValueUsername, changeValueEmail, accountCreation } from 'src/store/reducers/userReducer';
 
 // Action Creators
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  message: state.message,
+  username: state.userReducer.username,
+  email: state.userReducer.email,
 });
 
 /* === Actions === */
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  changeInputUsername: (value) => {
+    const action = changeValueUsername('username', value);
+    dispatch(action);
+  },
+  changeInputEmail: (value) => {
+    const action = changeValueEmail('email', value);
+    dispatch(action);
+  },
+  createAccount: () => {
+    dispatch(accountCreation());
+  },
+});
 
 // Container
-const SignUp = connect(
+const SignUpContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SignUp);
 
 // == Export
-export default SignUp;
+export default SignUpContainer;

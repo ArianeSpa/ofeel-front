@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-import SignUp from 'src/components/Page/Home/SignUp';
+import Signup from 'src/containers/Home/SignUp';
 import Login from 'src/containers/Home/Login';
 import WelcomeBoard from 'src/components/Page/Dashboard';
 
@@ -23,7 +23,7 @@ const Page = ({ logged }) => (
       <Route path="/" exact component={Login} />
     )}
     {!logged && (
-      <Route path="/signup" exact component={SignUp} />
+      <Route path="/signup" exact component={Signup} />
     )}
 
     {/* Si je suis connecté, home me redirige automatiquement vers l'accueil du dashboard */}
