@@ -8,7 +8,7 @@ const bodyFormData = new FormData();
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case AUTHENTICATE:
-      axios.post('http://remi-gaspart.vpnuser.oclock.io/Apotheose/Ofeel/wp-json/jwt-auth/v1/token', {
+      axios.post('http://92.243.10.50/API/wp-json/jwt-auth/v1/token', {
         username: store.getState().userReducer.username,
         password: store.getState().userReducer.password,
       })
@@ -29,7 +29,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       console.log(bodyFormData.values());
       axios({
         method: 'post',
-        url: 'http://remi-gaspart.vpnuser.oclock.io/Apotheose/Ofeel/wp/wp-login.php?action=register',
+        url: 'http://92.243.10.50/API/wp/wp-login.php?action=register',
         data: bodyFormData,
         config: {
           headers: {

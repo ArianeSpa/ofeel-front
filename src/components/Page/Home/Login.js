@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Checkbox, Form, Segment, Divider,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+
 
 
 import './form.scss';
@@ -33,8 +35,8 @@ const Login = ({
         </Form.Field>
         <Button type="submit" className="submit">Submit</Button>
       </Form>
-      <Divider horizontal >
-        Pas encore inscrit ? <a href="/signup" className="signupLink">Créez un compte !</a>
+      <Divider horizontal>
+        Pas encore inscrit ? <Link to="/signup" className="signupLink">Créez un compte !</Link>
       </Divider>
     </Segment>
   );

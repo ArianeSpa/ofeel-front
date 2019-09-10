@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Form, Segment, Divider,
 } from 'semantic-ui-react';
@@ -36,7 +37,7 @@ const SignUp = ({
         <Button type="submit" className="submit">Submit</Button>
       </Form>
       <Divider horizontal>
-        Déjà inscrit ? <a href="/" className="signupLink">Connectez-vous !</a>
+        Déjà inscrit ? <Link to="/" className="signupLink">Connectez-vous !</Link>
       </Divider>
     </Segment>
   );
