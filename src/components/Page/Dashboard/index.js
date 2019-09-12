@@ -5,7 +5,7 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 
 import Welcome from 'src/components/Page/Dashboard/Welcome';
 import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
-import Goals from 'src/components/Page/Dashboard/Goals';
+import Goals from 'src/containers/Dashboard/Goals';
 import MealPlan from 'src/components/Page/Dashboard/MealPlan';
 import Workout from 'src/components/Page/Dashboard/Workout';
 import './dashboard.scss';
@@ -49,7 +49,6 @@ const Dashboard = () => {
       </Grid>
     </Segment>
   );
- 
 };
 
 

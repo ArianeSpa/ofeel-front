@@ -1,17 +1,20 @@
 @import 'src/styles/vars';
 
-.ui.container {
-  margin: 140px;
+.ui {
+  &.inverted.segment.dashboard-goal {
+    margin: 100px;
+    background: transparent;
+  }
 }
 .ui.form.choices {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: $livvic;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+
 }
 
 .ui.checkbox.choice{
-  margin: 20px;
     &>label {
       color:#fff;
       &:hover {
@@ -20,11 +23,11 @@
     }
 }
   
-
-h4.ui.header.subtitle {
+h4.ui.header.subtitle-goal {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 40px;
   font-family: $cabin;
   font-size: 1.2em;
   color: #fff;

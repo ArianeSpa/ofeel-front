@@ -11,12 +11,10 @@ import './form.scss';
 const SignUp = ({
   changeInputUsername, username, changeInputEmail, email, createAccount,
 }) => {
-  
   const handleChangeUsername = (event) => {
     const { value } = event.target;
     changeInputUsername(value);
   };
-  
   const handleAddEmail = (event) => {
     const { value } = event.target;
     changeInputEmail(value);

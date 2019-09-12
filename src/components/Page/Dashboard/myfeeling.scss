@@ -1,0 +1,16 @@
+@import 'src/styles/vars';
+
+.ui {
+  &.inverted.segment.dashboard-feeling {
+    background: transparent;
+  }
+}
+h4.ui.header.subtitle-feeling {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  font-family: $cabin;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 1px 1px 2px #00bb9d;
+}
