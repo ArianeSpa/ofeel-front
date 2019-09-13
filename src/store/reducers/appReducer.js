@@ -1,16 +1,21 @@
 // reducer pour l'app en général
 // import radios from 'src/dataRadio';
+import profil from 'src/datas/MyFeeling/profile';
+
 
 // == Initial State
 const initialState = {
   goal: '',
   isChecked: false,
+  gender: '',
+  profiles: profil,
 };
-
+console.log(profil);
 // console.log(radios);
 
 const SAVE_GOAL = 'SAVE_GOAL';
 const CHANGE_CHKBOX = 'CHANGE_CHKBOX';
+const SAVE_GENDER = 'SAVE_GENDER';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -54,6 +59,12 @@ export const saveGoal = (name, id) =>
   });
 export const newCheckValue = (name, id) => ({
   type: CHANGE_CHKBOX,
+  id,
+  name,
+});
+
+export const saveGender = (name, id) => ({
+  type: SAVE_GENDER,
   id,
   name,
 });

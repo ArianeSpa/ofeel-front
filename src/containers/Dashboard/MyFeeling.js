@@ -2,18 +2,24 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-/* import MyFeeling from 'src/components/MyFeeling'; */
+import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
 
 // Action Creators
+import { saveGender } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  message: state.message,
+  gender: state.appReducer.gender,
+  profiles: state.appReducer.profiles,
 });
 
 /* === Actions === */
-const mapDispatchToProps = {};
-
+const mapDispatchToProps = (dispatch) => ({
+  changeGender: (id) => {
+    const action = saveGender('gender', id);
+    dispatch(action);
+  },
+});
 // Container
 const MyFeelingContainer = connect(
   mapStateToProps,

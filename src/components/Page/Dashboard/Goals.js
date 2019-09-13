@@ -22,7 +22,7 @@ const Goals = ({
     changeGoal(id);
   };
   const handleClickPref = (event) => {
-    console.log(event.target);
+    // console.log(event.target);
     const { id } = event.target;
     changeCheckboxValue(id);
   };
@@ -35,7 +35,6 @@ const Goals = ({
             className="choice"
             id="perte-de-poids"
             label="Perdre du poids"
-            // value={choice}
             name="radioGroup"
             onChange={handleChangeGoal}
             checked={goal === 'perte-de-poids'}

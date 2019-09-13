@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Radio } from 'semantic-ui-react';
+import { Form, Radio } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ const GoalRadio = ({
     console.log(event.target.value);
   };
   return (
-    <Form.Field on>
+    <Form.Field>
       <Radio
         label={text}
         className="choice"

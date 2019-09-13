@@ -14,3 +14,38 @@ h4.ui.header.subtitle-feeling {
   color: #fff;
   text-shadow: 1px 1px 2px #00bb9d;
 }
+
+.ui.form{
+  &.gender {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  }
+}
+
+.ui.form.field {
+    margin: 0;
+} 
+.ui.form.choixProfil {
+  display: flex;
+  justify-content: center;
+}
+.ui.radio.checkbox {
+  margin-right: 15px;
+  &.choice {
+    font-size: 1.2em;
+  }
+} 
+p {
+  font-style: italic;
+}
+.ui.compact.listMyFeeling.menu{
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: none;
+    &>.selection.dropdown {
+      margin-right: 15px;
+    }
+}
+
