@@ -5,7 +5,8 @@ import {
 
 import './mealplan.scss';
 import { prType, lpType, glType } from 'src/datas/food';
-
+import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
+import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 
 
 const MealPlan = ({
@@ -47,10 +48,12 @@ const MealPlan = ({
               id="breakfastcheck"
               label="Cheat Meal"
               onChange={handleCheck}
+              checked={breakfastcheck}
               />
           </Segment>
-          
-          <Form inverted className="bfstForm cssForm">        
+
+          {!breakfastcheck && (
+           <Form inverted className="bfstForm cssForm">        
             <Form.Group className="prForm cssField">
               <Label className="cssLabel">30gr
               </Label>
@@ -90,6 +93,8 @@ const MealPlan = ({
             </Form.Group>
             <div className="fruit">+ 1 à 2 fruit(s)</div>
           </Form>
+          )}
+          {breakfastcheck && <MessageCheat/>}
         </Grid.Column>
 
 
@@ -103,10 +108,11 @@ const MealPlan = ({
               id="lunchcheck"
               label="Cheat Meal"
               onChange={handleCheck}
-
+              checked={lunchcheck}
               />
           </Segment>
           
+          {!lunchcheck && (
           <Form inverted className="lnchForm cssForm">        
             <Form.Group className="prForm cssField">
               <Label className="cssLabel">30gr
@@ -147,6 +153,8 @@ const MealPlan = ({
             </Form.Group>
             <div className="fruit">+ 1 à 2 fruit(s)</div>
           </Form>
+          )}
+          {lunchcheck && <MessageCheat/>}
         </Grid.Column>
         
 
@@ -160,10 +168,11 @@ const MealPlan = ({
               id="dinnercheck"
               label="Cheat Meal"
               onChange={handleCheck}
-
+              checked={dinnercheck}
               />
           </Segment>
           
+          {!dinnercheck && (
           <Form inverted className="bfstForm cssForm">        
             <Form.Group className="prForm cssField">
               <Label className="cssLabel">30gr
@@ -204,6 +213,8 @@ const MealPlan = ({
             </Form.Group>
             <div className="fruit">+ 1 à 2 fruit(s)</div>
           </Form>
+          )}
+          {dinnercheck && <MessageCheat/>}
         </Grid.Column>
       </Grid.Row>
 
@@ -220,12 +231,13 @@ const MealPlan = ({
               id="snackcheck"
               label="Je m'entraine !"
               onChange={handleCheck}
+              checked={snackcheck}
               />
           </Segment>
         </Grid.Column>
         <Grid.Column className="snackColumn">
 
-
+          {snackcheck && (
           <Form inverted className="snackForm cssForm">        
             <Form.Group className="prForm cssField snackField">
               <Label className="snackLabel">30gr
@@ -255,6 +267,8 @@ const MealPlan = ({
             </Form.Group>
             <div className="fruit">+ 1 fruit</div>
           </Form>
+          )}
+          {!snackcheck && <MessageSnack />}
         </Grid.Column>
       </Grid.Row>
     </Grid>
