@@ -7,6 +7,7 @@ import './mealplan.scss';
 import { prType, lpType, glType } from 'src/datas/food';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
+import { setProteinQuantity, setFatQuantity, setSugarQuantity } from 'src/utils/setQuantity';
 
 
 const MealPlan = ({
@@ -55,8 +56,7 @@ const MealPlan = ({
           {!breakfastcheck && (
            <Form inverted className="bfstForm cssForm">        
             <Form.Group className="prForm cssField">
-              <Label className="cssLabel">30gr
-              </Label>
+              <Label className="cssLabel">{setProteinQuantity(proteinebreakfast)}</Label>
               <Dropdown
                 fluid                    
                 selection
@@ -68,7 +68,7 @@ const MealPlan = ({
               />
             </Form.Group>
             <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setFatQuantity(lipidebreakfast)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -80,7 +80,7 @@ const MealPlan = ({
                 />
             </Form.Group>
             <Form.Group className="glForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setSugarQuantity(glucidebreakfast)}</Label>
               <Dropdown
                 fluid
                 selection
@@ -115,8 +115,7 @@ const MealPlan = ({
           {!lunchcheck && (
           <Form inverted className="lnchForm cssForm">        
             <Form.Group className="prForm cssField">
-              <Label className="cssLabel">30gr
-              </Label>
+              <Label className="cssLabel">{setProteinQuantity(proteinelunch)}</Label>
               <Dropdown
                 fluid                    
                 selection
@@ -128,7 +127,7 @@ const MealPlan = ({
               />
             </Form.Group>
             <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setFatQuantity(lipidelunch)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -140,7 +139,7 @@ const MealPlan = ({
                 />
             </Form.Group>
             <Form.Group className="glForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setSugarQuantity(glucidelunch)}</Label>
               <Dropdown
                 fluid
                 selection
@@ -175,8 +174,7 @@ const MealPlan = ({
           {!dinnercheck && (
           <Form inverted className="bfstForm cssForm">        
             <Form.Group className="prForm cssField">
-              <Label className="cssLabel">30gr
-              </Label>
+              <Label className="cssLabel">{setProteinQuantity(proteinedinner)}</Label>
               <Dropdown
                 fluid                    
                 selection
@@ -188,7 +186,7 @@ const MealPlan = ({
               />
             </Form.Group>
             <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setFatQuantity(lipidedinner)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -200,7 +198,7 @@ const MealPlan = ({
                 />
             </Form.Group>
             <Form.Group className="glForm cssField">
-              <Label className="cssLabel">30gr</Label>
+              <Label className="cssLabel">{setSugarQuantity(glucidedinner)}</Label>
               <Dropdown
                 fluid
                 selection
@@ -240,8 +238,7 @@ const MealPlan = ({
           {snackcheck && (
           <Form inverted className="snackForm cssForm">        
             <Form.Group className="prForm cssField snackField">
-              <Label className="snackLabel">30gr
-              </Label>
+              <Label className="snackLabel">{setProteinQuantity(proteinesnack)}</Label>
               <Dropdown
                 fluid                    
                 selection
@@ -254,7 +251,7 @@ const MealPlan = ({
             </Form.Group>
             
             <Form.Group className="glForm cssField snackField">
-              <Label className="snackLabel">30gr</Label>
+              <Label className="snackLabel">{setSugarQuantity(glucidesnack)}</Label>
               <Dropdown
                 fluid
                 selection
