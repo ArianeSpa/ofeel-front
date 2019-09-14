@@ -17,6 +17,7 @@ const MealPlan = ({
   glucidebreakfast, glucidelunch, glucidedinner, glucidesnack,
   changeCheckValue,
   breakfastcheck, lunchcheck, dinnercheck, snackcheck,
+  datafood,
 }) => {
 
   const handleValueFoodtype = (event) => {
@@ -34,6 +35,31 @@ const MealPlan = ({
     changeCheckValue(id);
   }
 
+  const proteinType = [];
+  const glucideType = [];
+  const lipideType = [];
+
+  datafood.map((food)=> {
+    if(food.type === 'proteine'){
+      proteinType.push({
+        key: food.id,
+        text: food.name,
+        value: food.name
+      })
+    }else if(food.type === 'glucides'){
+      glucideType.push({
+        key: food.id,
+        text: food.name,
+        value: food.name
+      })
+    }else if(food.type === 'lipides'){
+      lipideType.push({
+        key: food.id,
+        text: food.name,
+        value: food.name
+      })
+    }
+  });
 
   return(
      <Grid className="mealGrid" columns='equal'>
@@ -60,7 +86,7 @@ const MealPlan = ({
               <Dropdown
                 fluid                    
                 selection
-                options={prType}
+                options={proteinType}
                 id="proteinebreakfast"
                 onChange={handleValueFoodtype}
                 value={proteinebreakfast}
@@ -119,7 +145,7 @@ const MealPlan = ({
               <Dropdown
                 fluid                    
                 selection
-                options={prType}
+                options={proteinType}
                 className="lnpr"
                 id="proteinelunch"
                 onChange={handleValueFoodtype}
@@ -178,7 +204,7 @@ const MealPlan = ({
               <Dropdown
                 fluid                    
                 selection
-                options={prType}
+                options={proteinType}
                 className="dnpr"
                 id="proteinedinner"
                 onChange={handleValueFoodtype}
@@ -242,7 +268,7 @@ const MealPlan = ({
               <Dropdown
                 fluid                    
                 selection
-                options={prType}
+                options={proteinType}
                 className="snpr"
                 id="proteinesnack"
                 onChange={handleValueFoodtype}

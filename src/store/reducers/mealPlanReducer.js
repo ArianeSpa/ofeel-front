@@ -3,8 +3,8 @@
 const initialState = {
     datafood:[],
     proteinebreakfast: 'Fromage blanc',
-    proteinelunch: 'Blanc de poulet',
-    proteinedinner: 'Poisson',
+    proteinelunch: 'Steack hache',
+    proteinedinner: 'Poisson blanc',
     proteinesnack: 'Fromage blanc',
     lipidebreakfast: 'Amandes',
     lipidelunch: 'Avocat',
@@ -71,10 +71,12 @@ export const askFoodInfo = () => ({
     type: ASK_FOOD_INFO,
 });
 
-export const saveFood = (data) => ({
+export const saveFood = (data) => {
+return({
     type: SAVE_FOOD,
     data,
-});
+}
+)};
 
 export const changeValueFood = (name, value) => ({
     type: CHANGE_FOOD,

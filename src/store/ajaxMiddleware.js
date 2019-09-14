@@ -53,8 +53,22 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/',
       })
         .then((response) => {
-          // console.log(response.data);
-          const saveFoodData = saveFood(response.data);
+          const arrayResponse = response.data;
+          const datafood=[];
+          arrayResponse.map((index) => {
+            datafood.unshift({
+              "id": index.id,
+              "name": index.title.rendered,
+              "type": index.famille[0].slug,
+              "calories": index.calories,
+              "glucides": index.glucides,
+              "proteines": index.proteines,
+              "lipides": index.lipides,
+              "regime": index.regime,
+            });
+          })
+          
+          const saveFoodData = saveFood(datafood);
           store.dispatch(saveFoodData);
         })
         .catch((error) => {
