@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
-import { ASK_FOOD_INFO } from 'src/store/reducers/mealPlanReducer';
+import { ASK_FOOD_INFO, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
 
@@ -53,7 +53,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/',
       })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
+          const saveFoodData = saveFood(response.data);
+          store.dispatch(saveFoodData);
         })
         .catch((error) => {
           console.log(error);
