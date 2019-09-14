@@ -6,7 +6,7 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import Welcome from 'src/components/Page/Dashboard/Welcome';
 import MyFeeling from 'src/containers/Dashboard/MyFeeling';
 import Goals from 'src/containers/Dashboard/Goals';
-import MealPlan from 'src/components/Page/Dashboard/MealPlan';
+import MealPlan from 'src/containers/Dashboard/MealPlan';
 import Workout from 'src/components/Page/Dashboard/Workout';
 import './dashboard.scss';
 
