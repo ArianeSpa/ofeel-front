@@ -8,13 +8,18 @@ import Page from 'src/containers/Page';
 import Footer from 'src/components/Footer';
 
 // == Composant
-const App = () => (
-  <div id="app">
-    <Header />
-    <Page />
-    <Footer />
-  </div>
-);
+const App = ({ catchFoodInfo }) => {
+  
+  catchFoodInfo();
+
+  return(
+    <div id="app">
+      <Header />
+      <Page />
+      <Footer />
+    </div>
+  )
+};
 
 // == Export
 export default App;

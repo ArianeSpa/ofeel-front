@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
+import { ASK_FOOD_INFO } from 'src/store/reducers/mealPlanReducer';
+
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
 
 const bodyFormData = new FormData();
@@ -26,7 +28,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case CREATE_ACCOUNT:
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
-      console.log(bodyFormData.values());
+      // console.log(bodyFormData.values());
       axios({
         method: 'post',
         url: 'http://92.243.10.50/API/wp/wp-login.php?action=register',
@@ -39,7 +41,19 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('yeah');
-          console.log(response);
+          // console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case ASK_FOOD_INFO:
+      axios({
+        method: 'get',
+        url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/',
+      })
+        .then((response) => {
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
