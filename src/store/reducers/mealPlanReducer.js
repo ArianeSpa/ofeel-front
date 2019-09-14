@@ -6,13 +6,13 @@ const initialState = {
     proteinelunch: 'Steack hache',
     proteinedinner: 'Poisson blanc',
     proteinesnack: 'Fromage blanc',
-    lipidebreakfast: 'Amandes',
+    lipidebreakfast: 'Amande',
     lipidelunch: 'Avocat',
-    lipidedinner: 'Huile d\'olive',
-    glucidebreakfast: 'Muesli bio',
+    lipidedinner: 'Huile olive',
+    glucidebreakfast: 'Pates',
     glucidelunch: 'Quinoa',
-    glucidedinner: 'Riz complet',
-    glucidesnack: 'Muesli bio',
+    glucidedinner: 'Riz',
+    glucidesnack: 'Quinoa',
     breakfastcheck:false,
     lunchcheck: false,
     dinnercheck: false,
@@ -35,7 +35,6 @@ const mealPlanReducer = (state = initialState, action = {}) => {
                     datafood: action.data,
                 };
         case CHANGE_FOOD:  
-            // console.log(action.name + " " +  action.value)  
             return {
                 ...state,
                 [action.name]: action.value,
