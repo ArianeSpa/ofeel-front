@@ -3,16 +3,16 @@
 const initialState = {
     datafood:[],
     proteinebreakfast: 'Fromage blanc',
-    proteinelunch: 'Blanc de poulet',
-    proteinedinner: 'Poisson',
+    proteinelunch: 'Steack hache',
+    proteinedinner: 'Poisson blanc',
     proteinesnack: 'Fromage blanc',
-    lipidebreakfast: 'Amandes',
+    lipidebreakfast: 'Amande',
     lipidelunch: 'Avocat',
-    lipidedinner: 'Huile d\'olive',
-    glucidebreakfast: 'Muesli bio',
+    lipidedinner: 'Huile olive',
+    glucidebreakfast: 'Pates',
     glucidelunch: 'Quinoa',
-    glucidedinner: 'Riz complet',
-    glucidesnack: 'Muesli bio',
+    glucidedinner: 'Riz',
+    glucidesnack: 'Quinoa',
     breakfastcheck:false,
     lunchcheck: false,
     dinnercheck: false,
@@ -35,7 +35,6 @@ const mealPlanReducer = (state = initialState, action = {}) => {
                     datafood: action.data,
                 };
         case CHANGE_FOOD:  
-            // console.log(action.name + " " +  action.value)  
             return {
                 ...state,
                 [action.name]: action.value,
@@ -71,10 +70,12 @@ export const askFoodInfo = () => ({
     type: ASK_FOOD_INFO,
 });
 
-export const saveFood = (data) => ({
+export const saveFood = (data) => {
+return({
     type: SAVE_FOOD,
     data,
-});
+}
+)};
 
 export const changeValueFood = (name, value) => ({
     type: CHANGE_FOOD,

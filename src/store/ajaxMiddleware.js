@@ -47,19 +47,48 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           console.log(error);
         });
       break;
+    
     case ASK_FOOD_INFO:
       axios({
         method: 'get',
         url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/',
       })
         .then((response) => {
-          // console.log(response.data);
-          const saveFoodData = saveFood(response.data);
+          const numberPages = (response.headers['x-wp-totalpages']);
+          let datafood=[];
+          let page = 0;
+          for(page=1; page<=numberPages; page++){
+            axios({
+              method: 'get',
+              url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+page,
+            })
+              .then((response) => {
+                const arrayResponse = response.data;
+                arrayResponse.map((index) => {
+                  datafood.unshift({
+                    "id": index.id,
+                    "name": index.title.rendered,
+                    "type": index.famille[0].slug,
+                    "calories": index.calories,
+                    "glucides": index.glucides,
+                    "proteines": index.proteines,
+                    "lipides": index.lipides,
+                    "regime": index.regime,
+                  });
+                })
+                return datafood;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+          const saveFoodData = saveFood(datafood);
           store.dispatch(saveFoodData);
         })
         .catch((error) => {
           console.log(error);
         });
+      
       break;
     default:
       next(action);
