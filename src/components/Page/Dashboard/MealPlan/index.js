@@ -13,7 +13,8 @@ const MealPlan = ({
   proteinebreakfast, proteinelunch, proteinedinner, proteinesnack,
   lipidebreakfast, lipidelunch, lipidedinner,
   glucidebreakfast, glucidelunch, glucidedinner, glucidesnack,
-
+  changeCheckValue,
+  breakfastcheck, lunchcheck, dinnercheck, snackcheck,
 }) => {
 
   const handleValueFoodtype = (event) => {
@@ -24,6 +25,11 @@ const MealPlan = ({
     }
     const id = parent.id;
     changeFoodValue(textContent, id);
+  }
+
+  const handleCheck = (event) => {
+    const {id} = event.target.parentNode.firstChild;
+    changeCheckValue(id);
   }
 
 
@@ -40,6 +46,7 @@ const MealPlan = ({
               toggle
               id="breakfastcheck"
               label="Cheat Meal"
+              onChange={handleCheck}
               />
           </Segment>
           
@@ -95,6 +102,8 @@ const MealPlan = ({
               toggle
               id="lunchcheck"
               label="Cheat Meal"
+              onChange={handleCheck}
+
               />
           </Segment>
           
@@ -150,6 +159,8 @@ const MealPlan = ({
               toggle
               id="dinnercheck"
               label="Cheat Meal"
+              onChange={handleCheck}
+
               />
           </Segment>
           
@@ -208,6 +219,7 @@ const MealPlan = ({
               toggle
               id="snackcheck"
               label="Je m'entraine !"
+              onChange={handleCheck}
               />
           </Segment>
         </Grid.Column>

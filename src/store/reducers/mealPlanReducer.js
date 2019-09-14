@@ -13,6 +13,10 @@ const initialState = {
     glucidelunch: 'Quinoa',
     glucidedinner: 'Riz complet',
     glucidesnack: 'Muesli bio',
+    breakfastcheck:false,
+    lunchcheck: false,
+    dinnercheck: false,
+    snackcheck: false,
 };
 
 // == Types
@@ -20,7 +24,7 @@ const initialState = {
 export const ASK_FOOD_INFO = 'ASK_FOOD_INFO';
 const SAVE_FOOD = 'SAVE_FOOD';
 const CHANGE_FOOD = 'CHANGE_FOOD';
-
+const CHANGE_CHECK = 'CHANGE_CHECK';
 
 
 const mealPlanReducer = (state = initialState, action = {}) => {
@@ -31,11 +35,33 @@ const mealPlanReducer = (state = initialState, action = {}) => {
                     datafood: action.data,
                 };
         case CHANGE_FOOD:  
-        console.log(action.name + " " +  action.value)  
-        return {
+            // console.log(action.name + " " +  action.value)  
+            return {
                 ...state,
                 [action.name]: action.value,
             };
+        case CHANGE_CHECK:
+            if (action.name === 'breakfastcheck'){
+                return {
+                    ...state,
+                    [action.name]: !state.breakfastcheck,
+                };
+            }else if (action.name === 'lunchcheck'){
+                return {
+                    ...state,
+                    [action.name]: !state.lunchcheck,
+                };
+            }else if (action.name === 'dinnercheck'){    
+                return {
+                    ...state,
+                    [action.name]: !state.dinnercheck,
+                };
+            }else if (action.name === 'snackcheck'){
+                return {
+                    ...state,
+                    [action.name]: !state.snackcheck,
+                };
+            }
         default:
             return state;
     }
@@ -53,6 +79,11 @@ export const saveFood = (data) => ({
 export const changeValueFood = (name, value) => ({
     type: CHANGE_FOOD,
     value,
+    name,
+});
+
+export const newCheckValue = (name) => ({
+    type: CHANGE_CHECK,
     name,
 });
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MealPlan from 'src/components/Page/Dashboard/MealPlan/index.js'; 
 
 // Action Creators
-import { changeValueFood } from 'src/store/reducers/mealPlanReducer';
+import { changeValueFood, newCheckValue } from 'src/store/reducers/mealPlanReducer';
 
 // Action Creators
 
@@ -23,12 +23,20 @@ const mapStateToProps = (state) => ({
   glucidelunch: state.mealPlanReducer.glucidelunch,
   glucidedinner: state.mealPlanReducer.glucidedinner,
   glucidesnack: state.mealPlanReducer.glucidesnack,
+  breakfastcheck: state.mealPlanReducer.breakfastcheck,
+  lunchcheck: state.mealPlanReducer.lunchcheck,
+  dinnercheck: state.mealPlanReducer.dinnercheck,
+  snackcheck: state.mealPlanReducer.snackcheck,
 });
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
   changeFoodValue: (value, stateElementToChange) => {
     const action = changeValueFood (stateElementToChange, value);
+    dispatch(action);
+  },
+  changeCheckValue: (name) => {
+    const action = newCheckValue(name);
     dispatch(action);
   },
 
