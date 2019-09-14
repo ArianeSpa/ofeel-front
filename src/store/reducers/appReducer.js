@@ -10,7 +10,7 @@ const initialState = {
   gender: '',
   profiles: profil,
 };
-console.log(profil);
+// console.log(profil);
 // console.log(radios);
 
 const SAVE_GOAL = 'SAVE_GOAL';
