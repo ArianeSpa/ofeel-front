@@ -9,6 +9,9 @@ const initialState = {
   taille: 140,
   poids: 45,
   activity: '',
+  sansgluten: false,
+  vegan: false,
+  sanslactose: false,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -18,46 +21,20 @@ const CHECK_REGIME = 'CHECK_REGIME';
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SAVE_PROFIL:
-      console.log(state.activity);
       return {
         ...state,
         [action.name]: action.value,
       };
     case SAVE_GOAL:
-      // console.log('je suis dans SAVE GOAL et je veux change la valeur de ' + action.name + ' qui vaut actuellement ' + state.goal + ' et lui affecter la valeur correspondate à ' + action.id);
-      if (action.id === 'perte-de-poids') {
-        return {
-          ...state,
-          [action.name]: action.id,
-        };
-      }
-      if (action.id === 'prise-de-masse') {
-        return {
-          ...state,
-          [action.name]: action.id,
-        };
-      }
-      if (action.id === 'remise-en-forme') {
-        return {
-          ...state,
-          [action.name]: action.id,
-        };
-      }
-      break;
+      return {
+        ...state,
+        [action.name]: action.id,
+      };
     case CHECK_REGIME:
-      // console.log('je suis dans CHECK_REGIME et je veux change la valeur de ' + action.name + ' qui vaut actuellement ' + state.isCheckedRegime + ' et lui affecter la valeur correspondante à ' + action.checked);
-      if (action.checked === true) {
-        return {
-          ...state,
-          [action.name]: action.checked,
-        };
-      } if (action.checked === false) {
-        return {
-          ...state,
-          [action.name]: !action.checked,
-        };
-      }
-      break;
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     default:
       return state;
   }
@@ -70,11 +47,11 @@ export const saveGoal = (name, id) =>
     name,
   });
 
-export const checkRegime = (name, checked) => (
+export const checkRegime = (name, value) => (
   {
     type: CHECK_REGIME,
     name,
-    checked,
+    value,
   }
 );
 

@@ -15,16 +15,14 @@ import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
 const Goals = ({
-  changeGoal, goal, isCheckedRegime, selectRegime,
+  changeGoal, goal, isCheckedRegime, selectRegime, sanslactose, sansgluten, vegan,
 }) => {
-  const handleChangeGoal = (event) => {
+  const handleChangeGoal = (event, data) => {
     const { id } = event.target;
     changeGoal(id);
   };
-  const handleChangeRegime = (event) => {
-    const { checked } = event.target;
-    // console.log (event.target.checked);
-    selectRegime(checked);
+  const handleChangeRegime = (event, data) => {
+    selectRegime(data.id, data.checked);
   };
   return (
     <Segment inverted className="dashboard-goal">
@@ -82,7 +80,7 @@ const Goals = ({
             className="preference-alim"
             label="Sans lactose"
             onChange={handleChangeRegime}
-            checked={isCheckedRegime.checked}
+            checked={sanslactose}
           />
           <Image
             className="icon"
@@ -95,7 +93,7 @@ const Goals = ({
             className="preference-alim"
             label="Sans gluten"
             onChange={handleChangeRegime}
-            checked={isCheckedRegime.checked}
+            checked={sansgluten}
           />
           <Image
             className="icon"
@@ -108,7 +106,7 @@ const Goals = ({
             className="preference-alim"
             label="Vegan"
             onChange={handleChangeRegime}
-            checked={isCheckedRegime.checked}
+            checked={vegan}
           />
           <Image
             className="icon"
@@ -126,6 +124,9 @@ Goals.propTypes = {
   goal: PropTypes.string.isRequired,
   selectRegime: PropTypes.func.isRequired,
   isCheckedRegime: PropTypes.bool.isRequired,
+  sanslactose: PropTypes.bool.isRequired,
+  sansgluten: PropTypes.bool.isRequired,
+  vegan: PropTypes.bool.isRequired,
 };
 
 

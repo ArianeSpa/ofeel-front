@@ -11,8 +11,10 @@ import { saveGoal, checkRegime } from 'src/store/reducers/appReducer';
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   goal: state.appReducer.goal,
+  sanslactose: state.appReducer.sanslactose,
+  sansgluten: state.appReducer.sansgluten,
+  vegan: state.appReducer.vegan,
   isCheckedRegime: state.appReducer.isCheckedRegime,
-
 });
 
 /* === Actions === */
@@ -22,8 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
     // console.log('je suis dans changeGoal du container');
     dispatch(action);
   },
-  selectRegime: (checked) => {
-    const action = checkRegime('isCheckedRegime', checked);
+  selectRegime: (name, value) => {
+    const action = checkRegime(name, value);
     // console.log('je suis dans selectRegime du container');
     dispatch(action);
   },
