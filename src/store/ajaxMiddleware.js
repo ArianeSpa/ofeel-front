@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
+import { SET_MY_FEELING_API } from 'src/store/reducers/appReducer';
+
 import { ASK_FOOD_INFO, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
@@ -56,6 +58,37 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           // console.log(response.data);
           const saveFoodData = saveFood(response.data);
           store.dispatch(saveFoodData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    case SET_MY_FEELING_API:
+      const regime = [];
+      if (store.getState().appReducer.vegan) {
+        regime.push('vegan');
+      }
+      if (store.getState().appReducer.sansgluten) {
+        regime.push('sans-gluten');
+      }
+      if (store.getState().appReducer.sanslactose) {
+        regime.push('sans-lactose');
+      }
+      axios({
+        method: 'post',
+        url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
+        headers: { Authorization: 'Bearer' + store.getState().userReducer.token },
+        data: {
+          poids: store.getState().appReducer.poids,
+          taille: store.getState().appReducer.taille,
+          age: store.getState().appReducer.age,
+          sexe: store.getState().appReducer.gender,
+          objectifs: store.getState().appReducer.goal,
+          regime_alimentaire: regime,
+        },
+      })
+        .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);

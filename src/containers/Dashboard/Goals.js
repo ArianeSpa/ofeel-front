@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Goals from 'src/components/Page/Dashboard/Goals';
 
 // Action Creators
-import { saveGoal, checkRegime } from 'src/store/reducers/appReducer';
+import { saveGoal, checkRegime, setMyFeelingAPI } from 'src/store/reducers/appReducer';
 
 
 /* === State (données) === */
@@ -14,7 +14,6 @@ const mapStateToProps = (state) => ({
   sanslactose: state.appReducer.sanslactose,
   sansgluten: state.appReducer.sansgluten,
   vegan: state.appReducer.vegan,
-  isCheckedRegime: state.appReducer.isCheckedRegime,
 });
 
 /* === Actions === */
@@ -28,6 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
     const action = checkRegime(name, value);
     // console.log('je suis dans selectRegime du container');
     dispatch(action);
+  },
+  sendToAPI: () => {
+    dispatch(setMyFeelingAPI());
   },
 });
 

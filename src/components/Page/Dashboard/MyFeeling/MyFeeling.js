@@ -8,19 +8,20 @@ import './myfeeling.scss';
 
 // datas
 import {
-  ageGenerator, heightGenerator, weightGenerator, activityTable,
+  ageGenerator, heightGenerator, weightGenerator, activityTable, 
 } from 'src/datas/myfeeling';
 
 import MyFeelingProfile from 'src/components/Page/Dashboard/MyFeeling/MyFeelingProfile';
 
 
 const MyFeeling = ({
-  gender, poids, age, taille, changeProfil, activity,
+  gender, poids, age, taille, changeProfil, activity, sendToAPI,
 }) => {
   const handleChangeProfil = (event, data) => {
     // console.log(data.name + " " + data.value)
     changeProfil(data.name, data.value);
   };
+
 
   return (
     <Segment inverted className="dashboard-feeling">
@@ -93,7 +94,7 @@ const MyFeeling = ({
           ))}
         </Form.Field>
       </Form>
-      <Button className="save" type="submit">Enregistrer</Button>
+      <Button className="save" type="submit" onClick={sendToAPI}>Enregistrer</Button>
     </Segment>
   );
 };
@@ -105,5 +106,6 @@ MyFeeling.propTypes = {
   poids: PropTypes.number.isRequired,
   changeProfil: PropTypes.func.isRequired,
   activity: PropTypes.string.isRequired,
+  sendToAPI: PropTypes.func.isRequired,
 };
 export default MyFeeling;

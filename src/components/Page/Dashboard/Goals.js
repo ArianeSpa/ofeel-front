@@ -15,7 +15,7 @@ import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
 const Goals = ({
-  changeGoal, goal, isCheckedRegime, selectRegime, sanslactose, sansgluten, vegan,
+  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI
 }) => {
   const handleChangeGoal = (event, data) => {
     const { id } = event.target;
@@ -114,7 +114,7 @@ const Goals = ({
           />
         </Form.Field>
       </Form>
-      <Button className="save" type="submit">Enregistrer</Button>
+      <Button className="save" type="submit" onClick={sendToAPI}>Enregistrer</Button>
     </Segment>
   );
 };
@@ -123,10 +123,10 @@ Goals.propTypes = {
   changeGoal: PropTypes.func.isRequired,
   goal: PropTypes.string.isRequired,
   selectRegime: PropTypes.func.isRequired,
-  isCheckedRegime: PropTypes.bool.isRequired,
   sanslactose: PropTypes.bool.isRequired,
   sansgluten: PropTypes.bool.isRequired,
   vegan: PropTypes.bool.isRequired,
+  sendToAPI: PropTypes.func.isRequired,
 };
 
 

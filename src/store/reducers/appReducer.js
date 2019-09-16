@@ -3,7 +3,6 @@
 // == Initial State
 const initialState = {
   goal: '',
-  isCheckedRegime: false,
   gender: '',
   age: 18,
   taille: 140,
@@ -17,6 +16,8 @@ const initialState = {
 const SAVE_GOAL = 'SAVE_GOAL';
 const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
+
+export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -62,5 +63,8 @@ export const saveProfil = (name, value) =>
     name,
   });
 
+export const setMyFeelingAPI = () => ({
+  type: SET_MY_FEELING_API,
+})
 
 export default appReducer;

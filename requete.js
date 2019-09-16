@@ -1,3 +1,29 @@
+const handleCreateFields= (event) =>
+  {
+    //var bodyFormData = new FormData();
+    var poids = prompt('Veuillez saisir votre poids');
+    //bodyFormData.set('poids', poids);
+    // On ajoute un ou des customn fileds du user
+    axios({
+      method: "post",
+      url: app.baseUrl + app.jsonUrl + "users/me",
+      headers: { Authorization: "Bearer" + sessionStorage.getItem("token") },
+      data: {
+        poids: poids,
+      },
+    })
+      // En cas de succès
+      .then(function(response) {
+        console.log(response);
+        alert("Votre champ a bien été ajouté ! :)");
+      })
+      // En cas d'echec
+      .catch(function(error) {
+        console.log(error);
+        alert("Impossible de créer ce champ ! :(");
+      })
+  },
+
 const app = {
   elements: [],
   baseUrl: 'http://localhost/Apotheose/Ofeel/',

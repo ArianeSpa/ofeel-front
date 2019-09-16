@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MyFeeling from 'src/components/Page/Dashboard/MyFeeling/MyFeeling';
 
 // Action Creators
-import { saveProfil } from 'src/store/reducers/appReducer';
+import { saveProfil, setMyFeelingAPI } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
@@ -22,6 +22,10 @@ const mapDispatchToProps = (dispatch) => ({
     const action = saveProfil(name, value);
     dispatch(action);
   },
+  sendToAPI: () => {
+    dispatch(setMyFeelingAPI());
+  },
+
 });
 // Container
 const MyFeelingContainer = connect(
