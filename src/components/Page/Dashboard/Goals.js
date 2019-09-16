@@ -15,16 +15,14 @@ import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
 const Goals = ({
-  changeGoal, goal, isChecked, changeCheckboxValue,
+  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI
 }) => {
-  const handleChangeGoal = (event) => {
+  const handleChangeGoal = (event, data) => {
     const { id } = event.target;
     changeGoal(id);
   };
-  const handleClickPref = (event) => {
-    // console.log(event.target);
-    const { id } = event.target;
-    changeCheckboxValue(id);
+  const handleChangeRegime = (event, data) => {
+    selectRegime(data.id, data.checked);
   };
   return (
     <Segment inverted className="dashboard-goal">
@@ -78,11 +76,11 @@ const Goals = ({
       <Form className="choices">
         <Form.Field>
           <Checkbox
-            id="sans-lactose"
-            className="choice"
+            id="sanslactose"
+            className="preference-alim"
             label="Sans lactose"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={sanslactose}
           />
           <Image
             className="icon"
@@ -91,11 +89,11 @@ const Goals = ({
         </Form.Field>
         <Form.Field>
           <Checkbox
-            id="sans-gluten"
-            className="choice"
+            id="sansgluten"
+            className="preference-alim"
             label="Sans gluten"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={sansgluten}
           />
           <Image
             className="icon"
@@ -105,10 +103,10 @@ const Goals = ({
         <Form.Field>
           <Checkbox
             id="vegan"
-            className="choice"
+            className="preference-alim"
             label="Vegan"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={vegan}
           />
           <Image
             className="icon"
@@ -116,7 +114,7 @@ const Goals = ({
           />
         </Form.Field>
       </Form>
-      <Button className="save" type="submit">Enregistrer</Button>
+      <Button className="save" type="submit" onClick={sendToAPI}>Enregistrer</Button>
     </Segment>
   );
 };
@@ -124,8 +122,11 @@ const Goals = ({
 Goals.propTypes = {
   changeGoal: PropTypes.func.isRequired,
   goal: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool.isRequired,
-  changeCheckboxValue: PropTypes.func.isRequired,
+  selectRegime: PropTypes.func.isRequired,
+  sanslactose: PropTypes.bool.isRequired,
+  sansgluten: PropTypes.bool.isRequired,
+  vegan: PropTypes.bool.isRequired,
+  sendToAPI: PropTypes.func.isRequired,
 };
 
 

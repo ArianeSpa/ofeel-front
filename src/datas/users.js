@@ -1,25 +1,41 @@
 // eslint-disable-next-line no-unused-expressions
 [
-  {
-    id: 3,
-    name: 'dfssdf',
-    url: '',
-    description:'',
-    link: 'http:\/\/92.243.10.50\/API\/author\/dfssdf\/',
-    slug: 'dfssdf',
-    avatar_urls: {
-      24: 'http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=24&d=mm&r=g',
-      48: 'http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=48&d=mm&r=g',
-      96: 'http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=96&d=mm&r=g' 
+  {"id":3,
+  "name":"dfssdf",
+  "url":"",
+  "description":"",
+  "link":"http:\/\/92.243.10.50\/API\/author\/dfssdf\/",
+  "slug":"dfssdf",
+  "avatar_urls":{
+    "24":"http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=24&d=mm&r=g","48":"http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=48&d=mm&r=g","96":"http:\/\/0.gravatar.com\/avatar\/c817005f3e45e6782b51ae79dd8d0994?s=96&d=mm&r=g"
     },
-    objectif: '',
-    meta: [],
-    poids: '35',
-    regime_alimentaire: ['Vegan'],
-    _links: {
-      self: [{ href: 'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/3' }],
-      collection: [{ href: 'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }],
-    },
-  },
-  { id:16,name:'Gecika',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/gecika\/',slug:'gecika',avatar_urls:{ 24:'http:\/\/2.gravatar.com\/avatar\/e4f3968fae37b2034cc74c0cf855dc54?s=24&d=mm&r=g',48:'http:\/\/2.gravatar.com\/avatar\/e4f3968fae37b2034cc74c0cf855dc54?s=48&d=mm&r=g',96:'http:\/\/2.gravatar.com\/avatar\/e4f3968fae37b2034cc74c0cf855dc54?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/16' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:19,name:'GecikaDM',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/gecikadm\/',slug:'gecikadm',avatar_urls:{ 24:'http:\/\/0.gravatar.com\/avatar\/fb16c8f4884ea388813dcd939bd25ba4?s=24&d=mm&r=g',48:'http:\/\/0.gravatar.com\/avatar\/fb16c8f4884ea388813dcd939bd25ba4?s=48&d=mm&r=g',96:'http:\/\/0.gravatar.com\/avatar\/fb16c8f4884ea388813dcd939bd25ba4?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/19' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:6,name:'gege',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/gege\/',slug:'gege',avatar_urls:{ 24:'http:\/\/1.gravatar.com\/avatar\/de0a6649dba11ff5e654aa707247708b?s=24&d=mm&r=g',48:'http:\/\/1.gravatar.com\/avatar\/de0a6649dba11ff5e654aa707247708b?s=48&d=mm&r=g',96:'http:\/\/1.gravatar.com\/avatar\/de0a6649dba11ff5e654aa707247708b?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/6' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:8,name:'loris',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/loris\/',slug:'loris',avatar_urls:{ 24:'http:\/\/2.gravatar.com\/avatar\/2310d5c07c5f321567a3a1e4b1c55b91?s=24&d=mm&r=g',48:'http:\/\/2.gravatar.com\/avatar\/2310d5c07c5f321567a3a1e4b1c55b91?s=48&d=mm&r=g',96:'http:\/\/2.gravatar.com\/avatar\/2310d5c07c5f321567a3a1e4b1c55b91?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/8' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:5,name:'momo',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/momo\/',slug:'momo',avatar_urls:{ 24:'http:\/\/1.gravatar.com\/avatar\/40e764bf295a43ecaff18728848c2fb1?s=24&d=mm&r=g',48:'http:\/\/1.gravatar.com\/avatar\/40e764bf295a43ecaff18728848c2fb1?s=48&d=mm&r=g',96:'http:\/\/1.gravatar.com\/avatar\/40e764bf295a43ecaff18728848c2fb1?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/5' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:1,name:'ofeel',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/ofeel\/',slug:'ofeel',avatar_urls:{ 24:'http:\/\/0.gravatar.com\/avatar\/31c48aa8f6d69ea294eb93eae5d54801?s=24&d=mm&r=g',48:'http:\/\/0.gravatar.com\/avatar\/31c48aa8f6d69ea294eb93eae5d54801?s=48&d=mm&r=g',96:'http:\/\/0.gravatar.com\/avatar\/31c48aa8f6d69ea294eb93eae5d54801?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/1' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:23,name:'pascal',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/pascal\/',slug:'pascal',avatar_urls:{ 24:'http:\/\/2.gravatar.com\/avatar\/8eb3fb1ead5696860369de2a28d4946b?s=24&d=mm&r=g',48:'http:\/\/2.gravatar.com\/avatar\/8eb3fb1ead5696860369de2a28d4946b?s=48&d=mm&r=g',96:'http:\/\/2.gravatar.com\/avatar\/8eb3fb1ead5696860369de2a28d4946b?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/23' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:4,name:'test',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/test\/',slug:'test',avatar_urls:{ 24:'http:\/\/0.gravatar.com\/avatar\/fddb0d2cba70905958aa2dedbfb73eb1?s=24&d=mm&r=g',48:'http:\/\/0.gravatar.com\/avatar\/fddb0d2cba70905958aa2dedbfb73eb1?s=48&d=mm&r=g',96:'http:\/\/0.gravatar.com\/avatar\/fddb0d2cba70905958aa2dedbfb73eb1?s=96&d=mm&r=g' },meta:[],poids:'75',regime_alimentaire:['Vegan'],_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/4' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } },{ id:9,name:'toto',url:'',description:'',link:'http:\/\/92.243.10.50\/API\/author\/toto\/',slug:'toto',avatar_urls:{ 24:'http:\/\/0.gravatar.com\/avatar\/ce083dd5fbb13a114c335df029da4dc7?s=24&d=mm&r=g',48:'http:\/\/0.gravatar.com\/avatar\/ce083dd5fbb13a114c335df029da4dc7?s=48&d=mm&r=g',96:'http:\/\/0.gravatar.com\/avatar\/ce083dd5fbb13a114c335df029da4dc7?s=96&d=mm&r=g' },meta:[],poids:'',regime_alimentaire:'',_links:{ self:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/9' }],collection:[{ href:'http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users' }] } }
+  "meta":[],
+  "poids":"35",
+  "regime_alimentaire":"",
+  "objectifs":"remise-en-forme",
+  "taille":"50",
+  "age":"12",
+  "user_status":"",
+  "user_metabo":"",
+  "cal_jour":"",
+  "prop_prot":"",
+  "prop_glu":"",
+  "prop_lip":"",
+  "cal_p_dej":"",
+  "cal_dej":"",
+  "cal_din":"",
+  "q_prot_p_dej":"",
+  "q_glu_p_dej":"",
+  "q_lip_p_dej":"",
+  "q_prot_dej":"",
+  "q_glu_dej":"",
+  "q_lip_dej":"",
+  "q_prot_din":"",
+  "q_glu_din":"",
+  "q_lip_din":"",
+  "_links":{
+    "self":[{"href":"http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users\/3"}],
+    "collection":[{"href":"http:\/\/92.243.10.50\/API\/wp-json\/wp\/v2\/users"}]
+    }
+  }
 ]

@@ -2,23 +2,30 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import MyFeeling from 'src/components/Page/Dashboard/MyFeeling';
+import MyFeeling from 'src/components/Page/Dashboard/MyFeeling/MyFeeling';
 
 // Action Creators
-import { saveGender } from 'src/store/reducers/appReducer';
+import { saveProfil, setMyFeelingAPI } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   gender: state.appReducer.gender,
-  profiles: state.appReducer.profiles,
+  age: state.appReducer.age,
+  taille: state.appReducer.taille,
+  poids: state.appReducer.poids,
+  activity: state.appReducer.activity,
 });
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
-  changeGender: (id) => {
-    const action = saveGender('gender', id);
+  changeProfil: (name, value) => {
+    const action = saveProfil(name, value);
     dispatch(action);
   },
+  sendToAPI: () => {
+    dispatch(setMyFeelingAPI());
+  },
+
 });
 // Container
 const MyFeelingContainer = connect(
