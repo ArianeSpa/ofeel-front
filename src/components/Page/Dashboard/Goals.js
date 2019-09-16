@@ -15,16 +15,16 @@ import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
 const Goals = ({
-  changeGoal, goal, isChecked, changeCheckboxValue,
+  changeGoal, goal, isCheckedRegime, selectRegime,
 }) => {
   const handleChangeGoal = (event) => {
     const { id } = event.target;
     changeGoal(id);
   };
-  const handleClickPref = (event) => {
-    // console.log(event.target);
-    const { id } = event.target;
-    changeCheckboxValue(id);
+  const handleChangeRegime = (event) => {
+    const { checked } = event.target;
+    // console.log (event.target.checked);
+    selectRegime(checked);
   };
   return (
     <Segment inverted className="dashboard-goal">
@@ -78,11 +78,11 @@ const Goals = ({
       <Form className="choices">
         <Form.Field>
           <Checkbox
-            id="sans-lactose"
-            className="choice"
+            id="sanslactose"
+            className="preference-alim"
             label="Sans lactose"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={isCheckedRegime.checked}
           />
           <Image
             className="icon"
@@ -91,11 +91,11 @@ const Goals = ({
         </Form.Field>
         <Form.Field>
           <Checkbox
-            id="sans-gluten"
-            className="choice"
+            id="sansgluten"
+            className="preference-alim"
             label="Sans gluten"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={isCheckedRegime.checked}
           />
           <Image
             className="icon"
@@ -105,10 +105,10 @@ const Goals = ({
         <Form.Field>
           <Checkbox
             id="vegan"
-            className="choice"
+            className="preference-alim"
             label="Vegan"
-            onChange={handleClickPref}
-            checked={isChecked}
+            onChange={handleChangeRegime}
+            checked={isCheckedRegime.checked}
           />
           <Image
             className="icon"
@@ -124,8 +124,8 @@ const Goals = ({
 Goals.propTypes = {
   changeGoal: PropTypes.func.isRequired,
   goal: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool.isRequired,
-  changeCheckboxValue: PropTypes.func.isRequired,
+  selectRegime: PropTypes.func.isRequired,
+  isCheckedRegime: PropTypes.bool.isRequired,
 };
 
 

@@ -2,15 +2,13 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import MyFeelingProfile from '../../components/Page/Dashboard/MyFeelingProfile';
+import MyFeelingProfile from 'src/components/Page/Dashboard/MyFeeling/MyFeelingProfile';
 
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
-  profiles: state.appReducer.profiles,
-});
+const mapStateToProps = {};
 /* === Actions === */
 const mapDispatchToProps = {};
 

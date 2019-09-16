@@ -1,0 +1,99 @@
+@import 'src/styles/vars';
+
+@keyframes appear{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.ui {
+  &.inverted.segment.dashboard-feeling {
+    background: transparent;
+    animation-name: appear;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out
+  }
+}
+h4.ui.header.subtitle-feeling {
+  display: flex;
+  justify-content: center;
+  margin: 35px 0 35px 0;
+  font-family: $cabin;
+  font-size: 1.3em;
+  // letter-spacing: .1em;
+  color: #fff;
+  text-shadow: 1px 1px 2px $yellow2;
+}
+
+.ui.form{
+  &.gender {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 15px 0;
+  }
+}
+
+.ui.form.choixProfil {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.ui.radio.checkbox {
+  margin-right: 15px;
+  font-size: 1.1em;
+  &>label {
+    color: #fff;
+    &:hover {
+      color: $yellow4;
+    } 
+  } 
+    &.choice-profil {
+      font-size: 1.1em;
+      &>label {
+        color: #fff;
+        &:hover {
+          color: $yellow4;
+        } 
+      }
+    }
+} 
+.ui.radio.checkbox input:checked + label {
+  color: $yellow4;
+} 
+
+
+.ui.radio.checkbox.choice-profil input:checked + label {
+  color: $yellow4;
+} 
+
+.ui.compact.listMyFeeling.menu{
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: none;
+    &>.selection.dropdown {
+      margin-right: 15px;
+    }
+}
+
+.ui.top.left.popup.transition.visible {
+  font-family: $livvic;
+  padding: 10px;
+  text-align: center;
+}
+.ui.button.save {
+  margin: auto;
+  display: block;
+  background-image: $feeling-color;
+  border: 1px solid transparent;
+  &:hover{
+      background-color: transparent;
+      border: 1px solid $yellow4;
+      color: $yellow4;
+  }
+}
+

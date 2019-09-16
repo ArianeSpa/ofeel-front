@@ -1,24 +1,28 @@
 // reducer pour l'app en général
-// import radios from 'src/dataRadio';
-import profil from 'src/datas/MyFeeling/profile';
-
 
 // == Initial State
 const initialState = {
   goal: '',
-  isChecked: false,
+  isCheckedRegime: false,
   gender: '',
-  profiles: profil,
+  age: 18,
+  taille: 140,
+  poids: 45,
+  activity: '',
 };
-// console.log(profil);
-// console.log(radios);
 
 const SAVE_GOAL = 'SAVE_GOAL';
-const CHANGE_CHKBOX = 'CHANGE_CHKBOX';
-const SAVE_GENDER = 'SAVE_GENDER';
+const SAVE_PROFIL = 'SAVE_PROFIL';
+const CHECK_REGIME = 'CHECK_REGIME';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_PROFIL:
+      console.log(state.activity);
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case SAVE_GOAL:
       // console.log('je suis dans SAVE GOAL et je veux change la valeur de ' + action.name + ' qui vaut actuellement ' + state.goal + ' et lui affecter la valeur correspondate à ' + action.id);
       if (action.id === 'perte-de-poids') {
@@ -40,12 +44,20 @@ const appReducer = (state = initialState, action = {}) => {
         };
       }
       break;
-    case CHANGE_CHKBOX:
-      // console.log('je suis dans SAVE GOAL et je veux change la valeur de ' + action.name + ' qui vaut actuellement ' + state.isChecked + ' et lui affecter la valeur correspondate à ' + action.isChecked);
-      return {
-        ...state,
-        [action.name]: action.isChecked,
-      };
+    case CHECK_REGIME:
+      // console.log('je suis dans CHECK_REGIME et je veux change la valeur de ' + action.name + ' qui vaut actuellement ' + state.isCheckedRegime + ' et lui affecter la valeur correspondante à ' + action.checked);
+      if (action.checked === true) {
+        return {
+          ...state,
+          [action.name]: action.checked,
+        };
+      } if (action.checked === false) {
+        return {
+          ...state,
+          [action.name]: !action.checked,
+        };
+      }
+      break;
     default:
       return state;
   }
@@ -57,16 +69,21 @@ export const saveGoal = (name, id) =>
     id,
     name,
   });
-export const newCheckValue = (name, id) => ({
-  type: CHANGE_CHKBOX,
-  id,
-  name,
-});
 
-export const saveGender = (name, id) => ({
-  type: SAVE_GENDER,
-  id,
-  name,
-});
+export const checkRegime = (name, checked) => (
+  {
+    type: CHECK_REGIME,
+    name,
+    checked,
+  }
+);
+
+export const saveProfil = (name, value) =>
+  ({
+    type: SAVE_PROFIL,
+    value,
+    name,
+  });
+
 
 export default appReducer;

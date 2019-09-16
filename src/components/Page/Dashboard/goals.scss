@@ -1,9 +1,21 @@
 @import 'src/styles/vars';
 
+@keyframes appear{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 .ui {
   &.inverted.segment.dashboard-goal {
     margin: 100px;
     background: transparent;
+    animation-name: appear;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out
   }
 }
 .ui.form.choices {
@@ -14,24 +26,49 @@
 
 }
 
-.ui.checkbox.choice{
+.ui.checkbox.preference-alim{
+  font-size: 1.1em;
+  &>label {
+    color:#fff;
+    } 
+  }
+
+.ui.checkbox.preference-alim  input.hidden + label {
+    color: #fff;
+    &:hover {
+      color: $green2;
+    }
+  }
+
+div.ui.checkbox.preference-alim  input:checked + label {
+    color: $green2;
+}
+
+
+.ui.radio.checkbox.choice {
+  font-size: 1.1em;
     &>label {
       color:#fff;
       &:hover {
-        color: $yellow4;
+        color: $green2;
       }
-    }
+    } 
 }
-  
+
+.ui.radio.checkbox.choice  input:checked + label {
+  color: $green2;
+}
+
+
 h4.ui.header.subtitle-goal {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 40px;
   font-family: $cabin;
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #fff;
-  text-shadow: 1px 1px 2px #00bb9d;
+  text-shadow: 1px 1px 2px $green2;
 }
  .ui.button.save {
   margin: auto;
