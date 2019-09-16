@@ -1,0 +1,94 @@
+@import 'src/styles/vars';
+
+.ui.container.globalContainer{
+    height: 75%;
+}
+
+.ui.segment.buttonSort{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 1em;
+    
+}
+
+.ui.icon.button{
+    background-color: #fff;
+    &:hover{
+        background-color: rgb(43, 42, 42);
+    }
+    &:focus{
+        background-color: rgb(43, 42, 42);
+
+    }
+}
+
+.ui.button.cancelButton{
+    background-image: $feeling-color;
+    border: 1px solid transparent;
+    &:hover{
+        background-color: transparent;
+        border: 1px solid $yellow5;
+        color: $yellow5;
+    }
+}
+
+
+
+i.icon{
+    &.book{
+        color: $blue3;
+    }
+    &.food.foodSort{
+        color: $green3;
+    }
+    &.football{
+        color: $pink1;
+    }
+    &.heartbeat{
+        color: $pink4;
+    }
+    &.boxes{
+        color: $yellow1;
+    }
+}
+
+.ui.container.postsContainer{
+    overflow-y: scroll;
+    height: 75%;
+    &::-webkit-scrollbar{
+        &-track{
+            background-image: $feeling-color;
+            border-radius: 5px;
+        }
+        &-thumb{
+            background: rgba(0, 0, 0, 0.4);
+        }
+    }
+}
+
+
+.ui.styled.accordion{
+    width: 75%; 
+    & .title.cssTitle{
+        color:$blue5;
+        font-size: 0.7em;
+        &:hover{
+            color:$green1;
+            background-color: #e8e8e8;
+            &>.cssLabelPost{
+                background-color: rgb(43, 42, 42);
+                color: #e8e8e8;
+            }
+        }
+    }
+}
+
+.ui.label.cssLabelPost{
+    float: right;
+}
+
+
+
+
+
