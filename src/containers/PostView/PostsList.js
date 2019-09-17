@@ -7,11 +7,13 @@ import PostsList from 'src/components/Page/PostView/PostsList';
 import { saveActiveIndex } from 'src/store/reducers/appReducer';
 
 
+
 // Action Creators
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   activeIndex: state.appReducer.activeIndex,
+  dataposts: state.appReducer.dataposts,
 });
 
 /* === Actions === */
