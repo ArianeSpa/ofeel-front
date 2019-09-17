@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import App from 'src/components/App'; 
 
 // Action Creators
-import { askFoodInfo } from 'src/store/reducers/mealPlanReducer';
+import { askPagesFoodInfo } from 'src/store/reducers/mealPlanReducer';
 
 
 /* === State (données) === */
@@ -16,7 +16,7 @@ const mapStateToProps = () => ({
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
     catchFoodInfo: () => {
-        const action = askFoodInfo();
+        const action = askPagesFoodInfo();
         dispatch(action);
     },
 });
