@@ -19,6 +19,7 @@ const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
 const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
 
+
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 export const ASK_POSTS_INFO = 'ASK_POSTS_INFO';
 
@@ -47,10 +48,13 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.index,
       };
+
     default:
       return state;
   }
 };
+
+
 export const saveGoal = (name, id) => (
   {
     type: SAVE_GOAL,
@@ -87,5 +91,6 @@ export const saveActiveIndex = (name, index) => ({
 export const askPostsInfo = () => ({
   type: ASK_POSTS_INFO,
 });
+
 
 export default appReducer;
