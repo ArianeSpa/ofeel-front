@@ -16,6 +16,8 @@ const initialState = {
 const SAVE_GOAL = 'SAVE_GOAL';
 const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
+const SAVE_USER = 'SAVE_USER';
+
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 
@@ -36,12 +38,16 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
+    case SAVE_USER:
+      
+      console.log('toto');
+      
+      
     default:
       return state;
   }
 };
 export const saveGoal = (name, id) =>
-  // console.log('je suis dans action creator savegoal');
   ({
     type: SAVE_GOAL,
     id,
@@ -66,5 +72,13 @@ export const saveProfil = (name, value) =>
 export const setMyFeelingAPI = () => ({
   type: SET_MY_FEELING_API,
 })
+
+export const saveDataUser = (data) => {
+  // console.log(data);
+  return({
+      type: SAVE_USER,
+      data,
+  }
+  )};
 
 export default appReducer;
