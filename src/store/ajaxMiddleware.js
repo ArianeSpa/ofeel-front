@@ -1,8 +1,9 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-undef */
 import axios from 'axios';
-
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
 import { SET_MY_FEELING_API, saveDataUser } from 'src/store/reducers/appReducer';
-
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
@@ -158,6 +159,61 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      break;
+    case ASK_POSTS_INFO:
+      // let numberPages = 0;
+      axios({
+        method: 'get',
+        url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/',
+      })
+        .then((response) => {
+          const numberPages = (response.headers['x-wp-totalpages']);
+          console.log(numberPages);
+          let dataposts = [];
+          for (let page = 1; page <= numberPages; page += 1) {
+            axios({
+              method: 'get',
+              url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page=' + page,
+            })
+              .then((resp) => {
+                // console.log(resp);
+                // const arrayResponse = response.data;
+                resp.data.map((index) => {
+                  dataposts.push({
+                    id: index.id,
+                    name: index.title.rendered,
+                    excerpt: index.excerpt.rendered,
+                    content: index.content.rendered,
+                    tags: index.tags[0].slug,
+                  });
+                });
+                console.log(dataposts);
+                return dataposts;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // do {
+      //   axios({
+      //     method: 'get',
+      //     url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page,
+      //   })
+      //     .then((response) => {
+      //       console.log(response);
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+      //   page = +1;
+      // } while (
+      //   response !== null
+      // )
+
       break;
     default:
       next(action);

@@ -11,15 +11,17 @@ const initialState = {
   sansgluten: false,
   vegan: false,
   sanslactose: false,
+  activeIndex: -1,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
 const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
-const SAVE_USER = 'SAVE_USER';
+const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
+export const ASK_POSTS_INFO = 'ASK_POSTS_INFO';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -38,17 +40,23 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case SAVE_USER:
-      
-      console.log('toto');
-      
-      
+    case SAVE_ACTIVE_INDEX:
+      if (action.index === state.activeIndex) {
+        action.index = -1;
+      }
+      return {
+        ...state,
+        [action.name]: action.index,
+      };
+
     default:
       return state;
   }
 };
-export const saveGoal = (name, id) =>
-  ({
+
+
+export const saveGoal = (name, id) => (
+  {
     type: SAVE_GOAL,
     id,
     name,
@@ -62,8 +70,8 @@ export const checkRegime = (name, value) => (
   }
 );
 
-export const saveProfil = (name, value) =>
-  ({
+export const saveProfil = (name, value) => (
+  {
     type: SAVE_PROFIL,
     value,
     name,
@@ -71,14 +79,18 @@ export const saveProfil = (name, value) =>
 
 export const setMyFeelingAPI = () => ({
   type: SET_MY_FEELING_API,
-})
+});
 
-export const saveDataUser = (data) => {
-  // console.log(data);
-  return({
-      type: SAVE_USER,
-      data,
-  }
-  )};
+
+export const saveActiveIndex = (name, index) => ({
+  type: SAVE_ACTIVE_INDEX,
+  index,
+  name,
+});
+
+export const askPostsInfo = () => ({
+  type: ASK_POSTS_INFO,
+});
+
 
 export default appReducer;

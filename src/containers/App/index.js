@@ -19,6 +19,10 @@ const mapDispatchToProps = (dispatch) => ({
         const action = askPagesFoodInfo();
         dispatch(action);
     },
+    catchPostsInfo: () => {
+        const action = askPostsInfo();
+        dispatch(action);
+    }
 });
 
 // Container
