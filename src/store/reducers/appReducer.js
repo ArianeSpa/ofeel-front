@@ -18,10 +18,12 @@ const SAVE_GOAL = 'SAVE_GOAL';
 const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
 const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
-
+const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
+const SAVE_POSTS = 'SAVE_POSTS';
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
-export const ASK_POSTS_INFO = 'ASK_POSTS_INFO';
+export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
+export const ASK_POSTS = 'ASK_POSTS';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -48,6 +50,16 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.index,
       };
+    case SAVE_POSTS_PAGES:
+      return{
+        ...state,
+        postspages: action.numberpages,
+      }
+    case SAVE_POSTS:
+      return{
+        ...state,
+        dataposts: action.dataposts,
+      }
 
     default:
       return state;
@@ -88,9 +100,23 @@ export const saveActiveIndex = (name, index) => ({
   name,
 });
 
-export const askPostsInfo = () => ({
-  type: ASK_POSTS_INFO,
+export const askPagesPostsInfo = () => ({
+  type: ASK_PAGES_POSTS_INFO,
 });
+
+export const savePostsPages = (numberpages) => ({
+  type: SAVE_POSTS_PAGES,
+  numberpages,
+});
+
+export const askPosts = () =>({
+  type: ASK_POSTS,
+})
+
+export const savePosts = (dataposts) => ({
+  type: SAVE_POSTS,
+  dataposts,
+})
 
 
 export default appReducer;

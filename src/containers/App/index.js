@@ -6,6 +6,7 @@ import App from 'src/components/App';
 
 // Action Creators
 import { askPagesFoodInfo } from 'src/store/reducers/mealPlanReducer';
+import { askPagesPostsInfo } from 'src/store/reducers/appReducer';
 
 
 /* === State (données) === */
@@ -20,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(action);
     },
     catchPostsInfo: () => {
-        const action = askPostsInfo();
+        const action = askPagesPostsInfo();
         dispatch(action);
     }
 });
