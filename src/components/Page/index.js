@@ -8,7 +8,7 @@ import Login from 'src/containers/Home/Login';
 import WelcomeBoard from 'src/components/Page/Dashboard';
 import UserModal from 'src/containers/UserModal';
 
-import Postslist from 'src/components/Page/PostView/PostsList';
+import Postslist from 'src/containers/PostView/PostsList';
 import Contact from 'src/components/Page/Contact';
 import Error from 'src/components/Page/Error';
 

@@ -8,9 +8,10 @@ import Page from 'src/containers/Page';
 import Footer from 'src/components/Footer';
 
 // == Composant
-const App = ({ catchFoodInfo }) => {
+const App = ({ catchFoodInfo, catchPostsInfo }) => {
   
   catchFoodInfo();
+  catchPostsInfo();
 
   return(
     <div id="app">

@@ -1,7 +1,10 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-undef */
 import axios from 'axios';
 
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
-import { SET_MY_FEELING_API } from 'src/store/reducers/appReducer';
+import { SET_MY_FEELING_API, ASK_POSTS_INFO } from 'src/store/reducers/appReducer';
 
 import { ASK_FOOD_INFO, saveFood } from 'src/store/reducers/mealPlanReducer';
 
@@ -59,7 +62,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           const numberPages = (response.headers['x-wp-totalpages']);
           let datafood=[];
           let page = 0;
-          for(page=1; page<=numberPages; page++){
+          for(page=1; page<=numberPages; page++) {
             axios({
               method: 'get',
               url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+page,
@@ -68,16 +71,16 @@ const ajaxMiddleware = (store) => (next) => (action) => {
                 const arrayResponse = response.data;
                 arrayResponse.map((index) => {
                   datafood.unshift({
-                    "id": index.id,
-                    "name": index.title.rendered,
-                    "type": index.famille[0].slug,
-                    "calories": index.calories,
-                    "glucides": index.glucides,
-                    "proteines": index.proteines,
-                    "lipides": index.lipides,
-                    "regime": index.regime,
+                    id: index.id,
+                    name: index.title.rendered,
+                    type: index.famille[0].slug,
+                    calories: index.calories,
+                    glucides: index.glucides,
+                    proteines: index.proteines,
+                    lipides: index.lipides,
+                    regime: index.regime,
                   });
-                })
+                });
                 return datafood;
               })
               .catch((error) => {
@@ -122,6 +125,61 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      break;
+    case ASK_POSTS_INFO:
+      // let numberPages = 0;
+      axios({
+        method: 'get',
+        url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/',
+      })
+        .then((response) => {
+          const numberPages = (response.headers['x-wp-totalpages']);
+          console.log(numberPages);
+          let dataposts = [];
+          for (let page = 1; page <= numberPages; page += 1) {
+            axios({
+              method: 'get',
+              url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page=' + page,
+            })
+              .then((resp) => {
+                // console.log(resp);
+                // const arrayResponse = response.data;
+                resp.data.map((index) => {
+                  dataposts.push({
+                    id: index.id,
+                    name: index.title.rendered,
+                    excerpt: index.excerpt.rendered,
+                    content: index.content.rendered,
+                    tags: index.tags[0].slug,
+                  });
+                });
+                console.log(dataposts);
+                return dataposts;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // do {
+      //   axios({
+      //     method: 'get',
+      //     url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page,
+      //   })
+      //     .then((response) => {
+      //       console.log(response);
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+      //   page = +1;
+      // } while (
+      //   response !== null
+      // )
+
       break;
     default:
       next(action);
