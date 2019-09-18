@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios';
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
-import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts } from 'src/store/reducers/appReducer';
+import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts } from 'src/store/reducers/appReducer';
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 // import { load, finishLoad } from 'src/store/reducers/appReducer';
@@ -161,6 +161,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         });
       break;
     case ASK_PAGES_POSTS_INFO:
+      store.dispatch(loadPosts());
       axios({
         method: 'get',
         url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/',
@@ -182,12 +183,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       let dataposts = [];
     
       for(let page=1; page<=numberPostPages; page++){
+        store.dispatch(loadPosts());
         axios({
           method: 'get',
           url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page,
         })
           .then((response) => {
-            // console.log(response);
             const arrayResponse = response.data;
             arrayResponse.map((index) => {
               dataposts.push({
@@ -203,8 +204,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
-          });
+          })
+          .finally(() => {
+            store.dispatch(finishLoadPosts());
+          }) 
       }
+
       break;
     
     default:
