@@ -12,6 +12,7 @@ const initialState = {
   vegan: false,
   sanslactose: false,
   activeIndex: -1,
+  loadingPosts: true,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -20,6 +21,8 @@ const CHECK_REGIME = 'CHECK_REGIME';
 const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
 const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
 const SAVE_POSTS = 'SAVE_POSTS';
+const LOAD_POSTS = 'LOAD_POSTS';
+const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
@@ -60,6 +63,16 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         dataposts: action.dataposts,
       }
+    case LOAD_POSTS:
+      return {
+        ...state,
+        loadingPosts: true,
+      };
+    case FINISH_LOAD_POSTS:
+      return {
+        ...state,
+        loadingPosts: false,
+      };
 
     default:
       return state;
@@ -118,5 +131,12 @@ export const savePosts = (dataposts) => ({
   dataposts,
 })
 
+export const loadPosts = () => ({
+  type: LOAD_POSTS,
+});
+
+export const finishLoadPosts = () => ({
+  type: FINISH_LOAD_POSTS,
+});
 
 export default appReducer;

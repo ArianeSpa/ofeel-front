@@ -14,6 +14,7 @@ import { saveActiveIndex } from 'src/store/reducers/appReducer';
 const mapStateToProps = (state) => ({
   activeIndex: state.appReducer.activeIndex,
   dataposts: state.appReducer.dataposts,
+  loadingPosts: state.appReducer.loadingPosts,
 });
 
 /* === Actions === */

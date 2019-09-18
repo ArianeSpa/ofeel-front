@@ -16,7 +16,9 @@ import Error from 'src/components/Page/Error';
 import './page.scss';
 
 
-const Page = ({ logged }) => (
+const Page = ({ logged }) => {
+
+  return(
   <>
     { logged && (<UserModal />) }
     <Switch>
@@ -46,7 +48,7 @@ const Page = ({ logged }) => (
       <Route component={Error} />
     </Switch>
   </>
-);
+)};
 
 Page.propTypes = {
   logged: PropTypes.bool.isRequired,

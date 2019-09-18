@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Accordion, Icon, Container, Label, Button, Segment,
+  Accordion, Icon, Container, Label, Button, Segment, Form
 } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
@@ -12,9 +12,8 @@ import setIcon from 'src/utils/setIcon';
 
 
 const PostsList = ({
-  changeActiveIndex, activeIndex, dataposts, 
+  changeActiveIndex, activeIndex, dataposts, loadingPosts
 }) => {
-
   
   const displayContent = (event, data) => {
     changeActiveIndex(data.index);
@@ -34,23 +33,33 @@ const PostsList = ({
       <Container className="postsContainer">
         <Accordion fluid styled>
 
-          {dataposts.map((post) =>
+          {loadingPosts && 
+            <Accordion.Title className="cssTitle">
+              <Form loading={loadingPosts}>
+              Loading content
+              </Form>
+            </Accordion.Title>
+          }
+          
+          {!loadingPosts && dataposts.map((post) => (
+            
             <>
               <Accordion.Title
-              active={activeIndex === post.id}
-              index={post.id}
-              className="cssTitle"
-              onClick={displayContent}
+                key={post.id+'1'}
+                active={activeIndex === post.id}
+                index={post.id}
+                className="cssTitle"
+                onClick={displayContent}
               >
-              <Icon name="dropdown" />
-              {post.name}
-              <Label icon={setIcon(post.tags)} content={post.tags} className="cssLabelPost" />
+                <Icon  name="dropdown" />
+                {post.name}
+                <Label icon={setIcon(post.tags)} content={post.tags} className="cssLabelPost" />
               </Accordion.Title>
-              <Accordion.Content active={activeIndex === post.id}>
+              <Accordion.Content key={post.id+'2'} active={activeIndex === post.id}>
                 <p>{post.excerpt}</p>
               </Accordion.Content>
             </>
-          )}
+          ))}
           
         </Accordion>
 
