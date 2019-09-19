@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { AUTHENTICATE, saveUser, CREATE_ACCOUNT, saveDataUser } from 'src/store/reducers/userReducer';
-import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData } from 'src/store/reducers/appReducer';
+import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
+import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData, saveDataUser } from 'src/store/reducers/appReducer';
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 const bodyFormData = new FormData();
@@ -56,20 +56,37 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           const objectUser = {
-            age: response.data.age,
+            age: parseInt(response.data.age),
             goal: response.data.objectifs,
             regime: response.data.regime_alimentaire,
             sexe: response.data.sexe,
-            taille: response.data.taille,
-            poids: response.data.poids
+            taille: parseInt(response.data.taille),
+            poids: parseInt(response.data.poids),
+            activity: response.data.user_activity,
+            user_metabo: parseInt(response.data.user_metabo),
+            cal_jour: parseInt(response.data.cal_jour),
+            cal_dej: parseInt(response.data.cal_dej),
+            cal_obj: parseInt(response.data.cal_obj),
+            cal_p_dej_din : parseInt(response.data.cal_p_dej_din),
+            prop_glu: parseInt(response.data.prop_glu),
+            prop_lip: parseInt(response.data.prop_lip),
+            prop_prot: parseInt(response.data.prop_prot),
+            q_glu_dej: parseInt(response.data.q_glu_dej),
+            q_glu_p_dej_din: parseInt(response.data.q_glu_p_dej_din),
+            q_lip_dej: parseInt(response.data.q_lip_dej),
+            q_lip_p_dej_din: parseInt(response.data.q_lip_p_dej_din),
+            q_prot_dej: parseInt(response.data.q_prot_dej),
+            q_prot_p_dej_din: parseInt(response.data.q_prot_p_dej_din),
           }
           const saveUserData = saveDataUser(objectUser);
           store.dispatch(saveUserData);
+          
 
         })
         .catch((error) => {
           console.log(error);
         });
+      break;
 
       //ENVOI DES DONNEES ENREGISTREES PAR L'UTILISATEUR VERS L'API
       case SET_MY_FEELING_API:
@@ -77,7 +94,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         store.getState().appReducer.vegan && regime.push('vegan');
         store.getState().appReducer.sansgluten && regime.push('sans-gluten');
         store.getState().appReducer.sanslactose && regime.push('sans-lactose');
-
+        
         axios({
           method: 'post',
           url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
@@ -89,6 +106,21 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             sexe: store.getState().appReducer.gender,
             objectifs: store.getState().appReducer.goal,
             regime_alimentaire: regime,
+            user_activity: store.getState().appReducer.activity,
+            user_metabo: store.getState().appReducer.user_metabo,
+            cal_jour: store.getState().appReducer.cal_jour,
+            cal_dej: store.getState().appReducer.cal_dej,
+            cal_obj: store.getState().appReducer.cal_obj,
+            cal_p_dej_din : store.getState().appReducer.cal_p_dej_din,
+            prop_glu: store.getState().appReducer.prop_glu,
+            prop_lip: store.getState().appReducer.prop_lip,
+            prop_prot: store.getState().appReducer.prop_prot,
+            q_glu_dej: store.getState().appReducer.q_glu_dej,
+            q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
+            q_lip_dej: store.getState().appReducer.q_lip_dej,
+            q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
+            q_prot_dej: store.getState().appReducer.q_prot_dej,
+            q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
           },
         })
           .then((response) => {

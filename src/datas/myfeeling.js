@@ -54,7 +54,7 @@ export const activityTable = [
   },
   {
     id: 3,
-    value: ' Actif',
+    value: 'Actif',
     text: 'Vous faites régulièrement des exercices physiques (3 à 5 fois par semaine)',
   },
   {

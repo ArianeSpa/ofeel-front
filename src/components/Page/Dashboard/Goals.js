@@ -1,11 +1,13 @@
+//import npm
 import React from 'react';
 import {
   Header, Form, Radio, Checkbox, Button, Image, Segment,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-
+//import local
 import './goals.scss';
+import setProportion from 'src/utils/setProportion';
 
 import iconMuscle from 'src/assets/icon/biceps3.png';
 import iconBalance from 'src/assets/icon/balance.png';
@@ -15,7 +17,7 @@ import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
 const Goals = ({
-  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI
+  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI, cal_jour, savePropMeal,
 }) => {
   const handleChangeGoal = (event, data) => {
     const { id } = event.target;
@@ -24,6 +26,14 @@ const Goals = ({
   const handleChangeRegime = (event, data) => {
     selectRegime(data.id, data.checked);
   };
+
+  const calculAndSend = () => {
+    savePropMeal(
+      setProportion(goal, cal_jour)
+    );
+    sendToAPI();
+  }
+
   return (
     <Segment inverted className="dashboard-goal">
       <Header className="subtitle-goal" as="h4">Vous souhaitez</Header>
@@ -114,7 +124,7 @@ const Goals = ({
           />
         </Form.Field>
       </Form>
-      <Button className="save" type="submit" onClick={sendToAPI}>Enregistrer</Button>
+      <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );
 };

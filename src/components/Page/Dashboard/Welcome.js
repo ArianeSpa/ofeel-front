@@ -1,8 +1,6 @@
 import React from 'react';
 
-const Welcome = ( { catchUserData } ) => {
-
-  // catchUserData();
+const Welcome = ( ) => {
 
   return(
     <div className="welcomeMessage">
@@ -13,6 +11,5 @@ const Welcome = ( { catchUserData } ) => {
     </div>
   )
 };
-
 
 export default Welcome;
