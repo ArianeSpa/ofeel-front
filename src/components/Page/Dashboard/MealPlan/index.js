@@ -7,6 +7,7 @@ import './mealplan.scss';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setFatQuantity, setSugarQuantity } from 'src/utils/setQuantity';
+import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
 
 
 const MealPlan = ({
@@ -19,46 +20,45 @@ const MealPlan = ({
   datafood,
 }) => {
 
-  const handleValueFoodtype = (event) => {
-    const {textContent} = event.target;
-    let parent=event.target.parentNode;
-    while(!parent.className.includes("dropdown")){
-      parent = parent.parentNode
-    }
-    const id = parent.id;
-    changeFoodValue(textContent, id);
+  const handleValueFoodtype = (event, data) => {
+    changeFoodValue(data.value, data.id);
   }
 
-  const handleCheck = (event) => {
-    const {id} = event.target.parentNode.firstChild;
-    changeCheckValue(id);
+  const handleCheck = (event, data) => {
+    changeCheckValue(data.id);
   }
 
-  const proteinType = [];
-  const glucideType = [];
-  const lipideType = [];
+  const proteinType = setProteinType(datafood);
+  const glucideType = setGlucidType(datafood);
+  const lipideType = setLipidType(datafood);
 
-  datafood.map((food)=> {
-    if(food.type === 'proteine'){
-      proteinType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }else if(food.type === 'glucide'){
-      glucideType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }else if(food.type === 'lipide'){
-      lipideType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }
-  });
+
+  console.log(lipideType);
+
+  // const glucideType = [];
+  // const lipideType = [];
+
+  // datafood.map((food)=> {
+  //   // if(food.type === 'proteine'){
+  //   //   proteinType.push({
+  //   //     key: food.id,
+  //   //     text: food.name,
+  //   //     value: food.name
+  //   //   })
+  //   //  if(food.type === 'glucide'){
+  //   //   glucideType.push({
+  //   //     key: food.id,
+  //   //     text: food.name,
+  //   //     value: food.name
+  //   //   })
+  //    if(food.type === 'lipide'){
+  //     lipideType.push({
+  //       key: food.id,
+  //       text: food.name,
+  //       value: food.name
+  //     })
+  //   }
+  // });
 
   return(
      <Grid className="mealGrid" columns='equal'>
