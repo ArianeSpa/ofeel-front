@@ -8,6 +8,7 @@ import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setFatQuantity, setSugarQuantity } from 'src/utils/setQuantity';
 import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
+import { setFatQuantityBreakfast } from 'src/utils/setQuantities';
 
 
 const MealPlan = ({
@@ -18,6 +19,7 @@ const MealPlan = ({
   changeCheckValue,
   breakfastcheck, lunchcheck, dinnercheck, snackcheck,
   datafood,
+  loadingfood,
 }) => {
 
   const handleValueFoodtype = (event, data) => {
@@ -27,41 +29,21 @@ const MealPlan = ({
   const handleCheck = (event, data) => {
     changeCheckValue(data.id);
   }
-
   const proteinType = setProteinType(datafood);
   const glucideType = setGlucidType(datafood);
   const lipideType = setLipidType(datafood);
 
-
-  console.log(lipideType);
-
-  // const glucideType = [];
-  // const lipideType = [];
-
-  // datafood.map((food)=> {
-  //   // if(food.type === 'proteine'){
-  //   //   proteinType.push({
-  //   //     key: food.id,
-  //   //     text: food.name,
-  //   //     value: food.name
-  //   //   })
-  //   //  if(food.type === 'glucide'){
-  //   //   glucideType.push({
-  //   //     key: food.id,
-  //   //     text: food.name,
-  //   //     value: food.name
-  //   //   })
-  //    if(food.type === 'lipide'){
-  //     lipideType.push({
-  //       key: food.id,
-  //       text: food.name,
-  //       value: food.name
-  //     })
-  //   }
-  // });
-
+  if(!loadingfood){
+    console.log(setFatQuantityBreakfast(datafood, lipidebreakfast));
+    console.log("vous pouvez manger " + setFatQuantityBreakfast(datafood, lipidebreakfast) + " grammes de " + lipidebreakfast);
+  }
+  
+  
   return(
-     <Grid className="mealGrid" columns='equal'>
+    <>
+    {!loadingfood &&
+
+    <Grid className="mealGrid" columns='equal'>
       <Grid.Row className="bothRow meals">
         
         {/* COLONNE PETIT DEJEUNER */}
@@ -93,7 +75,7 @@ const MealPlan = ({
               />
             </Form.Group>
             <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">{setFatQuantity(lipidebreakfast)}</Label>
+              <Label className="cssLabel">{setFatQuantityBreakfast(datafood, lipidebreakfast)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -240,7 +222,7 @@ const MealPlan = ({
           {dinnercheck && <MessageCheat/>}
         </Grid.Column>
       </Grid.Row>
-
+      
       
       {/* LIGNE COLLATION */}
 
@@ -293,7 +275,11 @@ const MealPlan = ({
           {!snackcheck && <MessageSnack />}
         </Grid.Column>
       </Grid.Row>
+      
     </Grid>
+    }
+    </>
+    
   );
 }
 

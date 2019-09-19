@@ -27,6 +27,7 @@ const mapStateToProps = (state) => ({
   lunchcheck: state.mealPlanReducer.lunchcheck,
   dinnercheck: state.mealPlanReducer.dinnercheck,
   snackcheck: state.mealPlanReducer.snackcheck,
+  loadingfood: state.appReducer.loadingfood,
 });
 
 /* === Actions === */
@@ -39,6 +40,8 @@ const mapDispatchToProps = (dispatch) => ({
     const action = newCheckValue(name);
     dispatch(action);
   },
+
+
 
 });
 

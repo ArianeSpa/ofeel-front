@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
-import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData, saveDataUser } from 'src/store/reducers/appReducer';
+import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, loadFood, finishLoadFood, ASK_USER_DATA, askUserData, saveDataUser } from 'src/store/reducers/appReducer';
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 const bodyFormData = new FormData();
@@ -165,6 +165,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
+          })
+          .finally(() => {
+            store.dispatch(finishLoadFood());
           });
         foodpage ++
       }while(foodpage<numberFoodPages);
