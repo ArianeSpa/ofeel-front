@@ -10,6 +10,7 @@ import './form.scss';
 const Login = ({
   changeInputUsername, changeInputPassword, username, password, doAuthenticate,
 }) => {
+  
   const handleChangeUsername = (event) => {
     const { value } = event.target;
 

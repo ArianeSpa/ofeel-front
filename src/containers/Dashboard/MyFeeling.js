@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MyFeeling from 'src/components/Page/Dashboard/MyFeeling/MyFeeling';
 
 // Action Creators
-import { saveProfil, setMyFeelingAPI } from 'src/store/reducers/appReducer';
+import { saveProfil, setMyFeelingAPI, saveMC } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
@@ -20,6 +20,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeProfil: (name, value) => {
     const action = saveProfil(name, value);
+    dispatch(action);
+  },
+  saveMetaboCalorie: (object) => {
+    const action = saveMC(object.metaboBase, object.calorieJour);
     dispatch(action);
   },
   sendToAPI: () => {

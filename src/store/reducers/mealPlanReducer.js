@@ -47,7 +47,6 @@ const mealPlanReducer = (state = initialState, action = {}) => {
                 [action.name]: action.value,
             };
         case CHANGE_CHECK:
-            console.log(state.datafood);
             if (action.name === 'breakfastcheck'){
                 return {
                     ...state,

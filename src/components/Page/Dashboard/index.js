@@ -3,7 +3,7 @@ import { Grid, Segment, Icon } from 'semantic-ui-react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 
 
-import Welcome from 'src/components/Page/Dashboard/Welcome';
+import Welcome from 'src/containers/Dashboard/Welcome';
 import MyFeeling from 'src/containers/Dashboard/MyFeeling';
 import Goals from 'src/containers/Dashboard/Goals';
 import MealPlan from 'src/containers/Dashboard/MealPlan';
