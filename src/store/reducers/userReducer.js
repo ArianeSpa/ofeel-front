@@ -14,6 +14,7 @@ const CHANGE_USERNAME = 'CHANGE_USERNAME';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
+const SAVE_USER_DATA = 'SAVE_USER_DATA';
 const LOG_OUT = 'LOG_OUT';
 
 
@@ -48,6 +49,8 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         logged: false,
       };
+    case SAVE_USER_DATA:
+      console.log(action.objectUser);
 
     default:
       return state;
@@ -88,5 +91,9 @@ export const changeValueEmail = (name, value) => ({
   name,
 });
 
+export const saveDataUser = (objectUser) => ({
+  type: SAVE_USER_DATA,
+  objectUser,
+})
 
 export default userReducer;

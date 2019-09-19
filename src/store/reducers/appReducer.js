@@ -27,6 +27,7 @@ const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
 export const ASK_POSTS = 'ASK_POSTS';
+export const ASK_USER_DATA = 'ASK_USER_DATA';
 
 const appReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -138,5 +139,9 @@ export const loadPosts = () => ({
 export const finishLoadPosts = () => ({
   type: FINISH_LOAD_POSTS,
 });
+
+export const askUserData = () =>({
+  type: ASK_USER_DATA,
+})
 
 export default appReducer;
