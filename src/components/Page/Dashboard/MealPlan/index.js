@@ -9,8 +9,8 @@ import './mealplan.scss';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
-import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
-import { setFatQuantityFood, setProtQuantityFood } from 'src/utils/setQuantities';
+import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType'; 
+import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';
 
 
 const MealPlan = ({
@@ -33,20 +33,13 @@ const MealPlan = ({
   const protFromLipAtBreakfast = setFatQuantityFood(datafood, lipidebreakfast, state.q_lip_p_dej_din).protFromLip;
   const protFromLipAtLunch = setFatQuantityFood(datafood, lipidelunch, state.q_lip_dej).protFromLip;
   const protFromLipAtDiner = setFatQuantityFood(datafood, lipidedinner, state.q_lip_p_dej_din).protFromLip;
-  
-
-
-  const test = setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast);
-  console.log(test);
-
-
-
+  const protFromCarbAtBreakfast = setCarbQuantityFood(datafood, glucidebreakfast, state.q_glu_p_dej_din).protFromCarb;
+  const protFromCarbAtLunch = setCarbQuantityFood(datafood, glucidelunch, state.q_glu_dej).protFromCarb;
+  const protFromCarbAtDiner = setCarbQuantityFood(datafood, glucidedinner, state.q_glu_p_dej_din).protFromCarb;
+ 
   const proteinType = setProteinType(datafood);
   const glucideType = setGlucidType(datafood);
   const lipideType = setLipidType(datafood);
-  // console.log(datafood);
-
-
 
   return (
     <>
@@ -71,7 +64,7 @@ const MealPlan = ({
             {!breakfastcheck && (
             <Form inverted className="bfstForm cssForm">
               <Form.Group className="prForm cssField">
-                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast)}</Label>
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast, protFromCarbAtBreakfast)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -95,7 +88,7 @@ const MealPlan = ({
                 />
               </Form.Group>
               <Form.Group className="glForm cssField">
-                <Label className="cssLabel">{setSugarQuantity(glucidebreakfast)}</Label>
+                <Label className="cssLabel">{setCarbQuantityFood(datafood, glucidebreakfast, state.q_glu_p_dej_din).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -130,7 +123,7 @@ const MealPlan = ({
             {!lunchcheck && (
             <Form inverted className="lnchForm cssForm">        
               <Form.Group className="prForm cssField">
-                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinelunch, state.q_prot_dej, protFromLipAtLunch)}</Label>
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinelunch, state.q_prot_dej, protFromLipAtLunch, protFromCarbAtLunch)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -154,7 +147,7 @@ const MealPlan = ({
                 />
               </Form.Group>
               <Form.Group className="glForm cssField">
-                <Label className="cssLabel">{setSugarQuantity(glucidelunch)}</Label>
+                <Label className="cssLabel">{setCarbQuantityFood(datafood, glucidelunch, state.q_glu_dej).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -188,7 +181,7 @@ const MealPlan = ({
             {!dinnercheck && (
             <Form inverted className="bfstForm cssForm">        
               <Form.Group className="prForm cssField">
-                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinedinner, state.q_prot_p_dej_din, protFromLipAtDiner)}</Label>
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinedinner, state.q_prot_p_dej_din, protFromLipAtDiner, protFromCarbAtDiner)}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -212,7 +205,7 @@ const MealPlan = ({
                 />
               </Form.Group>
               <Form.Group className="glForm cssField">
-                <Label className="cssLabel">{setSugarQuantity(glucidedinner)}</Label>
+                <Label className="cssLabel">{setCarbQuantityFood(datafood, glucidedinner, state.q_glu_p_dej_din).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
