@@ -14,6 +14,7 @@ const initialState = {
   activeIndex: -1,
   dataposts: [],
   loadingPosts: true,
+  loadingfood: true,
   user_metabo: 0,
   cal_jour: 0,
 };
@@ -25,8 +26,10 @@ const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
 const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
 const SAVE_POSTS = 'SAVE_POSTS';
 const LOAD_POSTS = 'LOAD_POSTS';
+const LOAD_FOOD = 'LOAD_FOOD';
 const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
 const SAVE_USER_DATA = 'SAVE_USER_DATA';
+const FINISH_LOAD_FOOD = 'FINISH_LOAD_FOOD';
 const SAVE_METABO_CALORIE = 'SAVE_METABO_CALORIE';
 const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 
@@ -80,6 +83,16 @@ const appReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loadingPosts: false,
+      };
+    case LOAD_FOOD:
+      return {
+        ...state,
+        loadingfood: true,
+      };
+    case FINISH_LOAD_FOOD:
+      return {
+        ...state,
+        loadingfood: false,
       };
     case SAVE_USER_DATA:  
       return {
@@ -196,6 +209,14 @@ export const loadPosts = () => ({
 export const finishLoadPosts = () => ({
   type: FINISH_LOAD_POSTS,
 });
+
+export const loadFood = () => ({
+  type: LOAD_FOOD,
+});
+
+export const finishLoadFood = () => ({
+  type: FINISH_LOAD_FOOD,
+})
 
 export const askUserData = () =>({
   type: ASK_USER_DATA,

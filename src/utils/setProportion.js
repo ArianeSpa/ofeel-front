@@ -1,5 +1,8 @@
-export default (goal, cal_jour) =>{
-    //On va calculer en fonction de l'objectif l'apport calorique journalier et les proportion en glucides, lipides et protéines.
+export default (goal, cal_jour) => {
+    // On va calculer en fonction de l'objectif
+    // l'apport calorique journalier et les proportion en
+    // glucides, lipides et protéines.
+    
     const setVarObjectif = (goal) => {
         if(goal == 'perte-de-poids') {
             return 0.75;

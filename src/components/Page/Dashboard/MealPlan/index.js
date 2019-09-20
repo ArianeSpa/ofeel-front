@@ -1,12 +1,16 @@
 import React from 'react';
-import { 
+import {
   Grid, Header, Segment, Form, Checkbox, Label, Dropdown,
 } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+
 
 import './mealplan.scss';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
-import { setProteinQuantity, setFatQuantity, setSugarQuantity } from 'src/utils/setQuantity';
+import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
+import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
+import { setFatQuantityFood, setProtQuantityFood } from 'src/utils/setQuantities';
 
 
 const MealPlan = ({
@@ -17,83 +21,69 @@ const MealPlan = ({
   changeCheckValue,
   breakfastcheck, lunchcheck, dinnercheck, snackcheck,
   datafood,
+  loadingfood, state,
 }) => {
+  const handleValueFoodtype = (event, data) => {
+    changeFoodValue(data.value, data.id);
+  };
 
-  const handleValueFoodtype = (event) => {
-    const {textContent} = event.target;
-    let parent=event.target.parentNode;
-    while(!parent.className.includes("dropdown")){
-      parent = parent.parentNode
-    }
-    const id = parent.id;
-    changeFoodValue(textContent, id);
-  }
+  const handleCheck = (event, data) => {
+    changeCheckValue(data.id);
+  };
+  const protFromLipAtBreakfast = setFatQuantityFood(datafood, lipidebreakfast, state.q_lip_p_dej_din).protFromLip;
+  const protFromLipAtLunch = setFatQuantityFood(datafood, lipidelunch, state.q_lip_dej).protFromLip;
+  const protFromLipAtDiner = setFatQuantityFood(datafood, lipidedinner, state.q_lip_p_dej_din).protFromLip;
+  
 
-  const handleCheck = (event) => {
-    const {id} = event.target.parentNode.firstChild;
-    changeCheckValue(id);
-  }
 
-  const proteinType = [];
-  const glucideType = [];
-  const lipideType = [];
+  const test = setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast);
+  console.log(test);
 
-  datafood.map((food)=> {
-    if(food.type === 'proteine'){
-      proteinType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }else if(food.type === 'glucide'){
-      glucideType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }else if(food.type === 'lipide'){
-      lipideType.push({
-        key: food.id,
-        text: food.name,
-        value: food.name
-      })
-    }
-  });
 
-  return(
-     <Grid className="mealGrid" columns='equal'>
-      <Grid.Row className="bothRow meals">
-        
-        {/* COLONNE PETIT DEJEUNER */}
-        <Grid.Column className="tricol bfst">
-          <Segment className="cssSegment">
+
+  const proteinType = setProteinType(datafood);
+  const glucideType = setGlucidType(datafood);
+  const lipideType = setLipidType(datafood);
+  // console.log(datafood);
+
+
+
+  return (
+    <>
+      {!loadingfood && (
+      <Grid className="mealGrid" columns="equal">
+        <Grid.Row className="bothRow meals">
+
+          {/* COLONNE PETIT DEJEUNER */}
+          <Grid.Column className="tricol bfst">
+            <Segment className="cssSegment">
               <Header as="h4">Petit déjeuner</Header>
               <Checkbox
-              className="cheat"
-              toggle
-              id="breakfastcheck"
-              label="Cheat Meal"
-              onChange={handleCheck}
-              checked={breakfastcheck}
+                className="cheat"
+                toggle
+                id="breakfastcheck"
+                label="Cheat Meal"
+                onChange={handleCheck}
+                checked={breakfastcheck}
               />
-          </Segment>
+            </Segment>
 
-          {!breakfastcheck && (
-           <Form inverted className="bfstForm cssForm">        
-            <Form.Group className="prForm cssField">
-              <Label className="cssLabel">{setProteinQuantity(proteinebreakfast)}</Label>
-              <Dropdown
-                fluid                    
-                selection
-                options={proteinType}
-                id="proteinebreakfast"
-                onChange={handleValueFoodtype}
-                value={proteinebreakfast}
+            {!breakfastcheck && (
+            <Form inverted className="bfstForm cssForm">
+              <Form.Group className="prForm cssField">
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={proteinType}
+                  id="proteinebreakfast"
+                  onChange={handleValueFoodtype}
+                  value={proteinebreakfast}
 
-              />
-            </Form.Group>
-            <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">{setFatQuantity(lipidebreakfast)}</Label>
+                />
+              </Form.Group>
+              <Form.Group className="lbForm cssField">
+                <Label className="cssLabel">{setFatQuantityFood(datafood, lipidebreakfast, state.q_lip_p_dej_din).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -103,56 +93,56 @@ const MealPlan = ({
                   onChange={handleValueFoodtype}
                   value={lipidebreakfast}
                 />
-            </Form.Group>
-            <Form.Group className="glForm cssField">
-              <Label className="cssLabel">{setSugarQuantity(glucidebreakfast)}</Label>
-              <Dropdown
-                fluid
-                selection
-                options={glucideType}
-                className="bfgl"
-                id="glucidebreakfast"
-                onChange={handleValueFoodtype}
-                value={glucidebreakfast}
-              />
-            </Form.Group>
-            <div className="fruit">+ 1 à 2 fruit(s)</div>
-          </Form>
-          )}
-          {breakfastcheck && <MessageCheat/>}
-        </Grid.Column>
+              </Form.Group>
+              <Form.Group className="glForm cssField">
+                <Label className="cssLabel">{setSugarQuantity(glucidebreakfast)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={glucideType}
+                  className="bfgl"
+                  id="glucidebreakfast"
+                  onChange={handleValueFoodtype}
+                  value={glucidebreakfast}
+                />
+              </Form.Group>
+              <div className="fruit">+ 1 à 2 fruit(s)</div>
+            </Form>
+            )}
+            {breakfastcheck && <MessageCheat />}
+          </Grid.Column>
 
 
-        {/* COLONNE LUNCH */}
-        <Grid.Column className="tricol lch">
-          <Segment className="cssSegment">
+          {/* COLONNE LUNCH */}
+          <Grid.Column className="tricol lch">
+            <Segment className="cssSegment">
               <Header as="h4">Déjeuner</Header>
               <Checkbox
-              className="cheat"
-              toggle
-              id="lunchcheck"
-              label="Cheat Meal"
-              onChange={handleCheck}
-              checked={lunchcheck}
+                className="cheat"
+                toggle
+                id="lunchcheck"
+                label="Cheat Meal"
+                onChange={handleCheck}
+                checked={lunchcheck}
               />
-          </Segment>
-          
-          {!lunchcheck && (
-          <Form inverted className="lnchForm cssForm">        
-            <Form.Group className="prForm cssField">
-              <Label className="cssLabel">{setProteinQuantity(proteinelunch)}</Label>
-              <Dropdown
-                fluid                    
-                selection
-                options={proteinType}
-                className="lnpr"
-                id="proteinelunch"
-                onChange={handleValueFoodtype}
-                value={proteinelunch}
-              />
-            </Form.Group>
-            <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">{setFatQuantity(lipidelunch)}</Label>
+            </Segment>
+
+            {!lunchcheck && (
+            <Form inverted className="lnchForm cssForm">        
+              <Form.Group className="prForm cssField">
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinelunch, state.q_prot_dej, protFromLipAtLunch)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={proteinType}
+                  className="lnpr"
+                  id="proteinelunch"
+                  onChange={handleValueFoodtype}
+                  value={proteinelunch}
+                />
+              </Form.Group>
+              <Form.Group className="lbForm cssField">
+                <Label className="cssLabel">{setFatQuantityFood(datafood, lipidelunch, state.q_lip_dej).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -162,56 +152,55 @@ const MealPlan = ({
                   onChange={handleValueFoodtype}
                   value={lipidelunch}
                 />
-            </Form.Group>
-            <Form.Group className="glForm cssField">
-              <Label className="cssLabel">{setSugarQuantity(glucidelunch)}</Label>
-              <Dropdown
-                fluid
-                selection
-                options={glucideType}
-                className="lngl"
-                id="glucidelunch"
-                onChange={handleValueFoodtype}
-                value={glucidelunch}
-              />
-            </Form.Group>
-            <div className="fruit">+ 1 à 2 fruit(s)</div>
-          </Form>
-          )}
-          {lunchcheck && <MessageCheat/>}
-        </Grid.Column>
-        
+              </Form.Group>
+              <Form.Group className="glForm cssField">
+                <Label className="cssLabel">{setSugarQuantity(glucidelunch)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={glucideType}
+                  className="lngl"
+                  id="glucidelunch"
+                  onChange={handleValueFoodtype}
+                  value={glucidelunch}
+                />
+              </Form.Group>
+              <div className="fruit">+ 1 à 2 fruit(s)</div>
+            </Form>
+            )}
+            {lunchcheck && <MessageCheat />}
+          </Grid.Column>
 
-        {/* COLONNE DINNER */}
-        <Grid.Column className="tricol dnr">
-          <Segment className="cssSegment">
+          {/* COLONNE DINNER */}
+          <Grid.Column className="tricol dnr">
+            <Segment className="cssSegment">
               <Header as="h4">Diner</Header>
               <Checkbox
-              className="cheat"
-              toggle
-              id="dinnercheck"
-              label="Cheat Meal"
-              onChange={handleCheck}
-              checked={dinnercheck}
+                className="cheat"
+                toggle
+                id="dinnercheck"
+                label="Cheat Meal"
+                onChange={handleCheck}
+                checked={dinnercheck}
               />
-          </Segment>
-          
-          {!dinnercheck && (
-          <Form inverted className="bfstForm cssForm">        
-            <Form.Group className="prForm cssField">
-              <Label className="cssLabel">{setProteinQuantity(proteinedinner)}</Label>
-              <Dropdown
-                fluid                    
-                selection
-                options={proteinType}
-                className="dnpr"
-                id="proteinedinner"
-                onChange={handleValueFoodtype}
-                value={proteinedinner}
-              />
-            </Form.Group>
-            <Form.Group className="lbForm cssField">
-              <Label className="cssLabel">{setFatQuantity(lipidedinner)}</Label>
+            </Segment>
+
+            {!dinnercheck && (
+            <Form inverted className="bfstForm cssForm">        
+              <Form.Group className="prForm cssField">
+                <Label className="cssLabel">{setProtQuantityFood(datafood, proteinedinner, state.q_prot_p_dej_din, protFromLipAtDiner)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={proteinType}
+                  className="dnpr"
+                  id="proteinedinner"
+                  onChange={handleValueFoodtype}
+                  value={proteinedinner}
+                />
+              </Form.Group>
+              <Form.Group className="lbForm cssField">
+                <Label className="cssLabel">{setFatQuantityFood(datafood, lipidedinner, state.q_lip_p_dej_din).quantityFood}</Label>
                 <Dropdown
                   fluid
                   selection
@@ -221,80 +210,105 @@ const MealPlan = ({
                   onChange={handleValueFoodtype}
                   value={lipidedinner}
                 />
-            </Form.Group>
-            <Form.Group className="glForm cssField">
-              <Label className="cssLabel">{setSugarQuantity(glucidedinner)}</Label>
-              <Dropdown
-                fluid
-                selection
-                options={glucideType}
-                className="dngl"
-                id="glucidedinner"
-                onChange={handleValueFoodtype}
-                value={glucidedinner}
-              />
-            </Form.Group>
-            <div className="fruit">+ 1 à 2 fruit(s)</div>
-          </Form>
-          )}
-          {dinnercheck && <MessageCheat/>}
-        </Grid.Column>
-      </Grid.Row>
+              </Form.Group>
+              <Form.Group className="glForm cssField">
+                <Label className="cssLabel">{setSugarQuantity(glucidedinner)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={glucideType}
+                  className="dngl"
+                  id="glucidedinner"
+                  onChange={handleValueFoodtype}
+                  value={glucidedinner}
+                />
+              </Form.Group>
+              <div className="fruit">+ 1 à 2 fruit(s)</div>
+            </Form>
+            )}
+            {dinnercheck && <MessageCheat />}
+          </Grid.Column>
+        </Grid.Row>
 
-      
-      {/* LIGNE COLLATION */}
 
-      <Grid.Row className="bothRow snack" >
-        <Grid.Column className="leftsnackColumn">
-          <Segment className="snackSegment">
-            <Header as="h4">Collation</Header>
-            <Checkbox
-              className="cheat"
-              toggle
-              id="snackcheck"
-              label="Je m'entraine !"
-              onChange={handleCheck}
-              checked={snackcheck}
-              />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column className="snackColumn">
+        {/* LIGNE COLLATION */}
 
-          {snackcheck && (
-          <Form inverted className="snackForm cssForm">        
-            <Form.Group className="prForm cssField snackField">
-              <Label className="snackLabel">{setProteinQuantity(proteinesnack)}</Label>
-              <Dropdown
-                fluid                    
-                selection
-                options={proteinType}
-                className="snpr"
-                id="proteinesnack"
-                onChange={handleValueFoodtype}
-                value={proteinesnack}
+        <Grid.Row className="bothRow snack">
+          <Grid.Column className="leftsnackColumn">
+            <Segment className="snackSegment">
+              <Header as="h4">Collation</Header>
+              <Checkbox
+                className="cheat"
+                toggle
+                id="snackcheck"
+                label="Je m'entraine !"
+                onChange={handleCheck}
+                checked={snackcheck}
               />
-            </Form.Group>
-            
-            <Form.Group className="glForm cssField snackField">
-              <Label className="snackLabel">{setSugarQuantity(glucidesnack)}</Label>
-              <Dropdown
-                fluid
-                selection
-                options={glucideType}
-                className="sngl"
-                id="glucidesnack"
-                onChange={handleValueFoodtype}
-                value={glucidesnack}
-              />
-            </Form.Group>
-            <div className="fruit">+ 1 fruit</div>
-          </Form>
-          )}
-          {!snackcheck && <MessageSnack />}
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column className="snackColumn">
+
+            {snackcheck && (
+            <Form inverted className="snackForm cssForm">        
+              <Form.Group className="prForm cssField snackField">
+                <Label className="snackLabel">{setProteinQuantity(proteinesnack)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={proteinType}
+                  className="snpr"
+                  id="proteinesnack"
+                  onChange={handleValueFoodtype}
+                  value={proteinesnack}
+                />
+              </Form.Group>
+
+              <Form.Group className="glForm cssField snackField">
+                <Label className="snackLabel">{setSugarQuantity(glucidesnack)}</Label>
+                <Dropdown
+                  fluid
+                  selection
+                  options={glucideType}
+                  className="sngl"
+                  id="glucidesnack"
+                  onChange={handleValueFoodtype}
+                  value={glucidesnack}
+                />
+              </Form.Group>
+              <div className="fruit">+ 1 fruit</div>
+            </Form>
+            )}
+            {!snackcheck && <MessageSnack />}
+          </Grid.Column>
+        </Grid.Row>
+
+      </Grid>
+      )}
+    </>
   );
-}
+};
+
+MealPlan.propTypes = {
+  changeFoodValue: PropTypes.func.isRequired,
+  proteinebreakfast: PropTypes.string.isRequired,
+  proteinelunch: PropTypes.string.isRequired,
+  proteinedinner: PropTypes.string.isRequired,
+  proteinesnack: PropTypes.string.isRequired,
+  lipidebreakfast: PropTypes.string.isRequired,
+  lipidelunch: PropTypes.string.isRequired,
+  lipidedinner: PropTypes.string.isRequired,
+  glucidebreakfast: PropTypes.string.isRequired,
+  glucidelunch: PropTypes.string.isRequired,
+  glucidedinner: PropTypes.string.isRequired,
+  glucidesnack: PropTypes.string.isRequired,
+  changeCheckValue: PropTypes.func.isRequired,
+  breakfastcheck: PropTypes.bool.isRequired,
+  lunchcheck: PropTypes.bool.isRequired,
+  dinnercheck: PropTypes.bool.isRequired,
+  snackcheck: PropTypes.bool.isRequired,
+  loadingfood: PropTypes.bool.isRequired,
+};
+
 
 export default MealPlan;
