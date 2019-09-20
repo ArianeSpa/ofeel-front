@@ -60,8 +60,36 @@ export const setFatQuantityFood = (datafood, foodChoice, quantityFatForPresentMe
   return { quantityFood, protFromLip };
 };
 
+export const setCarbQuantityFood = (
+  datafood, foodChoice, quantityCarbForPresentMeal,
+) => {
+  // je récup la quantité de glucides que contient l'aliment choisi.
+  const findFood = datafood.find((food) => food.name === foodChoice);
+  const carbFood = findFood.glucides;
+
+  let quantityFood = Math.round(((quantityCarbForPresentMeal * 100) / carbFood));
+
+  // Comme pour les lipides, certains glucides contiennent une quantité intéressante de prot
+  // donc on calcule la quantité de prot apportée par le choix alimentaire
+  const protFood = findFood.proteines;
+  const protFromCarb = Math.round((protFood * quantityFood) / 100);
+
+  // on veut arrondir au 10gr près
+  if (quantityFood % 10 > 4) {
+    // j'enlève la valeur du reste et j'ajoute 10 pour arrondir au 10 sup
+    quantityFood = quantityFood - (quantityFood % 10) + 10;
+  }
+  else {
+    // sinon j'enlève juste la valeur du reste pour arrondir au 10 inf
+    quantityFood -= (quantityFood % 10);
+  }
+  quantityFood = `${quantityFood} gr`
+   
+  return {quantityFood, protFromCarb};
+};
+
 export const setProtQuantityFood = (
-  datafood, foodChoice, quantityProtForPresentMeal, protFromLip,
+  datafood, foodChoice, quantityProtForPresentMeal, protFromLip, protFromCarb
 ) => {
   // je récup la quantité de protéine que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
@@ -69,7 +97,7 @@ export const setProtQuantityFood = (
 
   // je calcule le nouveau besoin en prot pour le repas
   // d'après la valeur apportée par les aliments lipidiques
-  const need = quantityProtForPresentMeal - protFromLip;
+  const need = quantityProtForPresentMeal - protFromLip - protFromCarb;
 
   let quantityFood = Math.round(((need * 100) / protFood));
 
@@ -111,3 +139,4 @@ export const setProtQuantityFood = (
 
   return quantityFood;
 };
+
