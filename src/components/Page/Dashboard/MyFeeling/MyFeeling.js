@@ -1,23 +1,23 @@
-//import npm
+// import npm
 import React from 'react';
 import {
   Header, Segment, Form, Checkbox, Menu, Dropdown, Button,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-//import local
+// import local
 import './myfeeling.scss';
 import MyFeelingProfile from 'src/components/Page/Dashboard/MyFeeling/MyFeelingProfile';
 import setMetabAndCal from 'src/utils/setMetabAndCal';
 
-//import datas
+// import datas
 import {
   ageGenerator, heightGenerator, weightGenerator, activityTable, 
 } from 'src/datas/myfeeling';
 
-//Component
+// Component
 const MyFeeling = ({
-  gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie
+  gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie,
 }) => {
   const handleChangeProfil = (event, data) => {
     changeProfil(data.name, data.value);

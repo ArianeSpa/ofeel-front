@@ -39,7 +39,7 @@ const userReducer = (state = initialState, action = {}) => {
       };
     case SAVE_USER:
     // console.log('je save le token dans le state')  
-    return {
+      return {
         ...state,
         logged: true,
         token: action.token,
@@ -88,7 +88,5 @@ export const changeValueEmail = (name, value) => ({
   value,
   name,
 });
-
-
 
 export default userReducer;
