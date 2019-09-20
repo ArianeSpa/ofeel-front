@@ -12,6 +12,7 @@ const initialState = {
   vegan: false,
   sanslactose: false,
   activeIndex: -1,
+  dataposts: [],
   loadingPosts: true,
   user_metabo: 0,
   cal_jour: 0,
@@ -61,12 +62,12 @@ const appReducer = (state = initialState, action = {}) => {
         [action.name]: action.index,
       };
     case SAVE_POSTS_PAGES:
-      return{
+      return {
         ...state,
         postspages: action.numberpages,
       };
     case SAVE_POSTS:
-      return{
+      return {
         ...state,
         dataposts: action.dataposts,
       };
@@ -88,15 +89,15 @@ const appReducer = (state = initialState, action = {}) => {
         taille: action.objectUser.taille,
         gender: action.objectUser.sexe,
         goal: action.objectUser.goal,
-        vegan: action.objectUser.regime.includes("vegan") && true,
-        sanslactose: action.objectUser.regime.includes("sans-lactose") && true,
-        sansgluten: action.objectUser.regime.includes("sans-gluten") && true,
+        vegan: action.objectUser.regime.includes('vegan') && true,
+        sanslactose: action.objectUser.regime.includes('sans-lactose') && true,
+        sansgluten: action.objectUser.regime.includes('sans-gluten') && true,
         activity: action.objectUser.activity,
         cal_jour: action.objectUser.cal_jour,
         user_metabo: action.objectUser.user_metabo,
         cal_dej: action.objectUser.cal_dej,
         cal_obj: action.objectUser.cal_obj,
-        cal_p_dej_din : action.objectUser.cal_p_dej_din,
+        cal_p_dej_din: action.objectUser.cal_p_dej_din,
         prop_glu: action.objectUser.prop_glu,
         prop_lip: action.objectUser.prop_lip,
         prop_prot: action.objectUser.prop_prot,
@@ -119,7 +120,7 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         cal_dej: action.props.cal_dej,
         cal_obj: action.props.cal_obj,
-        cal_p_dej_din : action.props.cal_p_dej_din,
+        cal_p_dej_din: action.props.cal_p_dej_din,
         prop_glu: action.props.prop_glu,
         prop_lip: action.props.prop_lip,
         prop_prot: action.props.prop_prot,

@@ -1,11 +1,11 @@
-//import npm
+// import npm
 import React from 'react';
 import {
   Header, Form, Radio, Checkbox, Button, Image, Segment,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-//import local
+// import local
 import './goals.scss';
 import setProportion from 'src/utils/setProportion';
 
@@ -19,7 +19,7 @@ import iconNutrition from 'src/assets/icon/nutrition.png';
 const Goals = ({
   changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI, cal_jour, savePropMeal,
 }) => {
-  const handleChangeGoal = (event, data) => {
+  const handleChangeGoal = (event) => {
     const { id } = event.target;
     changeGoal(id);
   };
@@ -29,10 +29,10 @@ const Goals = ({
 
   const calculAndSend = () => {
     savePropMeal(
-      setProportion(goal, cal_jour)
+      setProportion(goal, cal_jour),
     );
     sendToAPI();
-  }
+  };
 
   return (
     <Segment inverted className="dashboard-goal">
@@ -137,6 +137,8 @@ Goals.propTypes = {
   sansgluten: PropTypes.bool.isRequired,
   vegan: PropTypes.bool.isRequired,
   sendToAPI: PropTypes.func.isRequired,
+  savePropMeal: PropTypes.func.isRequired,
+  cal_jour: PropTypes.number.isRequired,
 };
 
 
