@@ -9,7 +9,7 @@ import './mealplan.scss';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
-import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
+import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType'; 
 import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';
 
 

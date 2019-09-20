@@ -98,6 +98,10 @@ export const setProtQuantityFood = (
   // je calcule le nouveau besoin en prot pour le repas
   // d'après la valeur apportée par les aliments lipidiques
   const need = quantityProtForPresentMeal - protFromLip - protFromCarb;
+  console.log(need);
+  console.log(quantityProtForPresentMeal);
+  console.log(protFromLip);
+  console.log(protFromCarb);
 
   let quantityFood = Math.round(((need * 100) / protFood));
 
