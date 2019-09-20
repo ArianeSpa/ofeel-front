@@ -28,6 +28,7 @@ const mapStateToProps = (state) => ({
   dinnercheck: state.mealPlanReducer.dinnercheck,
   snackcheck: state.mealPlanReducer.snackcheck,
   loadingfood: state.appReducer.loadingfood,
+  state: state.appReducer,
 });
 
 /* === Actions === */
