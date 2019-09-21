@@ -41,6 +41,8 @@ const MealPlan = ({
   const glucideType = setGlucidType(datafood);
   const lipideType = setLipidType(datafood);
 
+  console.log(state);
+
   return (
     <>
       {!loadingfood && (
