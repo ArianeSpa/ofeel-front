@@ -182,7 +182,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           })
           // eslint-disable-next-line no-loop-func
           .finally(() => {
-              store.dispatch(finishLoadFood());
+            store.dispatch(finishLoadFood());
           });
         // eslint-disable-next-line no-plusplus
         foodpage++;
