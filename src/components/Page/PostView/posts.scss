@@ -76,6 +76,7 @@ i.icon{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         &:hover{
             color:$green1;
             background-color: #e8e8e8;
@@ -88,7 +89,6 @@ i.icon{
             width: 80%;
             justify-self: left;
             font-size: 0.8em;
-            align-self: center;
         }
         &>.cssLabelPost{
             height: 100%;

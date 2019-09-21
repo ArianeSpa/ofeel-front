@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 // == Import : local
 import SignUp from 'src/components/Page/Home/SignUp';
-import { changeValueUsername, changeValueEmail, accountCreation } from 'src/store/reducers/userReducer';
+import {
+  changeValueUsername, changeValueEmail, accountCreation, changeNewsletterBinary,
+} from 'src/store/reducers/userReducer';
 
 // Action Creators
 
@@ -11,6 +13,7 @@ import { changeValueUsername, changeValueEmail, accountCreation } from 'src/stor
 const mapStateToProps = (state) => ({
   username: state.userReducer.username,
   email: state.userReducer.email,
+  newsletter: state.userReducer.newsletter,
 });
 
 /* === Actions === */
@@ -23,6 +26,12 @@ const mapDispatchToProps = (dispatch) => ({
     const action = changeValueEmail('email', value);
     dispatch(action);
   },
+
+  changeNewsletter: (checked) => {
+    const action = changeNewsletterBinary('newsletter', checked);
+    dispatch(action);
+  },
+
   createAccount: () => {
     dispatch(accountCreation());
   },

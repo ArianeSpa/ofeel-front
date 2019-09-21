@@ -39,6 +39,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case CREATE_ACCOUNT:
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
+      bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
+
+      console.log(bodyFormData);
       axios({
         method: 'post',
         url: 'http://92.243.10.50/API/wp/wp-login.php?action=register',
@@ -177,9 +180,11 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           .catch((error) => {
             console.log(error);
           })
+          // eslint-disable-next-line no-loop-func
           .finally(() => {
-            store.dispatch(finishLoadFood());
+              store.dispatch(finishLoadFood());
           });
+        // eslint-disable-next-line no-plusplus
         foodpage++;
       } while (foodpage < numberFoodPages);
       break;
