@@ -83,13 +83,13 @@ export const setCarbQuantityFood = (
     // sinon j'enlève juste la valeur du reste pour arrondir au 10 inf
     quantityFood -= (quantityFood % 10);
   }
-  quantityFood = `${quantityFood} gr`
-   
-  return {quantityFood, protFromCarb};
+  quantityFood = `${quantityFood} gr`;
+  
+  return { quantityFood, protFromCarb };
 };
 
 export const setProtQuantityFood = (
-  datafood, foodChoice, quantityProtForPresentMeal, protFromLip, protFromCarb
+  datafood, foodChoice, quantityProtForPresentMeal, protFromLip, protFromCarb,
 ) => {
   // je récup la quantité de protéine que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
@@ -98,11 +98,6 @@ export const setProtQuantityFood = (
   // je calcule le nouveau besoin en prot pour le repas
   // d'après la valeur apportée par les aliments lipidiques
   const need = quantityProtForPresentMeal - protFromLip - protFromCarb;
-  console.log(need);
-  console.log(quantityProtForPresentMeal);
-  console.log(protFromLip);
-  console.log(protFromCarb);
-
   let quantityFood = Math.round(((need * 100) / protFood));
 
   // on veut arrondir au 25gr près
@@ -143,4 +138,3 @@ export const setProtQuantityFood = (
 
   return quantityFood;
 };
-

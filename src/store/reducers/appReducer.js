@@ -36,7 +36,6 @@ const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
-export const ASK_POSTS = 'ASK_POSTS';
 export const ASK_USER_DATA = 'ASK_USER_DATA';
 
 const appReducer = (state = initialState, action = {}) => {
@@ -59,7 +58,7 @@ const appReducer = (state = initialState, action = {}) => {
     case SAVE_ACTIVE_INDEX:
       if (action.index === state.activeIndex) {
         action.index = -1;
-      };
+      }
       return {
         ...state,
         [action.name]: action.index,
@@ -94,7 +93,7 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         loadingfood: false,
       };
-    case SAVE_USER_DATA:  
+    case SAVE_USER_DATA: 
       return {
         ...state,
         age: action.objectUser.age,
@@ -193,14 +192,10 @@ export const savePostsPages = (numberpages) => ({
   numberpages,
 });
 
-export const askPosts = () =>({
-  type: ASK_POSTS,
-})
-
 export const savePosts = (dataposts) => ({
   type: SAVE_POSTS,
   dataposts,
-})
+});
 
 export const loadPosts = () => ({
   type: LOAD_POSTS,
@@ -216,26 +211,26 @@ export const loadFood = () => ({
 
 export const finishLoadFood = () => ({
   type: FINISH_LOAD_FOOD,
-})
+});
 
 export const askUserData = () =>({
   type: ASK_USER_DATA,
-})
+});
 
 export const saveDataUser = (objectUser) => ({
   type: SAVE_USER_DATA,
   objectUser,
-})
+});
 
 export const saveMC = (metaboBase, calorieJour) =>({
   type: SAVE_METABO_CALORIE,
   metaboBase,
   calorieJour,
-})
+});
 
 export const savePMeal = (props) => ({
   type: SAVE_PROP_MEAL,
   props,
-})
+});
 
 export default appReducer;

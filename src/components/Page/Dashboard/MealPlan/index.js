@@ -9,7 +9,7 @@ import './mealplan.scss';
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
-import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType'; 
+import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
 import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';
 
 
@@ -30,13 +30,37 @@ const MealPlan = ({
   const handleCheck = (event, data) => {
     changeCheckValue(data.id);
   };
-  const protFromLipAtBreakfast = setFatQuantityFood(datafood, lipidebreakfast, state.q_lip_p_dej_din).protFromLip;
-  const protFromLipAtLunch = setFatQuantityFood(datafood, lipidelunch, state.q_lip_dej).protFromLip;
-  const protFromLipAtDiner = setFatQuantityFood(datafood, lipidedinner, state.q_lip_p_dej_din).protFromLip;
-  const protFromCarbAtBreakfast = setCarbQuantityFood(datafood, glucidebreakfast, state.q_glu_p_dej_din).protFromCarb;
-  const protFromCarbAtLunch = setCarbQuantityFood(datafood, glucidelunch, state.q_glu_dej).protFromCarb;
-  const protFromCarbAtDiner = setCarbQuantityFood(datafood, glucidedinner, state.q_glu_p_dej_din).protFromCarb;
- 
+  const protFromLipAtBreakfast = setFatQuantityFood(
+    datafood,
+    lipidebreakfast,
+    state.q_lip_p_dej_din,
+  ).protFromLip;
+  const protFromLipAtLunch = setFatQuantityFood(
+    datafood,
+    lipidelunch,
+    state.q_lip_dej,
+  ).protFromLip;
+  const protFromLipAtDiner = setFatQuantityFood(
+    datafood,
+    lipidedinner,
+    state.q_lip_p_dej_din,
+  ).protFromLip;
+  const protFromCarbAtBreakfast = setCarbQuantityFood(
+    datafood,
+    glucidebreakfast,
+    state.q_glu_p_dej_din,
+  ).protFromCarb;
+  const protFromCarbAtLunch = setCarbQuantityFood(
+    datafood,
+    glucidelunch,
+    state.q_glu_dej,
+  ).protFromCarb;
+  const protFromCarbAtDiner = setCarbQuantityFood(
+    datafood,
+    glucidedinner,
+    state.q_glu_p_dej_din,
+  ).protFromCarb;
+
   const proteinType = setProteinType(datafood);
   const glucideType = setGlucidType(datafood);
   const lipideType = setLipidType(datafood);
@@ -99,7 +123,7 @@ const MealPlan = ({
                   value={glucidebreakfast}
                 />
               </Form.Group>
-              <div className="fruit">+ 1 à 2 fruit(s)</div>
+              <div className="fruit">Légumes à volonté + 1 à 2 fruit(s)</div>
             </Form>
             )}
             {breakfastcheck && <MessageCheat />}
@@ -121,7 +145,7 @@ const MealPlan = ({
             </Segment>
 
             {!lunchcheck && (
-            <Form inverted className="lnchForm cssForm">        
+            <Form inverted className="lnchForm cssForm">
               <Form.Group className="prForm cssField">
                 <Label className="cssLabel">{setProtQuantityFood(datafood, proteinelunch, state.q_prot_dej, protFromLipAtLunch, protFromCarbAtLunch)}</Label>
                 <Dropdown
@@ -158,7 +182,7 @@ const MealPlan = ({
                   value={glucidelunch}
                 />
               </Form.Group>
-              <div className="fruit">+ 1 à 2 fruit(s)</div>
+              <div className="fruit">Légumes à volonté + 1 à 2 fruit(s)</div>
             </Form>
             )}
             {lunchcheck && <MessageCheat />}
@@ -179,7 +203,7 @@ const MealPlan = ({
             </Segment>
 
             {!dinnercheck && (
-            <Form inverted className="bfstForm cssForm">        
+            <Form inverted className="bfstForm cssForm">
               <Form.Group className="prForm cssField">
                 <Label className="cssLabel">{setProtQuantityFood(datafood, proteinedinner, state.q_prot_p_dej_din, protFromLipAtDiner, protFromCarbAtDiner)}</Label>
                 <Dropdown
@@ -216,7 +240,7 @@ const MealPlan = ({
                   value={glucidedinner}
                 />
               </Form.Group>
-              <div className="fruit">+ 1 à 2 fruit(s)</div>
+              <div className="fruit">Légumes à volonté + 1 à 2 fruit(s)</div>
             </Form>
             )}
             {dinnercheck && <MessageCheat />}
@@ -243,7 +267,7 @@ const MealPlan = ({
           <Grid.Column className="snackColumn">
 
             {snackcheck && (
-            <Form inverted className="snackForm cssForm">        
+            <Form inverted className="snackForm cssForm">
               <Form.Group className="prForm cssField snackField">
                 <Label className="snackLabel">{setProteinQuantity(proteinesnack)}</Label>
                 <Dropdown
