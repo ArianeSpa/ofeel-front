@@ -86,6 +86,5 @@ export default (goal, cal_jour) => {
     q_prot_dej,
     q_prot_p_dej_din,
   };
-  console.log(propObject);
   return (propObject);
 };

@@ -62,7 +62,6 @@ const PostsList = ({
               </Accordion.Title>
               <Accordion.Content key={`${post.id}2`} active={activeIndex === post.id}>
                 <div dangerouslySetInnerHTML={createMarkup(post.content)} />
-                {/* {post.excerpt} */}
               </Accordion.Content>
             </>
           ))}
