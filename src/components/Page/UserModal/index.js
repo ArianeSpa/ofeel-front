@@ -1,11 +1,13 @@
+// == Import : npm
 import React from 'react';
-
 import { Button, Segment, Form } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import profil from 'src/assets/images/profil.png';
 
+// == Import : local
 import './modal.scss';
 
+// == Composant
 const UserModal = ({
   logout, username,
 }) => (

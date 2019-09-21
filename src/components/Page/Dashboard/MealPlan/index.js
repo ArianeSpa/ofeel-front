@@ -1,18 +1,19 @@
+// == Import : npm
 import React from 'react';
 import {
   Grid, Header, Segment, Form, Checkbox, Label, Dropdown,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-
-import './mealplan.scss';
+// == Import : local
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
 import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
 import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';
+import './mealplan.scss';
 
-
+// == Composant
 const MealPlan = ({
   changeFoodValue,
   proteinebreakfast, proteinelunch, proteinedinner, proteinesnack,
@@ -325,6 +326,8 @@ MealPlan.propTypes = {
   dinnercheck: PropTypes.bool.isRequired,
   snackcheck: PropTypes.bool.isRequired,
   loadingfood: PropTypes.bool.isRequired,
+  datafood: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
 };
 
 

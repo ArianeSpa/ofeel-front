@@ -1,4 +1,4 @@
-// import npm
+// == Import : npm
 import React from 'react';
 import {
   Accordion, Icon, Container, Label, Button, Segment, Form,
@@ -6,11 +6,11 @@ import {
 import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 
-// import local
+// == Import : local
 import './posts.scss';
 import setIcon from 'src/utils/setIcon';
 
-
+// == Composant
 const PostsList = ({
   changeActiveIndex, activeIndex, dataposts, loadingPosts,
 }) => {

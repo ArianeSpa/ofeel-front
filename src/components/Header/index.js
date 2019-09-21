@@ -1,12 +1,14 @@
+// == Import : npm
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+// == Import : local
 import logo from 'src/assets/images/logo_fond_transparent2.png';
-
-
 import './header.scss';
 
+// == Composant
 const Header = ({ logged }) => (
   <div className="header">
 

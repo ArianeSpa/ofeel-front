@@ -1,6 +1,8 @@
+// == Import : npm
 import React from 'react';
 import { Segment, Header } from 'semantic-ui-react';
 
+// == Composant
 const Error = () => (
   <Segment>
     <Header as="h2">Erreur</Header>

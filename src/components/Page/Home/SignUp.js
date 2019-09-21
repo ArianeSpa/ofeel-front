@@ -1,3 +1,4 @@
+// == Import : npm
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -5,9 +6,10 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
+// == Import : local
 import './form.scss';
 
-
+// == Composant
 const SignUp = ({
   changeInputUsername,
   username,

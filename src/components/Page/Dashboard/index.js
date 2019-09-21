@@ -1,8 +1,9 @@
+// == Import : npm
 import React from 'react';
 import { Grid, Segment, Icon } from 'semantic-ui-react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 
-
+// == Import : local
 import Welcome from 'src/containers/Dashboard/Welcome';
 import MyFeeling from 'src/containers/Dashboard/MyFeeling';
 import Goals from 'src/containers/Dashboard/Goals';
@@ -10,7 +11,7 @@ import MealPlan from 'src/containers/Dashboard/MealPlan';
 import Workout from 'src/components/Page/Dashboard/Workout';
 import './dashboard.scss';
 
-
+// == Composant
 const Dashboard = () => {
   // création des onglets
   const createSegment = (tag) => {
