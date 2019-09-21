@@ -1,10 +1,10 @@
+// import npm
 import React from 'react';
-
 import {
   Accordion, Icon, Container, Label, Button, Segment, Form,
 } from 'semantic-ui-react';
-
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 
 // import local
 import './posts.scss';
@@ -18,7 +18,7 @@ const PostsList = ({
     changeActiveIndex(data.index);
   };
   const createMarkup = (content) => ({
-    __html: content,
+    __html: DOMPurify.sanitize(content),
   });
 
   return (
