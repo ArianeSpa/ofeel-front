@@ -9,7 +9,13 @@ import './form.scss';
 
 
 const SignUp = ({
-  changeInputUsername, username, changeInputEmail, email, createAccount,
+  changeInputUsername,
+  username,
+  changeInputEmail,
+  email,
+  createAccount,
+  changeNewsletter,
+  newsletter,
 }) => {
   const handleChangeUsername = (event) => {
     const { value } = event.target;
@@ -18,6 +24,10 @@ const SignUp = ({
   const handleAddEmail = (event) => {
     const { value } = event.target;
     changeInputEmail(value);
+  };
+  const handleChangeNewsletter = (event, data) => {
+    const checked = data.checked ? 1 : 0;
+    changeNewsletter(checked);
   };
 
   return (
@@ -30,7 +40,13 @@ const SignUp = ({
           <Form.Input value={username} onChange={handleChangeUsername} label="Pseudo" placeholder="Pseudo" />
           <Form.Input value={email} onChange={handleAddEmail} label="Email" placeholder="email@example.com" />
         </Form.Group>
-        <Form.Checkbox label="Inscription à la newsletter" />
+        <Form.Checkbox
+          value="newsletter"
+          label="Inscription à la newsletter"
+          id="newsletter"
+          checked={newsletter === 1}
+          onChange={handleChangeNewsletter}
+        />
         <Form.Checkbox label="J'accepte les conditions générales" />
         <Button type="submit" className="submit">Submit</Button>
       </Form>
@@ -47,6 +63,8 @@ SignUp.propTypes = {
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   createAccount: PropTypes.func.isRequired,
+  changeNewsletter: PropTypes.func.isRequired,
+  newsletter: PropTypes.number.isRequired,
 };
 
 export default SignUp;
