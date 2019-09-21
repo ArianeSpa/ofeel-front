@@ -32,6 +32,20 @@
             }
             &>.column.right{
                 width:80%;
+                overflow-y: scroll;
+                
+                &::-webkit-scrollbar{
+                    &-track{
+                        background-color: transparent;
+                        border-radius: 5px;
+                    }
+                    &-thumb{
+                        background-image: $mealPlan-color;
+                        &:hover{
+                            background-image: $goals-color;
+                        }
+                    }
+                }
             }
         }
     }
@@ -146,7 +160,7 @@
             &> #workoutIcon{
                 background: $workout-color;
                 background-clip: text;
-	            -webkit-text-fill-color: transparent;;
+	            -webkit-text-fill-color: transparent;
             }
         }
 

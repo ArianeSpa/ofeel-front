@@ -3,6 +3,7 @@
 .ui{
     &.inverted.segment.block{
         height: 300px;
+        min-height: fit-content;
         width : 600px;
         background: none;
         background-image: $background-color-dashboard;
