@@ -69,10 +69,14 @@ i.icon{
 
 
 .ui.styled.accordion{
-    width: 75%; 
+    width: 100%; 
     & .title.cssTitle{
         color:$blue5;
         font-size: 0.7em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         &:hover{
             color:$green1;
             background-color: #e8e8e8;
@@ -81,15 +85,38 @@ i.icon{
                 color: #e8e8e8;
             }
         }
+        &>.titleCss{
+            width: 80%;
+            justify-self: left;
+            font-size: 0.8em;
+        }
+        &>.cssLabelPost{
+            height: 100%;
+            width: 12%;
+            text-align: center;
+            word-break: break-word;
+            align-self: flex-end;
+
+        }
+    }
+    
+    &>.content h1, h2, h3, h4{
+        color: black;
+        font-size: 0.7em;
     }
     &>.content p{
         color: black;
         font-size: 0.5em;
     }
-}
-
-.ui.label.cssLabelPost{
-    float: right;
+    &>.content ul{
+        color: black;
+        font-size: 0.5em;
+        &> li{
+            list-style: square;
+            list-style-position: inside;
+            padding-left: 2em;
+        }
+    }
 }
 
 

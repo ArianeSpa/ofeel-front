@@ -1,10 +1,10 @@
+// import npm
 import React from 'react';
-
 import {
   Accordion, Icon, Container, Label, Button, Segment, Form,
 } from 'semantic-ui-react';
-
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 
 // import local
 import './posts.scss';
@@ -17,6 +17,9 @@ const PostsList = ({
   const displayContent = (event, data) => {
     changeActiveIndex(data.index);
   };
+  const createMarkup = (content) => ({
+    __html: DOMPurify.sanitize(content),
+  });
 
   return (
 
@@ -50,11 +53,15 @@ const PostsList = ({
                 onClick={displayContent}
               >
                 <Icon name="dropdown" />
-                {post.name}
+                <div
+                  className="titleCss"
+                  dangerouslySetInnerHTML={createMarkup(post.name)}
+                />
+                {/* {post.name} */}
                 <Label icon={setIcon(post.tags)} content={post.tags} className="cssLabelPost" />
               </Accordion.Title>
               <Accordion.Content key={`${post.id}2`} active={activeIndex === post.id}>
-                <p>{post.excerpt}</p>
+                <div dangerouslySetInnerHTML={createMarkup(post.content)} />
               </Accordion.Content>
             </>
           ))}

@@ -7,6 +7,7 @@ const initialState = {
   password: '',
   email: '',
   token: '',
+  newsletter: 0,
 };
 
 // == Types
@@ -15,6 +16,7 @@ const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
 const LOG_OUT = 'LOG_OUT';
+const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -37,8 +39,12 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
+    case CHANGE_NEWSLETTER:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case SAVE_USER:
-    // console.log('je save le token dans le state')  
       return {
         ...state,
         logged: true,
@@ -85,6 +91,12 @@ export const changeValuePassword = (name, value) => ({
 });
 export const changeValueEmail = (name, value) => ({
   type: CHANGE_EMAIL,
+  value,
+  name,
+});
+
+export const changeNewsletterBinary = (name, value) =>({
+  type: CHANGE_NEWSLETTER,
   value,
   name,
 });

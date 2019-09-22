@@ -1,12 +1,19 @@
 import axios from 'axios';
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
 import {
-  SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData, saveDataUser 
+  SET_MY_FEELING_API,
+  ASK_PAGES_POSTS_INFO,
+  savePostsPages,
+  savePosts,
+  loadPosts,
+  finishLoadPosts,
+  loadFood,
+  finishLoadFood,
+  ASK_USER_DATA,
+  askUserData,
+  saveDataUser,
 } from 'src/store/reducers/appReducer';
-import {
-  ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood,
-} from 'src/store/reducers/mealPlanReducer';
-
+import { ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood } from 'src/store/reducers/mealPlanReducer';
 import {
   ASK_PAGES_WORKOUT_INFO, saveWorkoutPages, saveWorkout, loadWorkout,
 } from 'src/store/reducers/workoutReducer';
@@ -35,6 +42,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case CREATE_ACCOUNT:
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
+      bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
+
+      console.log(bodyFormData);
       axios({
         method: 'post',
         url: 'http://92.243.10.50/API/wp/wp-login.php?action=register',
@@ -47,7 +57,8 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('yeah');
-          // A FAIRE : INFORMER L'UTILISATEUR QUE L'EMAIL EST EN COURS D'ENVOI, QU'IL DOIT SURVEILLER SA BOITE MAIL
+          // A FAIRE : INFORMER L'UTILISATEUR QUE L'EMAIL EST EN COURS D'ENVOI
+          // QU'IL DOIT SURVEILLER SA BOITE MAIL
         })
         .catch((error) => {
           console.log('erreur');
@@ -60,7 +71,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       axios({
         method: 'get',
         url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
-        headers: { Authorization: `Bearer${  store.getState().userReducer.token}` },
+        headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
       })
         .then((response) => {
           const objectUser = {
@@ -76,9 +87,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             cal_dej: parseInt(response.data.cal_dej),
             cal_obj: parseInt(response.data.cal_obj),
             cal_p_dej_din: parseInt(response.data.cal_p_dej_din),
-            prop_glu: parseInt(response.data.prop_glu),
-            prop_lip: parseInt(response.data.prop_lip),
-            prop_prot: parseInt(response.data.prop_prot),
+            prop_glu: parseFloat(response.data.prop_glu),
+            prop_lip: parseFloat(response.data.prop_lip),
+            prop_prot: parseFloat(response.data.prop_prot),
             q_glu_dej: parseInt(response.data.q_glu_dej),
             q_glu_p_dej_din: parseInt(response.data.q_glu_p_dej_din),
             q_lip_dej: parseInt(response.data.q_lip_dej),
@@ -104,7 +115,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       axios({
         method: 'post',
         url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
-        headers: { Authorization: `Bearer${  store.getState().userReducer.token}` },
+        headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
         data: {
           poids: store.getState().appReducer.poids,
           taille: store.getState().appReducer.taille,
@@ -171,10 +182,14 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
+          })
+          // eslint-disable-next-line no-loop-func
+          .finally(() => {
+              store.dispatch(finishLoadFood());
           });
+        // eslint-disable-next-line no-plusplus
         foodpage++;
-      } while(foodpage < numberFoodPages);
-
+      } while (foodpage < numberFoodPages);
       break;
 
       // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ALIMENTS
@@ -247,8 +262,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             store.dispatch(finishLoadPosts());
           });
         postspage++;
-      }while (postspage < numberPostPages);
-
+         } while (postspage < numberPostPages);
       break;
 
     case ASK_PAGES_WORKOUT_INFO:

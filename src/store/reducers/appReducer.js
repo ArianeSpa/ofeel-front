@@ -14,6 +14,7 @@ const initialState = {
   activeIndex: -1,
   dataposts: [],
   loadingPosts: true,
+  loadingfood: true,
   user_metabo: 0,
   cal_jour: 0,
 };
@@ -25,15 +26,16 @@ const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
 const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
 const SAVE_POSTS = 'SAVE_POSTS';
 const LOAD_POSTS = 'LOAD_POSTS';
+const LOAD_FOOD = 'LOAD_FOOD';
 const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
 const SAVE_USER_DATA = 'SAVE_USER_DATA';
+const FINISH_LOAD_FOOD = 'FINISH_LOAD_FOOD';
 const SAVE_METABO_CALORIE = 'SAVE_METABO_CALORIE';
 const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
 export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
-export const ASK_POSTS = 'ASK_POSTS';
 export const ASK_USER_DATA = 'ASK_USER_DATA';
 
 const appReducer = (state = initialState, action = {}) => {
@@ -56,7 +58,7 @@ const appReducer = (state = initialState, action = {}) => {
     case SAVE_ACTIVE_INDEX:
       if (action.index === state.activeIndex) {
         action.index = -1;
-      };
+      }
       return {
         ...state,
         [action.name]: action.index,
@@ -81,7 +83,17 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         loadingPosts: false,
       };
-    case SAVE_USER_DATA:  
+    case LOAD_FOOD:
+      return {
+        ...state,
+        loadingfood: true,
+      };
+    case FINISH_LOAD_FOOD:
+      return {
+        ...state,
+        loadingfood: false,
+      };
+    case SAVE_USER_DATA: 
       return {
         ...state,
         age: action.objectUser.age,
@@ -180,10 +192,6 @@ export const savePostsPages = (numberpages) => ({
   numberpages,
 });
 
-export const askPosts = () =>({
-  type: ASK_POSTS,
-});
-
 export const savePosts = (dataposts) => ({
   type: SAVE_POSTS,
   dataposts,
@@ -197,24 +205,32 @@ export const finishLoadPosts = () => ({
   type: FINISH_LOAD_POSTS,
 });
 
+export const loadFood = () => ({
+  type: LOAD_FOOD,
+});
+
+export const finishLoadFood = () => ({
+  type: FINISH_LOAD_FOOD,
+});
+
 export const askUserData = () =>({
   type: ASK_USER_DATA,
-})
+});
 
 export const saveDataUser = (objectUser) => ({
   type: SAVE_USER_DATA,
   objectUser,
-})
+});
 
 export const saveMC = (metaboBase, calorieJour) =>({
   type: SAVE_METABO_CALORIE,
   metaboBase,
   calorieJour,
-})
+});
 
 export const savePMeal = (props) => ({
   type: SAVE_PROP_MEAL,
   props,
-})
+});
 
 export default appReducer;
