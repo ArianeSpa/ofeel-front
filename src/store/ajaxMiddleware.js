@@ -14,6 +14,9 @@ import {
   saveDataUser,
 } from 'src/store/reducers/appReducer';
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood } from 'src/store/reducers/mealPlanReducer';
+import {
+  ASK_PAGES_WORKOUT_INFO, saveWorkoutPages, saveWorkout, loadWorkout,
+} from 'src/store/reducers/workoutReducer';
 
 const bodyFormData = new FormData();
 
@@ -259,7 +262,46 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             store.dispatch(finishLoadPosts());
           });
         postspage++;
-      } while (postspage < numberPostPages);
+         } while (postspage < numberPostPages);
+      break;
+
+    case ASK_PAGES_WORKOUT_INFO:
+      store.dispatch(loadWorkout());
+      const numberWorkoutPages = store.getState().workoutReducer.workoutpages;
+      let workoutpage = 1;
+
+      do {
+        axios({
+          method: 'get',
+          url: `http://92.243.10.50/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
+        })
+          .then((response) => {
+            // console.log('yeah');
+            const numberPages = (response.headers['x-wp-totalpages']);
+            const saveNumberWorkoutPages = saveWorkoutPages(numberPages);
+            store.dispatch(saveNumberWorkoutPages);
+
+            const workoutList = [];
+            const arrayResponse = response.data;
+            arrayResponse.map((index) => {
+              workoutList.push({
+                id: index.id,
+                name: index.title.rendered,
+                excerpt: index.excerpt.rendered,
+                content: index.content.rendered,
+                slug: index.slug,
+              });
+            });
+            const saveResults = saveWorkout(workoutList);
+            // console.log(saveResults);
+            store.dispatch(saveResults);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        workoutpage += 1;
+      } while (workoutpage < numberWorkoutPages);
+
       break;
 
       // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ARTICLES

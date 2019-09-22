@@ -7,7 +7,7 @@ import Welcome from 'src/containers/Dashboard/Welcome';
 import MyFeeling from 'src/containers/Dashboard/MyFeeling';
 import Goals from 'src/containers/Dashboard/Goals';
 import MealPlan from 'src/containers/Dashboard/MealPlan';
-import Workout from 'src/components/Page/Dashboard/Workout';
+import Workout from 'src/containers/Dashboard/WorkoutList';
 import './dashboard.scss';
 
 
