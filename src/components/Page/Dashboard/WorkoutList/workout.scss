@@ -9,40 +9,124 @@
   }
 }
 
-.ui.container.workoutContainer {
+.ui.container.globalContainer {
   animation-name: appear;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
-  overflow: scroll;
-  height: 70vh;
+  padding: 1em 0;
 }
 
-div.description {
-  margin: 15px;
-  font-size: 0.8em;
-  color: #fff!important;
-
-  &>p {
-    font-size : 1.2em;
-    &>a:hover {
-      color: $pink4;
+.ui.button{
+  background-color: #fff;
+  &:hover{
+    background-color: rgb(43, 42, 42);
+  }
+  &:focus{
+    background-color: #fff;
+  }
+  &.iconFocus{
+    background-color: rgb(43, 42, 42);
+  }
+  &.courseFocus, &.salleFocus, &.maisonFocus{
+    background-color: rgb(43, 42, 42);
+    color: $pink5;
+    &:focus{
+      background-color: rgb(43, 42, 42);
+      color: $pink5;
+    }
+  }
+  &.debutantFocus{
+    background-color: rgb(43, 42, 42);
+    color: $green5;
+    &:focus{
+      background-color: rgb(43, 42, 42);
+      color: $green5;
+    }
+  }
+  &.interFocus{
+    background-color: rgb(43, 42, 42);
+    color: $yellow1;
+    &:focus{
+      background-color: rgb(43, 42, 42);
+      color: $yellow1;
+    }
+  }
+  &.confirmeFocus{
+    background-color: rgb(43, 42, 42);
+    color: $pink1;
+    &:focus{
+      background-color: rgb(43, 42, 42);
+      color: $pink1;
     }
   }
 }
+
+.accordion.ui.fluid.styled.wodAccordion {
+  background-color: transparent;
+  box-shadow: none;
+  &> .content p {
+    color: white;
+    font-size : 1em;
+  }
+  &> .content a {
+    color: white;
+    cursor: default;
+  }
+}
+
+i.dropdown.icon {
+  color: $pink3;
+}
+
+.title.cssTitleWod {
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+// div.description {
+//   margin: 15px;
+//   font-size: 0.8em;
+//   color: #fff!important;
+
+//   &>p {
+//     font-size : 1.2em;
+//     &>a:hover {
+//       color: $pink4;
+//     }
+//   }
+// }
 .header {
   &.header-workout {
-  display: block;
-  margin-top: 50px;
-  padding: 2px;
-  font-family: $cabin;
-  font-size: 1.3em;
-  color: #fff!important;
-  text-shadow: 1px 1px 2px $pink4;
+    display: block;
+    font-family: $cabin;
+    font-size: 1.3em;
+    color: #fff!important;
+    text-shadow: 1px 1px 2px $pink4;
+    padding: 0 1em;
   }
 }
 .image.type-img{
-    margin-top: 25px;
-    &>img {
+  margin-top: 0.2em;
+  &>img {
       width: 170px;
-    }
+  }
+}
+
+.ui.container.contentContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: white;
+}
+
+
+.contentWod{
+  margin-left: 1em;
+  &>a{
+    color: white;
+  }
 }
