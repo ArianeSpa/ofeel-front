@@ -2,7 +2,7 @@
 
 // == Initial State
 const initialState = {
-  logged: true,
+  logged: false,
   username: '',
   password: '',
   email: '',
