@@ -1,13 +1,21 @@
 import axios from 'axios';
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
-import { SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData, saveDataUser } from 'src/store/reducers/appReducer';
-import { ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood } from 'src/store/reducers/mealPlanReducer';
+import {
+  SET_MY_FEELING_API, ASK_PAGES_POSTS_INFO, savePostsPages, askPosts, ASK_POSTS, savePosts, loadPosts, finishLoadPosts, ASK_USER_DATA, askUserData, saveDataUser 
+} from 'src/store/reducers/appReducer';
+import {
+  ASK_PAGES_FOOD_INFO, saveFoodPages, askFood, ASK_FOOD, saveFood,
+} from 'src/store/reducers/mealPlanReducer';
+
+import {
+  ASK_PAGES_WORKOUT_INFO, saveWorkoutPages, saveWorkout, loadWorkout,
+} from 'src/store/reducers/workoutReducer';
 
 const bodyFormData = new FormData();
 
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    //AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
+    // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
     case AUTHENTICATE:
       axios.post('http://92.243.10.50/API/wp-json/jwt-auth/v1/token', {
         username: store.getState().userReducer.username,
@@ -16,14 +24,14 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           const saveUserToken = saveUser(response.data.token);
           store.dispatch(saveUserToken);
-          store.dispatch(askUserData());          
+          store.dispatch(askUserData());
         })
         .catch((error) => {
           console.log(error);
         });
       break;
 
-    //CREATION DE COMPTE REQUETE POST VERS API WP
+    // CREATION DE COMPTE REQUETE POST VERS API WP
     case CREATE_ACCOUNT:
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
@@ -43,7 +51,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('erreur');
-          // A FAIRE : INFRORMER L'UTILISATEUR DE L'ECHEC DE LA CREATION DE COMPTE. 
+          // A FAIRE : INFRORMER L'UTILISATEUR DE L'ECHEC DE LA CREATION DE COMPTE.
         });
       break;
 
@@ -52,7 +60,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       axios({
         method: 'get',
         url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
-        headers: { Authorization: 'Bearer' + store.getState().userReducer.token },
+        headers: { Authorization: `Bearer${  store.getState().userReducer.token}` },
       })
         .then((response) => {
           const objectUser = {
@@ -67,7 +75,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             cal_jour: parseInt(response.data.cal_jour),
             cal_dej: parseInt(response.data.cal_dej),
             cal_obj: parseInt(response.data.cal_obj),
-            cal_p_dej_din : parseInt(response.data.cal_p_dej_din),
+            cal_p_dej_din: parseInt(response.data.cal_p_dej_din),
             prop_glu: parseInt(response.data.prop_glu),
             prop_lip: parseInt(response.data.prop_lip),
             prop_prot: parseInt(response.data.prop_prot),
@@ -77,69 +85,67 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             q_lip_p_dej_din: parseInt(response.data.q_lip_p_dej_din),
             q_prot_dej: parseInt(response.data.q_prot_dej),
             q_prot_p_dej_din: parseInt(response.data.q_prot_p_dej_din),
-          }
+          };
           const saveUserData = saveDataUser(objectUser);
           store.dispatch(saveUserData);
-          
-
         })
         .catch((error) => {
           console.log(error);
         });
       break;
 
-      //ENVOI DES DONNEES ENREGISTREES PAR L'UTILISATEUR VERS L'API
-      case SET_MY_FEELING_API:
-        const regime = [];
-        store.getState().appReducer.vegan && regime.push('vegan');
-        store.getState().appReducer.sansgluten && regime.push('sans-gluten');
-        store.getState().appReducer.sanslactose && regime.push('sans-lactose');
-        
-        axios({
-          method: 'post',
-          url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
-          headers: { Authorization: 'Bearer' + store.getState().userReducer.token },
-          data: {
-            poids: store.getState().appReducer.poids,
-            taille: store.getState().appReducer.taille,
-            age: store.getState().appReducer.age,
-            sexe: store.getState().appReducer.gender,
-            objectifs: store.getState().appReducer.goal,
-            regime_alimentaire: regime,
-            user_activity: store.getState().appReducer.activity,
-            user_metabo: store.getState().appReducer.user_metabo,
-            cal_jour: store.getState().appReducer.cal_jour,
-            cal_dej: store.getState().appReducer.cal_dej,
-            cal_obj: store.getState().appReducer.cal_obj,
-            cal_p_dej_din : store.getState().appReducer.cal_p_dej_din,
-            prop_glu: store.getState().appReducer.prop_glu,
-            prop_lip: store.getState().appReducer.prop_lip,
-            prop_prot: store.getState().appReducer.prop_prot,
-            q_glu_dej: store.getState().appReducer.q_glu_dej,
-            q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
-            q_lip_dej: store.getState().appReducer.q_lip_dej,
-            q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
-            q_prot_dej: store.getState().appReducer.q_prot_dej,
-            q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
-          },
-        })
-          .then((response) => {
-            //A FAIRE : INFORMER L'UTIISATEUR QUE SES DONNEES ONT BIEN ETE ENREGISTREES
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        break;
+      // ENVOI DES DONNEES ENREGISTREES PAR L'UTILISATEUR VERS L'API
+    case SET_MY_FEELING_API:
+      const regime = [];
+      store.getState().appReducer.vegan && regime.push('vegan');
+      store.getState().appReducer.sansgluten && regime.push('sans-gluten');
+      store.getState().appReducer.sanslactose && regime.push('sans-lactose');
 
-    //REQUETE AUPRES DE L'API WP ALIMENTS POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
+      axios({
+        method: 'post',
+        url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
+        headers: { Authorization: `Bearer${  store.getState().userReducer.token}` },
+        data: {
+          poids: store.getState().appReducer.poids,
+          taille: store.getState().appReducer.taille,
+          age: store.getState().appReducer.age,
+          sexe: store.getState().appReducer.gender,
+          objectifs: store.getState().appReducer.goal,
+          regime_alimentaire: regime,
+          user_activity: store.getState().appReducer.activity,
+          user_metabo: store.getState().appReducer.user_metabo,
+          cal_jour: store.getState().appReducer.cal_jour,
+          cal_dej: store.getState().appReducer.cal_dej,
+          cal_obj: store.getState().appReducer.cal_obj,
+          cal_p_dej_din: store.getState().appReducer.cal_p_dej_din,
+          prop_glu: store.getState().appReducer.prop_glu,
+          prop_lip: store.getState().appReducer.prop_lip,
+          prop_prot: store.getState().appReducer.prop_prot,
+          q_glu_dej: store.getState().appReducer.q_glu_dej,
+          q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
+          q_lip_dej: store.getState().appReducer.q_lip_dej,
+          q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
+          q_prot_dej: store.getState().appReducer.q_prot_dej,
+          q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
+        },
+      })
+        .then((response) => {
+          // A FAIRE : INFORMER L'UTIISATEUR QUE SES DONNEES ONT BIEN ETE ENREGISTREES
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+
+    // REQUETE AUPRES DE L'API WP ALIMENTS POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_FOOD_INFO:
       const numberFoodPages = store.getState().appReducer.foodpages;
       let foodpage = 1;
 
-      do{
+      do {
         axios({
           method: 'get',
-          url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+foodpage+'&per_page=99',
+          url: `http://92.243.10.50/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
         })
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
@@ -166,120 +172,158 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           .catch((error) => {
             console.log(error);
           });
-        foodpage ++
-      }while(foodpage<numberFoodPages);
-      
+        foodpage++;
+      } while(foodpage < numberFoodPages);
+
       break;
 
-    //REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ALIMENTS 
-    // case ASK_FOOD:
-    //   const numberPages = store.getState().mealPlanReducer.foodpages;
-    //   let datafood = [];
+      // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ALIMENTS
+      // case ASK_FOOD:
+      //   const numberPages = store.getState().mealPlanReducer.foodpages;
+      //   let datafood = [];
 
-    //   for(let page=1; page<=numberPages; page++){
-    //     axios({
-    //       method: 'get',
-    //       url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+page+'&per_page=99',
-    //     })
-    //       .then((response) => {
-    //         const arrayResponse = response.data;
-    //         arrayResponse.map((index) => {
-    //           datafood.unshift({
-    //             id: index.id,
-    //             name: index.title.rendered,
-    //             type: index.famille[0].slug,
-    //             calories: index.calories,
-    //             glucides: index.glucides,
-    //             proteines: index.proteines,
-    //             lipides: index.lipides,
-    //             regime: index.regime,
-    //           });
-    //         });
-    //         const saveResults = saveFood(datafood);
-    //         store.dispatch(saveResults);
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   }
-    //   break;
+      //   for(let page=1; page<=numberPages; page++){
+      //     axios({
+      //       method: 'get',
+      //       url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+page+'&per_page=99',
+      //     })
+      //       .then((response) => {
+      //         const arrayResponse = response.data;
+      //         arrayResponse.map((index) => {
+      //           datafood.unshift({
+      //             id: index.id,
+      //             name: index.title.rendered,
+      //             type: index.famille[0].slug,
+      //             calories: index.calories,
+      //             glucides: index.glucides,
+      //             proteines: index.proteines,
+      //             lipides: index.lipides,
+      //             regime: index.regime,
+      //           });
+      //         });
+      //         const saveResults = saveFood(datafood);
+      //         store.dispatch(saveResults);
+      //       })
+      //       .catch((error) => {
+      //         console.log(error);
+      //       });
+      //   }
+      //   break;
 
-    //REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
+    // REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_POSTS_INFO:
       store.dispatch(loadPosts());
       const numberPostPages = store.getState().appReducer.postspages;
       let postspage = 1;
-      
-      do{
+
+      do {
         axios({
-        method: 'get',
-        url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+postspage+'&per_page=99',
+          method: 'get',
+          url: `http://92.243.10.50/API/wp-json/wp/v2/posts/?page=${postspage}&per_page=99`,
         })
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberPostsPages = savePostsPages(numberPages);
             store.dispatch(saveNumberPostsPages);
-            
+
             const dataposts = [];
             const arrayResponse = response.data;
-              arrayResponse.map((index) => {
-                dataposts.push({
-                  id: index.id,
-                  name: index.title.rendered,
-                  excerpt: index.excerpt.rendered,
-                  content: index.content.rendered,
-                  tags: index.tags[0].slug,
-                });
+            arrayResponse.map((index) => {
+              dataposts.push({
+                id: index.id,
+                name: index.title.rendered,
+                excerpt: index.excerpt.rendered,
+                content: index.content.rendered,
+                tags: index.tags[0].slug,
               });
-              const saveResults = savePosts(dataposts);
-              store.dispatch(saveResults);
-            
+            });
+            const saveResults = savePosts(dataposts);
+            store.dispatch(saveResults);
           })
           .catch((error) => {
             console.log(error);
           })
           .finally(() => {
             store.dispatch(finishLoadPosts());
-          }); 
-        postspage ++;
-      }while(postspage<numberPostPages);
-      
+          });
+        postspage++;
+      }while (postspage < numberPostPages);
+
       break;
 
-    //REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ARTICLES
-    // case ASK_POSTS:
-    //   const numberPostPages = store.getState().appReducer.postspages;
-    //   let dataposts = [];
-    
-    //   for(let page=1; page<=numberPostPages; page++){
-    //     store.dispatch(loadPosts());
-    //     axios({
-    //       method: 'get',
-    //       url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page+'&per_page=99',
-    //     })
-    //       .then((response) => {
-    //         const arrayResponse = response.data;
-    //         arrayResponse.map((index) => {
-    //           dataposts.push({
-    //             id: index.id,
-    //             name: index.title.rendered,
-    //             excerpt: index.excerpt.rendered,
-    //             content: index.content.rendered,
-    //             tags: index.tags[0].slug,
-    //           });
-    //         });
-    //         const saveResults = savePosts(dataposts);
-    //         store.dispatch(saveResults);
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       })
-    //       .finally(() => {
-    //         store.dispatch(finishLoadPosts());
-    //       }) 
-    //   }
-    //   break;
-    
+    case ASK_PAGES_WORKOUT_INFO:
+      store.dispatch(loadWorkout());
+      const numberWorkoutPages = store.getState().workoutReducer.workoutpages;
+      let workoutpage = 1;
+
+      do {
+        axios({
+          method: 'get',
+          url: `http://92.243.10.50/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
+        })
+          .then((response) => {
+            console.log('yeah');
+            const numberPages = (response.headers['x-wp-totalpages']);
+            const saveNumberWorkoutPages = saveWorkoutPages(numberPages);
+            store.dispatch(saveNumberWorkoutPages);
+
+            const workoutList = [];
+            const arrayResponse = response.data;
+            arrayResponse.map((index) => {
+              workoutList.push({
+                id: index.id,
+                name: index.title.rendered,
+                excerpt: index.excerpt.rendered,
+                content: index.content.rendered,
+                slug: index.slug,
+              });
+            });
+            const saveResults = saveWorkout(workoutList);
+            console.log(saveResults);
+            store.dispatch(saveResults);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        workoutpage += 1;
+      } while (workoutpage < numberWorkoutPages);
+
+      break;
+
+      // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ARTICLES
+      // case ASK_POSTS:
+      //   const numberPostPages = store.getState().appReducer.postspages;
+      //   let dataposts = [];
+
+      //   for(let page=1; page<=numberPostPages; page++){
+      //     store.dispatch(loadPosts());
+      //     axios({
+      //       method: 'get',
+      //       url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page+'&per_page=99',
+      //     })
+      //       .then((response) => {
+      //         const arrayResponse = response.data;
+      //         arrayResponse.map((index) => {
+      //           dataposts.push({
+      //             id: index.id,
+      //             name: index.title.rendered,
+      //             excerpt: index.excerpt.rendered,
+      //             content: index.content.rendered,
+      //             tags: index.tags[0].slug,
+      //           });
+      //         });
+      //         const saveResults = savePosts(dataposts);
+      //         store.dispatch(saveResults);
+      //       })
+      //       .catch((error) => {
+      //         console.log(error);
+      //       })
+      //       .finally(() => {
+      //         store.dispatch(finishLoadPosts());
+      //       })
+      //   }
+      //   break;
+
     default:
       next(action);
   }

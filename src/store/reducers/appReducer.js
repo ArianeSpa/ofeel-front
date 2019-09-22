@@ -182,12 +182,12 @@ export const savePostsPages = (numberpages) => ({
 
 export const askPosts = () =>({
   type: ASK_POSTS,
-})
+});
 
 export const savePosts = (dataposts) => ({
   type: SAVE_POSTS,
   dataposts,
-})
+});
 
 export const loadPosts = () => ({
   type: LOAD_POSTS,
