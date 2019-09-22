@@ -21,3 +21,35 @@
       border-radius: 50%;
   }
 }
+
+@media (max-width: 800px) {
+    .ui.segment.usermodal{
+        top: 1%;
+        left: 30%;
+        min-width: fit-content;
+      
+        &>h3{
+            margin-bottom: 1em;  
+        }
+        
+        &>img{
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .ui.segment.usermodal{
+        top: 1%;
+        right: 1%;
+        min-width: fit-content;
+      
+        &>h3{
+            margin-bottom: 1em;  
+        }
+        
+        &>img{
+            display: none;
+        }
+    }
+}
