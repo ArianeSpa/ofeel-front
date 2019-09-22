@@ -262,7 +262,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           url: `http://92.243.10.50/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
         })
           .then((response) => {
-            console.log('yeah');
+            // console.log('yeah');
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberWorkoutPages = saveWorkoutPages(numberPages);
             store.dispatch(saveNumberWorkoutPages);
@@ -279,7 +279,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
               });
             });
             const saveResults = saveWorkout(workoutList);
-            console.log(saveResults);
+            // console.log(saveResults);
             store.dispatch(saveResults);
           })
           .catch((error) => {

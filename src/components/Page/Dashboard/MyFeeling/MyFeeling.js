@@ -25,10 +25,10 @@ const MyFeeling = ({
 
   const calculAndSend = () => {
     saveMetaboCalorie(
-      setMetabAndCal(gender, poids, taille, age, activity)
+      setMetabAndCal(gender, poids, taille, age, activity),
     );
     sendToAPI();
-  }
+  };
 
   return (
     <Segment inverted className="dashboard-feeling">
