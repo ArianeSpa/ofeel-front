@@ -4,23 +4,24 @@ import { connect } from 'react-redux';
 // == Import : local
 import PostsList from 'src/components/Page/PostView/PostsList';
 
-import { saveActiveIndex } from 'src/store/reducers/appReducer';
-
-
-
 // Action Creators
+import { saveActiveIndex } from 'src/store/reducers/postReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  activeIndex: state.appReducer.activeIndex,
-  dataposts: state.appReducer.dataposts,
-  loadingPosts: state.appReducer.loadingPosts,
+  activeIndex: state.postReducer.activeIndex,
+  dataposts: state.postReducer.dataposts,
+  loadingPosts: state.postReducer.loadingPosts,
 });
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
   changeActiveIndex: (index) => {
     const action = saveActiveIndex('activeIndex', index);
+    dispatch(action);
+  },
+  changeSort: (subject) => {
+    const action = changeSortBool(subject);
     dispatch(action);
   },
 });

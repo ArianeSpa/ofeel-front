@@ -2,17 +2,19 @@ import axios from 'axios';
 import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
-  ASK_PAGES_POSTS_INFO,
-  savePostsPages,
-  savePosts,
-  loadPosts,
-  finishLoadPosts,
   loadFood,
   finishLoadFood,
   ASK_USER_DATA,
   askUserData,
   saveDataUser,
 } from 'src/store/reducers/appReducer';
+import {
+  ASK_PAGES_POSTS_INFO,
+  savePostsPages,
+  savePosts,
+  loadPosts,
+  finishLoadPosts,
+} from 'src/store/reducers/postReducer';
 import { ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood } from 'src/store/reducers/mealPlanReducer';
 
 const bodyFormData = new FormData();
@@ -225,7 +227,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     // REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_POSTS_INFO:
       store.dispatch(loadPosts());
-      const numberPostPages = store.getState().appReducer.postspages;
+      const numberPostPages = store.getState().postReducer.postspages;
       let postspage = 1;
 
       do {

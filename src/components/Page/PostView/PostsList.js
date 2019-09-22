@@ -12,7 +12,7 @@ import setIcon from 'src/utils/setIcon';
 
 // == Composant
 const PostsList = ({
-  changeActiveIndex, activeIndex, dataposts, loadingPosts,
+  changeActiveIndex, activeIndex, dataposts, loadingPosts, changeSort,
 }) => {
   const displayContent = (event, data) => {
     changeActiveIndex(data.index);
@@ -20,16 +20,20 @@ const PostsList = ({
   const createMarkup = (content) => ({
     __html: DOMPurify.sanitize(content),
   });
+  const sort = (event, data) => {
+    console.log(data);
+    changeSort(data.id);
+  };
 
   return (
 
     <Container className="globalContainer">
       <Segment className="buttonSort">
-        <Button icon><Icon name="book" /></Button>
-        <Button icon><Icon name="football ball" /></Button>
-        <Button icon><Icon name="heartbeat" /></Button>
-        <Button icon><Icon name="food" className="foodSort" /></Button>
-        <Button icon><Icon name="boxes" /></Button>
+        <Button icon id="sante" onClick={sort}><Icon name="heartbeat" /></Button>
+        <Button icon id="sport"><Icon name="football ball" /></Button>
+        <Button icon id="recuperation"><Icon name="bed" /></Button>
+        <Button icon id="alimentation"><Icon name="food" className="foodSort" /></Button>
+        <Button icon id="divers"><Icon name="boxes" /></Button>
         <Button className="cancelButton">Effacer les filtres</Button>
       </Segment>
       <Container className="postsContainer">
@@ -83,6 +87,7 @@ PostsList.propTypes = {
     }),
   ).isRequired,
   loadingPosts: PropTypes.bool.isRequired,
+  changeSort: PropTypes.func.isRequired,
 };
 
 export default PostsList;

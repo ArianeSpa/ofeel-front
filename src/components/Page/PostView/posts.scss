@@ -36,7 +36,7 @@
 
 
 i.icon{
-    &.book{
+    &.bed{
         color: $blue3;
     }
     &.food.foodSort{
@@ -96,6 +96,9 @@ i.icon{
             text-align: center;
             word-break: break-word;
             align-self: flex-end;
+            &>i.food{
+                color: $green3;
+            }
 
         }
     }
