@@ -6,7 +6,7 @@ import App from 'src/components/App';
 
 // Action Creators
 import { askPagesFoodInfo } from 'src/store/reducers/mealPlanReducer';
-import { askPagesPostsInfo } from 'src/store/reducers/appReducer';
+import { askPagesPostsInfo } from 'src/store/reducers/postReducer';
 import { askPagesWorkoutInfo } from 'src/store/reducers/workoutReducer';
 
 
