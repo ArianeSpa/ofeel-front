@@ -15,11 +15,13 @@
 .ui.icon.button{
     background-color: #fff;
     &:hover{
-        background-color: rgb(43, 42, 42);
+        background-color: #fff;
     }
     &:focus{
+        background-color: #fff;
+    }
+    &.iconFocus{
         background-color: rgb(43, 42, 42);
-
     }
 }
 
@@ -51,6 +53,7 @@ i.icon{
     &.boxes{
         color: $yellow1;
     }
+
 }
 
 .ui.container.postsContainer{

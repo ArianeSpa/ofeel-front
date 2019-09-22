@@ -4,8 +4,14 @@
 const initialState = {
   activeIndex: -1,
   dataposts: [],
+  postsToShow: [],
   loadingPosts: true,
   postspages: 0,
+  alimentation: null,
+  sante: null,
+  sport: null,
+  recuperation: null,
+  divers: null,
 };
 
 // ACTION TYPE
@@ -14,6 +20,9 @@ const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
 const SAVE_POSTS = 'SAVE_POSTS';
 const LOAD_POSTS = 'LOAD_POSTS';
 const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
+const CHANGE_SORT = 'CHANGE_SORT';
+const CANCEL_SORT = 'CANCEL_SORT';
+const SORT_DATAPOSTS = 'SORT_DATAPOSTS';
 
 export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
 
@@ -36,7 +45,9 @@ const postReducer = (state = initialState, action = {}) => {
     case SAVE_POSTS:
       return {
         ...state,
+        postsToShow: action.dataposts,
         dataposts: action.dataposts,
+
       };
     case LOAD_POSTS:
       return {
@@ -47,6 +58,37 @@ const postReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loadingPosts: false,
+      };
+    case CHANGE_SORT:
+      if (state[action.subject] === null) {
+        return {
+          ...state,
+          [action.subject]: true,
+        };
+      }
+      return {
+        ...state,
+        [action.subject]: !state[action.subject],
+      };
+    case CANCEL_SORT:
+      return {
+        ...state,
+        postsToShow: state.dataposts,
+        alimentation: null,
+        sante: null,
+        sport: null,
+        recuperation: null,
+        divers: null,
+      };
+    case SORT_DATAPOSTS:
+      // eslint-disable-next-line no-case-declarations
+      const sortedDataposts = state.dataposts.filter((post) => {
+        const keepPost = (state.alimentation && post.tags === 'alimentation') || (state.sante && post.tags === 'sante') || (state.sport && post.tags === 'sport') || (state.recuperation && post.tags === 'recuperation') || (state.divers && post.tags === 'divers');
+        return keepPost;
+      });
+      return {
+        ...state,
+        postsToShow: sortedDataposts,
       };
     default:
       return state;
@@ -79,6 +121,20 @@ export const loadPosts = () => ({
 
 export const finishLoadPosts = () => ({
   type: FINISH_LOAD_POSTS,
+});
+
+export const changeSortBool = (subject) => ({
+  type: CHANGE_SORT,
+  subject,
+});
+
+export const cancelSortBool = () => ({
+  type: CANCEL_SORT,
+});
+
+export const sortPost = (dataposts) => ({
+  type: SORT_DATAPOSTS,
+  dataposts,
 });
 
 export default postReducer;
