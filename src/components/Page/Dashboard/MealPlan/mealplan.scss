@@ -8,22 +8,25 @@
   margin: 0;
   display:flex;
   flex-direction: row;
+  flex-wrap: wrap;
+
 }
 
 div.row.bothRow.meals{
   padding: 0;
-  height: 70%;
-  // &::before{
-  //   display: none;
-  // }
+  height: fit-content;
+  // flex-wrap: wrap;
+  min-width: fit-content;
+  margin-bottom: 2em;
 }
 
 div.column.tricol{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  padding-bottom: 3em;
   align-items: center;
-  height: 100%;
+  height: fit-content;
+  width: fit-content;
   &.bfst, &.lch{
     border-right: 1px solid $blue5;
   }
@@ -36,9 +39,11 @@ div.ui.segment.cssSegment{
   justify-content: space-between;
   align-self: center;
   width: 100%;
+  min-width: fit-content;
   border: transparent;
+  height: 5em;
+  flex-wrap: wrap;
 
-  
   &>.toggle.checkbox input:checked + label {
     color:$pink5 !important;
     font-weight: bold;
@@ -58,7 +63,11 @@ div.ui.segment.cssSegment{
 
 h4.ui.header{
   color: white;
-    margin: 0;
+  margin: 0;
+  padding-right: 2em;
+  text-transform: uppercase;
+  padding-bottom: 0.7em;
+  font-size: 1em;
 }
 
 .ui.form{
@@ -74,8 +83,9 @@ form.ui.inverted.form.cssForm{
   min-height: 80%;
 }
 
-.fields.cssField{
-  width: 100%;
+.ui.form .fields.cssField{
+  min-width: 100%;
+  margin: 1em 0 2em;
 
 }
 
@@ -90,13 +100,15 @@ form.ui.inverted.form.cssForm{
 }
 
 div.row.bothRow.snack{
-  height: 30%;
+  height: fit-content;
   border-top: 1px solid $blue5;
-  padding:0 ;
+  padding: 2em 0 ;
+  flex-wrap: wrap;
+  min-width: fit-content;
 }
 
 .ui.grid > .row > .column.leftsnackColumn{
-  width: 30% ;
+  width: fit-content ;
   height: 100%;
 }
 
@@ -123,6 +135,7 @@ form.ui.inverted.form.snackForm.cssForm {
 
   &>.header{
     color: white;
+    padding-bottom: 0.5em;
   }
 
   &>.toggle.checkbox input:checked + label {

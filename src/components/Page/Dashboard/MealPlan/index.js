@@ -93,7 +93,7 @@ const MealPlan = ({
 
             {!breakfastcheck && (
             <Form inverted className="bfstForm cssForm">
-              <Form.Group className="prForm cssField">
+              <Form.Group className="cssField">
                 <Label className="cssLabel">{setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast, protFromCarbAtBreakfast)}</Label>
                 <Dropdown
                   fluid
