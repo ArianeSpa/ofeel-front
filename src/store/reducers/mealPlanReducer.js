@@ -2,6 +2,7 @@
 
 const initialState = {
   datafood: [],
+  foodToShow: [],
   proteinebreakfast: 'Fromage blanc',
   proteinelunch: 'Steack hache',
   proteinedinner: 'Poisson blanc',
@@ -26,6 +27,7 @@ const SAVE_FOOD_PAGES = 'SAVE_FOOD_PAGES';
 const SAVE_FOOD = 'SAVE_FOOD';
 const CHANGE_FOOD = 'CHANGE_FOOD';
 const CHANGE_CHECK = 'CHANGE_CHECK';
+const SORT_FOOD = 'SORT_FOOD';
 
 
 const mealPlanReducer = (state = initialState, action = {}) => {
@@ -39,6 +41,7 @@ const mealPlanReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         datafood: action.datafood,
+        foodToShow: action.datafood,
       };
     case CHANGE_FOOD:
       return {
@@ -68,6 +71,10 @@ const mealPlanReducer = (state = initialState, action = {}) => {
         };
       }
       break;
+    case SORT_FOOD:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
@@ -96,6 +103,10 @@ export const changeValueFood = (name, value) => ({
 export const newCheckValue = (name) => ({
   type: CHANGE_CHECK,
   name,
+});
+
+export const sortFoodChoice = () => ({
+  type: SORT_FOOD,
 });
 
 export default mealPlanReducer;

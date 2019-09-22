@@ -21,7 +21,8 @@ const MealPlan = ({
   glucidebreakfast, glucidelunch, glucidedinner, glucidesnack,
   changeCheckValue,
   breakfastcheck, lunchcheck, dinnercheck, snackcheck,
-  datafood,
+  vegan, sanslactose, sansgluten,
+  datafood, sortFood,
   loadingfood, state,
 }) => {
   const handleValueFoodtype = (event, data) => {
@@ -31,6 +32,8 @@ const MealPlan = ({
   const handleCheck = (event, data) => {
     changeCheckValue(data.id);
   };
+
+
   const protFromLipAtBreakfast = setFatQuantityFood(
     datafood,
     lipidebreakfast,
@@ -61,6 +64,8 @@ const MealPlan = ({
     glucidedinner,
     state.q_glu_p_dej_din,
   ).protFromCarb;
+
+  // sortFood(vegan, sanslactose, sansgluten);
 
   const proteinType = setProteinType(datafood);
   const glucideType = setGlucidType(datafood);
@@ -328,6 +333,10 @@ MealPlan.propTypes = {
   loadingfood: PropTypes.bool.isRequired,
   datafood: PropTypes.array.isRequired,
   state: PropTypes.object.isRequired,
+  sortFood: PropTypes.func.isRequired,
+  vegan: PropTypes.bool.isRequired,
+  sanslactose: PropTypes.bool.isRequired,
+  sansgluten: PropTypes.bool.isRequired,
 };
 
 

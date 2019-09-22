@@ -17,7 +17,9 @@ import iconNutrition from 'src/assets/icon/nutrition.png';
 
 // == Composant
 const Goals = ({
-  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI, cal_jour, savePropMeal,
+  changeGoal, goal,
+  selectRegime, sanslactose, sansgluten, vegan,
+  sendToAPI, cal_jour, savePropMeal,
 }) => {
   const handleChangeGoal = (event) => {
     const { id } = event.target;

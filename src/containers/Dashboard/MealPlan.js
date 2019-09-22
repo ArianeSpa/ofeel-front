@@ -2,16 +2,19 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import MealPlan from 'src/components/Page/Dashboard/MealPlan/index.js'; 
+import MealPlan from 'src/components/Page/Dashboard/MealPlan';
 
 // Action Creators
-import { changeValueFood, newCheckValue } from 'src/store/reducers/mealPlanReducer';
+import { changeValueFood, newCheckValue, sortFoodChoice } from 'src/store/reducers/mealPlanReducer';
 
 // Action Creators
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   datafood: state.mealPlanReducer.datafood,
+  vegan: state.appReducer.vegan,
+  sanslactose: state.appReducer.sanslactose,
+  sansgluten: state.appReducer.sansgluten,
   proteinebreakfast: state.mealPlanReducer.proteinebreakfast,
   proteinelunch: state.mealPlanReducer.proteinelunch,
   proteinedinner: state.mealPlanReducer.proteinedinner,
@@ -34,14 +37,17 @@ const mapStateToProps = (state) => ({
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
   changeFoodValue: (value, stateElementToChange) => {
-    const action = changeValueFood (stateElementToChange, value);
+    const action = changeValueFood(stateElementToChange, value);
     dispatch(action);
   },
   changeCheckValue: (name) => {
     const action = newCheckValue(name);
     dispatch(action);
   },
-
+  sortFood: (vegan, sanslactose, sansgluten) => {
+    const action = sortFoodChoice(vegan, sanslactose, sansgluten);
+    dispatch(action);
+  },
 
 
 });
