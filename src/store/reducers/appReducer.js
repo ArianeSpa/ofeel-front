@@ -11,9 +11,6 @@ const initialState = {
   sansgluten: false,
   vegan: false,
   sanslactose: false,
-  activeIndex: -1,
-  dataposts: [],
-  loadingPosts: true,
   loadingfood: true,
   user_metabo: 0,
   cal_jour: 0,
@@ -22,12 +19,7 @@ const initialState = {
 const SAVE_GOAL = 'SAVE_GOAL';
 const SAVE_PROFIL = 'SAVE_PROFIL';
 const CHECK_REGIME = 'CHECK_REGIME';
-const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
-const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
-const SAVE_POSTS = 'SAVE_POSTS';
-const LOAD_POSTS = 'LOAD_POSTS';
 const LOAD_FOOD = 'LOAD_FOOD';
-const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
 const SAVE_USER_DATA = 'SAVE_USER_DATA';
 const FINISH_LOAD_FOOD = 'FINISH_LOAD_FOOD';
 const SAVE_METABO_CALORIE = 'SAVE_METABO_CALORIE';
@@ -35,7 +27,6 @@ const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
-export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
 export const ASK_USER_DATA = 'ASK_USER_DATA';
 
 const appReducer = (state = initialState, action = {}) => {
@@ -55,34 +46,6 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case SAVE_ACTIVE_INDEX:
-      if (action.index === state.activeIndex) {
-        action.index = -1;
-      }
-      return {
-        ...state,
-        [action.name]: action.index,
-      };
-    case SAVE_POSTS_PAGES:
-      return {
-        ...state,
-        postspages: action.numberpages,
-      };
-    case SAVE_POSTS:
-      return {
-        ...state,
-        dataposts: action.dataposts,
-      };
-    case LOAD_POSTS:
-      return {
-        ...state,
-        loadingPosts: true,
-      };
-    case FINISH_LOAD_POSTS:
-      return {
-        ...state,
-        loadingPosts: false,
-      };
     case LOAD_FOOD:
       return {
         ...state,
@@ -93,7 +56,7 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         loadingfood: false,
       };
-    case SAVE_USER_DATA: 
+    case SAVE_USER_DATA:
       return {
         ...state,
         age: action.objectUser.age,
@@ -176,35 +139,6 @@ export const setMyFeelingAPI = () => ({
   type: SET_MY_FEELING_API,
 });
 
-
-export const saveActiveIndex = (name, index) => ({
-  type: SAVE_ACTIVE_INDEX,
-  index,
-  name,
-});
-
-export const askPagesPostsInfo = () => ({
-  type: ASK_PAGES_POSTS_INFO,
-});
-
-export const savePostsPages = (numberpages) => ({
-  type: SAVE_POSTS_PAGES,
-  numberpages,
-});
-
-export const savePosts = (dataposts) => ({
-  type: SAVE_POSTS,
-  dataposts,
-});
-
-export const loadPosts = () => ({
-  type: LOAD_POSTS,
-});
-
-export const finishLoadPosts = () => ({
-  type: FINISH_LOAD_POSTS,
-});
-
 export const loadFood = () => ({
   type: LOAD_FOOD,
 });
@@ -213,7 +147,7 @@ export const finishLoadFood = () => ({
   type: FINISH_LOAD_FOOD,
 });
 
-export const askUserData = () =>({
+export const askUserData = () => ({
   type: ASK_USER_DATA,
 });
 
@@ -222,7 +156,7 @@ export const saveDataUser = (objectUser) => ({
   objectUser,
 });
 
-export const saveMC = (metaboBase, calorieJour) =>({
+export const saveMC = (metaboBase, calorieJour) => ({
   type: SAVE_METABO_CALORIE,
   metaboBase,
   calorieJour,

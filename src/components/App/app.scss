@@ -4,12 +4,10 @@
   background-image: $background-color-body;
   height : 100vh;
   width:100%;
-  // font-family: $livvic;
   font-size: 2em;
   color: white;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // padding : 20px;
-  // overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
+
+

@@ -1,18 +1,19 @@
+// == Import : npm
 import React from 'react';
 import {
   Grid, Header, Segment, Form, Checkbox, Label, Dropdown,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-
-import './mealplan.scss';
+// == Import : local
 import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
 import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
 import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
 import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';
+import './mealplan.scss';
 
-
+// == Composant
 const MealPlan = ({
   changeFoodValue,
   proteinebreakfast, proteinelunch, proteinedinner, proteinesnack,
@@ -20,7 +21,8 @@ const MealPlan = ({
   glucidebreakfast, glucidelunch, glucidedinner, glucidesnack,
   changeCheckValue,
   breakfastcheck, lunchcheck, dinnercheck, snackcheck,
-  datafood,
+  vegan, sanslactose, sansgluten,
+  datafood, sortFood,
   loadingfood, state,
 }) => {
   const handleValueFoodtype = (event, data) => {
@@ -30,6 +32,8 @@ const MealPlan = ({
   const handleCheck = (event, data) => {
     changeCheckValue(data.id);
   };
+
+
   const protFromLipAtBreakfast = setFatQuantityFood(
     datafood,
     lipidebreakfast,
@@ -61,6 +65,8 @@ const MealPlan = ({
     state.q_glu_p_dej_din,
   ).protFromCarb;
 
+  // sortFood(vegan, sanslactose, sansgluten);
+
   const proteinType = setProteinType(datafood);
   const glucideType = setGlucidType(datafood);
   const lipideType = setLipidType(datafood);
@@ -87,7 +93,7 @@ const MealPlan = ({
 
             {!breakfastcheck && (
             <Form inverted className="bfstForm cssForm">
-              <Form.Group className="prForm cssField">
+              <Form.Group className="cssField">
                 <Label className="cssLabel">{setProtQuantityFood(datafood, proteinebreakfast, state.q_prot_p_dej_din, protFromLipAtBreakfast, protFromCarbAtBreakfast)}</Label>
                 <Dropdown
                   fluid
@@ -325,6 +331,12 @@ MealPlan.propTypes = {
   dinnercheck: PropTypes.bool.isRequired,
   snackcheck: PropTypes.bool.isRequired,
   loadingfood: PropTypes.bool.isRequired,
+  datafood: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
+  sortFood: PropTypes.func.isRequired,
+  vegan: PropTypes.bool.isRequired,
+  sanslactose: PropTypes.bool.isRequired,
+  sansgluten: PropTypes.bool.isRequired,
 };
 
 

@@ -1,5 +1,7 @@
 // == Import : npm
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 // == Import : local
 import './app.scss';
@@ -23,5 +25,9 @@ const App = ({ catchFoodInfo, catchPostsInfo, catchWorkoutInfo, }) => {
   );
 };
 
+App.propTypes = {
+  catchFoodInfo: PropTypes.func.isRequired,
+  catchPostsInfo: PropTypes.func.isRequired,
+};
 // == Export
 export default App;

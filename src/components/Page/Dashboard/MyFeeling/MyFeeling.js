@@ -1,21 +1,19 @@
-// import npm
+// == Import : npm
 import React from 'react';
 import {
-  Header, Segment, Form, Checkbox, Menu, Dropdown, Button,
+  Header, Segment, Form, Checkbox, Menu, Dropdown, Button, Label,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-// import local
+// == Import : local
 import './myfeeling.scss';
 import MyFeelingProfile from 'src/components/Page/Dashboard/MyFeeling/MyFeelingProfile';
 import setMetabAndCal from 'src/utils/setMetabAndCal';
-
-// import datas
 import {
-  ageGenerator, heightGenerator, weightGenerator, activityTable, 
+  ageGenerator, heightGenerator, weightGenerator, activityTable,
 } from 'src/datas/myfeeling';
 
-// Component
+// == Composant
 const MyFeeling = ({
   gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie,
 }) => {
@@ -57,36 +55,47 @@ const MyFeeling = ({
           />
         </Form.Field>
       </Form>
-      <Menu className="listMyFeeling" compact>
-        <Dropdown
-          id="age"
-          name="age"
-          value={age}
-          label="age"
-          placeholder="Age"
-          options={ageGenerator()}
-          selection
-          onChange={handleChangeProfil}
-        />
-        <Dropdown
-          id="taille"
-          name="taille"
-          value={taille}
-          placeholder="Taille"
-          options={heightGenerator()}
-          selection
-          onChange={handleChangeProfil}
-        />
-        <Dropdown
-          id="poids"
-          name="poids"
-          value={poids}
-          placeholder="Poids"
-          options={weightGenerator()}
-          selection
-          onChange={handleChangeProfil}
-        />
-      </Menu>
+      <Form className="listMyFeeling">
+        <Form.Group>
+          <Label className="cssLabel ageLabel">Âge</Label>
+          <Dropdown
+            id="age"
+            name="age"
+            value={age}
+            label="age"
+            placeholder="Age"
+            options={ageGenerator()}
+            selection
+            onChange={handleChangeProfil}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Label className="cssLabel tailleLabel">Taille</Label>
+          <Dropdown
+            id="taille"
+            name="taille"
+            value={taille}
+            placeholder="Taille"
+            options={heightGenerator()}
+            selection
+            onChange={handleChangeProfil}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Label className="cssLabel tailleLabel">Poids</Label>
+          <Dropdown
+            id="poids"
+            name="poids"
+            value={poids}
+            placeholder="Poids"
+            options={weightGenerator()}
+            selection
+            onChange={handleChangeProfil}
+          />
+        </Form.Group>
+      </Form>
       <Header className="subtitle-feeling" as="h4"> Votre profil d'activité physique</Header>
       <Form className="choixProfil">
         <Form.Field className="field-profil">

@@ -1,5 +1,7 @@
+// == Import : npm
 import React from 'react';
 
+// == Composant
 const Welcome = () => (
   <div className="welcomeMessage">
     <h3>Bienvenue sur votre tableau de bord !</h3>

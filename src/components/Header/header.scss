@@ -1,17 +1,11 @@
 @import 'src/styles/vars';
 
-// .img{
-//     width:155px;
-//     height: 155px;
-// }
-
 .header{
     display :flex;
     flex-direction:row;
     padding: 10px 20px 0 20px ;
     justify-content: space-between;    
 }
-
 
 .ui.text.menu.navbar{
     display:flex;

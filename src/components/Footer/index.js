@@ -1,13 +1,16 @@
+// == Import : npm
 import React from 'react';
 import {
   Segment, List, Image,
 } from 'semantic-ui-react';
+
+// == Import : local
 import iconFB from 'src/assets/icon/fb.png';
 import iconTW from 'src/assets/icon/tw.png';
 import iconInsta from 'src/assets/icon/insta.png';
-
 import './footer.scss';
 
+// == Composant
 const Footer = () => (
   <Segment inverted className="size">
     <List horizontal className="style">

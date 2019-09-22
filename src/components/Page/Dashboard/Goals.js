@@ -1,14 +1,13 @@
-// import npm
+// == Import : npm
 import React from 'react';
 import {
   Header, Form, Radio, Checkbox, Button, Image, Segment,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-// import local
+// == Import : local
 import './goals.scss';
 import setProportion from 'src/utils/setProportion';
-
 import iconMuscle from 'src/assets/icon/biceps3.png';
 import iconBalance from 'src/assets/icon/balance.png';
 import iconSalad from 'src/assets/icon/salade.png';
@@ -16,8 +15,11 @@ import iconLactose from 'src/assets/icon/lactose.png';
 import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
 
+// == Composant
 const Goals = ({
-  changeGoal, goal, selectRegime, sanslactose, sansgluten, vegan, sendToAPI, cal_jour, savePropMeal,
+  changeGoal, goal,
+  selectRegime, sanslactose, sansgluten, vegan,
+  sendToAPI, cal_jour, savePropMeal,
 }) => {
   const handleChangeGoal = (event) => {
     const { id } = event.target;
