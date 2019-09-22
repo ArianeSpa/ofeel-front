@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import DOMPurify from 'dompurify';
 
@@ -13,8 +12,8 @@ import setImageWorkout from 'src/utils/setImageWorkout';
 
 
 const WorkoutList = ({ workoutList }) => {
-  const createMarkup = (workoutList) => ({
-    __html: DOMPurify.sanitize(workoutList),
+  const createMarkup = (content) => ({
+    __html: DOMPurify.sanitize(content),
   });
   return (
 
