@@ -1,0 +1,48 @@
+@import 'src/styles/vars';
+
+@keyframes appear{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.ui.container.workoutContainer {
+  animation-name: appear;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  overflow: scroll;
+  height: 70vh;
+}
+
+div.description {
+  margin: 15px;
+  font-size: 0.8em;
+  color: #fff!important;
+
+  &>p {
+    font-size : 1.2em;
+    &>a:hover {
+      color: $pink4;
+    }
+  }
+}
+.header {
+  &.header-workout {
+  display: block;
+  margin-top: 50px;
+  padding: 2px;
+  font-family: $cabin;
+  font-size: 1.3em;
+  color: #fff!important;
+  text-shadow: 1px 1px 2px $pink4;
+  }
+}
+.image.type-img{
+    margin-top: 25px;
+    &>img {
+      width: 170px;
+    }
+}

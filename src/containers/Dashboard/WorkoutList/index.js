@@ -2,23 +2,24 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-/* import Workout from 'src/components/Workout'; */
+import Workout from 'src/components/Page/Dashboard/WorkoutList';
 
 // Action Creators
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  message: state.message,
+  workoutList: state.workoutReducer.workoutList,
+  loadingWorkout: state.workoutReducer.loadingWorkout,
 });
 
 /* === Actions === */
 const mapDispatchToProps = {};
 
 // Container
-const WorkoutContainer = connect(
+const WorkoutListContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Workout);
 
 // == Export
-export default WorkoutContainer;
+export default WorkoutListContainer;
