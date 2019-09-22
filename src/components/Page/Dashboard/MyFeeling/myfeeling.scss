@@ -70,11 +70,16 @@ h4.ui.header.subtitle-feeling {
   color: $yellow4;
 } 
 
-.ui.compact.listMyFeeling.menu{
+.ui.form.listMyFeeling{
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    background: none;
-    border: none;
+    // background: none;
+    // border: none;
+    flex-wrap: wrap;
+    &>.fields{
+      margin: 0.5em 1.5em;
+    }
     &>.selection.dropdown {
       margin-right: 15px;
     }
