@@ -11,6 +11,7 @@ import { changeValueUsername, changeValuePassword, authenticate } from 'src/stor
 const mapStateToProps = (state) => ({
   username: state.userReducer.username,
   password: state.userReducer.password,
+  connexionBool: state.userReducer.connexionBool,
 });
 
 /* === Actions === */

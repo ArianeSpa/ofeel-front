@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   username: state.userReducer.username,
   email: state.userReducer.email,
   newsletter: state.userReducer.newsletter,
+  createAccountBool: state.userReducer.createAccountBool,
 });
 
 /* === Actions === */

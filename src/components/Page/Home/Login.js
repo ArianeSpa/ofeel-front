@@ -11,7 +11,7 @@ import './form.scss';
 
 // == Composant
 const Login = ({
-  changeInputUsername, changeInputPassword, username, password, doAuthenticate,
+  changeInputUsername, changeInputPassword, username, password, doAuthenticate, connexionBool,
 }) => {
   const handleChangeUsername = (event) => {
     const { value } = event.target;
@@ -34,6 +34,7 @@ const Login = ({
         <Form.Field>
           <Checkbox label="Se souvenir de moi" />
         </Form.Field>
+        {connexionBool === 0 && <p>Erreur de pseudo ou de mot de passe.</p>}
         <Button type="submit" className="submit">Submit</Button>
       </Form>
       <Divider horizontal>
@@ -49,6 +50,7 @@ Login.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   doAuthenticate: PropTypes.func.isRequired,
+  connexionBool: PropTypes.number.isRequired,
 };
 
 

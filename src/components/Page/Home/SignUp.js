@@ -18,6 +18,7 @@ const SignUp = ({
   createAccount,
   changeNewsletter,
   newsletter,
+  createAccountBool,
 }) => {
   const handleChangeUsername = (event) => {
     const { value } = event.target;
@@ -50,6 +51,10 @@ const SignUp = ({
           onChange={handleChangeNewsletter}
         />
         <Form.Checkbox label="J'accepte les conditions générales" />
+
+        {createAccountBool === 1 && <p>Votre compte a bien été créé, surveillez vos spams !</p>}
+        {createAccountBool === 0 && <p>Une erreur s'est produite, veuillez réessayer.</p>}
+
         <Button type="submit" className="submit">Submit</Button>
       </Form>
       <Divider horizontal>
