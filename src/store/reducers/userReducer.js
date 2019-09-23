@@ -8,6 +8,8 @@ const initialState = {
   email: '',
   token: '',
   newsletter: 0,
+  createAccountBool: -1,
+  connexionBool: 1,
 };
 
 // == Types
@@ -17,6 +19,8 @@ const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
 const LOG_OUT = 'LOG_OUT';
 const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
+const CHANGE_ACCOUNT_BOOL = 'CHANGE_ACCOUNT_BOOL';
+const CHANGE_CONNEXION_BOOL = 'CHANGE_CONNEXION_BOOL';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -55,7 +59,16 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         logged: false,
       };
-
+    case CHANGE_ACCOUNT_BOOL:
+      return {
+        ...state,
+        createAccountBool: action.bool,
+      };
+    case CHANGE_CONNEXION_BOOL:
+      return {
+        ...state,
+        connexionBool: action.bool,
+      };
     default:
       return state;
   }
@@ -95,10 +108,20 @@ export const changeValueEmail = (name, value) => ({
   name,
 });
 
-export const changeNewsletterBinary = (name, value) =>({
+export const changeNewsletterBinary = (name, value) => ({
   type: CHANGE_NEWSLETTER,
   value,
   name,
+});
+
+export const changeAccountBool = (bool) => ({
+  type: CHANGE_ACCOUNT_BOOL,
+  bool,
+});
+
+export const changeConnexionBool = (bool) => ({
+  type: CHANGE_CONNEXION_BOOL,
+  bool,
 });
 
 export default userReducer;

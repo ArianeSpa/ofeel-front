@@ -110,6 +110,7 @@ const MyFeeling = ({
           ))}
         </Form.Field>
       </Form>
+     {/* Je crée la comparaison qui affiche le message à l'utilisateur : "informations enregistrées" */}
       <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );

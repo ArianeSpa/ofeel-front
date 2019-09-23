@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { AUTHENTICATE, saveUser, CREATE_ACCOUNT } from 'src/store/reducers/userReducer';
+import {
+  AUTHENTICATE, saveUser, CREATE_ACCOUNT, changeAccountBool, changeConnexionBool,
+} from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
   loadFood,
@@ -39,6 +41,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(changeConnexionBool(0));
         });
       break;
 
@@ -59,12 +62,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('yeah');
-          // A FAIRE : INFORMER L'UTILISATEUR QUE L'EMAIL EST EN COURS D'ENVOI
-          // QU'IL DOIT SURVEILLER SA BOITE MAIL
+          store.dispatch(changeAccountBool(1));
         })
         .catch((error) => {
           console.log('erreur');
-          // A FAIRE : INFRORMER L'UTILISATEUR DE L'ECHEC DE LA CREATION DE COMPTE.
+          store.dispatch(changeAccountBool(0));
+
         });
       break;
 
