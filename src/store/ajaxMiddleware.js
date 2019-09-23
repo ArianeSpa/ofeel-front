@@ -45,11 +45,11 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
       bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
-
-      console.log(bodyFormData);
+        
+      console.log(store.getState().userReducer.newsletter);
       axios({
         method: 'post',
-        url: 'http://92.243.10.50/API/wp/wp-login.php?action=register',
+        url: 'http://www.ofeel.me/API/wp/wp-login.php?action=register',
         data: bodyFormData,
         config: {
           headers: {
