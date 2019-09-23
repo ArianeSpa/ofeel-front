@@ -22,14 +22,14 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
     .ui.segment.usermodal{
         top: 1%;
         left: 30%;
         min-width: fit-content;
       
         &>h3{
-            margin-bottom: 1em;  
+            display: none;
         }
         
         &>img{
@@ -45,7 +45,7 @@
         min-width: fit-content;
       
         &>h3{
-            margin-bottom: 1em;  
+            display: none;
         }
         
         &>img{
