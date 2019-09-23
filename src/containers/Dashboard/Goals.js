@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import Goals from 'src/components/Page/Dashboard/Goals';
 
 // Action Creators
-import { saveGoal, checkRegime, setMyFeelingAPI, savePMeal } from 'src/store/reducers/appReducer';
+import {
+  saveGoal, checkRegime, setMyFeelingAPI, savePMeal,
+} from 'src/store/reducers/appReducer';
+
+import { sortFoodChoice } from 'src/store/reducers/mealPlanReducer';
 
 
 /* === State (données) === */
@@ -32,10 +36,16 @@ const mapDispatchToProps = (dispatch) => ({
     const action = savePMeal(props);
     dispatch(action);
   },
-  
+
   sendToAPI: () => {
     dispatch(setMyFeelingAPI());
   },
+
+  sortFood: (sanslactose, sansgluten, vegan) => {
+    const action = sortFoodChoice(sanslactose, sansgluten, vegan);
+    dispatch(action);
+  },
+
 });
 
 // Container

@@ -12,6 +12,7 @@ import { changeValueFood, newCheckValue, sortFoodChoice } from 'src/store/reduce
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   datafood: state.mealPlanReducer.datafood,
+  foodToShow: state.mealPlanReducer.foodToShow,
   vegan: state.appReducer.vegan,
   sanslactose: state.appReducer.sanslactose,
   sansgluten: state.appReducer.sansgluten,

@@ -19,7 +19,7 @@ import iconNutrition from 'src/assets/icon/nutrition.png';
 const Goals = ({
   changeGoal, goal,
   selectRegime, sanslactose, sansgluten, vegan,
-  sendToAPI, cal_jour, savePropMeal,
+  sendToAPI, cal_jour, savePropMeal, sortFood,
 }) => {
   const handleChangeGoal = (event) => {
     const { id } = event.target;
@@ -34,6 +34,7 @@ const Goals = ({
       setProportion(goal, cal_jour),
     );
     sendToAPI();
+    sortFood(sanslactose, sansgluten, vegan);
   };
 
   return (
@@ -141,6 +142,7 @@ Goals.propTypes = {
   sendToAPI: PropTypes.func.isRequired,
   savePropMeal: PropTypes.func.isRequired,
   cal_jour: PropTypes.number.isRequired,
+  sortFood: PropTypes.func.isRequired,
 };
 
 
