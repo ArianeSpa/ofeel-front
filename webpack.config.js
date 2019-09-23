@@ -96,7 +96,7 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(png|svg|jpg|gif|ico)$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: [
           {
             loader: 'file-loader',
@@ -137,6 +137,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html',
+      favicon: 'src/assets/icon/favicon.ico',
     }),
     // Permet d'exporter les styles CSS dans un fichier css de dist/
     new MiniCssExtractPlugin({

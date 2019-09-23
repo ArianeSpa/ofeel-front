@@ -12,6 +12,7 @@ import store from 'src/store';
 
 import 'semantic-ui-css/semantic.min.css';
 
+
 // == Render
 // 1. Le composant racine (celui qui contient l'ensemble de l'app)
 const rootComponent = (
