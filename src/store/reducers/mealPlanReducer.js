@@ -105,6 +105,11 @@ const mealPlanReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         foodToShow: sortedFood,
+        proteinebreakfast: action.vegan ? 'Whey' : action.sanslactose ? 'Oeuf' : 'Fromage blanc',
+        proteinelunch: action.vegan ? 'Tofu nature' : 'Blanc poulet',
+        proteinedinner: action.vegan ? 'Tofu nature' : 'Poisson blanc',
+        proteinesnack: action.vegan ? 'Whey' : action.sanslactose ? 'Oeuf' : 'Fromage blanc',
+        glucidebreakfast: action.sansgluten ? 'Muesli' : 'Pain complet',
       };
     default:
       return state;

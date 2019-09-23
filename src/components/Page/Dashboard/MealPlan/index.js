@@ -32,8 +32,6 @@ const MealPlan = ({
     changeCheckValue(data.id);
   };
 
-  console.log(foodToShow);
-
   const protFromLipAtBreakfast = setFatQuantityFood(
     datafood,
     lipidebreakfast,
@@ -67,8 +65,8 @@ const MealPlan = ({
 
 
   const proteinType = setProteinType(foodToShow);
-  const glucideType = setGlucidType(datafood);
-  const lipideType = setLipidType(datafood);
+  const glucideType = setGlucidType(foodToShow);
+  const lipideType = setLipidType(foodToShow);
 
   return (
     <>

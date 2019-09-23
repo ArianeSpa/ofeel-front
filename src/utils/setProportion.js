@@ -16,7 +16,6 @@ export default (goal, cal_jour) => {
 
   // ici je calcule la quantité kcalorique journalière nécessaire qui dépend de mon objectif
   const cal_obj = Math.round(cal_jour * setVarObjectif(goal));
-  console.log(setVarObjectif(goal));
 
   // je calcule dans les 3 fonctions suivantes
   // les proportions de glucides, protéines et lipides
