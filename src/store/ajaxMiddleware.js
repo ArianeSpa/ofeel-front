@@ -15,7 +15,9 @@ import {
   loadPosts,
   finishLoadPosts,
 } from 'src/store/reducers/postReducer';
-import { ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood } from 'src/store/reducers/mealPlanReducer';
+import {
+  ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood, sortFoodChoice,
+} from 'src/store/reducers/mealPlanReducer';
 import {
   ASK_PAGES_WORKOUT_INFO, saveWorkoutPages, saveWorkout, loadWorkout,
 } from 'src/store/reducers/workoutReducer';
@@ -45,8 +47,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       bodyFormData.append('user_login', store.getState().userReducer.username);
       bodyFormData.append('user_email', store.getState().userReducer.email);
       bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
-        
-      console.log(store.getState().userReducer.newsletter);
       axios({
         method: 'post',
         url: 'http://www.ofeel.me/API/wp/wp-login.php?action=register',
@@ -72,7 +72,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case ASK_USER_DATA:
       axios({
         method: 'get',
-        url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
+        url: 'http://www.ofeel.me/API/wp-json/wp/v2/users/me',
         headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
       })
         .then((response) => {
@@ -101,6 +101,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           };
           const saveUserData = saveDataUser(objectUser);
           store.dispatch(saveUserData);
+          store.dispatch(sortFoodChoice(store.getState().appReducer.sanslactose, store.getState().appReducer.sansgluten, store.getState().appReducer.vegan));
         })
         .catch((error) => {
           console.log(error);
@@ -116,7 +117,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
       axios({
         method: 'post',
-        url: 'http://92.243.10.50/API/wp-json/wp/v2/users/me',
+        url: 'http://www.ofeel.me/API/wp-json/wp/v2/users/me',
         headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
         data: {
           poids: store.getState().appReducer.poids,
@@ -158,7 +159,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://92.243.10.50/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
+          url: `http://www.ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
         })
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
@@ -176,7 +177,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
                 glucides: index.glucides,
                 proteines: index.proteines,
                 lipides: index.lipides,
-                regime: index.regime,
+                regime: index.regime.map((oneregime) => {
+                  return oneregime.slug;
+                }),
               });
             });
             const saveResults = saveFood(datafood);
@@ -236,7 +239,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://92.243.10.50/API/wp-json/wp/v2/posts/?page=${postspage}&per_page=99`,
+          url: `http://www.ofeel.me/API/wp-json/wp/v2/posts/?page=${postspage}&per_page=99`,
         })
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
@@ -275,7 +278,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://92.243.10.50/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
+          url: `http://www.ofeel.me/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
         })
           .then((response) => {
             // console.log('yeah');

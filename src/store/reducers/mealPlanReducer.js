@@ -72,8 +72,39 @@ const mealPlanReducer = (state = initialState, action = {}) => {
       }
       break;
     case SORT_FOOD:
+      // eslint-disable-next-line no-case-declarations
+      const sortedFood = state.datafood.filter((food) => {
+        let keepFood = '';
+        if (action.vegan && action.sanslactose && action.sansgluten) {
+          keepFood = food.regime.includes('lactose') && food.regime.includes('vegan') && food.regime.includes('gluten');
+        }
+        else if (action.vegan && action.sanslactose && !action.sansgluten) {
+          keepFood = food.regime.includes('lactose') && food.regime.includes('vegan');
+        }
+        else if (action.vegan && action.sansgluten && !action.sanslactose) {
+          keepFood = food.regime.includes('gluten') && food.regime.includes('vegan');
+        }
+        else if (action.sanslactose && action.sansgluten && !action.vegan) {
+          keepFood = food.regime.includes('gluten') && food.regime.includes('lactose');
+        }
+        else if (action.sanslactose && !action.sansgluten && !action.vegan) {
+          keepFood = food.regime.includes('lactose');
+        }
+        else if (action.sansgluten && !action.vegan && !action.sanslactose) {
+          keepFood = food.regime.includes('gluten');
+        }
+        else if (action.vegan && !action.sanslactose && !action.sansgluten) {
+          keepFood = food.regime.includes('vegan');
+        }
+        else {
+          keepFood = food;
+        }
+        return keepFood;
+      });
+
       return {
         ...state,
+        foodToShow: sortedFood,
       };
     default:
       return state;
@@ -105,8 +136,11 @@ export const newCheckValue = (name) => ({
   name,
 });
 
-export const sortFoodChoice = () => ({
+export const sortFoodChoice = (sanslactose, sansgluten, vegan) => ({
   type: SORT_FOOD,
+  vegan,
+  sanslactose,
+  sansgluten,
 });
 
 export default mealPlanReducer;
