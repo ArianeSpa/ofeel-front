@@ -1,5 +1,9 @@
 @import 'src/styles/vars';
 
+body{
+  font-size: 14px;
+}
+
 #app{
   background-image: $background-color-body;
   height : 100vh;
