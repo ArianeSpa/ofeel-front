@@ -27,11 +27,13 @@
         height: 100%;
         &>.row.pers{
             padding:0;
+            height: 100%;
             &>.column.left{
                 width: 20%;
             }
             &>.column.right{
                 width:80%;
+                height: 100%;
                 overflow-y: scroll;
                 
                 &::-webkit-scrollbar{
