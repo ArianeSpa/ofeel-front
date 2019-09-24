@@ -5,11 +5,11 @@ export default (goal, cal_jour) => {
   // glucides, lipides et protéines.
 
   const setVarObjectif = (goal) => {
-    if (goal == 'perte-de-poids') {
+    if (goal === 'perte-de-poids') {
       return 0.75;
-    } if (goal == 'prise-de-masse') {
+    } if (goal === 'prise-de-masse') {
       return 1.2;
-    } if (goal == 'remise-en-forme') {
+    } if (goal === 'remise-en-forme') {
       return 1;
     }
   };
@@ -35,9 +35,9 @@ export default (goal, cal_jour) => {
 
   // pour les glucides
   const setPropGlu = (goal) => {
-    if (goal == 'perte-de-poids') {
+    if (goal === 'perte-de-poids') {
       return 0.33;
-    } if (goal == 'prise-de-masse' || goal == 'remise-en-forme') {
+    } if (goal === 'prise-de-masse' || goal == 'remise-en-forme') {
       return 0.488;
     }
   };
@@ -45,11 +45,11 @@ export default (goal, cal_jour) => {
 
   // pour les lipides
   const setPropLip = (goal) => {
-    if (goal == 'perte-de-poids') {
+    if (goal === 'perte-de-poids') {
       return 0.33;
-    } if (goal == 'prise-de-masse') {
+    } if (goal === 'prise-de-masse') {
       return 0.22;
-    } if (goal == 'remise-en-forme') {
+    } if (goal === 'remise-en-forme') {
       return 0.288;
     }
   };
