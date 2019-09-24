@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  AUTHENTICATE, saveUser, CREATE_ACCOUNT, changeAccountBool, changeConnexionBool, preferenceUserSaved,
+  AUTHENTICATE, saveUser, CREATE_ACCOUNT, preferenceUserSaved,
 } from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
@@ -40,8 +40,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           store.dispatch(askUserData());
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(changeConnexionBool(0));
+          store.dispatch(preferenceUserSaved('notsaved'));
         });
       break;
 
@@ -61,12 +60,10 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log('yeah');
-          store.dispatch(changeAccountBool(1));
+          store.dispatch(preferenceUserSaved('saved'));
         })
         .catch((error) => {
-          console.log('erreur');
-          store.dispatch(changeAccountBool(0));
+          store.dispatch(preferenceUserSaved('notsaved'));
         });
       break;
 
@@ -149,9 +146,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           store.dispatch(preferenceUserSaved('saved'));
         })
         .catch((error) => {
-          console.log(error);
           store.dispatch(preferenceUserSaved('notsaved'));
-
         });
       break;
 
@@ -166,7 +161,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           url: `http://www.ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
         })
           .then((response) => {
-            console.log(response)
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberFoodPages = saveFoodPages(numberPages);
             store.dispatch(saveNumberFoodPages);
@@ -200,39 +194,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       } while (foodpage < numberFoodPages);
       break;
 
-      // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ALIMENTS
-      // case ASK_FOOD:
-      //   const numberPages = store.getState().mealPlanReducer.foodpages;
-      //   let datafood = [];
-
-      //   for(let page=1; page<=numberPages; page++){
-      //     axios({
-      //       method: 'get',
-      //       url: 'http://92.243.10.50/API/wp-json/wp/v2/aliment/?page='+page+'&per_page=99',
-      //     })
-      //       .then((response) => {
-      //         const arrayResponse = response.data;
-      //         arrayResponse.map((index) => {
-      //           datafood.unshift({
-      //             id: index.id,
-      //             name: index.title.rendered,
-      //             type: index.famille[0].slug,
-      //             calories: index.calories,
-      //             glucides: index.glucides,
-      //             proteines: index.proteines,
-      //             lipides: index.lipides,
-      //             regime: index.regime,
-      //           });
-      //         });
-      //         const saveResults = saveFood(datafood);
-      //         store.dispatch(saveResults);
-      //       })
-      //       .catch((error) => {
-      //         console.log(error);
-      //       });
-      //   }
-      //   break;
-
     // REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_POSTS_INFO:
       store.dispatch(loadPosts());
@@ -264,7 +225,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             store.dispatch(saveResults);
           })
           .catch((error) => {
-            console.log(error);
+            console.log('erreur');
           })
           .finally(() => {
             store.dispatch(finishLoadPosts());
@@ -284,7 +245,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           url: `http://www.ofeel.me/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
         })
           .then((response) => {
-            // console.log('yeah');
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberWorkoutPages = saveWorkoutPages(numberPages);
             store.dispatch(saveNumberWorkoutPages);
@@ -301,50 +261,15 @@ const ajaxMiddleware = (store) => (next) => (action) => {
               });
             });
             const saveResults = saveWorkout(workoutList);
-            // console.log(saveResults);
             store.dispatch(saveResults);
           })
           .catch((error) => {
-            console.log(error);
+            console.log('erreur');
           });
         workoutpage += 1;
       } while (workoutpage < numberWorkoutPages);
 
       break;
-
-      // REQUETE DE BOUCLAGE SUR LES PAGES DE L'API WP ARTICLES
-      // case ASK_POSTS:
-      //   const numberPostPages = store.getState().appReducer.postspages;
-      //   let dataposts = [];
-
-      //   for(let page=1; page<=numberPostPages; page++){
-      //     store.dispatch(loadPosts());
-      //     axios({
-      //       method: 'get',
-      //       url: 'http://92.243.10.50/API/wp-json/wp/v2/posts/?page='+page+'&per_page=99',
-      //     })
-      //       .then((response) => {
-      //         const arrayResponse = response.data;
-      //         arrayResponse.map((index) => {
-      //           dataposts.push({
-      //             id: index.id,
-      //             name: index.title.rendered,
-      //             excerpt: index.excerpt.rendered,
-      //             content: index.content.rendered,
-      //             tags: index.tags[0].slug,
-      //           });
-      //         });
-      //         const saveResults = savePosts(dataposts);
-      //         store.dispatch(saveResults);
-      //       })
-      //       .catch((error) => {
-      //         console.log(error);
-      //       })
-      //       .finally(() => {
-      //         store.dispatch(finishLoadPosts());
-      //       })
-      //   }
-      //   break;
 
     default:
       next(action);

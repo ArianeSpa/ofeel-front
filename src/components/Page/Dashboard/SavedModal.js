@@ -4,25 +4,6 @@ import PropTypes from 'prop-types';
 
 import './goals.scss';
 
-// const SavedModal = ({ content, preferenceSaved }) => {
-//   const handleDismiss = () => {
-//     preferenceSaved('');
-//     console.log("je suis dans le comp SavedModal");
-//   };
-//   return (
-//     <>
-//       <Message
-//         size="tiny"
-//         compact
-//         success
-//         content={content}
-//         onDismiss={handleDismiss}
-//       />
-//       {/* <Icon name="window close"/> */}
-//     </>
-//   );
-// };
-
 class SavedModal extends React.Component {
   handleDismiss = () => {
     const { preferenceSaved } = this.props;
@@ -36,7 +17,6 @@ class SavedModal extends React.Component {
 
   render() {
     const { content, positive, error } = this.props;
-
     return (
       <>
         <Message
@@ -44,7 +24,7 @@ class SavedModal extends React.Component {
           compact
           content={content}
           onDismiss={this.handleDismiss}
-          positivie={positive}
+          positive={positive}
           error={error}
         />
       </>
@@ -56,8 +36,8 @@ class SavedModal extends React.Component {
 SavedModal.propTypes = {
   content: PropTypes.string.isRequired,
   preferenceSaved: PropTypes.func.isRequired,
-  positive: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
+  positive: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default SavedModal;

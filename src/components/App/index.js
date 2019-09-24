@@ -25,6 +25,25 @@ const App = ({ catchFoodInfo, catchPostsInfo, catchWorkoutInfo }) => {
   );
 };
 
+// class App extends React.Component {
+//   componentDidMount() {
+//     const { catchFoodInfo, catchPostsInfo, catchWorkoutInfo } = this.props;
+//     catchFoodInfo();
+//     catchPostsInfo();
+//     catchWorkoutInfo();
+//   }
+
+//   render() {
+//     return (
+//       <div id="app">
+//         <Header />
+//         <Page />
+//         <Footer />
+//       </div>
+//     );
+//   }
+// }
+
 App.propTypes = {
   catchFoodInfo: PropTypes.func.isRequired,
   catchPostsInfo: PropTypes.func.isRequired,

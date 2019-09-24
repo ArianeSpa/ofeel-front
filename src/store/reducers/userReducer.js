@@ -8,8 +8,6 @@ const initialState = {
   email: '',
   token: '',
   newsletter: 0,
-  createAccountBool: -1,
-  connexionBool: 1,
   savedPreference: '',
 };
 
@@ -20,8 +18,6 @@ const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
 const LOG_OUT = 'LOG_OUT';
 const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
-const CHANGE_ACCOUNT_BOOL = 'CHANGE_ACCOUNT_BOOL';
-const CHANGE_CONNEXION_BOOL = 'CHANGE_CONNEXION_BOOL';
 const PREFERENCE_USER_SAVED = 'PREFERENCE_USER_SAVED';
 
 
@@ -61,22 +57,7 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         logged: false,
       };
-    case CHANGE_ACCOUNT_BOOL:
-      return {
-        ...state,
-        createAccountBool: action.bool,
-      };
-    case CHANGE_CONNEXION_BOOL:
-      return {
-        ...state,
-        connexionBool: action.bool,
-      };
     case PREFERENCE_USER_SAVED:
-    console.log("je suis dans laction PREFERENCE USER SAVED");
-    console.log("valeur du state " + state.savedPreference);
-    console.log("je veux mettre à la place " + action.bool);
-
-
       return {
         ...state,
         savedPreference: action.bool,
@@ -126,15 +107,6 @@ export const changeNewsletterBinary = (name, value) => ({
   name,
 });
 
-export const changeAccountBool = (bool) => ({
-  type: CHANGE_ACCOUNT_BOOL,
-  bool,
-});
-
-export const changeConnexionBool = (bool) => ({
-  type: CHANGE_CONNEXION_BOOL,
-  bool,
-});
 export const preferenceUserSaved = (bool) => ({
   type: PREFERENCE_USER_SAVED,
   bool,

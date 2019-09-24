@@ -129,8 +129,8 @@ const Goals = ({
           />
         </Form.Field>
       </Form>
-      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive="true" error="false" />}
-      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive="false" error="true" />}
+      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
+      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
 
       <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
