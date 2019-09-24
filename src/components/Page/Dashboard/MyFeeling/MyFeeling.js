@@ -1,7 +1,7 @@
 // == Import : npm
 import React from 'react';
 import {
-  Header, Segment, Form, Checkbox, Menu, Dropdown, Button, Label,
+  Header, Segment, Form, Checkbox, Dropdown, Button, Label,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -12,10 +12,12 @@ import setMetabAndCal from 'src/utils/setMetabAndCal';
 import {
   ageGenerator, heightGenerator, weightGenerator, activityTable,
 } from 'src/datas/myfeeling';
+import SavedModal from 'src/containers/Dashboard/SavedModal';
+
 
 // == Composant
 const MyFeeling = ({
-  gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie,
+  gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie, savedPreference,
 }) => {
   const handleChangeProfil = (event, data) => {
     changeProfil(data.name, data.value);
@@ -110,7 +112,8 @@ const MyFeeling = ({
           ))}
         </Form.Field>
       </Form>
-     {/* Je crée la comparaison qui affiche le message à l'utilisateur : "informations enregistrées" */}
+      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" />}
+      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" />}
       <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );
@@ -125,5 +128,6 @@ MyFeeling.propTypes = {
   activity: PropTypes.string.isRequired,
   sendToAPI: PropTypes.func.isRequired,
   saveMetaboCalorie: PropTypes.func.isRequired,
+  savedPreference: PropTypes.string.isRequired,
 };
 export default MyFeeling;

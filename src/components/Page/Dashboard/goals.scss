@@ -95,3 +95,21 @@ h4.ui.header.subtitle-goal {
 button.ui.button.save {
   min-height: fit-content;
 }
+
+// message enregistrement des données sur goals
+
+@keyframes SavedData {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+    display: none;
+  }
+}
+.ui.tiny.compact.success.message {
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-name: SavedData;
+}

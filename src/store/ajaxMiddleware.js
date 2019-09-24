@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  AUTHENTICATE, saveUser, CREATE_ACCOUNT, changeAccountBool, changeConnexionBool,
+  AUTHENTICATE, saveUser, CREATE_ACCOUNT, changeAccountBool, changeConnexionBool, preferenceUserSaved,
 } from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
@@ -67,7 +67,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log('erreur');
           store.dispatch(changeAccountBool(0));
-
         });
       break;
 
@@ -147,10 +146,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          // A FAIRE : INFORMER L'UTIISATEUR QUE SES DONNEES ONT BIEN ETE ENREGISTREES
+          store.dispatch(preferenceUserSaved('saved'));
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(preferenceUserSaved('notsaved'));
+
         });
       break;
 
@@ -165,6 +166,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           url: `http://www.ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
         })
           .then((response) => {
+            console.log(response)
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberFoodPages = saveFoodPages(numberPages);
             store.dispatch(saveNumberFoodPages);
@@ -180,9 +182,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
                 glucides: index.glucides,
                 proteines: index.proteines,
                 lipides: index.lipides,
-                regime: index.regime.map((oneregime) => {
-                  return oneregime.slug;
-                }),
+                regime: index.regime.map((oneregime) => oneregime.slug),
               });
             });
             const saveResults = saveFood(datafood);
@@ -270,7 +270,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             store.dispatch(finishLoadPosts());
           });
         postspage++;
-         } while (postspage < numberPostPages);
+      } while (postspage < numberPostPages);
       break;
 
     case ASK_PAGES_WORKOUT_INFO:
