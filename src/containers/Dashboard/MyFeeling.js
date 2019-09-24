@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   taille: state.appReducer.taille,
   poids: state.appReducer.poids,
   activity: state.appReducer.activity,
+  savedPreference: state.userReducer.savedPreference,
 });
 
 /* === Actions === */

@@ -10,6 +10,7 @@ const initialState = {
   newsletter: 0,
   createAccountBool: -1,
   connexionBool: 1,
+  savedPreference: '',
 };
 
 // == Types
@@ -21,6 +22,7 @@ const LOG_OUT = 'LOG_OUT';
 const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
 const CHANGE_ACCOUNT_BOOL = 'CHANGE_ACCOUNT_BOOL';
 const CHANGE_CONNEXION_BOOL = 'CHANGE_CONNEXION_BOOL';
+const PREFERENCE_USER_SAVED = 'PREFERENCE_USER_SAVED';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -68,6 +70,16 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         connexionBool: action.bool,
+      };
+    case PREFERENCE_USER_SAVED:
+    console.log("je suis dans laction PREFERENCE USER SAVED");
+    console.log("valeur du state " + state.savedPreference);
+    console.log("je veux mettre à la place " + action.bool);
+
+
+      return {
+        ...state,
+        savedPreference: action.bool,
       };
     default:
       return state;
@@ -121,6 +133,10 @@ export const changeAccountBool = (bool) => ({
 
 export const changeConnexionBool = (bool) => ({
   type: CHANGE_CONNEXION_BOOL,
+  bool,
+});
+export const preferenceUserSaved = (bool) => ({
+  type: PREFERENCE_USER_SAVED,
   bool,
 });
 

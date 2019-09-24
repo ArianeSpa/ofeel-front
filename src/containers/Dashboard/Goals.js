@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
   sansgluten: state.appReducer.sansgluten,
   vegan: state.appReducer.vegan,
   cal_jour: state.appReducer.cal_jour,
+  savedPreference: state.userReducer.savedPreference,
 });
 
 /* === Actions === */

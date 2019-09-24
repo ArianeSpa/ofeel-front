@@ -14,12 +14,14 @@ import iconSalad from 'src/assets/icon/salade.png';
 import iconLactose from 'src/assets/icon/lactose.png';
 import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
+import SavedModal from 'src/containers/Dashboard/SavedModal';
+
 
 // == Composant
 const Goals = ({
   changeGoal, goal,
   selectRegime, sanslactose, sansgluten, vegan,
-  sendToAPI, cal_jour, savePropMeal, sortFood,
+  sendToAPI, cal_jour, savePropMeal, sortFood, savedPreference,
 }) => {
   const handleChangeGoal = (event) => {
     const { id } = event.target;
@@ -127,7 +129,8 @@ const Goals = ({
           />
         </Form.Field>
       </Form>
-           {/* Je crée la comparaison qui affiche le message à l'utilisateur : "informations enregistrées" */}
+      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive="true" error="false" />}
+      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive="false" error="true" />}
 
       <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
@@ -145,6 +148,7 @@ Goals.propTypes = {
   savePropMeal: PropTypes.func.isRequired,
   cal_jour: PropTypes.number.isRequired,
   sortFood: PropTypes.func.isRequired,
+  savedPreference: PropTypes.string.isRequired,
 };
 
 
