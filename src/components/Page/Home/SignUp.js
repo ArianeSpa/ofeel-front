@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import './form.scss';
+import SavedModal from 'src/containers/Dashboard/SavedModal';
+
 
 // == Composant
 const SignUp = ({
@@ -18,7 +20,7 @@ const SignUp = ({
   createAccount,
   changeNewsletter,
   newsletter,
-  createAccountBool,
+  savedPreference,
 }) => {
   const handleChangeUsername = (event) => {
     const { value } = event.target;
@@ -52,11 +54,11 @@ const SignUp = ({
         />
         <Form.Checkbox label="J'accepte les conditions générales" />
 
-        {createAccountBool === 1 && <p>Votre compte a bien été créé, surveillez vos spams !</p>}
-        {createAccountBool === 0 && <p>Une erreur s'est produite, veuillez réessayer.</p>}
-
         <Button type="submit" className="submit">Submit</Button>
       </Form>
+      {savedPreference === 'notsaved' && <SavedModal content="Une erreur s'est produite, veuillez réessayer." positive={false} error />}
+      {savedPreference === 'saved' && <SavedModal content="Votre compte a bien été créé, surveillez vos spams !" positive error={false} />}
+
       <Divider horizontal>
         Déjà inscrit ? <Link to="/" className="signupLink">Connectez-vous !</Link>
       </Divider>
@@ -72,6 +74,7 @@ SignUp.propTypes = {
   createAccount: PropTypes.func.isRequired,
   changeNewsletter: PropTypes.func.isRequired,
   newsletter: PropTypes.number.isRequired,
+  savedPreference: PropTypes.string.isRequired,
 };
 
 export default SignUp;
