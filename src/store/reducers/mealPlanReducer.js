@@ -49,28 +49,11 @@ const mealPlanReducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case CHANGE_CHECK:
-      if (action.name === 'breakfastcheck') {
-        return {
-          ...state,
-          [action.name]: !state.breakfastcheck,
-        };
-      } if (action.name === 'lunchcheck') {
-        return {
-          ...state,
-          [action.name]: !state.lunchcheck,
-        };
-      } if (action.name === 'dinnercheck') {
-        return {
-          ...state,
-          [action.name]: !state.dinnercheck,
-        };
-      } if (action.name === 'snackcheck') {
-        return {
-          ...state,
-          [action.name]: !state.snackcheck,
-        };
-      }
-      break;
+      return {
+        ...state,
+        [action.name]: !state[action.name],
+      };
+
     case SORT_FOOD:
       // eslint-disable-next-line no-case-declarations
       const sortedFood = state.datafood.filter((food) => {

@@ -30,7 +30,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
     case AUTHENTICATE:
-      axios.post('http://92.243.10.50/API/wp-json/jwt-auth/v1/token', {
+      axios.post('http://ofeel.me/API/wp-json/jwt-auth/v1/token', {
         username: store.getState().userReducer.username,
         password: store.getState().userReducer.password,
       })
@@ -51,7 +51,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
       axios({
         method: 'post',
-        url: 'http://www.ofeel.me/API/wp/wp-login.php?action=register',
+        url: 'http://ofeel.me/API/wp/wp-login.php?action=register',
         data: bodyFormData,
         config: {
           headers: {
@@ -71,7 +71,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     case ASK_USER_DATA:
       axios({
         method: 'get',
-        url: 'http://www.ofeel.me/API/wp-json/wp/v2/users/me',
+        url: 'http://ofeel.me/API/wp-json/wp/v2/users/me',
         headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
       })
         .then((response) => {
@@ -116,7 +116,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
       axios({
         method: 'post',
-        url: 'http://www.ofeel.me/API/wp-json/wp/v2/users/me',
+        url: 'http://ofeel.me/API/wp-json/wp/v2/users/me',
         headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
         data: {
           poids: store.getState().appReducer.poids,
@@ -158,8 +158,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://www.ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
+          url: `http://ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
         })
+          // eslint-disable-next-line no-loop-func
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberFoodPages = saveFoodPages(numberPages);
@@ -181,13 +182,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             });
             const saveResults = saveFood(datafood);
             store.dispatch(saveResults);
+            if (foodpage >= numberPages) {
+              store.dispatch(finishLoadFood());
+            }
           })
           .catch((error) => {
             console.log(error);
-          })
-          // eslint-disable-next-line no-loop-func
-          .finally(() => {
-            store.dispatch(finishLoadFood());
           });
         // eslint-disable-next-line no-plusplus
         foodpage++;
@@ -203,8 +203,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://www.ofeel.me/API/wp-json/wp/v2/posts/?page=${postspage}&per_page=99`,
+          url: `http://ofeel.me/API/wp-json/wp/v2/posts/?page=${postspage}&per_page=99`,
         })
+          // eslint-disable-next-line no-loop-func
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberPostsPages = savePostsPages(numberPages);
@@ -223,12 +224,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
             });
             const saveResults = savePosts(dataposts);
             store.dispatch(saveResults);
+            if (postspage >= numberPages) {
+              store.dispatch(finishLoadPosts());
+            }
           })
           .catch((error) => {
             console.log('erreur');
-          })
-          .finally(() => {
-            store.dispatch(finishLoadPosts());
           });
         postspage++;
       } while (postspage < numberPostPages);
@@ -242,8 +243,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       do {
         axios({
           method: 'get',
-          url: `http://www.ofeel.me/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
+          url: `http://ofeel.me/API/wp-json/wp/v2/workout/?page=${workoutpage}&per_page=99`,
         })
+          // eslint-disable-next-line no-loop-func
           .then((response) => {
             const numberPages = (response.headers['x-wp-totalpages']);
             const saveNumberWorkoutPages = saveWorkoutPages(numberPages);
@@ -261,7 +263,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
               });
             });
             const saveResults = saveWorkout(workoutList);
-            store.dispatch(saveResults);
+              store.dispatch(saveResults);
           })
           .catch((error) => {
             console.log('erreur');

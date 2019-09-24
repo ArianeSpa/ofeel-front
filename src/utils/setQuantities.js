@@ -84,7 +84,7 @@ export const setCarbQuantityFood = (
     quantityFood -= (quantityFood % 10);
   }
   quantityFood = `${quantityFood} gr`;
-  
+
   return { quantityFood, protFromCarb };
 };
 
@@ -132,6 +132,15 @@ export const setProtQuantityFood = (
     const dose = (quantityFood - (quantityFood % 20)) / 20;
     quantityFood = `${dose} dose(s)`;
   }
+  else if (foodChoice === 'Oeuf') {
+    // quantityFood vaut probablement 123 gr
+    // je calcule le reste de la division par 60 (le poids d'un ooeuf). Ici =3
+    // je retire le reste à la valeur quantityfood calculée plus haut =120
+    // je divise par le poids d'un oeuf pour connaitre le nombre dont j'ai besoin
+    const number = (quantityFood - (quantityFood % 60)) / 60;
+    quantityFood = `${number}`;
+  }
+
   else {
     quantityFood = `${quantityFood} gr`;
   }

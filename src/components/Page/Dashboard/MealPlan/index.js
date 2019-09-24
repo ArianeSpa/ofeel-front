@@ -32,6 +32,7 @@ const MealPlan = ({
     changeCheckValue(data.id);
   };
 
+
   const protFromLipAtBreakfast = setFatQuantityFood(
     datafood,
     lipidebreakfast,
