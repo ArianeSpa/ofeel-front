@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import UserModal from 'src/components/Page/UserModal';
+import UserModal from 'src/components/UserModal';
 import { endSession } from 'src/store/reducers/userReducer';
 
 // Action Creators

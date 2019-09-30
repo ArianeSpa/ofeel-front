@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import SavedModal from 'src/components/Page/Dashboard/SavedModal';
+import SavedModal from 'src/components/Dashboard/SavedModal';
 
 // Action Creators
 import { preferenceUserSaved } from 'src/store/reducers/userReducer';

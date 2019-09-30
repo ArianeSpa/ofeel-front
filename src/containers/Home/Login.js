@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Login from 'src/components/Page/Home/Login';
+import Login from 'src/components/Home/Login';
 import { changeValueUsername, changeValuePassword, authenticate } from 'src/store/reducers/userReducer';
 
 // Action Creators

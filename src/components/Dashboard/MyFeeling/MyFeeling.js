@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import './myfeeling.scss';
-import MyFeelingProfile from 'src/components/Page/Dashboard/MyFeeling/MyFeelingProfile';
+import MyFeelingProfile from 'src/components/Dashboard/MyFeeling/MyFeelingProfile';
 import setMetabAndCal from 'src/utils/setMetabAndCal';
 import {
   ageGenerator, heightGenerator, weightGenerator, activityTable,

@@ -2,7 +2,6 @@ import React from 'react';
 import { Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import './goals.scss';
 
 class SavedModal extends React.Component {
   handleDismiss = () => {

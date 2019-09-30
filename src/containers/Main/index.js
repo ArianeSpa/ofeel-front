@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Page from 'src/components/Page';
+import Main from 'src/components/Main';
 
 // Action Creators
 
@@ -15,10 +15,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 // Container
-const PageContainer = connect(
+const MainContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Page);
+)(Main);
 
 // == Export
-export default PageContainer;
+export default MainContainer;

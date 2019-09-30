@@ -6,19 +6,18 @@ import PropTypes from 'prop-types';
 // == Import : local
 import Signup from 'src/containers/Home/SignUp';
 import Login from 'src/containers/Home/Login';
-import WelcomeBoard from 'src/components/Page/Dashboard';
+import WelcomeBoard from 'src/components/Dashboard';
 import UserModal from 'src/containers/UserModal';
 import Postslist from 'src/containers/PostView/PostsList';
-import Contact from 'src/components/Page/Contact';
-import Error from 'src/components/Page/Error';
+import Contact from 'src/components/Contact';
+import Error from 'src/components/Main/Error';
 import './page.scss';
 
 // == Composant
-const Page = ({ logged }) => (
+const Main = ({ logged }) => (
   <>
     { logged && (<UserModal />) }
     <Switch>
-      {/* Si je ne suis pas connecté, home affiche la page de login /> */}
       {!logged && (
         <Route path="/" exact component={Login} />
       )}
@@ -26,7 +25,6 @@ const Page = ({ logged }) => (
         <Route path="/signup" exact component={Signup} />
       )}
 
-      {/* Si je suis connecté, home me redirige automatiquement vers l'accueil du dashboard */}
       {logged && (
         <Redirect exact from="/" to="/dashboard" />
       )}
@@ -47,8 +45,8 @@ const Page = ({ logged }) => (
 );
 
 
-Page.propTypes = {
+Main.propTypes = {
   logged: PropTypes.bool.isRequired,
 };
 
-export default Page;
+export default Main;

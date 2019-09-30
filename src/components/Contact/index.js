@@ -5,7 +5,7 @@ import {
 } from 'semantic-ui-react';
 
 // == Import : local
-import 'src/components/Page/Home/form.scss';
+import 'src/components/Home/form.scss';
 import './contact.scss';
 
 // == Dropdown options

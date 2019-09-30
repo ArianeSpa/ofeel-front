@@ -6,8 +6,8 @@ import {
 import PropTypes from 'prop-types';
 
 // == Import : local
-import MessageCheat from 'src/components/Page/Dashboard/MealPlan/MessageCheat';
-import MessageSnack from 'src/components/Page/Dashboard/MealPlan/MessageSnack';
+import MessageCheat from 'src/components/Dashboard/MealPlan/MessageCheat';
+import MessageSnack from 'src/components/Dashboard/MealPlan/MessageSnack';
 import { setProteinQuantity, setSugarQuantity } from 'src/utils/setQuantity';
 import { setProteinType, setGlucidType, setLipidType } from 'src/utils/setFoodType';
 import { setFatQuantityFood, setProtQuantityFood, setCarbQuantityFood } from 'src/utils/setQuantities';

@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import SignUp from 'src/components/Page/Home/SignUp';
+import SignUp from 'src/components/Home/SignUp';
 import {
   changeValueUsername, changeValueEmail, accountCreation, changeNewsletterBinary,
 } from 'src/store/reducers/userReducer';

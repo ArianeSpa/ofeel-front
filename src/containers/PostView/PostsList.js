@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import PostsList from 'src/components/Page/PostView/PostsList';
+import PostsList from 'src/components/PostView/PostsList';
 
 // Action Creators
 import {

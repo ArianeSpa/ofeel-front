@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // == Import : local
 import './app.scss';
 import Header from 'src/containers/Header';
-import Page from 'src/containers/Page';
+import Main from 'src/containers/Main';
 import Footer from 'src/components/Footer';
 
 // == Composant
@@ -19,7 +19,7 @@ const App = ({ catchFoodInfo, catchPostsInfo, catchWorkoutInfo }) => {
   return (
     <div id="app">
       <Header />
-      <Page />
+      <Main />
       <Footer />
     </div>
   );

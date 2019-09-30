@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Welcome from 'src/components/Page/Dashboard/Welcome';
+import Welcome from 'src/components/Dashboard/Welcome';
 
 // Action Creators
 

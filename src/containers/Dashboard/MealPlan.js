@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import MealPlan from 'src/components/Page/Dashboard/MealPlan';
+import MealPlan from 'src/components/Dashboard/MealPlan';
 
 // Action Creators
 import { changeValueFood, newCheckValue, sortFoodChoice } from 'src/store/reducers/mealPlanReducer';

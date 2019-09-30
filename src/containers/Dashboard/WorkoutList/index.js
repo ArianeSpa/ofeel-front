@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Workout from 'src/components/Page/Dashboard/WorkoutList';
+import Workout from 'src/components/Dashboard/WorkoutList';
 
 // Action Creators
 import {

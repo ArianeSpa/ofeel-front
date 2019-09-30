@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import Goals from 'src/components/Page/Dashboard/Goals';
+import Goals from 'src/components/Dashboard/Goals';
 
 // Action Creators
 import {
