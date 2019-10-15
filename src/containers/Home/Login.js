@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // == Import : local
 import Login from 'src/components/Home/Login';
-import { changeValueUsername, changeValuePassword, authenticate } from 'src/store/reducers/userReducer';
+import { changeUserValue, authenticate } from 'src/store/reducers/userReducer';
 
 // Action Creators
 
@@ -16,17 +16,12 @@ const mapStateToProps = (state) => ({
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
-  changeInputUsername: (value) => {
-    const action = changeValueUsername('username', value);
-    dispatch(action);
-  },
-  changeInputPassword: (value) => {
-    const action = changeValuePassword('password', value);
-    dispatch(action);
-  },
   doAuthenticate: () => {
     dispatch(authenticate());
   },
+  changeUserData: (name, value) => {
+    dispatch(changeUserValue(name, value));
+  }
 });
 
 // Container

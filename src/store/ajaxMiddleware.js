@@ -46,12 +46,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     // CREATION DE COMPTE REQUETE POST VERS API WP
     case CREATE_ACCOUNT:
-      bodyFormData.append('user_login', store.getState().userReducer.username);
-      bodyFormData.append('user_email', store.getState().userReducer.email);
-      bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
+      bodyFormData.append('username', store.getState().userReducer.username);
+      bodyFormData.append('email', store.getState().userReducer.email);
+      bodyFormData.append('password', store.getState().userReducer.password);
       axios({
         method: 'post',
-        url: 'http://ofeel.me/API/wp/wp-login.php?action=register',
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
         data: bodyFormData,
         config: {
           headers: {
@@ -60,11 +60,32 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          store.dispatch(preferenceUserSaved('saved'));
+          console.log(response);
         })
         .catch((error) => {
-          store.dispatch(preferenceUserSaved('notsaved'));
+          console.log(error);
         });
+
+
+      // bodyFormData.append('user_login', store.getState().userReducer.username);
+      // bodyFormData.append('user_email', store.getState().userReducer.email);
+      // bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
+      // axios({
+      //   method: 'post',
+      //   url: 'http://ofeel.me/API/wp/wp-login.php?action=register',
+      //   data: bodyFormData,
+      //   config: {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     },
+      //   },
+      // })
+      //   .then((response) => {
+      //     store.dispatch(preferenceUserSaved('saved'));
+      //   })
+      //   .catch((error) => {
+      //     store.dispatch(preferenceUserSaved('notsaved'));
+      //   });
       break;
 
     // REQUETE RECUPERATION DES DONNES USER VIA API WP GRACE A TOKEN
@@ -152,46 +173,67 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     // REQUETE AUPRES DE L'API WP ALIMENTS POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_FOOD_INFO:
-      const numberFoodPages = store.getState().appReducer.foodpages;
-      let foodpage = 1;
+      store.dispatch(loadFood());
 
-      do {
-        axios({
-          method: 'get',
-          url: `http://ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
+      axios({
+        method: 'get',
+        url: 'http://localhost/OFEEL/ofeel-back/public/food',
+      })
+        .then((response) => {
+          const datafood = response.data;
+          const saveResults = saveFood(datafood);
+          store.dispatch(saveResults);
+          store.dispatch(finishLoadFood());
         })
-          // eslint-disable-next-line no-loop-func
-          .then((response) => {
-            const numberPages = (response.headers['x-wp-totalpages']);
-            const saveNumberFoodPages = saveFoodPages(numberPages);
-            store.dispatch(saveNumberFoodPages);
+        .catch((error) => {
+          console.log(error);
+        });
 
-            const datafood = [];
-            const arrayResponse = response.data;
-            arrayResponse.map((index) => {
-              datafood.unshift({
-                id: index.id,
-                name: index.title.rendered,
-                type: index.famille[0].slug,
-                calories: index.calories,
-                glucides: index.glucides,
-                proteines: index.proteines,
-                lipides: index.lipides,
-                regime: index.regime.map((oneregime) => oneregime.slug),
-              });
-            });
-            const saveResults = saveFood(datafood);
-            store.dispatch(saveResults);
-            if (foodpage >= numberPages) {
-              store.dispatch(finishLoadFood());
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        // eslint-disable-next-line no-plusplus
-        foodpage++;
-      } while (foodpage < numberFoodPages);
+      // ANCIENNE METHODE : requête sur REST API WP
+
+      // const numberFoodPages = store.getState().appReducer.foodpages;
+      // let foodpage = 1;
+
+      // do {
+      //   axios({
+      //     method: 'get',
+      //     url: `http://ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
+      //   })
+      //     // eslint-disable-next-line no-loop-func
+      //     .then((response) => {
+
+      //       const numberPages = (response.headers['x-wp-totalpages']);
+      //       const saveNumberFoodPages = saveFoodPages(numberPages);
+      //       store.dispatch(saveNumberFoodPages);
+
+      //       const datafood = [];
+      //       const arrayResponse = response.data;
+      //       console.log(response.data);
+
+      //       arrayResponse.map((index) => {
+      //         datafood.unshift({
+      //           id: index.id,
+      //           name: index.title.rendered,
+      //           type: index.famille[0].slug,
+      //           calories: index.calories,
+      //           glucides: index.glucides,
+      //           proteines: index.proteines,
+      //           lipides: index.lipides,
+      //           regime: index.regime.map((oneregime) => oneregime.slug),
+      //         });
+      //       });
+      //       const saveResults = saveFood(datafood);
+      //       store.dispatch(saveResults);
+      //       if (foodpage >= numberPages) {
+      //         store.dispatch(finishLoadFood());
+      //       }
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+      //   // eslint-disable-next-line no-plusplus
+      //   foodpage++;
+      // } while (foodpage < numberFoodPages);
       break;
 
     // REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
@@ -263,7 +305,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
               });
             });
             const saveResults = saveWorkout(workoutList);
-              store.dispatch(saveResults);
+            store.dispatch(saveResults);
           })
           .catch((error) => {
             console.log('erreur');

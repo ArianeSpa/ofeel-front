@@ -13,25 +13,19 @@ import SavedModal from 'src/containers/Dashboard/SavedModal';
 
 // == Composant
 const Login = ({
-  changeInputUsername, changeInputPassword, username, password, doAuthenticate, savedPreference,
+  changeUserData, username, password, doAuthenticate, savedPreference,
 }) => {
-  const handleChangeUsername = (event) => {
-    const { value } = event.target;
-
-    changeInputUsername(value);
-  };
-  const handleChangePassword = (event) => {
-    const { value } = event.target;
-    changeInputPassword(value);
+  const handleChangeData = (event, data) => {
+    changeUserData(data.id, data.value);
   };
   return (
     <Segment inverted className="block login">
       <Form inverted onSubmit={doAuthenticate}>
         <Form.Field>
-          <Form.Input value={username} onChange={handleChangeUsername} label="Pseudo" placeholder="Pseudo" />
+          <Form.Input value={username} id='username' onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
         </Form.Field>
         <Form.Field>
-          <Form.Input value={password} onChange={handleChangePassword} type="password" label="Mot de passe" placeholder="Mot de passe" />
+          <Form.Input value={password} id='password' onChange={handleChangeData} type="password" label="Mot de passe" placeholder="Mot de passe" />
         </Form.Field>
         <Form.Field>
           <Checkbox label="Se souvenir de moi" />
@@ -47,8 +41,7 @@ const Login = ({
 };
 
 Login.propTypes = {
-  changeInputUsername: PropTypes.func.isRequired,
-  changeInputPassword: PropTypes.func.isRequired,
+  changeUserData: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   doAuthenticate: PropTypes.func.isRequired,

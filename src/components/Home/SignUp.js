@@ -13,37 +13,49 @@ import SavedModal from 'src/containers/Dashboard/SavedModal';
 
 // == Composant
 const SignUp = ({
-  changeInputUsername,
   username,
-  changeInputEmail,
   email,
+  password,
+  passwordConf,
   createAccount,
   changeNewsletter,
   newsletter,
   savedPreference,
+  changeUserData,
 }) => {
-  const handleChangeUsername = (event) => {
-    const { value } = event.target;
-    changeInputUsername(value);
-  };
-  const handleAddEmail = (event) => {
-    const { value } = event.target;
-    changeInputEmail(value);
-  };
   const handleChangeNewsletter = (event, data) => {
     const checked = data.checked ? 1 : 0;
     changeNewsletter(checked);
   };
 
+  const handleChangeData = (event, data) => {
+    changeUserData(data.id, data.value);
+  }
+
+  const testBefore = () => {
+    if (password === passwordConf && email.trim() !='' && username.trim() !=''){
+      console.log('ok');
+      // changeUserData('savedPreference', 'saved');
+      createAccount();
+
+    } else {
+      changeUserData('savedPreference', 'notsaved');
+    }
+  }
+
   return (
     <Segment inverted className="block">
-      <Form inverted onSubmit={createAccount}>
+      <Form inverted onSubmit={testBefore}>
         <Form.Group className="infoPassword">
           <p>Pour créez un compte, renseignez ci-dessous votre pseudo et votre email de contact. Vous recevrez un lien par email pour personnaliser votre mot de passe et finaliser votre inscription.</p>
         </Form.Group>
         <Form.Group unstackable widths={2}>
-          <Form.Input value={username} onChange={handleChangeUsername} label="Pseudo" placeholder="Pseudo" />
-          <Form.Input value={email} onChange={handleAddEmail} label="Email" placeholder="email@example.com" />
+          <Form.Input value={username} id='username' onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
+          <Form.Input value={email} id='email' onChange={handleChangeData} label="Email" placeholder="email@example.com" />
+        </Form.Group>
+        <Form.Group unstackable widths={2}>
+          <Form.Input value={password} id='password' onChange={handleChangeData} label="Mot de passe" type='password' placeholder="********" />
+          <Form.Input value={passwordConf} id='passwordConf' onChange={handleChangeData} label="Confirmez votre mot de passe" type='password' placeholder="********" />
         </Form.Group>
         <Form.Checkbox
           value="newsletter"
@@ -58,6 +70,7 @@ const SignUp = ({
       </Form>
       {savedPreference === 'notsaved' && <SavedModal content="Une erreur s'est produite, veuillez réessayer." positive={false} error />}
       {savedPreference === 'saved' && <SavedModal content="Votre compte a bien été créé, surveillez vos spams !" positive error={false} />}
+      
 
       <Divider horizontal>
         Déjà inscrit ? <Link to="/" className="signupLink">Connectez-vous !</Link>
@@ -67,8 +80,7 @@ const SignUp = ({
 };
 
 SignUp.propTypes = {
-  changeInputUsername: PropTypes.func.isRequired,
-  changeInputEmail: PropTypes.func.isRequired,
+  changeUserData: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   createAccount: PropTypes.func.isRequired,

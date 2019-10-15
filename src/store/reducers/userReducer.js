@@ -5,6 +5,7 @@ const initialState = {
   logged: false,
   username: '',
   password: '',
+  passwordConf: '',
   email: '',
   token: '',
   newsletter: 0,
@@ -12,13 +13,11 @@ const initialState = {
 };
 
 // == Types
-const CHANGE_USERNAME = 'CHANGE_USERNAME';
-const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
-const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const SAVE_USER = 'SAVE_USER';
 const LOG_OUT = 'LOG_OUT';
 const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
 const PREFERENCE_USER_SAVED = 'PREFERENCE_USER_SAVED';
+const SAVE_USER_INFO = 'SAVE_USER_INFO';
 
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -26,21 +25,6 @@ export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
 
 const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      return {
-        ...state,
-        [action.name]: action.value,
-      };
-    case CHANGE_PASSWORD:
-      return {
-        ...state,
-        [action.name]: action.value,
-      };
-    case CHANGE_EMAIL:
-      return {
-        ...state,
-        [action.name]: action.value,
-      };
     case CHANGE_NEWSLETTER:
       return {
         ...state,
@@ -62,6 +46,12 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         savedPreference: action.bool,
       };
+    case SAVE_USER_INFO:
+      console.log(action);
+      return {
+        ...state,
+        [action.name]: action.value,
+      }
     default:
       return state;
   }
@@ -84,23 +74,6 @@ export const saveUser = (token) => ({
   token,
 });
 
-export const changeValueUsername = (name, value) => ({
-  type: CHANGE_USERNAME,
-  value,
-  name,
-});
-
-export const changeValuePassword = (name, value) => ({
-  type: CHANGE_PASSWORD,
-  value,
-  name,
-});
-export const changeValueEmail = (name, value) => ({
-  type: CHANGE_EMAIL,
-  value,
-  name,
-});
-
 export const changeNewsletterBinary = (name, value) => ({
   type: CHANGE_NEWSLETTER,
   value,
@@ -111,5 +84,11 @@ export const preferenceUserSaved = (bool) => ({
   type: PREFERENCE_USER_SAVED,
   bool,
 });
+
+export const changeUserValue = (name, value) => ({
+  type: SAVE_USER_INFO,
+  name,
+  value,
+})
 
 export default userReducer;

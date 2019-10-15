@@ -3,17 +3,17 @@
 const initialState = {
   datafood: [],
   foodToShow: [],
-  proteinebreakfast: 'Fromage blanc',
-  proteinelunch: 'Steack hache',
-  proteinedinner: 'Poisson blanc',
-  proteinesnack: 'Fromage blanc',
-  lipidebreakfast: 'Amande',
-  lipidelunch: 'Avocat',
-  lipidedinner: 'Huile olive',
-  glucidebreakfast: 'Pates',
-  glucidelunch: 'Quinoa',
-  glucidedinner: 'Riz',
-  glucidesnack: 'Quinoa',
+  proteinebreakfast: 'fromage blanc 0% MG',
+  proteinelunch: 'steak haché 5% MG',
+  proteinedinner: 'poisson blanc',
+  proteinesnack: 'fromage blanc 0% MG',
+  lipidebreakfast: 'amandes',
+  lipidelunch: 'avocat',
+  lipidedinner: 'huile d\'olive',
+  glucidebreakfast: 'pâtes complètes',
+  glucidelunch: 'quinoa',
+  glucidedinner: 'riz complet',
+  glucidesnack: 'quinoa',
   breakfastcheck: false,
   lunchcheck: false,
   dinnercheck: false,
@@ -59,25 +59,25 @@ const mealPlanReducer = (state = initialState, action = {}) => {
       const sortedFood = state.datafood.filter((food) => {
         let keepFood = '';
         if (action.vegan && action.sanslactose && action.sansgluten) {
-          keepFood = food.regime.includes('lactose') && food.regime.includes('vegan') && food.regime.includes('gluten');
+          keepFood = food.diet.includes('lactose') && food.diet.includes('Vegan') && food.diet.includes('gluten');
         }
         else if (action.vegan && action.sanslactose && !action.sansgluten) {
-          keepFood = food.regime.includes('lactose') && food.regime.includes('vegan');
+          keepFood = food.diet.includes('lactose') && food.diet.includes('Vegan');
         }
         else if (action.vegan && action.sansgluten && !action.sanslactose) {
-          keepFood = food.regime.includes('gluten') && food.regime.includes('vegan');
+          keepFood = food.diet.includes('gluten') && food.diet.includes('Vegan');
         }
         else if (action.sanslactose && action.sansgluten && !action.vegan) {
-          keepFood = food.regime.includes('gluten') && food.regime.includes('lactose');
+          keepFood = food.diet.includes('gluten') && food.diet.includes('lactose');
         }
         else if (action.sanslactose && !action.sansgluten && !action.vegan) {
-          keepFood = food.regime.includes('lactose');
+          keepFood = food.diet.includes('lactose');
         }
         else if (action.sansgluten && !action.vegan && !action.sanslactose) {
-          keepFood = food.regime.includes('gluten');
+          keepFood = food.diet.includes('gluten');
         }
         else if (action.vegan && !action.sanslactose && !action.sansgluten) {
-          keepFood = food.regime.includes('vegan');
+          keepFood = food.diet.includes('Vegan');
         }
         else {
           keepFood = food;
@@ -88,11 +88,11 @@ const mealPlanReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         foodToShow: sortedFood,
-        proteinebreakfast: action.vegan ? 'Whey' : action.sanslactose ? 'Oeuf' : 'Fromage blanc',
-        proteinelunch: action.vegan ? 'Tofu nature' : 'Blanc poulet',
-        proteinedinner: action.vegan ? 'Tofu nature' : 'Poisson blanc',
-        proteinesnack: action.vegan ? 'Whey' : action.sanslactose ? 'Oeuf' : 'Fromage blanc',
-        glucidebreakfast: action.sansgluten ? 'Muesli' : 'Pain complet',
+        proteinebreakfast: action.vegan ? 'whey' : action.sanslactose ? 'oeuf' : 'fromage blanc 0% MG',
+        proteinelunch: action.vegan ? 'tofu nature' : 'blanc de poulet',
+        proteinedinner: action.vegan ? 'tofu nature' : 'poisson blanc',
+        proteinesnack: action.vegan ? 'whey' : action.sanslactose ? 'oeuf' : 'fromage blanc 0% MG',
+        glucidebreakfast: action.sansgluten ? 'muesli chocolat' : 'pain complet',
       };
     default:
       return state;

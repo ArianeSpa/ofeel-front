@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // == Import : local
 import SignUp from 'src/components/Home/SignUp';
 import {
-  changeValueUsername, changeValueEmail, accountCreation, changeNewsletterBinary,
+  accountCreation, changeNewsletterBinary, changeUserValue,
 } from 'src/store/reducers/userReducer';
 
 // Action Creators
@@ -15,19 +15,12 @@ const mapStateToProps = (state) => ({
   email: state.userReducer.email,
   newsletter: state.userReducer.newsletter,
   savedPreference: state.userReducer.savedPreference,
+  password: state.userReducer.password,
+  passwordConf: state.userReducer.passwordConf,
 });
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch) => ({
-  changeInputUsername: (value) => {
-    const action = changeValueUsername('username', value);
-    dispatch(action);
-  },
-  changeInputEmail: (value) => {
-    const action = changeValueEmail('email', value);
-    dispatch(action);
-  },
-
   changeNewsletter: (checked) => {
     const action = changeNewsletterBinary('newsletter', checked);
     dispatch(action);
@@ -36,6 +29,10 @@ const mapDispatchToProps = (dispatch) => ({
   createAccount: () => {
     dispatch(accountCreation());
   },
+
+  changeUserData: (name, value) => {
+    dispatch(changeUserValue(name, value));
+  }
 });
 
 // Container
