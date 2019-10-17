@@ -57,6 +57,8 @@ const appReducer = (state = initialState, action = {}) => {
         loadingfood: false,
       };
     case SAVE_USER_DATA:
+      console.log('je suis dans appReducer');
+      console.log(action.objectUser.regime);
       return {
         ...state,
         age: action.objectUser.age,
@@ -64,9 +66,9 @@ const appReducer = (state = initialState, action = {}) => {
         taille: action.objectUser.taille,
         gender: action.objectUser.sexe,
         goal: action.objectUser.goal,
-        vegan: action.objectUser.regime.includes('vegan') && true,
-        sanslactose: action.objectUser.regime.includes('sans-lactose') && true,
-        sansgluten: action.objectUser.regime.includes('sans-gluten') && true,
+        vegan: action.objectUser.regime.includes('Vegan') && true,
+        sanslactose: action.objectUser.regime.includes('lactose') && true,
+        sansgluten: action.objectUser.regime.includes('gluten') && true,
         activity: action.objectUser.activity,
         cal_jour: action.objectUser.cal_jour,
         user_metabo: action.objectUser.user_metabo,
@@ -82,7 +84,6 @@ const appReducer = (state = initialState, action = {}) => {
         q_lip_p_dej_din: action.objectUser.q_lip_p_dej_din,
         q_prot_dej: action.objectUser.q_prot_dej,
         q_prot_p_dej_din: action.objectUser.q_prot_p_dej_din,
-
       };
     case SAVE_METABO_CALORIE:
       return {

@@ -31,6 +31,8 @@ const userReducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case SAVE_USER:
+      console.log('je suis dans userReducer');
+      console.log(action);
       return {
         ...state,
         logged: true,
@@ -47,7 +49,6 @@ const userReducer = (state = initialState, action = {}) => {
         savedPreference: action.bool,
       };
     case SAVE_USER_INFO:
-      console.log(action);
       return {
         ...state,
         [action.name]: action.value,

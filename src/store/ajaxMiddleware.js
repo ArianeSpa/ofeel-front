@@ -30,14 +30,69 @@ const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
     case AUTHENTICATE:
-      axios.post('http://ofeel.me/API/wp-json/jwt-auth/v1/token', {
-        username: store.getState().userReducer.username,
-        password: store.getState().userReducer.password,
+      const authForm = new FormData ();
+      authForm.append('username', store.getState().userReducer.username);
+      authForm.append('password', store.getState().userReducer.password);
+
+      axios({
+        method: 'post',
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/authenticate',
+        data: authForm,
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
       })
         .then((response) => {
-          const saveUserToken = saveUser(response.data.token);
-          store.dispatch(saveUserToken);
-          store.dispatch(askUserData());
+          const user = response.data.data;
+          const test = response.data.find;
+
+         
+          !test && store.dispatch(preferenceUserSaved('notsaved')); 
+
+          if (test) {
+            const objectUser = {
+              age: parseInt(user.age),
+              goal: user.goal,
+              regime: user.diet ? user.diet : '',
+              sexe: user.gender,
+              taille: parseInt(user.height),
+              poids: parseInt(user.weight),
+              activity: user.activity,
+              factorActivity: user.factor_activity,
+              user_metabo: parseInt(user.basal_metabolic_rate),
+              cal_jour: parseInt(user.energy_expenditure),
+              cal_dej: parseInt(user.lunch_calories),
+              cal_obj: parseInt(user.daily_calories),
+              cal_p_dej_din: parseInt(user.breakfast_dinner_calories),
+              prop_glu: parseFloat(user.carb_proportion),
+              prop_lip: parseFloat(user.fat_proportion),
+              prop_prot: parseFloat(user.prot_proportion),
+              q_glu_dej: parseInt(user.lunch_carb_quantity),
+              q_glu_p_dej_din: parseInt(user.breakfast_dinner_carb_quantity),
+              q_lip_dej: parseInt(user.lunch_fat_quantity),
+              q_lip_p_dej_din: parseInt(user.breakfast_dinner_fat_quantity),
+              q_prot_dej: parseInt(user.lunch_prot_quantity),
+              q_prot_p_dej_din: parseInt(user.breakfast_dinner_prot_quantity),
+            };
+
+            const saveUserData = saveDataUser(objectUser);
+            console.log('je suis après const saveUSerData');
+
+            store.dispatch(saveUserData);
+            console.log('je suis après dispatch de saveUSerData');
+
+
+            store.dispatch(saveUser('ok'));
+            console.log('je suis après disptach pour changer logged');
+
+            store.dispatch(sortFoodChoice(
+              store.getState().appReducer.sanslactose,
+              store.getState().appReducer.sansgluten,
+              store.getState().appReducer.vegan)
+            );
+          };
         })
         .catch((error) => {
           store.dispatch(preferenceUserSaved('notsaved'));
@@ -60,32 +115,13 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response);
+          response.data.response
+           ? store.dispatch(preferenceUserSaved('saved'))
+           : store.dispatch(preferenceUserSaved('notsaved'));
         })
         .catch((error) => {
           console.log(error);
         });
-
-
-      // bodyFormData.append('user_login', store.getState().userReducer.username);
-      // bodyFormData.append('user_email', store.getState().userReducer.email);
-      // bodyFormData.append('newsletter', store.getState().userReducer.newsletter);
-      // axios({
-      //   method: 'post',
-      //   url: 'http://ofeel.me/API/wp/wp-login.php?action=register',
-      //   data: bodyFormData,
-      //   config: {
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //     },
-      //   },
-      // })
-      //   .then((response) => {
-      //     store.dispatch(preferenceUserSaved('saved'));
-      //   })
-      //   .catch((error) => {
-      //     store.dispatch(preferenceUserSaved('notsaved'));
-      //   });
       break;
 
     // REQUETE RECUPERATION DES DONNES USER VIA API WP GRACE A TOKEN
@@ -98,26 +134,26 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           const objectUser = {
             age: parseInt(response.data.age),
-            goal: response.data.objectifs,
-            regime: response.data.regime_alimentaire,
-            sexe: response.data.sexe,
-            taille: parseInt(response.data.taille),
-            poids: parseInt(response.data.poids),
-            activity: response.data.user_activity,
-            user_metabo: parseInt(response.data.user_metabo),
-            cal_jour: parseInt(response.data.cal_jour),
-            cal_dej: parseInt(response.data.cal_dej),
-            cal_obj: parseInt(response.data.cal_obj),
-            cal_p_dej_din: parseInt(response.data.cal_p_dej_din),
-            prop_glu: parseFloat(response.data.prop_glu),
-            prop_lip: parseFloat(response.data.prop_lip),
-            prop_prot: parseFloat(response.data.prop_prot),
-            q_glu_dej: parseInt(response.data.q_glu_dej),
-            q_glu_p_dej_din: parseInt(response.data.q_glu_p_dej_din),
-            q_lip_dej: parseInt(response.data.q_lip_dej),
-            q_lip_p_dej_din: parseInt(response.data.q_lip_p_dej_din),
-            q_prot_dej: parseInt(response.data.q_prot_dej),
-            q_prot_p_dej_din: parseInt(response.data.q_prot_p_dej_din),
+            goal: response.data.goal,
+            regime: response.data.diet,
+            sexe: response.data.gender,
+            taille: parseInt(response.data.height),
+            poids: parseInt(response.data.weight),
+            activity: response.data.activity,
+            user_metabo: parseInt(response.data.basal_metabolic_rate),
+            cal_jour: parseInt(response.data.energy_expenditure),
+            cal_dej: parseInt(response.data.lunch_calories),
+            cal_obj: parseInt(response.data.daily_calories),
+            cal_p_dej_din: parseInt(response.data.breakfast_dinner_calories),
+            prop_glu: parseFloat(response.data.carb_proportion),
+            prop_lip: parseFloat(response.data.fat_proportion),
+            prop_prot: parseFloat(response.data.prot_proportion),
+            q_glu_dej: parseInt(response.data.lunch_carb_quantity),
+            q_glu_p_dej_din: parseInt(response.data.breakfast_dinner_carb_quantity),
+            q_lip_dej: parseInt(response.data.lunch_fat_quantity),
+            q_lip_p_dej_din: parseInt(response.data.breakfast_dinner_fat_quantity),
+            q_prot_dej: parseInt(response.data.lunch_prot_quantity),
+            q_prot_p_dej_din: parseInt(response.data.breakfast_dinner_prot_quantity),
           };
           const saveUserData = saveDataUser(objectUser);
           store.dispatch(saveUserData);
@@ -137,8 +173,12 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
       axios({
         method: 'post',
-        url: 'http://ofeel.me/API/wp-json/wp/v2/users/me',
-        headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
         data: {
           poids: store.getState().appReducer.poids,
           taille: store.getState().appReducer.taille,

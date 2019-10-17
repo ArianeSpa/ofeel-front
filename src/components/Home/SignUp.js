@@ -34,7 +34,6 @@ const SignUp = ({
 
   const testBefore = () => {
     if (password === passwordConf && email.trim() !='' && username.trim() !=''){
-      console.log('ok');
       // changeUserData('savedPreference', 'saved');
       createAccount();
 
