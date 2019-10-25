@@ -10,6 +10,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     max-height: 25%;
+    font-family: $livvic;
 }
 
 
@@ -36,15 +37,15 @@
                 }
                 &>.navbarContent{
                     border: 2px solid $yellow4;
-                    background-color: rgba(255, 255, 255, 0.75);
+                    background-color: #2aafbbd5;
                     &::after{
                         background-color: $yellow4;
                     }
                     &>.item.navbar{
-                        color: $blue1 !important;
+                        color: black !important;
                         &.active{
-                            color: $blue5 !important;
-                            background-color: rgb(43, 42, 42)!important;
+                            color: white !important;
+                            background-color: #480773!important;
 
                         } 
                     }
