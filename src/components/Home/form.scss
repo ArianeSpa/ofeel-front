@@ -2,32 +2,13 @@
 
 //Form login et signup
 .ui.inverted.segment.block{
-    // max-width: min-content;
-    // min-height: min-content;
+    background: none;
+    background-image: $background-color-dashboard;
+    box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
+    margin: auto;
 }
 
 .ui{
-    &.inverted.segment.block{
-        // height: 300px;
-        // min-height: fit-content;
-        // width : 600px;
-        background: none;
-        background-image: $background-color-dashboard;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-around;
-        box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-        // margin:auto;
-
-        &.login{
-            // width : 500px;
-        }
-
-        &.contact{
-            // height: 350px;
-        }
-    }
-
     &.button.submit {
         margin: auto;
         display: block;
@@ -39,16 +20,15 @@
             color: $yellow4;
         }
     }
-
     &.horizontal.divider{
         text-transform: capitalize;
         color:#00d29c;
-        
     }
 }
 
 .signupLink{
     color:#00d29c;
+    text-decoration: underline;
     &:hover{
         color: #00ff85;
     }
@@ -59,7 +39,39 @@
     text-align: center;
 }
 
+// Smartphone
+@media (max-width: 767px){
+    .ui.inverted.segment.block{
+        margin: 2em 0;
+        &.login, .signup{
+            width: 100%;
+        } 
+    }
+}
 
-
-
-
+// Tablet ++
+@media (min-width: 768px){
+    .ui.inverted.segment.block{
+        &.login{
+            width: 500px;
+        }
+        &.signup{
+            width: 600px;
+        }
+        margin: 1em auto;
+        max-height: 70%;
+        overflow-y: scroll;
+        &::-webkit-scrollbar{
+            &-track{
+                background-color: transparent;
+                border-radius: 5px;
+            }
+            &-thumb{
+                background-image: $mealPlan-color;
+                &:hover{
+                    background-image: $goals-color;
+                }
+            }
+        }
+    }
+}
