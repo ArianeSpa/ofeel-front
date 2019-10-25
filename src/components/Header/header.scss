@@ -10,6 +10,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     max-height: 25%;
+    font-family: $livvic;
 }
 
 
@@ -25,11 +26,34 @@
         }
         &>.right.menu{
             align-items: center;
+            color: $yellow4;
+            &>.navbarDropdown{
+                &>.bars.icon{
+                    font-size: 2em;
+                }
+                &:last-child .menu{
+                    right: 2em;
+                    top: -1em;
+                }
+                &>.navbarContent{
+                    border: 2px solid $yellow4;
+                    background-color: #2aafbbd5;
+                    &::after{
+                        background-color: $yellow4;
+                    }
+                    &>.item.navbar{
+                        color: black !important;
+                        &.active{
+                            color: white !important;
+                            background-color: #480773!important;
+
+                        } 
+                    }
+                }
+            }
         }
     }
-    .bars.icon{
-        font-size: 2em;
-    }
+    
 }
 
 // Tablet
