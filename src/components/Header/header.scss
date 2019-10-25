@@ -25,11 +25,34 @@
         }
         &>.right.menu{
             align-items: center;
+            color: $yellow4;
+            &>.navbarDropdown{
+                &>.bars.icon{
+                    font-size: 2em;
+                }
+                &:last-child .menu{
+                    right: 2em;
+                    top: -1em;
+                }
+                &>.navbarContent{
+                    border: 2px solid $yellow4;
+                    background-color: rgba(255, 255, 255, 0.75);
+                    &::after{
+                        background-color: $yellow4;
+                    }
+                    &>.item.navbar{
+                        color: $blue1 !important;
+                        &.active{
+                            color: $blue5 !important;
+                            background-color: rgb(43, 42, 42)!important;
+
+                        } 
+                    }
+                }
+            }
         }
     }
-    .bars.icon{
-        font-size: 2em;
-    }
+    
 }
 
 // Tablet

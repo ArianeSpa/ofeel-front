@@ -23,8 +23,8 @@ const HeaderMobile = ({ logged }) => (
       />
     </Menu.Item>
     <Menu.Menu position="right">
-      <Dropdown icon="bars" className="navbarDropdown">
-        <Dropdown.Menu>
+      <Dropdown pointing="right" icon="bars" className="navbarDropdown">
+        <Dropdown.Menu className="navbarContent">
           {!logged && (
             <Dropdown.Item as={NavLink} exact to="/" className="navbar" name="Accueil">Accueil</Dropdown.Item>
           )}
