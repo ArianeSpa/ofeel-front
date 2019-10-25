@@ -6,6 +6,7 @@
 
 .ui.segment.footerSegment {
   width: 100%;
+  max-height: 15%;
   position: absolute;
   bottom: 0;
   left:0;
@@ -23,7 +24,6 @@
 // Smartphone
 @media (max-width: 767px){
   #app.ui.container.globalContainer{
-    position: relative;
     padding-bottom: 2em;
   }
   .ui.segment.footerSegment {
@@ -42,7 +42,7 @@
   }
 }
 
-// Tablet ++
+// Tablet 
 @media (min-width: 768px){
   #app.ui.container.globalContainer{
     height: 100vh;
@@ -51,6 +51,22 @@
   .ui.segment.footerSegment{ 
     padding: 1em;
     &> .ui.icon.button{
+      margin: 0 0.7em;
+      &>.icon{
+        font-size: 1em;
+      }
+    }
+    &> .copyright{
+      font-size: 0.9em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+// Laptop
+@media (min-width: 1024px){
+  .ui.segment.footerSegment{
+    &> .ui.icon.button{
       margin: 0 1em;
       &>.icon{
         font-size: 1.2em;
@@ -58,7 +74,6 @@
     }
     &> .copyright{
       font-size: 1em;
-      margin-bottom: 0.5em;
     }
   }
 }

@@ -18,24 +18,25 @@ const typeOfSubject = [
 // == Composant
 const Contact = () => (
   <Segment inverted className="block contact">
-    <Form inverted>
-      <Form.Group unstackable widths={2}>
+    <Form inverted className="contactForm">
+      <Form.Group stackable widths={2} className="contactFields">
         <Form.Input label="Pseudo" placeholder="Pseudo" />
         <Form.Input label="Email" placeholder="email@example.com" />
       </Form.Group>
-      <Header inverted size="small">Sujets</Header>
-      <Form.Group>
+      <Header inverted size="small" className="subjectHeader">Sujets</Header>
+      <Form.Group className="contactFields subject">
         <Dropdown
           placeholder="Votre demande concerne"
           selection
           fluid
           options={typeOfSubject}
+          className="contactDropdown"
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group className="contactFields message">
         <TextArea className="textStyle" placeholder="Votre message" />
       </Form.Group>
-      <Button type="submit" className="submit">Envoyer</Button>
+      <Button type="submit" className="submit contactSubmit">Envoyer</Button>
     </Form>
   </Segment>
 );

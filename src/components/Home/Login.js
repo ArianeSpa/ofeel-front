@@ -22,10 +22,10 @@ const Login = ({
     <Segment inverted className="block login">
       <Form inverted onSubmit={doAuthenticate}>
         <Form.Field>
-          <Form.Input value={username} id='username' onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
+          <Form.Input value={username} id="username" onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
         </Form.Field>
         <Form.Field>
-          <Form.Input value={password} id='password' onChange={handleChangeData} type="password" label="Mot de passe" placeholder="Mot de passe" />
+          <Form.Input value={password} id="password" onChange={handleChangeData} type="password" label="Mot de passe" placeholder="Mot de passe" />
         </Form.Field>
         <Form.Field>
           <Checkbox label="Se souvenir de moi" />

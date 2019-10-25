@@ -9,6 +9,7 @@
     margin: 0;
     justify-content: space-around;
     flex-wrap: wrap;
+    max-height: 25%;
 }
 
 
@@ -20,34 +21,44 @@
     .ui.navbarMobile.menu{
         &>.item.mobileItem{
             padding:0 ;
-            width: 6em;
+            width: 5em;
         }
         &>.right.menu{
             align-items: center;
         }
-        
     }
     .bars.icon{
         font-size: 2em;
     }
 }
 
-// Tablet ++
+// Tablet
 @media (min-width: 768px){
     .ui.navbarMobile.menu {
         display: none;
     }
-    .ui.text.navbarDesktop.menu {
+    .ui.text.navbar.navbarDesktop.menu >.left.menu {
         &>.item.desktopItem{
-            padding:0 ;
-            width: 10em;
+            &>.ui.image.desktopLogo{
+                width: 7em;
+            }
         }
     }
-    
-    // img.ui.image.desktopLogo{
-    //     width: 8em;
-    // }
 }
+
+// Laptop ++
+@media (min-width: 1024px){
+    .ui.text.navbar.navbarDesktop.menu >.left.menu {
+        &>.item.desktopItem{
+            padding:0 ;
+            &>.ui.image.desktopLogo{
+                width: 10em;
+            }
+        }
+    }
+}
+
+
 
 
 

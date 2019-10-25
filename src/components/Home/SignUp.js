@@ -43,16 +43,16 @@ const SignUp = ({
   }
 
   return (
-    <Segment inverted className="block">
+    <Segment inverted className="block signup">
       <Form inverted onSubmit={testBefore}>
         <Form.Group className="infoPassword">
           <p>Pour créez un compte, renseignez ci-dessous votre pseudo et votre email de contact. Vous recevrez un lien par email pour personnaliser votre mot de passe et finaliser votre inscription.</p>
         </Form.Group>
-        <Form.Group unstackable widths={2}>
+        <Form.Group stackable widths={2}>
           <Form.Input value={username} id='username' onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
           <Form.Input value={email} id='email' onChange={handleChangeData} label="Email" placeholder="email@example.com" />
         </Form.Group>
-        <Form.Group unstackable widths={2}>
+        <Form.Group stackable widths={2}>
           <Form.Input value={password} id='password' onChange={handleChangeData} label="Mot de passe" type='password' placeholder="********" />
           <Form.Input value={passwordConf} id='passwordConf' onChange={handleChangeData} label="Confirmez votre mot de passe" type='password' placeholder="********" />
         </Form.Group>
@@ -63,7 +63,6 @@ const SignUp = ({
           checked={newsletter === 1}
           onChange={handleChangeNewsletter}
         />
-        <Form.Checkbox label="J'accepte les conditions générales" />
 
         <Button type="submit" className="submit">Submit</Button>
       </Form>
