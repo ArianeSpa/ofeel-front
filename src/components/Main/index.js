@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Signup from 'src/containers/Home/SignUp';
 import Login from 'src/containers/Home/Login';
 import WelcomeBoard from 'src/components/Dashboard';
-import UserModal from 'src/containers/UserModal';
 import Postslist from 'src/containers/PostView/PostsList';
 import Contact from 'src/components/Contact';
 import Error from 'src/components/Main/Error';
@@ -16,7 +15,6 @@ import './page.scss';
 // == Composant
 const Main = ({ logged }) => (
   <>
-    {/* { logged && (<UserModal />) } */}
     <Switch>
       {!logged && (
         <Route path="/" exact component={Login} />

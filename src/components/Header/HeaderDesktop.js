@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import UserModal from 'src/containers/UserModal';
-
 import logo from 'src/assets/images/logo_fond_transparent2.png';
 import './header.scss';
 
@@ -33,7 +32,6 @@ const HeaderDesktop = ({ logged }) => (
     <Menu.Item as={NavLink} to="/articles" className="navbar" name="Articles" />
     <Menu.Item as={NavLink} to="/contact" className="navbar" name="Contact" />
     { logged && (<UserModal />) }
-
   </Menu>
 
 );
