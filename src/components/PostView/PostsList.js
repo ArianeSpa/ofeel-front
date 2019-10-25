@@ -32,20 +32,60 @@ const PostsList = ({
 
   return (
 
-    <Container className="globalContainer">
-      <Segment className="buttonSort">
-        <Button icon id="sante" onClick={sort} className={sante ? 'iconFocus' : ''}><Icon name="heartbeat" /></Button>
-        <Button icon id="sport" onClick={sort} className={sport ? 'iconFocus' : ''}><Icon name="football ball" /></Button>
-        <Button icon id="recuperation" onClick={sort} className={recuperation ? 'iconFocus' : ''}><Icon name="bed" /></Button>
-        <Button icon id="alimentation" onClick={sort} className={alimentation ? 'iconFocus' : ''}><Icon name="food" className="foodSort" /></Button>
-        <Button icon id="divers" onClick={sort} className={divers ? 'iconFocus' : ''}><Icon name="boxes" /></Button>
-        <Button className="cancelButton" onClick={cancelSortChoice}>Effacer les filtres</Button>
+    <Container className="postPageContainer">
+      <Segment className="buttonSortSegment">
+        <Button
+          icon
+          id="sante"
+          onClick={sort}
+          className={sante ? 'iconFocus sortIcon' : 'sortIcon'}
+        >
+          <Icon name="heartbeat" />
+        </Button>
+        <Button
+          icon
+          id="sport"
+          onClick={sort}
+          className={sport ? 'iconFocus sortIcon' : 'sortIcon'}
+        >
+          <Icon name="football ball" />
+        </Button>
+        <Button
+          icon
+          id="recuperation"
+          onClick={sort}
+          className={recuperation ? 'iconFocus sortIcon' : 'sortIcon'}
+        >
+          <Icon name="bed" />
+        </Button>
+        <Button
+          icon
+          id="alimentation"
+          onClick={sort}
+          className={alimentation ? 'iconFocus sortIcon' : 'sortIcon'}
+        >
+          <Icon name="food" className="foodSort" />
+        </Button>
+        <Button
+          icon
+          id="divers"
+          onClick={sort}
+          className={divers ? 'iconFocus sortIcon' : 'sortIcon'}
+        >
+          <Icon name="boxes" />
+        </Button>
+        <Button
+          className="cancelButton"
+          onClick={cancelSortChoice}
+        >
+          Effacer les filtres
+        </Button>
       </Segment>
       <Container className="postsContainer">
         <Accordion fluid styled>
 
           {loadingPosts && (
-          <Accordion.Title className="cssTitle">
+          <Accordion.Title className="titleBox">
             <Form loading={loadingPosts}>
               Loading content
             </Form>
@@ -58,16 +98,16 @@ const PostsList = ({
                 key={`${post.id}1`}
                 active={activeIndex === post.id}
                 index={post.id}
-                className="cssTitle"
+                className="titleBox"
                 onClick={displayContent}
               >
                 <Icon name="dropdown" />
                 <div
-                  className="titleCss"
+                  className="titlePost"
                   dangerouslySetInnerHTML={createMarkup(post.name)}
                 />
                 {/* {post.name} */}
-                <Label icon={setIcon(post.tags)} content={post.tags} className="cssLabelPost" />
+                <Label icon={setIcon(post.tags)} content={post.tags} className="labelPost" />
               </Accordion.Title>
               <Accordion.Content key={`${post.id}2`} active={activeIndex === post.id}>
                 <div dangerouslySetInnerHTML={createMarkup(post.content)} />
