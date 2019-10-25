@@ -1,6 +1,7 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container } from 'semantic-ui-react';
 
 
 // == Import : local
@@ -17,11 +18,11 @@ const App = ({ catchFoodInfo, catchPostsInfo, catchWorkoutInfo }) => {
   catchWorkoutInfo();
 
   return (
-    <div id="app">
+    <Container id="app" className="globalContainer">
       <Header />
       <Main />
       <Footer />
-    </div>
+    </Container>
   );
 };
 

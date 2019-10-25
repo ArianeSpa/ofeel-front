@@ -1,30 +1,18 @@
 // == Import : npm
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Import : local
-import logo from 'src/assets/images/logo_fond_transparent2.png';
+import HeaderMobile from 'src/components/Header/HeaderMobile';
+import HeaderDesktop from 'src/components/Header/HeaderDesktop';
 import './header.scss';
 
 // == Composant
 const Header = ({ logged }) => (
-  <div className="header">
-
-    <div><img src={logo} alt="OFeel" /></div>
-    {/* <div>OFEEL</div> */}
-    <Menu text className="navbar">
-      {!logged && (
-        <Menu.Item as={NavLink} exact to="/" className="navbar" name="Accueil" />
-      )}
-      {logged && (
-        <Menu.Item as={NavLink} to="/dashboard" className="navbar" name="Tableau de bord" />
-      )}
-      <Menu.Item as={NavLink} to="/articles" className="navbar" name="Articles" />
-      <Menu.Item as={NavLink} to="/contact" className="navbar" name="Contact" />
-    </Menu>
-  </div>
+  <>
+    <HeaderMobile logged={logged} />
+    <HeaderDesktop logged={logged} />
+  </>
 );
 
 Header.propTypes = {

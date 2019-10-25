@@ -1,24 +1,30 @@
 @import 'src/styles/vars';
 
+//Form login et signup
+.ui.inverted.segment.block{
+    // max-width: min-content;
+    // min-height: min-content;
+}
+
 .ui{
     &.inverted.segment.block{
-        height: 300px;
-        min-height: fit-content;
-        width : 600px;
+        // height: 300px;
+        // min-height: fit-content;
+        // width : 600px;
         background: none;
         background-image: $background-color-dashboard;
         // display: flex;
         // flex-direction: column;
         // justify-content: space-around;
         box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-        margin:auto;
+        // margin:auto;
 
         &.login{
-            width : 500px;
+            // width : 500px;
         }
 
         &.contact{
-            height: 350px;
+            // height: 350px;
         }
     }
 

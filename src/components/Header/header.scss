@@ -1,17 +1,67 @@
 @import 'src/styles/vars';
 
-.header{
-    display :flex;
-    flex-direction:row;
-    padding: 10px 20px 0 20px ;
-    justify-content: space-between;    
+
+// Segment header (logo + navbar)
+.ui.text.menu.navbar, .ui.menu.navbar{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
+
+// Smartphone
+@media (max-width: 767px){
+    .ui.text.navbarDesktop.menu {
+        display: none;
+    }
+    .ui.navbarMobile.menu{
+        &>.item.mobileItem{
+            padding:0 ;
+            width: 6em;
+        }
+        &>.right.menu{
+            align-items: center;
+        }
+        
+    }
+    .bars.icon{
+        font-size: 2em;
+    }
+}
+
+// Tablet ++
+@media (min-width: 768px){
+    .ui.navbarMobile.menu {
+        display: none;
+    }
+    .ui.text.navbarDesktop.menu {
+        &>.item.desktopItem{
+            padding:0 ;
+            width: 10em;
+        }
+    }
+    
+    // img.ui.image.desktopLogo{
+    //     width: 8em;
+    // }
+}
+
+
+
+
+
+
+
+
+
 .ui.text.menu.navbar{
-    display:flex;
-    justify-content: space-around;
-    width: 100%;
-    padding-left: 200px;
+    // display:flex;
+    // justify-content: space-around;
+    // width: 100%;
+    // padding-left: 200px;
     font-family: $livvic;
     .item.navbar{
         color: white;

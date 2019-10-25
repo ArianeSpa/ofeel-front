@@ -13,7 +13,7 @@ import './footer.scss';
 // == Composant
 const Footer = () => (
   <Segment inverted className="size">
-    <List horizontal className="style">
+    <List celled horizontal className="style">
       <List.Item>&copy; O'Feel.2019</List.Item>
       <List.Item>A propos</List.Item>
       <List.Item>

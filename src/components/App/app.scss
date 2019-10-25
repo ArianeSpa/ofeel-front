@@ -1,17 +1,16 @@
 @import 'src/styles/vars';
 
-body{
-  font-size: 14px;
+
+#app.ui.container{
+  background-image: $background-color-body;
+  font-size: 2em;
+  color: white; 
+  margin: 0 !important;
+  padding: 0.5em;
+  min-height: 100vh;
+  width: 100%;
 }
 
-#app{
-  background-image: $background-color-body;
-  height : 100vh;
-  width:100%;
-  font-size: 2em;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
+
 
 
