@@ -31,8 +31,8 @@ const userReducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case SAVE_USER:
-      console.log('je suis dans userReducer');
-      console.log(action);
+      // console.log('je suis dans userReducer');
+      // console.log(action);
       return {
         ...state,
         logged: true,
@@ -90,6 +90,6 @@ export const changeUserValue = (name, value) => ({
   type: SAVE_USER_INFO,
   name,
   value,
-})
+});
 
 export default userReducer;
