@@ -1,15 +1,64 @@
 @import 'src/styles/vars';
 
+#app.ui.container.globalContainer{
+  position: relative;
+}
 
-.ui.inverted.segment.size {
+.ui.segment.footerSegment {
   width: 100%;
+  position: absolute;
   bottom: 0;
+  left:0;
+  right:0;
   background-color: transparent;
-}
-.ui.horizontal.list.style {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: center;
+  &> .copyright{
+    font-style: italic;
+  }
 }
 
+// Smartphone
+@media (max-width: 767px){
+  #app.ui.container.globalContainer{
+    position: relative;
+    padding-bottom: 2em;
+  }
+  .ui.segment.footerSegment {
+    padding: 0.5em;
+    &> .ui.icon.button{
+      margin: 0 0.2em;
+      font-size: 0.9em;
+      &>.icon{
+        font-size: 0.9em;
+      }
+    }
+    &> .copyright{
+      font-size: 0.8em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
 
+// Tablet ++
+@media (min-width: 768px){
+  #app.ui.container.globalContainer{
+    height: 100vh;
+    padding-bottom: 3em;
+  }
+  .ui.segment.footerSegment{ 
+    padding: 1em;
+    &> .ui.icon.button{
+      margin: 0 1em;
+      &>.icon{
+        font-size: 1.2em;
+      }
+    }
+    &> .copyright{
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+  }
+}

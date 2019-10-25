@@ -1,47 +1,64 @@
 // == Import : npm
 import React from 'react';
 import {
-  Segment, List, Image,
+  Segment, Button,
 } from 'semantic-ui-react';
 
 // == Import : local
-import iconFB from 'src/assets/icon/fb.png';
-import iconTW from 'src/assets/icon/tw.png';
-import iconInsta from 'src/assets/icon/insta.png';
 import './footer.scss';
 
 // == Composant
 const Footer = () => (
-  <Segment inverted className="size">
-    <List celled horizontal className="style">
-      <List.Item>&copy; O'Feel.2019</List.Item>
-      <List.Item>A propos</List.Item>
-      <List.Item>
-        <Image
-          href="https://facebook.com"
-          target="_blank"
-          size="mini"
-          src={iconFB}
-        />
-      </List.Item>
-      <List.Item>
-        <Image
-          href="https://twitter.com"
-          target="_blank"
-          size="mini"
-          src={iconTW}
-        />
-      </List.Item>
-      <List.Item>
-        <Image
-          href="https://instagram.com"
-          target="_blank"
-          size="mini"
-          src={iconInsta}
-        />
-      </List.Item>
-      <List.Item>Mentions Légales</List.Item>
-    </List>
+  <Segment className="footerSegment">
+    <p className="copyright">&copy; O'Feel.2019</p>
+    <Button
+      circular
+      color="facebook"
+      icon="facebook"
+      href="https://www.facebook.com/Oclock.io/"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="twitter"
+      icon="twitter"
+      href="https://twitter.com/Oclock_io?s=17"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="red"
+      icon="youtube"
+      href="https://www.youtube.com/channel/UCVdtXmsbmewiS6N9QjO8LKA"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="linkedin"
+      icon="linkedin"
+      href="https://www.linkedin.com/in/ariane-spanneut/"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="black"
+      icon="github"
+      href="https://github.com/ArianeSpa"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="pink"
+      icon="instagram"
+      href="https://www.instagram.com/suis_ton_fil/"
+      target="_blank"
+    />
+    <Button
+      circular
+      color="yellow"
+      icon="paper plane"
+      href="mailto:ariane.spanneut@gmail.com?subject=contact%20from%20Ofeel"
+    />
   </Segment>
 );
 
