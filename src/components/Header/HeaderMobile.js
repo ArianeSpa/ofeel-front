@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Import : local
+import UserModal from 'src/containers/UserModal';
 import logo from 'src/assets/images/logo_fond_transparent2.png';
 import './header.scss';
 
@@ -33,6 +34,7 @@ const HeaderMobile = ({ logged }) => (
           )}
           <Dropdown.Item as={NavLink} to="/articles" className="navbar" name="Articles">Articles</Dropdown.Item>
           <Dropdown.Item as={NavLink} to="/contact" className="navbar" name="Contact">Contact</Dropdown.Item>
+          <Dropdown.Item as={UserModal} className="navbar" />
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Menu>

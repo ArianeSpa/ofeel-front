@@ -9,7 +9,7 @@ import { endSession } from 'src/store/reducers/userReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
-  username: state.userReducer.username,
+  logged: state.userReducer.logged,
 });
 
 /* === Actions === */

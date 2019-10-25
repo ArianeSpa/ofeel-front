@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 // == Import : local
 import HeaderMobile from 'src/components/Header/HeaderMobile';
 import HeaderDesktop from 'src/components/Header/HeaderDesktop';
+import UserModal from 'src/containers/UserModal';
+
 import './header.scss';
 
 // == Composant

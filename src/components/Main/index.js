@@ -16,7 +16,7 @@ import './page.scss';
 // == Composant
 const Main = ({ logged }) => (
   <>
-    { logged && (<UserModal />) }
+    {/* { logged && (<UserModal />) } */}
     <Switch>
       {!logged && (
         <Route path="/" exact component={Login} />
