@@ -9,7 +9,7 @@ import './footer.scss';
 
 // == Composant
 const Footer = () => (
-  <Segment className="size">
+  <Segment className="footerSegment">
     <p className="copyright">&copy; O'Feel.2019</p>
     <Button
       circular
