@@ -11,49 +11,108 @@
 .ui{
     //DASHBOARD     
     &.inverted.segment.dashboard{
-        height: 70%;
-        width : 60%;
-        background: transparent;
-        background-image: $background-color-dashboard;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-        margin:auto;
-        padding: 0;  
+        // height: 70%;
+        // width : 60%;
+        
     }
 
     &.two.column.grid{
-        height: 100%;
+        
         &>.row.pers{
-            padding:0;
-            height: 100%;
+            
             &>.column.left{
-                width: 20%;
+                //DONE
             }
             &>.column.right{
-                width:80%;
-                height: 100%;
-                overflow-y: scroll;
+                // width:80%;
+                // height: 100%;
+                // overflow-y: scroll;
                 
-                &::-webkit-scrollbar{
-                    &-track{
-                        background-color: transparent;
-                        border-radius: 5px;
-                    }
-                    &-thumb{
-                        background-image: $mealPlan-color;
-                        &:hover{
-                            background-image: $goals-color;
-                        }
-                    }
-                }
+                // &::-webkit-scrollbar{
+                //     &-track{
+                //         background-color: transparent;
+                //         border-radius: 5px;
+                //     }
+                //     &-thumb{
+                //         background-image: $mealPlan-color;
+                //         &:hover{
+                //             background-image: $goals-color;
+                //         }
+                //     }
+                // }
             }
         }
     }
 
     //ONGLETS
     &.segment.dashboardItem{
+        
+        
+        //EFFETS BORDURE ONGLET
+        //DONE
+        
+        
+        //EFFETS INFO ANIMATION SURVOLE ONGLET
+       //DONE
+        
+        
+        
+        // &.myfeelingSegment:after{
+        //     content: "Personnalisez votre profil utilisateur";    
+        // }
+
+        // &.goalsSegment:after{
+        //     content: "Précisez vos objectifs et préférences alimentaires";    
+        // }
+
+        // &.mealplanSegment:after{
+        //     content: "Consultez votre plan alimentaire";    
+        // }
+
+        // &.workoutSegment:after{
+        //     content: "Choississez l'entrainement qui vous convient";    
+        // }
+
+        
+    }
+}
+
+// @media (max-width: 767px) {
+    .ui.inverted.segment.dashboard{
+        margin: 2em auto;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        background-image: $background-color-dashboard;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
+        padding: 0;  
+    }
+    .ui.two.column.grid{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        &>.row.pers{
+            padding:0;
+            height: 100%;
+            flex-direction: column;
+            &>.column.left{
+                flex-direction: row;
+                width: 100%;
+                padding: 0;
+            }
+            &>.column.right{
+                width:100%;
+                height: 100%;
+                padding: 1em 0.5em;
+            }
+        }
+    }
+    .ui.segment.dashboardItem{
+        box-shadow: 0 5px 5px -3px black;
+        flex-direction: column;
         margin: 0;
         padding: 0;
         background-color: transparent;
@@ -62,15 +121,14 @@
         justify-content: flex-start;
         align-items: center;
         border: transparent;
-        box-shadow: 5px 0 5px -3px black;
         border-radius: 0;
         height:100%;
         
-        //EFFETS BORDURE GAUCHE
+        //EFFETS BORDURE ONGLET
         &>.border{
-            width:8px;
-            height:100%;
-            border-radius:10px;
+            width:100%;
+            height:0.3em;
+            border-radius:0.15em;
             &#myfeeling{
                 background-image: $feeling-color;
             }
@@ -86,59 +144,59 @@
             &#workout {
                 background-image: $workout-color;
             }
-        } 
-        
+        }
+
         //EFFETS INFO ANIMATION SURVOLE ONGLET
         &:after{
-            opacity:0;
+            opacity: 0;
             position: absolute;
             top: 70%;
+            left: 0;
+            font-size: 0.6em;
+            line-height: 1em;
             text-align: center;
-            padding: 0 15px;
-            font-size: 0.8em;
+            padding: 0 0.2em;
         }
         &:hover:after{
             opacity: 1;
             transition: opacity 0.4s ease-in-out 1s;
-        } 
-        
-        &#focus{
-            background-image: $background-color-tag;
-            border-right: transparent;
-            box-shadow: -3px 0 5px -4px white;
-            border-radius: 6px;
+        }
+        &.myfeelingSegment:after{
+            content: "Personnalisez votre profil utilisateur";
+        }
 
+        &.goalsSegment:after{
+            content: "Précisez vos objectifs et préférences alimentaires";
+        }
+
+        &.mealplanSegment:after{
+            content: "Consultez votre plan alimentaire";
+        }
+
+        &.workoutSegment:after{
+            content: "Choississez l'entrainement qui vous convient";
+        }
+        &#focus{
+            background-image: $background-color-tag-mobile;
+            box-shadow: 0 -3px 5px -4px white;
+            border-radius: 6px;
             &:after{
                 color: white;
             }
         }
-        
-        &.myfeelingSegment:after{
-            content: "Personnalisez votre profil utilisateur";    
-        }
-
-        &.goalsSegment:after{
-            content: "Précisez vos objectifs et préférences alimentaires";    
-        }
-
-        &.mealplanSegment:after{
-            content: "Consultez votre plan alimentaire";    
-        }
-
-        &.workoutSegment:after{
-            content: "Choississez l'entrainement qui vous convient";    
-        }
-
-        //COULEUR ICONES ONGLET
+        // ICONES ONGLET
         &> .iconTag{
-            font-size: 3em;
-            margin: auto;            
-            
+            margin: auto;
+            height: 4.5em;            
             &> .icon{
-                height: 50px;
+                height: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin: auto;
+                position: relative;
+                top: 10%;
+                font-size: 2em;
             }
 
             &> #myfeelingIcon{
@@ -164,11 +222,88 @@
                 background-clip: text;
 	            -webkit-text-fill-color: transparent;
             }
-        }
-
-        
-        
+        } 
     }
+// }
 
+@media (min-width: 768px){
+    .ui.inverted.segment.dashboard{
+        height: 70%;
+        .ui.two.column.grid{
+            &>.row.pers{
+                flex-direction: row;
+                &>.column.left{
+                    flex-direction: column;
+                    width: 20%;
+                }
+                &>.column.right{
+                    width:80%;
+                    overflow-y: scroll;
+                    padding: 0 1em;
+                    &::-webkit-scrollbar{
+                        &-track{
+                            background-color: transparent;
+                            border-radius: 5px;
+                        }
+                        &-thumb{
+                            background-image: $mealPlan-color;
+                            &:hover{
+                                background-image: $goals-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .ui.segment.dashboardItem{
+        box-shadow: 5px 0 5px -3px black;
+        flex-direction: row;
+        &>.border{
+            width:0.4em;
+            height:100%;
+            border-radius:0.2em;
+        }
+        &.myfeelingSegment:after, &.goalsSegment:after, &.mealplanSegment:after, &.workoutSegment:after{
+            top: 70%;
+            width: 100%;
+            text-align: center;
+            padding: 0 1em;
+            margin: 0;
+            font-size: 0.7em;
+        }
+        &#focus{
+            background-image: $background-color-tag;
+            box-shadow: -3px 0 5px -4px white;
+        }
+        &> .iconTag{
+            &> .icon{
+                height: 70%;
+                top: 5%;
+                font-size: 2.5em;
+            }
+        }
+    }
 }
 
+@media (min-width: 1024px){
+    .ui.inverted.segment.dashboard{
+        width: 60%;
+        margin: auto;
+    }
+    .ui.segment.dashboardItem{
+        &>.border{
+            width:0.5em;
+            border-radius:0.25em;
+        }
+        &.myfeelingSegment:after, &.goalsSegment:after, &.mealplanSegment:after, &.workoutSegment:after{
+            font-size: 0.8em;
+            line-height: 1.2em;
+        }
+        &> .iconTag{
+            &> .icon{
+                font-size: 3em;
+            }
+        }
+    }
+}
