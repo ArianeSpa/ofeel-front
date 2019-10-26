@@ -24,7 +24,7 @@
     width: 100%;
 
     &>.ui.header.goalSubtitle{
-      color: $green4;
+      color: $green5;
       font-family: $cabin;
       text-align: center;
       margin: 0 auto 1em;
@@ -41,9 +41,11 @@
           &> .goalRadio{
             &>label{
               color: white; 
+              text-align: center;
+              
             } 
             &>input:checked + label{
-              color: $green4;
+              color: $green2;
             }
           }
           &>.image.icon{
@@ -61,7 +63,7 @@
               color: white; 
             } 
             &>input:checked + label{
-              color: $green4;
+              color: $green2;
             }
           }
           &>.image.icon{
@@ -71,7 +73,6 @@
       }
     }
   }
-
   &>.goalButton{
     margin: 0 auto;
     background-image: $goals-color;
@@ -84,7 +85,66 @@
   }
 }
 
+@media (min-width: 768px){
+  .ui.inverted.segment.goalSegment{
+    padding: 2em 0;
+    min-height: min-content;
 
+    &>.ui.form.goalForm{
+      width: 100%;
+
+      &>.fields{
+        &.goalGroup{
+          flex-direction: row;
+          width: 100%;
+          &>.goalDropdown{
+            min-width : 10em;
+          }
+        }
+        &.foodPrefGroup{
+          flex-direction: row;
+          max-width: 30em;
+          margin: auto;
+        }
+      }
+    }
+    
+  }
+}
+
+
+@media (min-width: 1024px){
+  .ui.inverted.segment.goalSegment{
+    justify-content: center;
+    &>.ui.form.goalForm{
+      &>.fields{
+        &.goalGroup{
+          max-width: 40em;
+          margin: 0 auto 1.5em;
+          justify-content: space-between;
+          &>.goalField{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0 1em;
+            &.weightLostField>.goalRadio>label{
+              width: 6em;
+            }
+            &.muscleGainField>.goalRadio>label{
+              width: 10em;
+            }
+            &.balanceField>.goalRadio>label{
+              width: 7em;
+            }
+          }
+        }
+        &.foodPrefGroup{
+          max-width: 40em;
+        }
+      }
+    }
+  }
+}
 
 
 
