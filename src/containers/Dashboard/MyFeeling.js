@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import MyFeeling from 'src/components/Dashboard/MyFeeling/MyFeeling';
+import MyFeeling from 'src/components/Dashboard/MyFeeling';
 
 // Action Creators
 import { saveProfil, setMyFeelingAPI, saveMC } from 'src/store/reducers/appReducer';
