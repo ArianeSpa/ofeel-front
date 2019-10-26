@@ -40,99 +40,101 @@ const Goals = ({
   };
 
   return (
-    <Segment inverted className="dashboard-goal">
-      <Header className="subtitle-goal" as="h4">Vous souhaitez</Header>
-      <Form className="choices">
-        <Form.Field>
-          <Radio
-            className="choice"
-            id="perte-de-poids"
-            label="Perdre du poids"
-            name="radioGroup"
-            onChange={handleChangeGoal}
-            checked={goal === 'perte-de-poids'}
-          />
-          <Image
-            className="icon"
-            src={iconBalance}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            className="choice"
-            id="prise-de-masse"
-            label="Prendre de la masse musculaire"
-            name="radioGroup"
-            onChange={handleChangeGoal}
-            checked={goal === 'prise-de-masse'}
+    <Segment inverted className="goalSegment">
+      <Form className="goalForm">
+        <Header className="goalSubtitle" as="h3">Votre objectif</Header>
+        <Form.Group className="goalGroup">
+          <Form.Field className="weightLostField goalField">
+            <Radio
+              className="goalRadio"
+              id="perte-de-poids"
+              label="Perdre du poids"
+              name="radioGroup"
+              onChange={handleChangeGoal}
+              checked={goal === 'perte-de-poids'}
+            />
+            <Image
+              className="icon"
+              src={iconBalance}
+            />
+          </Form.Field>
+          <Form.Field className="muscleGainField goalField">
+            <Radio
+              className="goalRadio"
+              id="prise-de-masse"
+              label="Prendre de la masse musculaire"
+              name="radioGroup"
+              onChange={handleChangeGoal}
+              checked={goal === 'prise-de-masse'}
 
-          />
-          <Image
-            className="icon"
-            src={iconMuscle}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            className="choice"
-            id="remise-en-forme"
-            label="Nutrition équilibrée"
-            name="radioGroup"
-            onChange={handleChangeGoal}
-            checked={goal === 'remise-en-forme'}
-          />
-          <Image
-            className="icon"
-            src={iconNutrition}
-          />
-        </Form.Field>
-      </Form>
-      <Header className="subtitle-goal" as="h4">Vos préférences alimentaires</Header>
-      <Form className="choices">
-        <Form.Field>
-          <Checkbox
-            id="sanslactose"
-            className="preference-alim"
-            label="Sans lactose"
-            onChange={handleChangeRegime}
-            checked={sanslactose}
-          />
-          <Image
-            className="icon"
-            src={iconLactose}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            id="sansgluten"
-            className="preference-alim"
-            label="Sans gluten"
-            onChange={handleChangeRegime}
-            checked={sansgluten}
-          />
-          <Image
-            className="icon"
-            src={iconGluten}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Checkbox
-            id="vegan"
-            className="preference-alim"
-            label="Vegan"
-            onChange={handleChangeRegime}
-            checked={vegan}
-          />
-          <Image
-            className="icon"
-            src={iconSalad}
-          />
-        </Form.Field>
+            />
+            <Image
+              className="icon"
+              src={iconMuscle}
+            />
+          </Form.Field>
+          <Form.Field className="balanceField goalField">
+            <Radio
+              className="goalRadio"
+              id="remise-en-forme"
+              label="Nutrition équilibrée"
+              name="radioGroup"
+              onChange={handleChangeGoal}
+              checked={goal === 'remise-en-forme'}
+            />
+            <Image
+              className="icon"
+              src={iconNutrition}
+            />
+          </Form.Field>
+        </Form.Group>
+        <Header className="goalSubtitle" as="h3">Vos préférences alimentaires</Header>
+        <Form.Group className="foodPrefGroup">
+          <Form.Field className="foodPrefField">
+            <Checkbox
+              id="sanslactose"
+              className="foodPrefCheckbox"
+              label="Sans lactose"
+              onChange={handleChangeRegime}
+              checked={sanslactose}
+            />
+            <Image
+              className="icon"
+              src={iconLactose}
+            />
+          </Form.Field>
+          <Form.Field className="foodPrefField">
+            <Checkbox
+              id="sansgluten"
+              className="foodPrefCheckbox"
+              label="Sans gluten"
+              onChange={handleChangeRegime}
+              checked={sansgluten}
+            />
+            <Image
+              className="icon"
+              src={iconGluten}
+            />
+          </Form.Field>
+          <Form.Field className="foodPrefField">
+            <Checkbox
+              id="vegan"
+              className="foodPrefCheckbox"
+              label="Vegan"
+              onChange={handleChangeRegime}
+              checked={vegan}
+            />
+            <Image
+              className="icon"
+              src={iconSalad}
+            />
+          </Form.Field>
+        </Form.Group>
       </Form>
       {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
       {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
 
-      <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
+      <Button className="goalButton" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );
 };
