@@ -49,8 +49,10 @@
       }
 
       &.ageheightweightGroup{
+        flex-direction: column;
         &>.ageheightweightDropdown{
           margin: 0 auto 0.8em;
+          min-width: 12em;;
           &>.dropdown.icon{
             color: $yellow1;
             font-size: 1.2em;
@@ -85,104 +87,49 @@
     }
   }
 
+  &>.myfeelingButton{
+    margin: 0 auto;
+  }
+
   //TODO : Css popup
 }
 
-
-
-
-
 @media (min-width: 768px){
-  // .ui {
-  //   &.inverted.segment.myfeelingSegment {
-  //     background: transparent;
-  //     animation-name: appear;
-  //     animation-duration: 0.3s;
-  //     animation-timing-function: ease-in-out
-  //   }
-  // }
-  h4.ui.header.myfeelingSubtitle {
-    display: flex;
-    justify-content: center;
-    // margin: 35px 0 35px 0;
-    // font-family: $cabin;
-    font-size: 1.3em;
-    // letter-spacing: .1em;
-    color: #fff;
-    text-shadow: 1px 1px 2px $yellow2;
-  }
+  .ui.inverted.segment.myfeelingSegment{
+    padding: 2em 0;
+    min-height: min-content;
 
-  .ui.form{
-    &.gender {
-    // display: flex;
-    // justify-content: center;
-    margin: 15px 0 15px 0;
-    }
-  }
+    &>.ui.form.myfeelingForm{
+      width: 100%;
 
-  .ui.form.choixProfil {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-  }
-
-  .ui.radio.checkbox {
-    margin-right: 15px;
-    font-size: 1.1em;
-    &>label {
-      color: #fff;
-      &:hover {
-        color: $yellow4;
-      } 
-    } 
-      &.choice-profil {
-        font-size: 1.1em;
-        &>label {
-          color: #fff;
-          &:hover {
-            color: $yellow4;
-          } 
+      &>.fields{
+        &.ageheightweightGroup{
+          flex-direction: row;
+          max-width: 35em;
+          margin: auto;
+          &>.ageheightweightDropdown{
+            min-width : 10em;
+          }
         }
       }
-  } 
-  .ui.radio.checkbox input:checked + label {
-    color: $yellow4;
-  } 
+    }
+  }
+}
 
 
-  .ui.radio.checkbox.choice-profil input:checked + label {
-    color: $yellow4;
-  } 
-
-  .ui.form.listMyFeeling{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      // background: none;
-      // border: none;
-      flex-wrap: wrap;
+@media (min-width: 1024px){
+  .ui.inverted.segment.myfeelingSegment{
+    justify-content: center;
+    &>.ui.form.myfeelingForm{
       &>.fields{
-        margin: 0.5em 1.5em;
+        &.ageheightweightGroup{
+          max-width: 40em;
+          margin: auto;
+          // &>.ageheightweightDropdown{
+          //   max-width : 12em;
+          // }
+        }
       }
-      &>.dropdown {
-        margin-right: 15px;
-      }
-  }
-
-  .ui.top.left.popup.transition.visible {
-    font-family: $livvic;
-    padding: 10px;
-    text-align: center;
-  }
-  .ui.button.save {
-    margin: auto;
-    display: block;
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    &:hover{
-        background-color: transparent;
-        border: 1px solid $yellow4;
-        color: $yellow4;
     }
   }
 }

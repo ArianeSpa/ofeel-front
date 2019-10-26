@@ -114,7 +114,7 @@ const MyFeeling = ({
 
       {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
       {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
-      <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
+      <Button className="save myfeelingButton" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );
 };
