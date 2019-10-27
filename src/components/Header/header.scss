@@ -65,10 +65,13 @@
     .ui.navbarMobile.menu {
         display: none;
     }
-    .ui.text.navbar.navbarDesktop.menu >.left.menu {
-        &>.item.desktopItem{
-            &>.ui.image.desktopLogo{
-                width: 7em;
+    .ui.text.navbarDesktop.menu {
+        display: flex;
+        &>.left.menu {
+            &>.item.desktopItem{
+                &>.ui.image.desktopLogo{
+                    width: 6em;
+                }
             }
         }
     }
@@ -76,11 +79,13 @@
 
 // Laptop ++
 @media (min-width: 1024px){
-    .ui.text.navbar.navbarDesktop.menu >.left.menu {
-        &>.item.desktopItem{
-            padding:0 ;
-            &>.ui.image.desktopLogo{
-                width: 10em;
+    .ui.text.navbarDesktop.menu{
+        &>.left.menu {
+            &>.item.desktopItem{
+                padding:0 ;
+                &>.ui.image.desktopLogo{
+                    width: 8em;
+                }
             }
         }
     }
