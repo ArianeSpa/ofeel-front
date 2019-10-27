@@ -24,20 +24,26 @@
         }
         &>.right.menu{
             align-items: center;
-            color: $yellow4;
+            color: $yellow5;
             &>.navbarDropdown{
                 &>.bars.icon{
                     font-size: 2em;
                 }
                 &:last-child .menu{
-                    right: 2em;
-                    top: -1em;
+                    right: 2.2em;
+                    top: -0.8em;
                 }
                 &>.navbarContent{
-                    border: 2px solid $yellow4;
+                    border: 2px solid $yellow5;
                     background-color: #2aafbbd5;
                     &::after{
-                        background-color: $yellow4;
+                        background-color: $yellow5;
+                        top: 0.3em;
+                        right: -0.8em;
+                        height: 2em;
+                        width: 0.7em;
+                        transform: none;
+                        clip-path: polygon(0 0, 0 100%, 100% 50%);
                     }
                     &>.item.navbar{
                         color: black !important;

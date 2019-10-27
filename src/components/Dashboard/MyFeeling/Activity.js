@@ -12,9 +12,9 @@ import './myfeeling.scss';
 const MyFeelingProfile = ({
   value, text, onchange, checkedvalue,
 }) => (
-  <Form.Field className="field-profil-oneType">
+  <Form.Field className="activityField">
     <Radio
-      className="choice-profil"
+      className="activityRadio"
       label={value}
       name="activity"
       value={value}
@@ -23,7 +23,8 @@ const MyFeelingProfile = ({
     />
     <Popup
       content={text}
-      trigger={<Icon color="yellow" name="question circle outline" />}
+      className="activityPopup"
+      trigger={<Icon name="question circle outline" className="information" />}
     />
   </Form.Field>
 );

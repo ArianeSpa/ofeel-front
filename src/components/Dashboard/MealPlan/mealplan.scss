@@ -1,183 +1,360 @@
 @import 'src/styles/vars';
 
-
 .ui.equal.width.grid.mealGrid{
-  padding: 10px;
-  min-height: fit-content;
-  height: 100%;
   margin: 0;
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-}
-
-div.row.bothRow.meals{
   padding: 0;
-  height: fit-content;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 2em;
-}
+  &>.row.bothRow.rowMeals {
+    margin-bottom: 1em;
+    padding: 0 0 1em;
+    flex-direction: column;
+    &>.column.tricol{
+      margin-bottom: 1em;
+      padding: 0 0 2em;
+      width: 100%;
+      border-bottom: 1px solid $blue5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &>.ui.segment.cssSegment{
+        margin: 0 auto 0.8em;
+        padding: 0;
+        max-width: 20em;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &>.ui.header{
+          margin: 0 2em 0 0;
+          padding: 0;
+          height: unset;
+          vertical-align: middle;
+          font-size: 0.9em;
+          text-transform: uppercase;
+          color: $blue5;
+        }
+        &>.ui.toggle.checkbox.cheat{
+          &>input{
+            &:checked ~ label:after, :checked ~ .box:after{
+              left: 1em;
+            }
+            &:checked + label{
+              color: $pink5 !important;
+              &::before{
+                background-color: $pink5 !important;
+              }
+            }
+            &+label{
+              color: white;
+              font-style: italic;
+            }
+          }
+          &>label{
+            padding: 0 0 0 2.5em;
+            &::before{
+              width: 2em;
+              height: 1em;
+            }
+            &::after{
+              width: 1em;
+              height: 1em;
+            }
+          }
+        }
+      }
+      &>.ui.form.cssForm{
+        margin: 0 auto;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        &>.fields.cssField{
+          margin: 0 0 0.5em;
+          width: max-content;
+          height: max-content;
+          border-bottom: 1px dotted $pink4;
+          &>.label.cssLabel{
+            margin: 0 1em 0 0;
+            padding: 0;
+            background-color: transparent;
+            color: white;
+            font-size: 0.9em;
+            height: max-content;
+            align-self: center;
+          }
+          &>.ui.selection.visible.dropdown > .text:not(.default){
+            color: $green2;
+          }
+          &>.ui.selection.dropdown{
+            padding:  0;
+            width: max-content;
+            min-height: 1.8em;
+            height: max-content;
+            background-color: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: unset;
+            &>.text{
+              margin: 0 0.7em 0 0;
+              font-size: 0.9em;
+              color: white;
+              height: max-content;
+            }
+            &>.dropdown.icon{
+              padding: 0;
+              margin: 0;
+              float: none;
+              position: static;
+              top: 0;
+              left: 0;
+            }
+            &>.menu.transition{
+  //             top: 110%;
+              right: 0;
+              left: unset;
+              width: 8em;
+              max-width: unset;
+              min-width: unset;;
 
-div.column.tricol{
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 3em;
-  align-items: center;
-  height: fit-content;
-  width: fit-content;
-  // max-width: 30%;
-  &.bfst, &.lch{
-    border-right: 1px solid $blue5;
-  }
-}
-
-div.ui.segment.cssSegment{
-  background-color: transparent;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: center;
-  width: 100%;
-  min-width: fit-content;
-  border: transparent;
-  height: 5em;
-  flex-wrap: wrap;
-
-  &>.toggle.checkbox input:checked + label {
-    color:$pink5 !important;
-    font-weight: bold;
-    &::before{
-      background-color: $pink5 !important;
+              &::-webkit-scrollbar{
+                width: 5px;
+                &-track{
+                  background-color: transparent;
+                  border-radius: 2.5px;
+                }
+                &-thumb{
+                  background-image: $goals-color;
+                  &:hover{
+                      background-image: $goals-color;
+                  }
+                }
+              }
+              &>.selected.item{
+                color: $green2;
+              }
+            }
+          }
+        }
+        &>.fruit{
+          margin-bottom: 1em;
+          font-weight: bold;
+          font-size: 0.9em;
+          text-align: right;
+        }
+      }
+      &>.messagecheat{
+        max-width: 25em;
+        margin: auto;
+        text-align: center;
+        font-size: 0.8em;
+      }
     }
   }
-
-  &>.toggle.checkbox input.hidden + label{
-    color: white;
-    font-style: italic;
-  }
-  &::before{
-    display: none;
-  }
-}
-
-h4.ui.header{
-  color: white;
-  margin: 0;
-  padding-right: 2em;
-  text-transform: uppercase;
-  padding-bottom: 0.7em;
-  font-size: 1em;
-}
-
-.ui.form{
-  width: 100%;
-}
-
-form.ui.inverted.form.cssForm{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-content: flex-end;
-  width: 100%;
-  min-height: 80%;
-}
-
-.ui.form .fields.cssField{
-  // max-width: fit-content;
-  // min-width: min-content;
-  width: 100%;
-  align-self: flex-end;
-  margin: 1em 0 2em;
-
-}
-
-.ui.label.cssLabel{
-  background-color: transparent;
-  color: white;
-  width: 30%;
-  text-align: right;
-  padding: 0;
-  align-self: center;
-  margin-right: 1em;
-}
-
-div.row.bothRow.snack{
-  height: fit-content;
-  border-top: 1px solid $blue5;
-  padding: 2em 0 ;
-  flex-wrap: wrap;
-  min-width: fit-content;
-}
-
-.ui.grid > .row > .column.leftsnackColumn{
-  width: fit-content ;
-  height: 100%;
-}
-
-.ui.grid > .row > .column.snackColumn{
-  width: 70% ;
-  height: 100%;
-  display: flex !important;
-}
-
-form.ui.inverted.form.snackForm.cssForm {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ui.segment.snackSegment{
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-
-  &>.header{
-    color: white;
-    padding-bottom: 0.5em;
-  }
-
-  &>.toggle.checkbox input:checked + label {
-    color:$yellow4 !important;
-    font-weight: bold;
-    &::before{
-      background-color: $yellow4 !important;
+  &>.row.bothRow.rowSnack{
+    flex-direction: column;
+    padding-top: 0;
+    &>.column{
+      width: 100%;
+      &>.snackSegment{
+        margin: 0 auto 0.8em;
+        padding: 0;
+        max-width: 20em;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &>h4.ui.header {
+          margin: 0 2em 0 0;
+          padding: 0;
+          height: unset;
+          vertical-align: middle;
+          font-size: 0.9em;
+          text-transform: uppercase;
+          color: $yellow3;
+        }
+        &>.ui.toggle.checkbox.cheat{
+          &>input{
+            &:checked ~ label:after, :checked ~ .box:after{
+              left: 1em;
+            }
+            &:checked + label{
+              color: $yellow3 !important;
+              &::before{
+                background-color: $yellow3 !important;
+              }
+            }
+            &+label{
+              color: white;
+              font-style: italic;
+            }
+          }
+          &>label{
+            padding: 0 0 0 2.5em;
+            &::before{
+              width: 2em;
+              height: 1em;
+            }
+            &::after{
+              width: 1em;
+              height: 1em;
+            }
+          }
+        }
+      }
+    }
+    &>.snackColumn {
+      padding:  0;
+      display: flex;
+      flex-direction: column;
+      &>.ui.form.cssForm {
+        margin:  0 auto;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        &>.fields.cssField {
+          margin:  0 0 0.5em;
+          width:  max-content;
+          height: max-content;
+          border-bottom: 1px dotted $pink4;
+          &>.ui.label.snackLabel {
+            margin: 0 1em 0 0;
+            padding: 0;
+            background-color: transparent;
+            color: white;
+            font-size: 0.9em;
+            height: max-content;
+            align-self: center;
+          }
+          &>.ui.selection.visible.dropdown > .text:not(.default){
+            color: $yellow1;
+          }
+          &>.ui.selection.dropdown {
+            color: $yellow1;
+            padding: 0;
+            width: max-content;
+            min-height: 1.8em;
+            height: max-content;
+            background-color: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: unset;
+            &>.text {
+              margin: 0 0.7em 0 0;
+              font-size: 0.9em;
+              color: white;
+              height: max-content;
+            }
+            &>i.dropdown.icon {
+                padding: 0;
+                margin: 0;
+                float: none;
+                position: static;
+                /* top: 0; */
+                /* left: 0; */
+            }
+            &>.menu.transition {
+                right: 0;
+                left: unset;
+                width: 8em;
+              &::-webkit-scrollbar{
+                width: 5px;
+                &-track{
+                  background-color: transparent;
+                  border-radius: 2.5px;
+                }
+                &-thumb{
+                  background-image: $goals-color;
+                  &:hover{
+                      background-image: $goals-color;
+                  }
+                }
+              }
+              &>.selected.item{
+                color: $yellow1;
+              }
+            }
+          }
+        }
+        &>.fruit{
+          margin-bottom: 1em;
+          font-weight: bold;
+          font-size: 0.9em;
+          text-align: right;
+        }
+      }
+      &>.snackmessage{
+        max-width: 25em;
+        margin: auto;
+        text-align: center;
+        font-size: 0.8em;
+      }
     }
   }
+}
 
-  &>.toggle.checkbox input.hidden + label{
-    color: white;
-    font-style: italic;
+@media (min-width: 768px){
+  .ui.equal.width.grid.mealGrid{
+    padding: 1em 0;
   }
 }
 
-.ui.form .fields.snackField{
-  margin: 0.5em 0;
-  width: 50%;
-}
+@media (min-width: 1040px){
+  .ui.equal.width.grid.mealGrid{
+    &>.row.bothRow.rowMeals{
+      margin: 0 auto 1em;
+      padding: 0;
+      border-bottom: 1px solid $blue5;
+      flex-direction: row;
+      justify-content: space-between;
+      &>.column.tricol{
+        margin-bottom: 0;
+        flex-grow: 0;
+        width: 31%;
+        border-bottom: none;
+        &>.ui.segment.cssSegment{
+          margin: 0 auto 2em;
+          flex-direction: column;
+          border-bottom: 2px solid $blue5;
+          &>.ui.header{
+            margin: 0;
+          }
+        }
+        &>.ui.form.cssForm{
+          border-right: 1px solid $blue5;
+          &>.fields.cssField{
+            margin: 0 0 1em auto;
+            padding-right: 0.5em;
+          }
+          &>.fruit{
+            padding-right: 0.5em;
+          }
+        }
+      }
+    }
+    &>.row.bothRow.rowSnack{
+      &>.column{
+        &>.snackSegment{
+          border-bottom: 2px solid $yellow3;
+        }
+      }
+    }
+  }
+} 
 
-.ui.label.snackLabel {
-  background-color: transparent;
-  color: white;
-  width: 30%;
-  text-align: left;
-  padding: 0;
-  align-self: center;
-}
 
-.fruit{
-  font-weight: bold;
-}
 
-.snackmessage{
-  color: white;
-  margin: auto;
-}
+
+
 
 @keyframes appear{
   from{
@@ -192,16 +369,4 @@ form.ui.inverted.form.snackForm.cssForm {
   animation-name: appear;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
-}
-
-
-@media (max-width: 1400px) {
-  div.row.bothRow.meals{
-    
-    width: fit-content;
-    padding: 0;
-    height: fit-content;
-    flex-wrap: wrap;
-    margin-bottom: 2em;
-  }
 }

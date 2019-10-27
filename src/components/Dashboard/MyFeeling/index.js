@@ -1,13 +1,13 @@
 // == Import : npm
 import React from 'react';
 import {
-  Header, Segment, Form, Checkbox, Dropdown, Button, Label,
+  Header, Segment, Form, Checkbox, Dropdown, Button,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 // == Import : local
 import './myfeeling.scss';
-import MyFeelingProfile from 'src/components/Dashboard/MyFeeling/MyFeelingProfile';
+import Activity from 'src/components/Dashboard/MyFeeling/Activity';
 import setMetabAndCal from 'src/utils/setMetabAndCal';
 import {
   ageGenerator, heightGenerator, weightGenerator, activityTable,
@@ -31,78 +31,76 @@ const MyFeeling = ({
   };
 
   return (
-    <Segment inverted className="dashboard-feeling">
-      <Header className="subtitle-feeling" as="h4">Parlons un peu de vous!</Header>
-      <Form className="gender">
-        <Form.Field className="label">
-          <Checkbox
-            value="homme"
-            radio
-            label="Homme"
-            name="gender"
-            id="homme"
-            checked={gender === 'homme'}
-            onChange={handleChangeProfil}
-          />
-        </Form.Field>
-        <Form.Field className="label">
-          <Checkbox
-            value="femme"
-            radio
-            label="Femme"
-            name="gender"
-            id="femme"
-            checked={gender === 'femme'}
-            onChange={handleChangeProfil}
-          />
-        </Form.Field>
-      </Form>
-      <Form className="listMyFeeling">
-        <Form.Group>
-          <Label className="cssLabel ageLabel">Âge</Label>
+    <Segment inverted className="myfeelingSegment">
+      <Form className="myfeelingForm">
+        <Header className="myfeelingSubtitle" as="h3">Parlons un peu de vous!</Header>
+
+        <Form.Group className="genderGroup">
+          <Form.Field className="genderField">
+            <Checkbox
+              value="homme"
+              radio
+              label="Homme"
+              name="gender"
+              id="homme"
+              className="genderCheckbox"
+              checked={gender === 'homme'}
+              onChange={handleChangeProfil}
+            />
+          </Form.Field>
+          <Form.Field className="genderField">
+            <Checkbox
+              value="femme"
+              radio
+              label="Femme"
+              name="gender"
+              id="femme"
+              className="genderCheckbox"
+              checked={gender === 'femme'}
+              onChange={handleChangeProfil}
+            />
+          </Form.Field>
+        </Form.Group>
+        <Form.Group className="ageheightweightGroup">
           <Dropdown
+            text={`Age : ${age} ans`}
             id="age"
+            className="ageheightweightDropdown"
             name="age"
             value={age}
-            label="age"
-            placeholder="Age"
             options={ageGenerator()}
             selection
             onChange={handleChangeProfil}
           />
-        </Form.Group>
 
-        <Form.Group>
-          <Label className="cssLabel tailleLabel">Taille</Label>
           <Dropdown
+            text={`Taille : ${taille} cm`}
             id="taille"
+            className="ageheightweightDropdown"
             name="taille"
             value={taille}
-            placeholder="Taille"
             options={heightGenerator()}
             selection
             onChange={handleChangeProfil}
           />
-        </Form.Group>
 
-        <Form.Group>
-          <Label className="cssLabel tailleLabel">Poids</Label>
           <Dropdown
+            text={`Poids : ${poids} kg`}
             id="poids"
+            className="ageheightweightDropdown"
             name="poids"
             value={poids}
-            placeholder="Poids"
             options={weightGenerator()}
             selection
             onChange={handleChangeProfil}
           />
         </Form.Group>
-      </Form>
-      <Header className="subtitle-feeling" as="h4"> Votre profil d'activité physique</Header>
-      <Form className="choixProfil">
-        <Form.Field className="field-profil">
+
+        <Header className="myfeelingSubtitle" as="h3"> Votre profil d'activité physique</Header>
+        <Form.Group className="activityGroup">
+          {/* <Form.Field className="activityFields"> */}
           {activityTable.map((currentProfil) => (
-            <MyFeelingProfile
+            <Activity
               key={currentProfil.id}
               value={currentProfil.value}
               text={currentProfil.text}
@@ -110,11 +108,13 @@ const MyFeeling = ({
               checkedvalue={activity}
             />
           ))}
-        </Form.Field>
+          {/* </Form.Field> */}
+        </Form.Group>
       </Form>
+
       {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
       {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
-      <Button className="save" type="submit" onClick={calculAndSend}>Enregistrer</Button>
+      <Button className="save myfeelingButton" type="submit" onClick={calculAndSend}>Enregistrer</Button>
     </Segment>
   );
 };

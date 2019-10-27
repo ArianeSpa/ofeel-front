@@ -17,9 +17,13 @@ const WorkoutList = ({
   course, salle, maison, debutant, intermediaire, confirme,
   changeSort, sortWorkoutData, workoutToShow, cancelSort,
 }) => {
-  const createMarkup = (content) => ({
-    __html: DOMPurify.sanitize(content),
-  });
+  const createMarkup = (content) => {
+    const deleteLinkTag = content.replace(/<[^>]*a[^>]*>/g, '');
+    const transformBlank = deleteLinkTag.replace(/&nbsp;/g, ' ');
+    const deleteEmTag = transformBlank.replace(/<[^>]*em[^>]*>/g, '');
+    const purifiedContent = { __html: DOMPurify.sanitize(deleteEmTag) };
+    return (purifiedContent);
+  };
   const displayContent = (event, data) => {
     changeActiveIndex(data.index);
   };
@@ -30,36 +34,86 @@ const WorkoutList = ({
   const cancelSortChoice = () => {
     cancelSort();
   };
+  let cancel = false;
+  if (course || salle || maison || debutant || intermediaire || confirme) {
+    cancel = true;
+  }
+  if (!course && !salle && !maison && !debutant && !intermediaire && !confirme) {
+    cancelSort();
+  }
   return (
-    <Container className="globalContainer">
-      <Segment className="buttonSort">
-        <Button id="course" onClick={sort} className={course ? 'courseFocus' : ''}>Course</Button>
-        <Button id="salle" onClick={sort} className={salle ? 'salleFocus' : ''}>Salle</Button>
-        <Button id="maison" onClick={sort} className={maison ? 'maisonFocus' : ''}>Maison</Button>
-        <Button id="debutant" onClick={sort} className={debutant ? 'debutantFocus' : ''}>Débutant</Button>
-        <Button id="intermediaire" onClick={sort} className={intermediaire ? 'interFocus' : ''}>Intermédiaire</Button>
-        <Button id="confirme" onClick={sort} className={confirme ? 'confirmeFocus' : ''}>Confirmé</Button>
-        <Button className="cancelButton" onClick={cancelSortChoice}>Effacer les filtres</Button>
+    <Container className="workoutContainer">
+      <Segment className="buttonSegment">
+        <Button
+          id="course"
+          onClick={sort}
+          className={course ? 'courseSelected selected' : ''}
+        >
+          Course à pied
+        </Button>
+        <Button
+          id="salle"
+          onClick={sort}
+          className={salle ? 'salleSelected selected' : ''}
+        >
+          Musculation en salle
+        </Button>
+        <Button
+          id="maison"
+          onClick={sort}
+          className={maison ? 'maisonSelected selected' : ''}
+        >
+          A la maison
+        </Button>
+        <Button
+          id="debutant"
+          onClick={sort}
+          className={debutant ? 'debutantSelected selected' : ''}
+        >
+          Débutant
+        </Button>
+        <Button
+          id="intermediaire"
+          onClick={sort}
+          className={intermediaire ? 'interSelected selected' : ''}
+        >
+          Intermédiaire
+        </Button>
+        <Button
+          id="confirme"
+          onClick={sort}
+          className={confirme ? 'confirmeSelected selected' : ''}
+        >
+          Confirmé
+        </Button>
+        { cancel && (
+          <Button
+            className="cancelButton"
+            onClick={cancelSortChoice}
+          >
+            Annuler le tri
+          </Button>
+        )}
       </Segment>
-      <Container className="workoutContainer" stackable="true">
+      <Container stackable="true" className="trainingContainer">
         <Accordion fluid styled className="wodAccordion">
 
           {workoutToShow.map((currentWorkout) => (
-            <>
+            <React.Fragment key={currentWorkout.id}>
               <Accordion.Title
-                className="cssTitleWod"
+                className="accordionTitle"
                 active={activeIndex === currentWorkout.id}
                 index={currentWorkout.id}
                 onClick={displayContent}
               >
                 <Icon name="dropdown" />
-                <Item.Header className="header-workout">{currentWorkout.name}</Item.Header>
+                <Item.Header className="accordionHeader">{currentWorkout.name}</Item.Header>
               </Accordion.Title>
-              <Accordion.Content active={activeIndex === currentWorkout.id}>
-                <Container className="contentContainer">
+              <Accordion.Content active={activeIndex === currentWorkout.id} className="accordionContent">
+                <Container className="accordionContainer">
                   <Image
                     spaced="left"
-                    className="type-img"
+                    className="imageWod"
                     src={setImageWorkout(currentWorkout.slug)}
                     wrapped
                     ui={false}
@@ -72,7 +126,7 @@ const WorkoutList = ({
                 </Container>
               </Accordion.Content>
 
-            </>
+            </React.Fragment>
           ))}
 
         </Accordion>

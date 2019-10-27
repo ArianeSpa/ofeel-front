@@ -73,7 +73,7 @@ const MealPlan = ({
     <>
       {!loadingfood && (
       <Grid className="mealGrid" columns="equal">
-        <Grid.Row className="bothRow meals">
+        <Grid.Row className="bothRow rowMeals">
 
           {/* COLONNE PETIT DEJEUNER */}
           <Grid.Column className="tricol bfst">
@@ -254,7 +254,7 @@ const MealPlan = ({
 
         {/* LIGNE COLLATION */}
 
-        <Grid.Row className="bothRow snack">
+        <Grid.Row className="bothRow rowSnack">
           <Grid.Column className="leftsnackColumn">
             <Segment className="snackSegment">
               <Header as="h4">Collation</Header>

@@ -9,92 +9,233 @@
   }
 }
 
-.ui {
-  &.inverted.segment.dashboard-goal {
-    background: transparent;
-    animation-name: appear;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-in-out;
-  }
-}
-.ui.form.choices {
+.ui.inverted.segment.goalSegment{
+  background: transparent;
+  animation-name: appear;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
   display: flex;
-  justify-content: space-evenly;
-  font-family: $livvic;
-  margin: auto;
-  margin-bottom: 4em;
-  width:  90%;
-  min-height: fit-content;
-  &> .field {
-    max-width: 30%;
-    text-align: center;
-  }
-}
+  flex-direction: column;
+  padding: 1.5em 0.5em 0.5em;
 
+  &>.ui.form.goalForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
+    &>.ui.header.goalSubtitle{
+      color: $green5;
+      font-family: $cabin;
+      text-align: center;
+      margin: 0 auto 1em;
+    }
 
-.ui.checkbox.preference-alim{
-  font-size: 1.1em;
-  &>label {
-    color:#fff;
-    } 
-  }
+    &>.fields{
+      width: 100%;
+      margin: 0 0 1.5em;
 
-.ui.checkbox.preference-alim  input.hidden + label {
-    color: #fff;
-    &:hover {
-      color: $green2;
+      &.goalGroup{
+        flex-direction: column;
+        &>.goalField{
+          margin: 0 auto 1.5em;
+          &> .goalRadio{
+            &>label{
+              color: white; 
+              text-align: center;
+              
+            } 
+            &>input:checked + label{
+              color: $green2;
+            }
+          }
+          &>.image.icon{
+            margin: auto;
+          }
+        }
+      }
+
+      &.foodPrefGroup{
+        flex-direction: column;
+        &>.foodPrefField{
+          margin: 0 auto 1.5em;
+          &> .foodPrefCheckbox{
+            &>label{
+              color: white; 
+            } 
+            &>input:checked + label{
+              color: $green2;
+            }
+          }
+          &>.image.icon{
+            margin: auto;
+          }
+        }
+      }
     }
   }
-
-div.ui.checkbox.preference-alim  input:checked + label {
-    color: $green2;
-}
-
-
-.ui.radio.checkbox.choice {
-  font-size: 1.1em;
-    &>label {
-      color:#fff;
-      &:hover {
-        color: $green2;
-      }
-    } 
-}
-
-.ui.radio.checkbox.choice  input:checked + label {
-  color: $green2;
-}
-
-
-h4.ui.header.subtitle-goal {
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  margin: 2em 0 3em;
-  font-family: $cabin;
-  font-size: 1.3em;
-  color: #fff;
-  text-shadow: 1px 1px 2px $green2;
-}
- .ui.button.save {
-  margin: auto;
-  display: block;
-  background-image: $feeling-color;
-  border: 1px solid transparent;
-  &:hover{
-      background-color: transparent;
-      border: 1px solid $yellow4;
-      color: $yellow4;
+  &>.goalButton{
+    margin: 0 auto;
+    background-image: $goals-color;
+    border: 1px solid transparent;
+    &:hover{
+        background: transparent;
+        border: 1px solid $green4;
+        color: $green4;
+    }
   }
 }
-.ui.image.icon {
-  margin: auto;
+
+@media (min-width: 768px){
+  .ui.inverted.segment.goalSegment{
+    padding: 2em 0;
+    min-height: min-content;
+
+    &>.ui.form.goalForm{
+      width: 100%;
+
+      &>.fields{
+        &.goalGroup{
+          flex-direction: row;
+          width: 100%;
+          &>.goalDropdown{
+            min-width : 10em;
+          }
+        }
+        &.foodPrefGroup{
+          flex-direction: row;
+          max-width: 30em;
+          margin: auto;
+        }
+      }
+    }
+    
+  }
 }
 
-button.ui.button.save {
-  min-height: fit-content;
+
+@media (min-width: 1024px){
+  .ui.inverted.segment.goalSegment{
+    justify-content: center;
+    &>.ui.form.goalForm{
+      &>.fields{
+        &.goalGroup{
+          max-width: 40em;
+          margin: 0 auto 1.5em;
+          justify-content: space-between;
+          &>.goalField{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0 1em;
+            &.weightLostField>.goalRadio>label{
+              width: 6em;
+            }
+            &.muscleGainField>.goalRadio>label{
+              width: 10em;
+            }
+            &.balanceField>.goalRadio>label{
+              width: 7em;
+            }
+          }
+        }
+        &.foodPrefGroup{
+          max-width: 40em;
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+// .ui {
+//   &.inverted.segment.dashboard-goal {
+//     background: transparent;
+//     animation-name: appear;
+//     animation-duration: 0.3s;
+//     animation-timing-function: ease-in-out;
+//   }
+// }
+// .ui.form.choices {
+//   display: flex;
+//   justify-content: space-evenly;
+//   font-family: $livvic;
+//   margin: auto;
+//   margin-bottom: 4em;
+//   width:  90%;
+//   min-height: fit-content;
+//   &> .field {
+//     max-width: 30%;
+//     text-align: center;
+//   }
+// }
+
+
+
+// .ui.checkbox.preference-alim{
+//   font-size: 1.1em;
+//   &>label {
+//     color:#fff;
+//     } 
+//   }
+
+// .ui.checkbox.preference-alim  input.hidden + label {
+//     color: #fff;
+//     &:hover {
+//       color: $green2;
+//     }
+//   }
+
+// div.ui.checkbox.preference-alim  input:checked + label {
+//     color: $green2;
+// }
+
+
+// .ui.radio.checkbox.choice {
+//   font-size: 1.1em;
+//     &>label {
+//       color:#fff;
+//       &:hover {
+//         color: $green2;
+//       }
+//     } 
+// }
+
+// .ui.radio.checkbox.choice  input:checked + label {
+//   color: $green2;
+// }
+
+
+// h4.ui.header.subtitle-goal {
+//   display: flex;
+//   justify-content: center;
+//   // align-items: center;
+//   margin: 2em 0 3em;
+//   font-family: $cabin;
+//   font-size: 1.3em;
+//   color: #fff;
+//   text-shadow: 1px 1px 2px $green2;
+// }
+//  .ui.button.save {
+//   margin: auto;
+//   display: block;
+//   background-image: $feeling-color;
+//   border: 1px solid transparent;
+//   &:hover{
+//       background-color: transparent;
+//       border: 1px solid $green4;
+//       color: $green4;
+//   }
+// }
+// .ui.image.icon {
+//   margin: auto;
+// }
+
+// button.ui.button.save {
+//   min-height: fit-content;
+// }
 
 // message enregistrement des données sur goals
 
