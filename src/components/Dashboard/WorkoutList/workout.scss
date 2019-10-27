@@ -22,62 +22,59 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    max-width: 22em;
+    margin: 0 auto 0.5em;
     &>.ui.button{
-      padding: 0.5em;
+      padding: 0.4em;
       margin: 0.2em;
-      font-size: 0.8em;
+      font-size: 0.7em;
       background-color: #fff;
-      &:hover{
-        background-color: rgb(43, 42, 42);
-      }
-      &:focus{
+      border: 1px solid transparent;
+      color: rgba(0, 0, 0, 0.6);
+      &:focus, &:hover{
         background-color: #fff;
+        border: 1px solid transparent;
         color: rgba(0, 0, 0, 0.6);
       }
-      &.iconFocus{
+      // &:hover{
+      //   background-color: rgb(43, 42, 42);
+      //   border: 1px solid transparent;
+      //   color: #fff;
+      // }
+      &.selected{
         background-color: rgb(43, 42, 42);
       }
-      &.courseFocus, &.salleFocus, &.maisonFocus{
-        background-color: rgb(43, 42, 42);
+      &.courseSelected, &.salleSelected, &.maisonSelected{
         color: $pink5;
         &:focus{
-          background-color: rgb(43, 42, 42);
           color: $pink5;
         }
       }
-      &.debutantFocus{
-        background-color: rgb(43, 42, 42);
+      &.debutantSelected{
         color: $green5;
         &:focus{
-          background-color: rgb(43, 42, 42);
           color: $green5;
         }
       }
-      &.interFocus{
-        background-color: rgb(43, 42, 42);
+      &.interSelected{
         color: $yellow1;
         &:focus{
-          background-color: rgb(43, 42, 42);
           color: $yellow1;
         }
       }
-      &.confirmeFocus{
-        background-color: rgb(43, 42, 42);
+      &.confirmeSelected{
         color: $pink1;
         &:focus{
-          background-color: rgb(43, 42, 42);
           color: $pink1;
         }
       }
       &.cancelButton{
         background-image: $workout-color;
-        border: 1px solid transparent;
         color: rgba(0, 0, 0, 0.6);
         &:hover{
-            background: transparent;
-            border: 1px solid $pink2;
-            color: $pink2;
+          background-image: $workout-color;
+          color: rgba(0, 0, 0, 0.6);
         }
       }
     }
@@ -111,77 +108,74 @@
           &>.image.imageWod>img{
             width: 10em;
           }
-          &>.contentWod>p{
-            color: white;
-            font-size : 0.8em;
-            &>a{
+          &>.contentWod{
+            margin-bottom: 1em;
+            &>p{
               color: white;
-            font-size : 0.8em;
+              font-size : 0.8em;
             }
           }
-          
         }
       }
     }
   }
 }
 
+@media (min-width: 768px){
+  .ui.container.workoutContainer{
+    &>.ui.segment.buttonSegment{
+      margin: 0 auto 0.8em;
+      &>.ui.button{
+        padding: 0.5em;
+        margin: 0.2em;
+        font-size: 0.8em;
+        &:hover{
+          background-color: rgb(43, 42, 42);
+          color: #fff;
+        }
+        &.cancelButton{
+          &:hover{
+              background: transparent;
+              border: 1px solid $pink2;
+              color: $pink2;
+          }
+        }
+      }
+    }
+    &>.ui.container.trainingContainer{
+      &>.accordion.ui.fluid.styled.wodAccordion{
+        &>.title.accordionTitle{
+          clear: left;
+          &>.header.accordionHeader{
+            font-size: 1.1em;
+          }
+        }
+        &>.content.accordionContent{
+          min-height: 8em;
+          &>.ui.container.accordionContainer{
+            display: flex;
+            flex-direction: row;
+            &>.image.imageWod{
+              width: 10em;
+              margin-right: 1em;
+              float: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-
-// .accordion.ui.fluid.styled.wodAccordion {
-//   background-color: transparent;
-//   box-shadow: none;
-//   &> .content p {
-//     color: white;
-//     font-size : 1em;
-//   }
-//   &> .content a {
-//     color: white;
-//     cursor: default;
-//   }
-// }
-
-
-// // div.description {
-// //   margin: 15px;
-// //   font-size: 0.8em;
-// //   color: #fff!important;
-
-// //   &>p {
-// //     font-size : 1.2em;
-// //     &>a:hover {
-// //       color: $pink4;
-// //     }
-// //   }
-// // }
-// .header {
-//   &.header-workout {
-//     display: block;
-//     font-family: $cabin;
-//     font-size: 1.3em;
-//     color: #fff!important;
-//     text-shadow: 1px 1px 2px $pink4;
-//     padding: 0 1em;
-//   }
-// }
-// .image.type-img{
-//   margin-top: 0.2em;
-//   &>img {
-//       width: 170px;
-//   }
-// }
-
-// .ui.container.contentContainer{
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   color: white;
-// }
-
-
-// .contentWod{
-//   margin-left: 1em;
-//   &>a{
-//     color: white;
-//   }
-// }
+@media (min-width: 1024px){
+  .ui.container.workoutContainer{
+    &>.ui.segment.buttonSegment{
+      max-width: 26em;
+      &>.ui.button{
+        padding: 0.6em;
+        margin: 0.3em;
+        font-size: 0.9em;
+      }
+    }
+  }
+}

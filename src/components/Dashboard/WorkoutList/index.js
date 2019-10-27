@@ -17,9 +17,13 @@ const WorkoutList = ({
   course, salle, maison, debutant, intermediaire, confirme,
   changeSort, sortWorkoutData, workoutToShow, cancelSort,
 }) => {
-  const createMarkup = (content) => ({
-    __html: DOMPurify.sanitize(content),
-  });
+  const createMarkup = (content) => {
+    const deleteLinkTag = content.replace(/<[^>]*a[^>]*>/g, '');
+    const transformBlank = deleteLinkTag.replace(/&nbsp;/g, ' ');
+    const deleteEmTag = transformBlank.replace(/<[^>]*em[^>]*>/g, '');
+    const purifiedContent = { __html: DOMPurify.sanitize(deleteEmTag) };
+    return (purifiedContent);
+  };
   const displayContent = (event, data) => {
     changeActiveIndex(data.index);
   };
@@ -43,42 +47,42 @@ const WorkoutList = ({
         <Button
           id="course"
           onClick={sort}
-          className={course ? 'courseFocus' : ''}
+          className={course ? 'courseSelected selected' : ''}
         >
-          Course
+          Course à pied
         </Button>
         <Button
           id="salle"
           onClick={sort}
-          className={salle ? 'salleFocus' : ''}
+          className={salle ? 'salleSelected selected' : ''}
         >
-          Salle
+          Musculation en salle
         </Button>
         <Button
           id="maison"
           onClick={sort}
-          className={maison ? 'maisonFocus' : ''}
+          className={maison ? 'maisonSelected selected' : ''}
         >
-          Maison
+          A la maison
         </Button>
         <Button
           id="debutant"
           onClick={sort}
-          className={debutant ? 'debutantFocus' : ''}
+          className={debutant ? 'debutantSelected selected' : ''}
         >
           Débutant
         </Button>
         <Button
           id="intermediaire"
           onClick={sort}
-          className={intermediaire ? 'interFocus' : ''}
+          className={intermediaire ? 'interSelected selected' : ''}
         >
           Intermédiaire
         </Button>
         <Button
           id="confirme"
           onClick={sort}
-          className={confirme ? 'confirmeFocus' : ''}
+          className={confirme ? 'confirmeSelected selected' : ''}
         >
           Confirmé
         </Button>
@@ -87,7 +91,7 @@ const WorkoutList = ({
             className="cancelButton"
             onClick={cancelSortChoice}
           >
-            Effacer les filtres
+            Annuler le tri
           </Button>
         )}
       </Segment>
@@ -95,7 +99,7 @@ const WorkoutList = ({
         <Accordion fluid styled className="wodAccordion">
 
           {workoutToShow.map((currentWorkout) => (
-            <>
+            <React.Fragment key={currentWorkout.id}>
               <Accordion.Title
                 className="accordionTitle"
                 active={activeIndex === currentWorkout.id}
@@ -122,7 +126,7 @@ const WorkoutList = ({
                 </Container>
               </Accordion.Content>
 
-            </>
+            </React.Fragment>
           ))}
 
         </Accordion>
