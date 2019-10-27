@@ -23,7 +23,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    max-width: 22em;
+    max-width: 21em;
     margin: 0 auto 0.5em;
     &>.ui.button{
       padding: 0.4em;
@@ -37,11 +37,6 @@
         border: 1px solid transparent;
         color: rgba(0, 0, 0, 0.6);
       }
-      // &:hover{
-      //   background-color: rgb(43, 42, 42);
-      //   border: 1px solid transparent;
-      //   color: #fff;
-      // }
       &.selected{
         background-color: rgb(43, 42, 42);
       }
