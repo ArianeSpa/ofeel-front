@@ -5,58 +5,56 @@
     background: none;
     background-image: $background-color-dashboard;
     box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-    margin: 2em 0;
+    margin: 2em auto;
+    max-width: 400px;
     &.login, .signup{
         width: 100%;
     }
-}
-
-.ui{
-    &.button.submit {
-        margin: auto;
-        display: block;
-        background-image: $feeling-color;
-        border: 1px solid transparent;
-        &:hover{
-            background-color: transparent;
-            border: 1px solid $yellow4;
-            color: $yellow4;
+    &>.ui.form{
+        &>.fields{
+            &.infoPassword{
+                padding: 10px 10px;
+                text-align: center;
+            }
+        }
+        &>.button.submit{
+            background-image: $feeling-color;
+            border: 1px solid transparent;
+            display: block;
+            margin: auto;
+            &:hover{
+                background-color: transparent;
+                border: 1px solid $yellow4;
+                color: $yellow4;
+            }
         }
     }
-    &.horizontal.divider{
-        text-transform: capitalize;
+    &>a.ui.container{
         color:#00d29c;
+        margin: 1em auto 0;
+        text-align: center;
+        text-decoration: underline;
+        width: max-content;
+        &:hover{
+            color: #00ff85;
+        }
     }
 }
-
-.signupLink{
-    color:#00d29c;
-    text-decoration: underline;
-    &:hover{
-        color: #00ff85;
-    }
-}
-
-.fields.infoPassword{
-    padding: 10px 10px;
-    text-align: center;
-}
-
-
 
 // Tablet ++
 @media (min-width: 768px){
     .ui.inverted.segment.block{
         margin: auto;
+        margin: 1em auto;
+        max-height: 70%;
+        max-width: none;
+        overflow-y: scroll;
         &.login{
             width: 500px;
         }
         &.signup{
             width: 600px;
         }
-        margin: 1em auto;
-        max-height: 70%;
-        overflow-y: scroll;
         &::-webkit-scrollbar{
             &-track{
                 background-color: transparent;

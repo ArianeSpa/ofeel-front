@@ -1,8 +1,8 @@
 // == Import : npm
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
-  Button, Checkbox, Form, Segment, Divider,
+  Button, Checkbox, Form, Segment, Container,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -33,9 +33,13 @@ const Login = ({
         <Button type="submit" className="submit">Submit</Button>
       </Form>
       {savedPreference === 'notsaved' && <SavedModal content="Erreur de pseudo ou de mot de passe." positive={false} error />}
-      <Divider horizontal>
-        Pas encore inscrit ? <Link to="/signup" className="signupLink">Créez un compte !</Link>
-      </Divider>
+      <Container
+        as={NavLink}
+        to="/signup"
+        className="link"
+      >
+        <p>Pas encore inscrit ? Créez un compte !</p>
+      </Container>
     </Segment>
   );
 };
