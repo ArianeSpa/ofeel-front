@@ -10,28 +10,28 @@
 }
 
 .ui.container.workoutContainer {
-  animation-name: appear;
   animation-duration: 0.3s;
+  animation-name: appear;
   animation-timing-function: ease-in-out;
-  padding: 0.5em;
   margin: 0 !important;
+  padding: 0.5em;
   &>.ui.segment.buttonSegment{
     background-color: transparent;
     box-shadow: none;
     border: none;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    max-width: 21em;
     margin: 0 auto 0.5em;
+    max-width: 21em;
+    padding: 0;
     &>.ui.button{
-      padding: 0.4em;
-      margin: 0.2em;
-      font-size: 0.7em;
       background-color: #fff;
       border: 1px solid transparent;
       color: rgba(0, 0, 0, 0.6);
+      font-size: 0.7em;
+      margin: 0.2em;
+      padding: 0.4em;
       &:focus, &:hover{
         background-color: #fff;
         border: 1px solid transparent;
@@ -80,10 +80,10 @@
       background-color: transparent;
       box-shadow: none;
       &>.title.accordionTitle{
-        display: flex;
-        flex-direction: row;
         align-items: center;
         border-top: 0.1em solid $pink5;
+        display: flex;
+        flex-direction: row;
         &>i.dropdown.icon {
           color: $pink3;
           font-size: 1.5em;
@@ -121,9 +121,9 @@
     &>.ui.segment.buttonSegment{
       margin: 0 auto 0.8em;
       &>.ui.button{
-        padding: 0.5em;
-        margin: 0.2em;
         font-size: 0.8em;
+        margin: 0.2em;
+        padding: 0.5em;
         &:hover{
           background-color: rgb(43, 42, 42);
           color: #fff;
@@ -151,9 +151,9 @@
             display: flex;
             flex-direction: row;
             &>.image.imageWod{
-              width: 10em;
-              margin-right: 1em;
               float: left;
+              margin-right: 1em;
+              width: 10em;
             }
           }
         }
@@ -167,9 +167,9 @@
     &>.ui.segment.buttonSegment{
       max-width: 26em;
       &>.ui.button{
-        padding: 0.6em;
-        margin: 0.3em;
         font-size: 0.9em;
+        margin: 0.3em;
+        padding: 0.6em;
       }
     }
   }

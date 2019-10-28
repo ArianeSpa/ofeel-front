@@ -2,63 +2,60 @@
 
 // Segment header (logo + navbar)
 .ui.text.menu.navbar, .ui.menu.navbar{
-    background-color: transparent;
     box-shadow: none;
+    background-color: transparent;
     border: none;
-    margin: 0;
-    justify-content: space-around;
     flex-wrap: wrap;
-    max-height: 25%;
     font-family: $livvic;
+    justify-content: space-around;
+    margin: 0;
+    max-height: 25%;
 }
 
 // Smartphone
-// @media (max-width: 767px){
-    .ui.text.navbarDesktop.menu {
-        display: none;
+.ui.text.navbarDesktop.menu {
+    display: none;
+}
+.ui.navbarMobile.menu{
+    &>.item.mobileItem{
+        padding:0 ;
+        width: 5em;
     }
-    .ui.navbarMobile.menu{
-        &>.item.mobileItem{
-            padding:0 ;
-            width: 5em;
-        }
-        &>.right.menu{
-            align-items: center;
-            color: $yellow5;
-            &>.navbarDropdown{
-                &>.bars.icon{
-                    font-size: 2em;
+    &>.right.menu{
+        align-items: center;
+        color: $yellow5;
+        &>.navbarDropdown{
+            &>.bars.icon{
+                font-size: 2em;
+            }
+            &:last-child .menu{
+                right: 2.2em;
+                top: -0.8em;
+            }
+            &>.navbarContent{
+                background-color: #2aafbbd5;
+                border: 2px solid $yellow5;
+                &::after{
+                    background-color: $yellow5;
+                    clip-path: polygon(0 0, 0 100%, 100% 50%);
+                    height: 2em;
+                    right: -0.8em;
+                    top: 0.3em;
+                    transform: none;
+                    width: 0.7em;
                 }
-                &:last-child .menu{
-                    right: 2.2em;
-                    top: -0.8em;
-                }
-                &>.navbarContent{
-                    border: 2px solid $yellow5;
-                    background-color: #2aafbbd5;
-                    &::after{
-                        background-color: $yellow5;
-                        top: 0.3em;
-                        right: -0.8em;
-                        height: 2em;
-                        width: 0.7em;
-                        transform: none;
-                        clip-path: polygon(0 0, 0 100%, 100% 50%);
-                    }
-                    &>.item.navbar{
-                        color: black !important;
-                        &.active{
-                            color: white !important;
-                            background-color: #480773!important;
-
-                        } 
-                    }
+                &>.item.navbar{
+                    color: black !important;
+                    &.active{
+                        background-color: #480773!important;
+                        color: white !important;
+                    } 
                 }
             }
         }
     }
+}
     
-// }
 
 // Tablet
 @media (min-width: 768px){

@@ -4,35 +4,35 @@
   margin: 0;
   padding: 0;
   &>.row.bothRow.rowMeals {
+    flex-direction: column;
     margin-bottom: 1em;
     padding: 0 0 1em;
-    flex-direction: column;
     &>.column.tricol{
-      margin-bottom: 1em;
-      padding: 0 0 2em;
-      width: 100%;
+      align-items: center;
       border-bottom: 1px solid $blue5;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      margin-bottom: 1em;
+      padding: 0 0 2em;
+      width: 100%;
       &>.ui.segment.cssSegment{
-        margin: 0 auto 0.8em;
-        padding: 0;
-        max-width: 20em;
+        align-items: center;
         background-color: transparent;
         border: none;
         box-shadow: none;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        margin: 0 auto 0.8em;
+        max-width: 20em;
+        padding: 0;
         &>.ui.header{
+          color: $blue5;
+          font-size: 0.9em;
+          height: unset;
           margin: 0 2em 0 0;
           padding: 0;
-          height: unset;
-          vertical-align: middle;
-          font-size: 0.9em;
           text-transform: uppercase;
-          color: $blue5;
+          vertical-align: middle;
         }
         &>.ui.toggle.checkbox.cheat{
           &>input{
@@ -53,72 +53,71 @@
           &>label{
             padding: 0 0 0 2.5em;
             &::before{
-              width: 2em;
               height: 1em;
+              width: 2em;
             }
             &::after{
-              width: 1em;
               height: 1em;
+              width: 1em;
             }
           }
         }
       }
       &>.ui.form.cssForm{
-        margin: 0 auto;
-        width: max-content;
+        align-items: flex-end;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        margin: 0 auto;
+        width: max-content;
         &>.fields.cssField{
+          border-bottom: 1px dotted $pink4;
+          height: max-content;
           margin: 0 0 0.5em;
           width: max-content;
-          height: max-content;
-          border-bottom: 1px dotted $pink4;
           &>.label.cssLabel{
-            margin: 0 1em 0 0;
-            padding: 0;
+            align-self: center;
             background-color: transparent;
             color: white;
             font-size: 0.9em;
             height: max-content;
-            align-self: center;
+            margin: 0 1em 0 0;
+            padding: 0;
           }
           &>.ui.selection.visible.dropdown > .text:not(.default){
             color: $green2;
           }
           &>.ui.selection.dropdown{
-            padding:  0;
-            width: max-content;
-            min-height: 1.8em;
-            height: max-content;
+            align-items: center;
             background-color: transparent;
             border: none;
             color: white;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            height: max-content;
             line-height: unset;
+            min-height: 1.8em;
+            padding:  0;
+            width: max-content;
             &>.text{
-              margin: 0 0.7em 0 0;
-              font-size: 0.9em;
               color: white;
+              font-size: 0.9em;
               height: max-content;
+              margin: 0 0.7em 0 0;
             }
             &>.dropdown.icon{
-              padding: 0;
-              margin: 0;
               float: none;
+              left: 0;
+              margin: 0;
+              padding: 0;
               position: static;
               top: 0;
-              left: 0;
             }
             &>.menu.transition{
-  //             top: 110%;
-              right: 0;
               left: unset;
-              width: 8em;
               max-width: unset;
               min-width: unset;;
+              right: 0;
+              width: 8em;
 
               &::-webkit-scrollbar{
                 width: 5px;
@@ -140,17 +139,17 @@
           }
         }
         &>.fruit{
-          margin-bottom: 1em;
-          font-weight: bold;
           font-size: 0.9em;
+          font-weight: bold;
+          margin-bottom: 1em;
           text-align: right;
         }
       }
       &>.messagecheat{
-        max-width: 25em;
-        margin: auto;
-        text-align: center;
         font-size: 0.8em;
+        margin: auto;
+        max-width: 25em;
+        text-align: center;
       }
     }
   }
@@ -160,23 +159,23 @@
     &>.column{
       width: 100%;
       &>.snackSegment{
-        margin: 0 auto 0.8em;
-        padding: 0;
-        max-width: 20em;
+        align-items: center;
         background-color: transparent;
         border: none;
         box-shadow: none;
-        display: flex;
         flex-direction: row;
-        align-items: center;
+        display: flex;
+        margin: 0 auto 0.8em;
+        max-width: 20em;
+        padding: 0;
         &>h4.ui.header {
+          color: $yellow3;
+          font-size: 0.9em;
+          height: unset;
           margin: 0 2em 0 0;
           padding: 0;
-          height: unset;
-          vertical-align: middle;
-          font-size: 0.9em;
           text-transform: uppercase;
-          color: $yellow3;
+          vertical-align: middle;
         }
         &>.ui.toggle.checkbox.cheat{
           &>input{
@@ -197,74 +196,71 @@
           &>label{
             padding: 0 0 0 2.5em;
             &::before{
-              width: 2em;
               height: 1em;
+              width: 2em;
             }
             &::after{
-              width: 1em;
               height: 1em;
+              width: 1em;
             }
           }
         }
       }
     }
     &>.snackColumn {
-      padding:  0;
       display: flex;
       flex-direction: column;
+      padding:  0;
       &>.ui.form.cssForm {
-        margin:  0 auto;
-        width: max-content;
+        align-items: flex-end;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        margin:  0 auto;
+        width: max-content;
         &>.fields.cssField {
+          border-bottom: 1px dotted $pink4;
+          height: max-content;
           margin:  0 0 0.5em;
           width:  max-content;
-          height: max-content;
-          border-bottom: 1px dotted $pink4;
           &>.ui.label.snackLabel {
-            margin: 0 1em 0 0;
-            padding: 0;
+            align-self: center;
             background-color: transparent;
             color: white;
             font-size: 0.9em;
             height: max-content;
-            align-self: center;
+            margin: 0 1em 0 0;
+            padding: 0;
           }
           &>.ui.selection.visible.dropdown > .text:not(.default){
             color: $yellow1;
           }
           &>.ui.selection.dropdown {
-            color: $yellow1;
-            padding: 0;
-            width: max-content;
-            min-height: 1.8em;
-            height: max-content;
+            align-items: center;
             background-color: transparent;
             border: none;
-            color: white;
+            color: $yellow1;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            height: max-content;
             line-height: unset;
+            min-height: 1.8em;
+            padding: 0;
+            width: max-content;
             &>.text {
-              margin: 0 0.7em 0 0;
-              font-size: 0.9em;
               color: white;
+              font-size: 0.9em;
               height: max-content;
+              margin: 0 0.7em 0 0;
             }
             &>i.dropdown.icon {
-                padding: 0;
-                margin: 0;
                 float: none;
+                margin: 0;
+                padding: 0;
                 position: static;
-                /* top: 0; */
-                /* left: 0; */
             }
             &>.menu.transition {
-                right: 0;
                 left: unset;
+                right: 0;
                 width: 8em;
               &::-webkit-scrollbar{
                 width: 5px;
@@ -286,17 +282,17 @@
           }
         }
         &>.fruit{
-          margin-bottom: 1em;
-          font-weight: bold;
           font-size: 0.9em;
+          font-weight: bold;
+          margin-bottom: 1em;
           text-align: right;
         }
       }
       &>.snackmessage{
-        max-width: 25em;
-        margin: auto;
-        text-align: center;
         font-size: 0.8em;
+        margin: auto;
+        max-width: 25em;
+        text-align: center;
       }
     }
   }
@@ -311,20 +307,20 @@
 @media (min-width: 1040px){
   .ui.equal.width.grid.mealGrid{
     &>.row.bothRow.rowMeals{
-      margin: 0 auto 1em;
-      padding: 0;
       border-bottom: 1px solid $blue5;
       flex-direction: row;
       justify-content: space-between;
+      margin: 0 auto 1em;
+      padding: 0;
       &>.column.tricol{
-        margin-bottom: 0;
-        flex-grow: 0;
-        width: 31%;
         border-bottom: none;
+        flex-grow: 0;
+        margin-bottom: 0;
+        width: 31%;
         &>.ui.segment.cssSegment{
-          margin: 0 auto 2em;
-          flex-direction: column;
           border-bottom: 2px solid $blue5;
+          flex-direction: column;
+          margin: 0 auto 2em;
           &>.ui.header{
             margin: 0;
           }

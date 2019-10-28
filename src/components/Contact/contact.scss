@@ -1,58 +1,48 @@
 @import 'src/styles/vars';
 
-.ui.form.contactForm{
-  &>.subjectHeader{
-    margin-left: 0.5em;
-  }
-  &>.fields.contactFields{
-    padding: 0;
-    margin: 0 0 0.5em 0;
-    &>.field{
+.ui.segment.block.contact{
+  margin: 3em 0;
+  &>.form.contactForm{
+    &>.fields.contactFields{
+      margin: 0 0 0.5em 0;
       padding: 0;
-      margin: 0 0.5em;
+      &>.field{
+        margin: 0 0.5em;
+        padding: 0;
+      }
+      &.subject, &.message{
+        margin: 0.5em 0;
+      }
+      &>.contactDropdown >i.dropdown.icon{
+        color: $yellow1;
+        font-size: 1.5em;
+        padding:0;
+        top: 60%;
+      }
+      &>textarea.textStyle{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        min-height: 150px;
+      }
     }
-    &.subject, &.message{
-      margin: 0.5em;
+    &>.header.sibjectHeader{
+      margin: 0.5em 0 0.5em;
     }
-    &>.contactDropdown >i.dropdown.icon{
-      color: $yellow1;
-      font-size: 1.5em;
-      padding:0;
-      top: 60%;
+    &>.contactSubmit{
+      margin: 1.5em auto 0.5em;
     }
-    &>textarea.textStyle{
-      min-height: 150px;
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-  }
-  &>.contactSubmit{
-    margin: 1.5em auto 0.5em;
   }
 }
 
-// Smartphone
-@media (max-width: 767px){
-  .ui.inverted.segment.block.contact{
-    margin: 3em 0;
-  }
-  .ui.small.inverted.header{
-    margin: 0.5em 0 0.5em;
-  }
-  .ui.form.contactForm > .fields.contactFields{
-    &.subject, &.message{
-      margin: 0.5em 0;
-    }
-  }
-}
+
 
 // Tablet
 @media (min-width: 768px){
-  .ui.inverted.segment.block.contact{
-    width: 600px;
+  .ui.segment.block.contact{
     margin: 1em auto;
     max-height: 60%;
     overflow-y: scroll;
+    width: 600px;
     &::-webkit-scrollbar{
       &-track{
         background-color: transparent;
@@ -70,9 +60,9 @@
 
 // Laptop
 @media (min-width: 1024px){
-  .ui.inverted.segment.block.contact{
-    width: 700px;
-    overflow-y: auto;
+  .ui.segment.block.contact{
     margin: 2em auto;
+    overflow-y: auto;
+    width: 700px;
   }
 }

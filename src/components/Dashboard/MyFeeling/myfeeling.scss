@@ -10,34 +10,30 @@
 }
 
 .ui.inverted.segment.myfeelingSegment{
-  background: transparent;
-  animation-name: appear;
   animation-duration: 0.3s;
+  animation-name: appear;
   animation-timing-function: ease-in-out;
+  background: transparent;
   display: flex;
   flex-direction: column;
   padding: 0.5em;
-  
   &>.ui.form.myfeelingForm{
     display: flex;
     flex-direction: column;
     width: 100%;
-
     &>.ui.header.myfeelingSubtitle{
       color: $yellow4;
       font-family: $cabin;
-      text-align: center;
       margin: 0 auto 1em;
+      text-align: center;
     }
-
     &>.fields{
-      width: 100%;
       margin: 0 0 1.5em;
-
+      width: 100%;
       &.genderGroup{
         justify-content: space-evenly;
-        width: 15em;
         align-self: center;
+        width: 15em;
         &>.genderField > .genderCheckbox{
           &>label{
             color: white; 
@@ -47,7 +43,6 @@
           }
         }
       }
-
       &.ageheightweightGroup{
         flex-direction: column;
         &>.ageheightweightDropdown{
@@ -60,16 +55,15 @@
           }
         }
       }
-
       &.fields.activityGroup{
         display: flex;
         flex-direction: column;
-        width: 15em;
         margin: 0 auto 1.5em;
+        width: 15em;
 
         &>.field.activityField{
-          width: 100%;
           margin: 0 0 0.5em 0;
+          width: 100%;
           &>.activityRadio{
             > label{
               color: white;
@@ -86,12 +80,11 @@
       }
     }
   }
-
   &>.myfeelingButton{
-    margin: 0 auto;
     background: none;
     background-image: $feeling-color;
     border: 1px solid transparent;
+    margin: 0 auto;
     &:hover{
         background: transparent;
         border: 1px solid $yellow4;
@@ -104,12 +97,10 @@
 
 @media (min-width: 768px){
   .ui.inverted.segment.myfeelingSegment{
-    padding: 2em 0;
     min-height: min-content;
-
+    padding: 2em 0;
     &>.ui.form.myfeelingForm{
       width: 100%;
-
       &>.fields{
         &.ageheightweightGroup{
           flex-direction: row;

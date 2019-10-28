@@ -1,217 +1,214 @@
 @import 'src/styles/vars';
 
 .ui.container.postPageContainer{
-    height: 70%;
-}
-
-.ui.segment.buttonSortSegment{
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0 1em;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.ui.icon.button{
-    background-color: #fff;
-    &:hover{
-        background-color: #fff;
-    }
-    &:focus{
-        background-color: #fff;
-    }
-    &.iconFocus{
-        background-color: rgb(43, 42, 42);
-    }
-}
-
-.ui.button.cancelButton{
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    &:hover{
-        background-color: transparent;
-        border: 1px solid $yellow5;
-        color: $yellow5;
-    }
-}
-
-i.icon{
-    &.bed{
-        color: $blue3;
-    }
-    &.food.foodSort{
-        color: $green3;
-    }
-    &.football{
-        color: $pink1;
-    }
-    &.heartbeat{
-        color: $pink4;
-    }
-    &.boxes{
-        color: $yellow1;
-    }
-}
-
-.ui.container.postsContainer{
-    overflow-y: scroll;
-    height: 85%;
-    &::-webkit-scrollbar{
-        &-track{
-            background-image: $feeling-color;
-            border-radius: 5px;
-        }
-        &-thumb{
-            background: rgba(0, 0, 0, 0.4);
-        }
-    }
-}
-
-.ui.styled.accordion{
+    margin: 1em 0 !important;
     width: 100%; 
-    & .title.titleBox{
-        color:$blue5;
-        font-size: 0.7em;
+    &> .buttonSortSegment{
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        &>.dropdown.icon{
-            color: $green1;
-        }
-        &:hover{
-            color:$green1;
-            background-color: #e8e8e8;
-            &>.labelPost{
-                background-color: rgb(43, 42, 42);
-                color: #e8e8e8;
-            }
-        }
-        &>.titlePost{
-            width: 80%;
-            justify-self: left;
-            font-size: 0.8em;
-        }
-        &>.labelPost{
-            height: 100%;
-            width: 12%;
-            text-align: center;
-            word-break: break-word;
-            align-self: center;
-            &>i.food{
-                color: $green3;
-            }
-        }
-    }
-    
-    &>.content h1, h2, h3, h4{
-        color: black;
-        font-size: 0.7em;
-    }
-    &>.content p{
-        color: black;
-        font-size: 0.5em;
-    }
-    &>.content ul{
-        color: black;
-        font-size: 0.5em;
-        &> li{
-            list-style: square;
-            list-style-position: inside;
-            padding-left: 2em;
-        }
-    }
-}
-
-
-
-// Tablet
-@media (max-width: 1024px){
-    .ui.container.postPageContainer{
-        &> .buttonSortSegment{
-            margin: 1em 0.5em 1em auto;
-            right: 0;
-            &> .ui.icon.button.sortIcon{
-                width: 2.5em;
-                height: 2.5em;
-                padding: 0;
-                &> .icon{
-                    font-size: 0.9em;
-                }
-            }
-            &> .ui.button.cancelButton{
-                height: 2.5em;
-                padding: 0 0.5em;
-                margin: 0;
-                font-size: 1em;
-            } 
-        }
-        &> .ui.container.postsContainer{
-            &> .accordion{
-                &> .title.titleBox{
-                    &>.ui.label.labelPost{
-                        min-width: 18% !important;
-                        padding: 0.3em;
-                        align-self: center;
-                        font-size: 0.7em;
-                    }
-                }
-            }
-        }
-    }
-}
-
-// Smartphone
-@media (max-width: 767px){
-    .ui.container.postPageContainer{
-        margin: 1em 0 !important;
-        width: 100%; 
-        &> .buttonSortSegment{
-            margin: 0.5em auto 0.5em;
+        margin: 0.5em auto 0.3em;
+        justify-content: center;
+        &>.button{
+            background-color: #fff;
+            height: 2em;
             padding: 0;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            &> .ui.icon.button.sortIcon{
+            font-size: 1em;
+            &.sortIcon{
                 width: 2em;
-                height: 2em;
-                padding: 0;
                 &> .icon{
                     font-size: 0.8em;
                 }
             }
-            &> .ui.button.cancelButton{
-                height: 2em;
-                padding: 0 0.5em;
+            &.cancelButton{
                 margin: 0;
-                font-size: 1em;
+                background-image: $feeling-color;
+                border: 1px solid transparent;
+                padding: 0 0.5em;
 
-            }
-        }
-        &> .ui.container.postsContainer{
-            margin: 0 !important;
-            overflow-y: auto;
-
-            &> .accordion{
-                &> .title.titleBox{
-                    padding: 0.2em;
-                    font-size: 0.6em;
-                    &>.titlePost{
-                        max-width: 60%;
-                    }
-                    &>.ui.label.labelPost{
-                        min-width: 25% !important;
-                        padding: 0.3em;
-                        align-self: center;
-                        font-size: 0.5em;
-                    }
+                &:hover{
+                    background-color: transparent;
+                    border: 1px solid $yellow5;
+                    color: $yellow5;
                 }
+            }
+            &:hover{
+                background-color: rgb(43, 42, 42);
+            }
+            &:focus{
+                background-color: #fff;
+            }
+            &.iconFocus{
+                background-color: rgb(43, 42, 42);
+            }
+            &>i.bed{
+                color: $blue3;
+            }
+            &>i.food.foodSort{
+                color: $green3;
+            }
+            &>i.football{
+                color: $pink1;
+            }
+            &>i.heartbeat{
+                color: $pink4;
+            }
+            &>i.boxes{
+                color: $yellow1;
             }
         }
     }
+    &>.postsContainer{
+        margin: 0 !important;
+        &> .accordion{
+            &> .title.titleBox{
+                padding: 0.2em;
+                font-size: 0.6em;
+                color:$blue5;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                &>.dropdown.icon{
+                    color: $green1;
+                }
+                &:hover{
+                    color:$green1;
+                    background-color: #e8e8e8;
+                    &>.labelPost{
+                        background-color: #fff;
+                    }
+                }
+                &>.titlePost{
+                    max-width: 60%;
+                    justify-self: left;
+                    font-size: 0.8em;
+                }
+                &>.labelPost{
+                    height: 100%;
+                    width: 12%;
+                    text-align: center;
+                    word-break: break-word;
+                    align-self: center;
+                    font-size: 0.5em;
+                    min-width: 25% !important;
+                    padding: 0.3em;
+                    &>i.food{
+                        color: $green3;
+                    }
+                    &>.icon{
+                        &.bed{
+                            color: $blue3;
+                        }
+                        &.food{
+                            color: $green3;
+                        }
+                        &.football{
+                            color: $pink1;
+                        }
+                        &.heartbeat{
+                            color: $pink4;
+                        }
+                        &.boxes{
+                            color: $yellow1;
+                        }
+                    }
+                }
+            }
+            &>.content div{
+                &>h1, &>h2, &>h3, &>h4{
+                    color: black;
+                    font-size: 0.7em;
+                }
+                &>p{
+                    color: black;
+                    font-size: 0.5em;
+                }
+                &>ul{
+                    color: black;
+                    font-size: 0.5em;
+                    &> li{
+                        list-style: square;
+                        list-style-position: inside;
+                        padding-left: 2em;
+                    }
+                }
+            }
+
+        }
+
+    }
 }
 
+@media (min-width: 768px){
+    .ui.container.postPageContainer{
+        height: 70%;
+        margin: auto !important;
+        width: 20em;
+        &> .buttonSortSegment{
+            margin: 1em 0.5em 1em auto;
+            padding: 0 1em;
+            justify-content: flex-end;
+            &>.button{
+                height: 2.5em;
+                &.sortIcon{
+                    width: 2.5em;
+                    &> .icon{
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        } 
+        &>.postsContainer{
+            overflow-y: scroll;
+            height: 85%;
+            margin: 0 1em;
+            &::-webkit-scrollbar{
+                &-track{
+                    background-image: $feeling-color;
+                    border-radius: 5px;
+                }
+                &-thumb{
+                    background: rgba(0, 0, 0, 0.4);
+                }
+            }
+            &> .accordion{
+                width: 100%;
+                &> .title.titleBox{
+                    font-size: 0.7em;
+                    &>.titlePost{
+                        width: 80%;
+                        max-width: none;  
+                    }
+                    &>.labelPost{
+                        min-width: 18% !important;
+                        font-size: 0.7em;
+                        &>i.food{
+                            color: $green3;
+                        }
+                    }
 
+                }
+            }
+        }   
+    }
+}
+
+@media (min-width: 1024px){
+    .ui.container.postPageContainer{
+        width: 30em;
+        &>.postsContainer{
+            &> .accordion{
+                &> .title.titleBox{
+                    
+                }
+
+            }
+        
+        }
+    }
+}
 
