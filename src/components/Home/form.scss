@@ -5,7 +5,10 @@
     background: none;
     background-image: $background-color-dashboard;
     box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-    margin: auto;
+    margin: 2em 0;
+    &.login, .signup{
+        width: 100%;
+    }
 }
 
 .ui{
@@ -39,19 +42,12 @@
     text-align: center;
 }
 
-// Smartphone
-@media (max-width: 767px){
-    .ui.inverted.segment.block{
-        margin: 2em 0;
-        &.login, .signup{
-            width: 100%;
-        } 
-    }
-}
+
 
 // Tablet ++
 @media (min-width: 768px){
     .ui.inverted.segment.block{
+        margin: auto;
         &.login{
             width: 500px;
         }

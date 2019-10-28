@@ -13,7 +13,7 @@
 }
 
 // Smartphone
-@media (max-width: 767px){
+// @media (max-width: 767px){
     .ui.text.navbarDesktop.menu {
         display: none;
     }
@@ -58,7 +58,7 @@
         }
     }
     
-}
+// }
 
 // Tablet
 @media (min-width: 768px){
@@ -70,7 +70,7 @@
         &>.left.menu {
             &>.item.desktopItem{
                 &>.ui.image.desktopLogo{
-                    width: 6em;
+                    width: 5em;
                 }
             }
         }
@@ -84,7 +84,7 @@
             &>.item.desktopItem{
                 padding:0 ;
                 &>.ui.image.desktopLogo{
-                    width: 8em;
+                    width: 9em;
                 }
             }
         }

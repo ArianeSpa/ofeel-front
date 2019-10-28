@@ -2,68 +2,107 @@
 
 #app.ui.container.globalContainer{
   position: relative;
-}
-
-.ui.segment.footerSegment {
-  width: 100%;
-  max-height: 15%;
-  position: absolute;
-  bottom: 0;
-  left:0;
-  right:0;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  text-align: center;
-  &> .copyright{
-    font-style: italic;
-  }
-}
-
-// Smartphone
-@media (max-width: 767px){
-  #app.ui.container.globalContainer{
-    padding-bottom: 2em;
-  }
+  padding-bottom: 2em;
   .ui.segment.footerSegment {
     padding: 0.5em;
-    &> .ui.icon.button{
-      margin: 0 0.2em;
-      font-size: 0.9em;
-      &>.icon{
-        font-size: 0.9em;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    max-height: 15%;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+    text-align: center;
+    &>.ui.container.copyright{
+      margin: 0 auto;
+      &>p{
+        font-style: italic;
+        font-size: 0.8em;
+        height: max-content;
+        color: $bg2;
       }
     }
-    &> .copyright{
-      font-size: 0.8em;
-      margin-bottom: 0.5em;
+    &>.ui.container.buttons{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      height: max-content;
+      width: 100%;
+      padding: 0.1em 0;
+      &>.ui.icon.button{
+        margin: 0 0.4em;
+        background-color: transparent;
+        padding: 0;
+        display: block;
+        font-size: 0.5em;
+        flex: none;
+        line-height: unset;
+        
+        &>.icon{
+          border-radius: 3px;
+          font-size: 1.5em;
+          text-align: center;
+          vertical-align: middle;
+          display: inline;
+          padding: 0.05em;
+        }
+        &>.facebook{
+          color: #3A559F;
+        }
+        &>.twitter{
+          color: #1DA1F2;
+        }
+        &>.youtube{
+          color: #FD0100;
+        }
+        &>.linkedin{
+          color: #007BB6;
+        }
+        &>.github{
+          color: black;
+        }
+        &>.instagram{
+          color: white;
+          background-image: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+        &>.mail{
+          color:  #EA4335;
+        }
+      }
+      &::after{
+        display: none;
+      }
     }
+    
   }
 }
 
-// Tablet 
 @media (min-width: 768px){
   #app.ui.container.globalContainer{
     height: 100vh;
     padding-bottom: 3em;
-  }
-  .ui.segment.footerSegment{ 
-    padding: 1em;
-    &> .ui.icon.button{
-      margin: 0 0.7em;
-      &>.icon{
-        font-size: 1em;
+    &>.ui.segment.footerSegment{ 
+      padding: 1em;
+      &>.ui.container.copyright{
+        font-size: 0.9em;
       }
-    }
-    &> .copyright{
-      font-size: 0.9em;
-      margin-bottom: 0.5em;
+      &>.ui.container.buttons{
+        &> .ui.icon.button{
+          margin: 0 0.7em;
+          &>.icon{
+            font-size: 2em;
+          }
+        }
+      }
     }
   }
 }
 
-// Laptop
 @media (min-width: 1024px){
   .ui.segment.footerSegment{
     &> .ui.icon.button{
