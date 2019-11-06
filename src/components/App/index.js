@@ -12,7 +12,6 @@ import Footer from 'src/components/Footer';
 
 // == Composant
 const App = ({ catchFoodInfo, catchPostsInfo, catchWorkoutInfo }) => {
-
   catchFoodInfo();
   catchPostsInfo();
   catchWorkoutInfo();

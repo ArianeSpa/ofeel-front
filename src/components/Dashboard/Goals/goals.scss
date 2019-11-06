@@ -1,165 +1,123 @@
 @import 'src/styles/vars';
 
-@keyframes appear{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-.ui.inverted.segment.goalSegment{
+#goalSegment{
   animation-duration: 0.3s;
-  animation-name: appear;
+  animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
   background: transparent;
   display: flex;
   flex-direction: column;
   padding: 1.5em 0.5em 0.5em;
-
-  &>.ui.form.goalForm{
+  &>#goalForm{
     display: flex;
     flex-direction: column;
     width: 100%;
-
-    &>.ui.header.goalSubtitle{
+    &>.goalSubtitle{
+      @include tagSubtitle();
       color: $green5;
-      font-family: $cabin;
-      margin: 0 auto 1em;
-      text-align: center;
     }
-
-    &>.fields{
+    &>#goalsGroup, &>#foodPrefGroup{
       margin: 0 0 1.5em;
       width: 100%;
-
-      &.goalGroup{
-        flex-direction: column;
-        &>.goalField{
-          margin: 0 auto 1.5em;
-          &> .goalRadio{
-            &>label{
-              color: white; 
-              text-align: center;
-              
-            } 
-            &>input:checked + label{
-              color: $green2;
-            }
-          }
-          &>.image.icon{
-            margin: auto;
+    }
+    &>#goalsGroup{
+      flex-direction: column;
+      &>.goalField{
+        margin: 0 auto 1.5em;
+        &>.goalRadio{
+          &>label{
+            color: white; 
+            text-align: center;
+          } 
+          &>input:checked + label{
+            color: $green2;
           }
         }
-      }
-
-      &.foodPrefGroup{
-        flex-direction: column;
-        &>.foodPrefField{
-          margin: 0 auto 1.5em;
-          &> .foodPrefCheckbox{
-            &>label{
-              color: white; 
-            } 
-            &>input:checked + label{
-              color: $green2;
-            }
-          }
-          &>.image.icon{
-            margin: auto;
-          }
+        &>.goalIcon{
+          margin: auto;
         }
       }
     }
+    &>#foodPrefGroup{
+      flex-direction: column;
+      &>.foodPrefField{
+        margin: 0 auto 1.5em;
+        &>.foodPrefCheckbox{
+          &>label{
+            color: white; 
+          } 
+          &>input:checked + label{
+            color: $green2;
+          }
+        }
+        &>.foodPrefIcon{
+          margin: auto;
+        }
+      }
+    }
+  }
+  &>#saveMessage{
+    animation-duration: 0.5s;
+    animation-name: opacity0to1;
+    animation-timing-function: ease-in-out;
   }
   &>.goalButton{
+    @include submitButton();
     background-image: $goals-color;
-    border: 1px solid transparent;
-    margin: 0 auto;
     &:hover{
-        background: transparent;
-        border: 1px solid $green4;
-        color: $green4;
+      border: 1px solid $green5;
+      color: $green5;
     }
-  }
+  } 
 }
 
 @media (min-width: 768px){
-  .ui.inverted.segment.goalSegment{
+  #goalSegment{
     min-height: min-content;
     padding: 2em 0;
-
-    &>.ui.form.goalForm{
+    &>#goalForm{
       width: 100%;
-
-      &>.fields{
-        &.goalGroup{
-          flex-direction: row;
-          width: 100%;
-          &>.goalDropdown{
-            min-width : 10em;
+      &>#goalsGroup{
+        flex-direction: row;
+        margin: 0 auto 3em;
+        width: 100%;
+        &>.goalField{
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          width: 12em;
+          &>.goalRadio{
+            &>label{
+              width: auto;
+            }
           }
         }
-        &.foodPrefGroup{
-          flex-direction: row;
-          margin: auto;
-          max-width: 30em;
-        }
       }
-    }
-    
+      &>#foodPrefGroup{
+        flex-direction: row;
+        margin: 0 auto 1em;
+        max-width: 30em;
+      }
+    } 
   }
+  
 }
-
 
 @media (min-width: 1024px){
-  .ui.inverted.segment.goalSegment{
+  #goalSegment{
     justify-content: center;
-    &>.ui.form.goalForm{
-      &>.fields{
-        &.goalGroup{
-          justify-content: space-between;
-          margin: 0 auto 1.5em;
-          max-width: 40em;
-          &>.goalField{
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0 1em;
-            &.weightLostField>.goalRadio>label{
-              width: 6em;
-            }
-            &.muscleGainField>.goalRadio>label{
-              width: 10em;
-            }
-            &.balanceField>.goalRadio>label{
-              width: 7em;
-            }
-          }
+    &>#goalForm{
+      &>#goalsGroup{
+        justify-content: space-between;
+        max-width: 40em;
+        &>.goalField{
+          margin: 0;
+          padding: 0 1em;
         }
-        &.foodPrefGroup{
-          max-width: 40em;
-        }
+      }
+      &>#foodPrefGroup{
+        max-width: 40em;
       }
     }
   }
-}
-
-
-
-@keyframes SavedData {
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-    display: none;
-  }
-}
-.ui.tiny.compact.success.message {
-    animation-duration: 6s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    animation-name: SavedData;
 }

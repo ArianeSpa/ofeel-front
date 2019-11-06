@@ -1,129 +1,102 @@
 @import 'src/styles/vars';
 
-@keyframes appear{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-.ui.inverted.segment.myfeelingSegment{
+#myfeelingSegment{
   animation-duration: 0.3s;
-  animation-name: appear;
+  animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
   background: transparent;
   display: flex;
   flex-direction: column;
   padding: 0.5em;
-  &>.ui.form.myfeelingForm{
+  &>#myfeelingForm{
     display: flex;
     flex-direction: column;
     width: 100%;
-    &>.ui.header.myfeelingSubtitle{
+    &>.myfeelingSubtitle{
+      @include tagSubtitle();
       color: $yellow4;
-      font-family: $cabin;
-      margin: 0 auto 1em;
-      text-align: center;
     }
-    &>.fields{
+    &>#genderGroup, &>#ageheightweightGroup, &>#activityGroup{
       margin: 0 0 1.5em;
       width: 100%;
-      &.genderGroup{
-        justify-content: space-evenly;
-        align-self: center;
-        width: 15em;
-        &>.genderField > .genderCheckbox{
-          &>label{
-            color: white; 
-          } 
+    }
+    &>#genderGroup{
+      align-self: center;
+      justify-content: space-evenly;
+      width: 15em;
+      &>.genderField > .genderCheckbox{
+        &>label{
+          color: white; 
+        } 
+        &>input:checked + label{
+          color: $yellow4;
+        }
+      }
+    }
+    &>#ageheightweightGroup{
+      flex-direction: column;
+      &>.ageheightweightDropdown{
+        margin: 0 auto 0.8em;
+        min-width: 12em;;
+        &>.icon{
+          color: $yellow1;
+          font-size: 1.2em;
+          padding: 0.5em;
+        }
+      }
+    }
+    &>#activityGroup{
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 1.5em;
+      width: 15em;
+      &>.activityField{
+        margin: 0 0 0.5em 0;
+        width: 100%;
+        &>.activityRadio{
+          > label{
+            color: white;
+          }
           &>input:checked + label{
             color: $yellow4;
           }
         }
-      }
-      &.ageheightweightGroup{
-        flex-direction: column;
-        &>.ageheightweightDropdown{
-          margin: 0 auto 0.8em;
-          min-width: 12em;;
-          &>.dropdown.icon{
-            color: $yellow1;
-            font-size: 1.2em;
-            padding: 0.5em;
-          }
-        }
-      }
-      &.fields.activityGroup{
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto 1.5em;
-        width: 15em;
-
-        &>.field.activityField{
-          margin: 0 0 0.5em 0;
-          width: 100%;
-          &>.activityRadio{
-            > label{
-              color: white;
-            }
-            &>input:checked + label{
-              color: $yellow4;
-            }
-          }
-          &>i.icon.information{
-            color: $yellow5;
-            margin-left: 0.5em;
-          }
+        &>.icon.information{
+          color: $yellow5;
+          margin-left: 0.5em;
         }
       }
     }
   }
-  &>.myfeelingButton{
-    background: none;
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    margin: 0 auto;
-    &:hover{
-        background: transparent;
-        border: 1px solid $yellow4;
-        color: $yellow4;
-    }
+  &>#myfeelingButton{
+    @include submitButton();
   }
-
-  //TODO : Css popup
 }
 
 @media (min-width: 768px){
-  .ui.inverted.segment.myfeelingSegment{
+  #myfeelingSegment{
     min-height: min-content;
     padding: 2em 0;
-    &>.ui.form.myfeelingForm{
+    &>#myfeelingForm{
       width: 100%;
-      &>.fields{
-        &.ageheightweightGroup{
-          flex-direction: row;
-          max-width: 35em;
-          margin: auto;
-          &>.ageheightweightDropdown{
-            min-width : 10em;
-          }
+      &>#ageheightweightGroup{
+        flex-direction: row;
+        margin: 0 auto 3em;
+        max-width: 35em;
+        &>.ageheightweightDropdown{
+          min-width : 10em;
         }
       }
     }
   }
 }
 
-
 @media (min-width: 1024px){
-  .ui.inverted.segment.myfeelingSegment{
+  #myfeelingSegment{
     justify-content: center;
-    &>.ui.form.myfeelingForm{
-      &>.fields{
-        &.ageheightweightGroup{
-          max-width: 40em;
-        }
+    &>#myfeelingForm{
+      &>#ageheightweightGroup{
+        max-width: 40em;
       }
     }
   }

@@ -8,7 +8,13 @@ import './modal.scss';
 
 // == Composant
 const UserModal = ({ logout }) => (
-  <Button onClick={logout} type="submit" className="deco">Deconnexion</Button>
+  <Button
+    onClick={logout}
+    type="submit"
+    id="disconnect"
+  >
+    Deconnexion
+  </Button>
 );
 
 

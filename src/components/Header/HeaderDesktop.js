@@ -11,26 +11,47 @@ import './header.scss';
 
 // == Composant
 const HeaderDesktop = ({ logged }) => (
-  <Menu text className="navbar navbarDesktop">
-    <Menu.Menu position="left">
-      <Menu.Item className="desktopItem">
+  <Menu text id="headerDesktop">
+    <Menu.Menu position="left" id="leftPartHeader">
+      <Menu.Item id="desktopItem">
         <Image
           as={NavLink}
           exact
-          to="/"
+          id="desktopLogo"
           src={logo}
-          className="desktopLogo"
+          to="/"
         />
       </Menu.Item>
     </Menu.Menu>
     {!logged && (
-      <Menu.Item as={NavLink} exact to="/" className="navbar" name="Accueil" />
+      <Menu.Item
+        as={NavLink}
+        className="navbarItem"
+        exact
+        name="Accueil"
+        to="/"
+      />
     )}
     {logged && (
-      <Menu.Item as={NavLink} to="/dashboard" className="navbar" name="Tableau de bord" />
+      <Menu.Item
+        as={NavLink}
+        className="navbarItem"
+        name="Tableau de bord"
+        to="/dashboard"
+      />
     )}
-    <Menu.Item as={NavLink} to="/articles" className="navbar" name="Articles" />
-    <Menu.Item as={NavLink} to="/contact" className="navbar" name="Contact" />
+    <Menu.Item
+      as={NavLink}
+      className="navbarItem"
+      name="Articles"
+      to="/articles"
+    />
+    <Menu.Item
+      as={NavLink}
+      className="navbarItem"
+      name="Contact"
+      to="/contact"
+    />
     { logged && (<UserModal />) }
   </Menu>
 

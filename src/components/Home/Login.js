@@ -19,26 +19,51 @@ const Login = ({
     changeUserData(data.id, data.value);
   };
   return (
-    <Segment inverted className="block login">
+    <Segment inverted id="loginSegment">
       <Form inverted onSubmit={doAuthenticate}>
-        <Form.Field>
-          <Form.Input value={username} id="username" onChange={handleChangeData} label="Pseudo" placeholder="Pseudo" />
-        </Form.Field>
-        <Form.Field>
-          <Form.Input value={password} id="password" onChange={handleChangeData} type="password" label="Mot de passe" placeholder="Mot de passe" />
-        </Form.Field>
-        <Form.Field>
+        <Form.Group
+          className="formFields"
+          id="loginFields"
+          widths={2}
+        >
+          <Form.Input
+            className="oneField"
+            id="username"
+            label="Pseudo"
+            onChange={handleChangeData}
+            placeholder="Pseudo"
+            value={username}
+          />
+          <Form.Input
+            className="oneField"
+            id="password"
+            label="Mot de passe"
+            onChange={handleChangeData}
+            placeholder="Mot de passe"
+            type="password"
+            value={password}
+          />
+        </Form.Group>
+        <Form.Group
+          className="formFields"
+        >
           <Checkbox label="Se souvenir de moi" />
-        </Form.Field>
-        <Button type="submit" className="submit">Submit</Button>
+        </Form.Group>
+        <Button type="submit" className="submitButton">Submit</Button>
       </Form>
-      {savedPreference === 'notsaved' && <SavedModal content="Erreur de pseudo ou de mot de passe." positive={false} error />}
+      {savedPreference === 'notsaved' && (
+        <SavedModal
+          content="Erreur de pseudo ou de mot de passe."
+          error
+          positive={false}
+        />
+      )}
       <Container
         as={NavLink}
+        className="formLink"
         to="/signup"
-        className="link"
       >
-        <p>Pas encore inscrit ? Créez un compte !</p>
+        Pas encore inscrit ? Créez un compte !
       </Container>
     </Segment>
   );
@@ -46,11 +71,10 @@ const Login = ({
 
 Login.propTypes = {
   changeUserData: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
   doAuthenticate: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
   savedPreference: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 };
-
 
 export default Login;

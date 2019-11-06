@@ -49,8 +49,6 @@ const mapDispatchToProps = (dispatch) => ({
     const action = sortFoodChoice(vegan, sanslactose, sansgluten);
     dispatch(action);
   },
-
-
 });
 
 // Container

@@ -1,0 +1,36 @@
+@import 'src/styles/vars';
+
+#mainContainer{
+    margin: 0 !important;
+    min-height: 68vh;
+    padding: 0 0.5em;
+    width: 100%;
+    &>#errorSegment{
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 2em 0;
+        text-align: center;
+        width: 100%;
+        &>#errorTitle{
+            color: white;
+        }
+        &>#homeReturn{
+            @include links();
+        }
+    }
+}
+
+@media (min-width: 768px){
+    #mainContainer{
+        height: $mainHeight768;
+        min-height: unset;
+        padding: 0.5em;
+    }
+}
+
+@media (min-width: 1024px){
+    #mainContainer{
+        height: $mainHeight1024;
+    }
+}

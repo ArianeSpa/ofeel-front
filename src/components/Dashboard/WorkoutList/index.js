@@ -1,10 +1,9 @@
-
 // == Import : npm
 import React from 'react';
 import DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 import {
-  Container, Item, Image, Segment, Button, Accordion, Icon,
+  Container, Item, Image, Segment, Button, Accordion, Icon, Header,
 } from 'semantic-ui-react';
 
 // == Import : local
@@ -42,128 +41,130 @@ const WorkoutList = ({
     cancelSort();
   }
   return (
-    <Container className="workoutContainer">
-      <Segment className="buttonSegment">
+    <Container id="workoutContainer">
+      <Header id="workoutSubtitle" as="h3">Vos séances de sport</Header>
+      <Segment id="workoutButtonSegment">
         <Button
+          className={course ? 'courseSelected selected' : ''}
           id="course"
           onClick={sort}
-          className={course ? 'courseSelected selected' : ''}
         >
           Course à pied
         </Button>
         <Button
+          className={salle ? 'salleSelected selected' : ''}
           id="salle"
           onClick={sort}
-          className={salle ? 'salleSelected selected' : ''}
         >
           Musculation en salle
         </Button>
         <Button
+          className={maison ? 'maisonSelected selected' : ''}
           id="maison"
           onClick={sort}
-          className={maison ? 'maisonSelected selected' : ''}
         >
           A la maison
         </Button>
         <Button
+          className={debutant ? 'debutantSelected selected' : ''}
           id="debutant"
           onClick={sort}
-          className={debutant ? 'debutantSelected selected' : ''}
         >
           Débutant
         </Button>
         <Button
+          className={intermediaire ? 'interSelected selected' : ''}
           id="intermediaire"
           onClick={sort}
-          className={intermediaire ? 'interSelected selected' : ''}
         >
           Intermédiaire
         </Button>
         <Button
+          className={confirme ? 'confirmeSelected selected' : ''}
           id="confirme"
           onClick={sort}
-          className={confirme ? 'confirmeSelected selected' : ''}
         >
           Confirmé
         </Button>
         { cancel && (
           <Button
-            className="cancelButton"
+            id="cancelButton"
             onClick={cancelSortChoice}
           >
             Annuler le tri
           </Button>
         )}
       </Segment>
-      <Container stackable="true" className="trainingContainer">
-        <Accordion fluid styled className="wodAccordion">
+      <Container stackable="true" id="trainingContainer">
+        <Accordion fluid styled id="trainingAccordion">
 
           {workoutToShow.map((currentWorkout) => (
             <React.Fragment key={currentWorkout.id}>
               <Accordion.Title
-                className="accordionTitle"
                 active={activeIndex === currentWorkout.id}
+                className="wodTitle"
                 index={currentWorkout.id}
                 onClick={displayContent}
               >
                 <Icon name="dropdown" />
-                <Item.Header className="accordionHeader">{currentWorkout.name}</Item.Header>
+                <Item.Header className="wodHeader">
+                  {currentWorkout.name}
+                </Item.Header>
               </Accordion.Title>
-              <Accordion.Content active={activeIndex === currentWorkout.id} className="accordionContent">
-                <Container className="accordionContainer">
+              <Accordion.Content
+                active={activeIndex === currentWorkout.id}
+                className="wodAccordion"
+              >
+                <Container className="wodContainer">
                   <Image
-                    spaced="left"
                     className="imageWod"
+                    spaced="left"
                     src={setImageWorkout(currentWorkout.slug)}
-                    wrapped
                     ui={false}
+                    wrapped
                   />
                   <div
                     className="contentWod"
                     dangerouslySetInnerHTML={createMarkup(currentWorkout.content)} 
                   />
-
                 </Container>
               </Accordion.Content>
-
             </React.Fragment>
           ))}
 
         </Accordion>
-
       </Container>
     </Container>
-
   );
 };
 
 WorkoutList.propTypes = {
+  activeIndex: PropTypes.number.isRequired,
+  cancelSort: PropTypes.func.isRequired,
+  changeActiveIndex: PropTypes.func.isRequired,
+  changeSort: PropTypes.func.isRequired,
+  confirme: PropTypes.bool,
+  course: PropTypes.bool,
+  debutant: PropTypes.bool,
+  intermediaire: PropTypes.bool,
+  maison: PropTypes.bool,
+  salle: PropTypes.bool,
+  sortWorkoutData: PropTypes.func.isRequired,
   workoutList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  changeActiveIndex: PropTypes.func.isRequired,
-  activeIndex: PropTypes.number.isRequired,
-  course: PropTypes.bool,
-  salle: PropTypes.bool,
-  maison: PropTypes.bool,
-  debutant: PropTypes.bool,
-  intermediaire: PropTypes.bool,
-  confirme: PropTypes.bool,
-  changeSort: PropTypes.func.isRequired,
-  sortWorkoutData: PropTypes.func.isRequired,
   workoutToShow: PropTypes.array.isRequired,
-  cancelSort: PropTypes.func.isRequired,
 };
 
 WorkoutList.defaultProps = {
+  confirme: PropTypes.null,
   course: PropTypes.null,
-  salle: PropTypes.null,
-  maison: PropTypes.null,
   debutant: PropTypes.null,
   intermediaire: PropTypes.null,
-  confirme: PropTypes.null,
+  maison: PropTypes.null,
+  salle: PropTypes.null,
 };
 
 export default WorkoutList;

@@ -1,6 +1,7 @@
 // == Import : npm
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 // == Import : local
@@ -10,11 +11,11 @@ import WelcomeBoard from 'src/components/Dashboard';
 import Postslist from 'src/containers/PostView/PostsList';
 import Contact from 'src/components/Contact';
 import Error from 'src/components/Main/Error';
-import './page.scss';
+import './main.scss';
 
 // == Composant
 const Main = ({ logged }) => (
-  <>
+  <Container id="mainContainer">
     <Switch>
       {!logged && (
         <Route path="/" exact component={Login} />
@@ -39,9 +40,8 @@ const Main = ({ logged }) => (
       <Route path="/contact" exact component={Contact} />
       <Route component={Error} />
     </Switch>
-  </>
+  </Container>
 );
-
 
 Main.propTypes = {
   logged: PropTypes.bool.isRequired,

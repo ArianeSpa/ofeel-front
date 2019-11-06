@@ -1,27 +1,32 @@
 @import 'src/styles/vars';
 
-
-@keyframes appear{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-.ui.container.welcomeMessage{
+#welcomeBoardMessage{
   animation-duration: 0.3s;
-  animation-name: appear;
+  animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
   font-family: $cabin!important;
   padding: 40px 20px;
+  &>#welcomeBordHeader{
+    color: #fff;
+    display: block;
+    font-size: 1.3em;
+    text-align: center;
+  }
+  &>p{
+    font-size: 0.8em;
+    line-height: 1.3em;
+    margin-bottom: 1em;
+  }
 }
-h3.ui.header {
-  color: #fff;
-  display: block;
-  font-size: 1.3em;
-}
-p {
-  font-size: 1.1em;
+
+@media (min-width: 768px){
+  #welcomeBoardMessage{
+    &>#welcomeBordHeader{
+      margin-bottom: 1.5em;
+    }
+    &>p{
+      font-size: 1em;
+    }
+  }
+  
 }

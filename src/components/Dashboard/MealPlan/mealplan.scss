@@ -1,13 +1,17 @@
 @import 'src/styles/vars';
 
-.ui.equal.width.grid.mealGrid{
+#mealGrid{
   margin: 0;
   padding: 0;
-  &>.row.bothRow.rowMeals {
+  &>#mealplanSubtitle{
+    @include tagSubtitle();
+    color: $blue5;
+  }
+  &>#dailyMealRow {
     flex-direction: column;
     margin-bottom: 1em;
     padding: 0 0 1em;
-    &>.column.tricol{
+    &>.oneMealColumn{
       align-items: center;
       border-bottom: 1px solid $blue5;
       display: flex;
@@ -15,137 +19,46 @@
       margin-bottom: 1em;
       padding: 0 0 2em;
       width: 100%;
-      &>.ui.segment.cssSegment{
-        align-items: center;
-        background-color: transparent;
-        border: none;
-        box-shadow: none;
-        display: flex;
-        flex-direction: row;
-        margin: 0 auto 0.8em;
-        max-width: 20em;
-        padding: 0;
-        &>.ui.header{
+      &>.oneMealSegment{
+        @include mealplanSegment();
+        &>.oneMealHeader{
           color: $blue5;
-          font-size: 0.9em;
-          height: unset;
-          margin: 0 2em 0 0;
-          padding: 0;
-          text-transform: uppercase;
-          vertical-align: middle;
+          @include mealplanHeader();
         }
-        &>.ui.toggle.checkbox.cheat{
+        &>.cheatmealCheckbox{
+          @include mealplanToggle;
           &>input{
-            &:checked ~ label:after, :checked ~ .box:after{
-              left: 1em;
-            }
             &:checked + label{
               color: $pink5 !important;
               &::before{
                 background-color: $pink5 !important;
               }
             }
-            &+label{
-              color: white;
-              font-style: italic;
-            }
-          }
-          &>label{
-            padding: 0 0 0 2.5em;
-            &::before{
-              height: 1em;
-              width: 2em;
-            }
-            &::after{
-              height: 1em;
-              width: 1em;
-            }
           }
         }
       }
-      &>.ui.form.cssForm{
-        align-items: flex-end;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        width: max-content;
-        &>.fields.cssField{
-          border-bottom: 1px dotted $pink4;
-          height: max-content;
-          margin: 0 0 0.5em;
-          width: max-content;
-          &>.label.cssLabel{
-            align-self: center;
-            background-color: transparent;
-            color: white;
-            font-size: 0.9em;
-            height: max-content;
-            margin: 0 1em 0 0;
-            padding: 0;
-          }
-          &>.ui.selection.visible.dropdown > .text:not(.default){
+      &>.oneMealForm{
+        @include formMealplan();
+        &>.mealFields{
+          &>.foodDropdown.visible > .text:not(.default){
             color: $green2;
           }
-          &>.ui.selection.dropdown{
-            align-items: center;
-            background-color: transparent;
-            border: none;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            height: max-content;
-            line-height: unset;
-            min-height: 1.8em;
-            padding:  0;
-            width: max-content;
-            &>.text{
-              color: white;
-              font-size: 0.9em;
-              height: max-content;
-              margin: 0 0.7em 0 0;
-            }
-            &>.dropdown.icon{
-              float: none;
-              left: 0;
-              margin: 0;
-              padding: 0;
-              position: static;
-              top: 0;
+          &>.foodDropdown{
+            &>.icon{
+              color: $blue5;
             }
             &>.menu.transition{
-              left: unset;
-              max-width: unset;
-              min-width: unset;;
-              right: 0;
-              width: 8em;
-
-              &::-webkit-scrollbar{
-                width: 5px;
-                &-track{
-                  background-color: transparent;
-                  border-radius: 2.5px;
-                }
-                &-thumb{
-                  background-image: $goals-color;
-                  &:hover{
-                      background-image: $goals-color;
-                  }
-                }
-              }
               &>.selected.item{
                 color: $green2;
               }
             }
           }
         }
-        &>.fruit{
-          font-size: 0.9em;
-          font-weight: bold;
-          margin-bottom: 1em;
-          text-align: right;
-        }
       }
       &>.messagecheat{
+        animation-duration: 0.3s;
+        animation-name: opacity0to1;
+        animation-timing-function: ease-in-out;
         font-size: 0.8em;
         margin: auto;
         max-width: 25em;
@@ -153,142 +66,54 @@
       }
     }
   }
-  &>.row.bothRow.rowSnack{
+  &>#snackRow{
     flex-direction: column;
     padding-top: 0;
-    &>.column{
+    &>#snackColumn{
+      display: flex;
+      flex-direction: column;
+      padding:  0;
       width: 100%;
-      &>.snackSegment{
-        align-items: center;
-        background-color: transparent;
-        border: none;
-        box-shadow: none;
-        flex-direction: row;
-        display: flex;
-        margin: 0 auto 0.8em;
-        max-width: 20em;
-        padding: 0;
-        &>h4.ui.header {
+      &>#snackSegment{
+        @include mealplanSegment();
+        &>#snackHeader{
           color: $yellow3;
-          font-size: 0.9em;
-          height: unset;
-          margin: 0 2em 0 0;
-          padding: 0;
-          text-transform: uppercase;
-          vertical-align: middle;
+          @include mealplanHeader();
         }
-        &>.ui.toggle.checkbox.cheat{
+        &>.cheatmealCheckbox{
+          @include mealplanToggle;
           &>input{
-            &:checked ~ label:after, :checked ~ .box:after{
-              left: 1em;
-            }
             &:checked + label{
               color: $yellow3 !important;
               &::before{
                 background-color: $yellow3 !important;
               }
             }
-            &+label{
-              color: white;
-              font-style: italic;
-            }
-          }
-          &>label{
-            padding: 0 0 0 2.5em;
-            &::before{
-              height: 1em;
-              width: 2em;
-            }
-            &::after{
-              height: 1em;
-              width: 1em;
-            }
           }
         }
-      }
-    }
-    &>.snackColumn {
-      display: flex;
-      flex-direction: column;
-      padding:  0;
-      &>.ui.form.cssForm {
-        align-items: flex-end;
-        display: flex;
-        flex-direction: column;
-        margin:  0 auto;
-        width: max-content;
-        &>.fields.cssField {
-          border-bottom: 1px dotted $pink4;
-          height: max-content;
-          margin:  0 0 0.5em;
-          width:  max-content;
-          &>.ui.label.snackLabel {
-            align-self: center;
-            background-color: transparent;
-            color: white;
-            font-size: 0.9em;
-            height: max-content;
-            margin: 0 1em 0 0;
-            padding: 0;
-          }
-          &>.ui.selection.visible.dropdown > .text:not(.default){
+      }    
+      &>#snackForm{
+        @include formMealplan();
+        &>.mealFields{
+          &>.foodDropdown.visible > .text:not(.default){
             color: $yellow1;
           }
-          &>.ui.selection.dropdown {
-            align-items: center;
-            background-color: transparent;
-            border: none;
-            color: $yellow1;
-            display: flex;
-            flex-direction: row;
-            height: max-content;
-            line-height: unset;
-            min-height: 1.8em;
-            padding: 0;
-            width: max-content;
-            &>.text {
-              color: white;
-              font-size: 0.9em;
-              height: max-content;
-              margin: 0 0.7em 0 0;
-            }
-            &>i.dropdown.icon {
-                float: none;
-                margin: 0;
-                padding: 0;
-                position: static;
+          &>.foodDropdown {
+            &>.icon {
+              color: $yellow1;
             }
             &>.menu.transition {
-                left: unset;
-                right: 0;
-                width: 8em;
-              &::-webkit-scrollbar{
-                width: 5px;
-                &-track{
-                  background-color: transparent;
-                  border-radius: 2.5px;
-                }
-                &-thumb{
-                  background-image: $goals-color;
-                  &:hover{
-                      background-image: $goals-color;
-                  }
-                }
-              }
               &>.selected.item{
                 color: $yellow1;
               }
             }
           }
         }
-        &>.fruit{
-          font-size: 0.9em;
-          font-weight: bold;
-          margin-bottom: 1em;
-          text-align: right;
-        }
       }
       &>.snackmessage{
+        animation-duration: 0.3s;
+        animation-name: opacity0to1;
+        animation-timing-function: ease-in-out;
         font-size: 0.8em;
         margin: auto;
         max-width: 25em;
@@ -299,70 +124,68 @@
 }
 
 @media (min-width: 768px){
-  .ui.equal.width.grid.mealGrid{
+  #mealGrid{
     padding: 1em 0;
+    &>#dailyMealRow{
+      &>.oneMealColumn{
+        &>.oneMealForm{
+          // margin: 0 auto 0 auto;
+        }
+      }
+    }
+  }
+  &>#snackRow{
+    &>#snackColumn{
+      &>#snackForm{
+        // margin: 0 auto 0 auto;
+      }
+    }
   }
 }
 
-@media (min-width: 1040px){
-  .ui.equal.width.grid.mealGrid{
-    &>.row.bothRow.rowMeals{
+@media (min-width: 1024px){
+  #mealGrid{
+    &>#dailyMealRow{
       border-bottom: 1px solid $blue5;
       flex-direction: row;
       justify-content: space-between;
       margin: 0 auto 1em;
       padding: 0;
-      &>.column.tricol{
+      &>.oneMealColumn{
         border-bottom: none;
         flex-grow: 0;
         margin-bottom: 0;
         width: 31%;
-        &>.ui.segment.cssSegment{
+        &>.oneMealSegment{
           border-bottom: 2px solid $blue5;
           flex-direction: column;
           margin: 0 auto 2em;
-          &>.ui.header{
-            margin: 0;
+          &>.oneMealHeader{
+            margin: 0 0 0.8em;
           }
         }
-        &>.ui.form.cssForm{
+        &>.oneMealForm{
           border-right: 1px solid $blue5;
-          &>.fields.cssField{
+          margin: 0 0 0 auto;
+          &>.mealFields{
             margin: 0 0 1em auto;
             padding-right: 0.5em;
           }
-          &>.fruit{
+          &>.mealVegAndFruit{
             padding-right: 0.5em;
           }
         }
+        &>.messagecheat{
+          border-right: 1px solid $blue5;
+        }
       }
     }
-    &>.row.bothRow.rowSnack{
-      &>.column{
-        &>.snackSegment{
+    &>#snackRow{
+      &>#snackColumn{
+        &>#snackSegment{
           border-bottom: 2px solid $yellow3;
         }
       }
     }
   }
 } 
-
-
-
-
-
-
-@keyframes appear{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-.messagecheat, .snackmessage, form.ui.inverted.form.cssForm{
-  animation-name: appear;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
-}

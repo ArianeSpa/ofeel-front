@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 // == Import : local
 import Login from 'src/components/Home/Login';
-import { changeUserValue, authenticate } from 'src/store/reducers/userReducer';
 
 // Action Creators
+import { changeUserValue, authenticate } from 'src/store/reducers/userReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeUserData: (name, value) => {
     dispatch(changeUserValue(name, value));
-  }
+  },
 });
 
 // Container

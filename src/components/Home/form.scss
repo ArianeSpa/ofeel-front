@@ -1,69 +1,61 @@
 @import 'src/styles/vars';
 
-//Form login et signup
-.ui.inverted.segment.block{
-    background: none;
-    background-image: $background-color-dashboard;
-    box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-    margin: 2em auto;
-    max-width: 400px;
-    &.login, .signup{
-        width: 100%;
-    }
-    &>.ui.form{
-        &>.fields{
-            &.infoPassword{
-                padding: 10px 10px;
-                text-align: center;
-            }
-        }
-        &>.button.submit{
-            background-image: $feeling-color;
-            border: 1px solid transparent;
-            display: block;
-            margin: auto;
-            &:hover{
-                background-color: transparent;
-                border: 1px solid $yellow4;
-                color: $yellow4;
-            }
-        }
-    }
-    &>a.ui.container{
-        color:#00d29c;
+#loginSegment, #signupSegment{
+    @include formSegmentBase;
+    &>.formLink{
+        @include links;
         margin: 1em auto 0;
         text-align: center;
-        text-decoration: underline;
-        width: max-content;
-        &:hover{
-            color: #00ff85;
+    }
+}
+#signupSegment{
+    &>#signupForm{
+        &>#signupInfo{
+            font-size: 0.9em;
+            line-height: 1.4em;
+            margin: 0 auto 0.5em;
+        }
+        &>#passwordList{
+            margin-bottom: 2em;
+            &>.listItem{
+                font-size: 0.9em;
+                font-style: italic;
+                line-height: 1.4em;
+                list-style: disc inside;
+                padding-left: 1em;
+            }
         }
     }
 }
 
-// Tablet ++
-@media (min-width: 768px){
-    .ui.inverted.segment.block{
-        margin: auto;
-        margin: 1em auto;
-        max-height: 70%;
-        max-width: none;
-        overflow-y: scroll;
-        &.login{
-            width: 500px;
-        }
-        &.signup{
-            width: 600px;
-        }
-        &::-webkit-scrollbar{
-            &-track{
-                background-color: transparent;
-                border-radius: 5px;
+@media (min-width: 768px) {
+    #loginSegment{
+        width: 25em;
+        &>.form > #loginFields{
+            flex-direction: column;
+            &> .oneField{
+                width: 100%;
+                margin-bottom: 1em;
             }
-            &-thumb{
-                background-image: $mealPlan-color;
-                &:hover{
-                    background-image: $goals-color;
+        }
+    }
+    #signupSegment{
+        &>#signupForm{
+            &>#passwordList{
+                &>.listItem{
+                    padding-left: 3em;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    #signupSegment{
+        &>#signupForm{
+            &>#passwordList{
+                &>.listItem{
+                    padding-left: 8em;
                 }
             }
         }

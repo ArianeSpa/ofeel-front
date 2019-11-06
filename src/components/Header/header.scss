@@ -1,42 +1,76 @@
 @import 'src/styles/vars';
 
-// Segment header (logo + navbar)
-.ui.text.menu.navbar, .ui.menu.navbar{
-    box-shadow: none;
+#headerDesktop, #headerMobile{
     background-color: transparent;
+    box-shadow: none;
     border: none;
     flex-wrap: wrap;
     font-family: $livvic;
     justify-content: space-around;
     margin: 0;
-    max-height: 25%;
 }
-
-// Smartphone
-.ui.text.navbarDesktop.menu {
+#headerDesktop {
     display: none;
 }
-.ui.navbarMobile.menu{
-    &>.item.mobileItem{
-        padding:0 ;
-        width: 5em;
+#headerMobile{
+    border-radius: 0;
+    margin-bottom: 1em;
+    padding: 0.4em;
+    &.up{
+        animation-duration: 0.3s;
+        animation-name: opacity0to1;
+        animation-timing-function: ease-in-out;
+        left: 0;
+        top: 0;
+        position: sticky;
+        z-index: 1;
+        &.bg2{
+            background-image: linear-gradient(to bottom, $bg1, $bg2);
+        }
+        &.bg3{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3);
+        }
+        &.bg4{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4);
+        }
+        &.bg5{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5);
+        }
+        &.bg6{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5, $bg6);
+        }
+        &.bg7{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5, $bg6, $bg7);
+        }
+        &.bg8{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5, $bg6, $bg7, $bg8);
+        }
+        &.bg9{
+            background-image: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5, $bg6, $bg7, $bg8, $bg9);
+        }
     }
-    &>.right.menu{
+    &>#mobileItem{
+        padding:0 ;
+        width: 4.5em;
+        &::before{
+            display: none;
+        }
+    }
+    &>#rightPartHeader{
         align-items: center;
-        color: $yellow5;
-        &>.navbarDropdown{
+        color: $yellow4;
+        &>#burgerMenu{
             &>.bars.icon{
-                font-size: 2em;
+                font-size: 1.8em;
             }
-            &:last-child .menu{
+            &>#menuContent{
+                background-color: rgba(72, 7, 115, 0.75);
+                background-image: $background-color-dashboard;
+                border: 1px solid $yellow4;
                 right: 2.2em;
                 top: -0.8em;
-            }
-            &>.navbarContent{
-                background-color: #2aafbbd5;
-                border: 2px solid $yellow5;
                 &::after{
-                    background-color: $yellow5;
+                    background-color: $yellow4;
                     clip-path: polygon(0 0, 0 100%, 100% 50%);
                     height: 2em;
                     right: -0.8em;
@@ -44,71 +78,67 @@
                     transform: none;
                     width: 0.7em;
                 }
-                &>.item.navbar{
-                    color: black !important;
+                &>.burgerListItem{
+                    color: white !important;
+                    border: none;
                     &.active{
-                        background-color: #480773!important;
-                        color: white !important;
+                        background-color: #f4d236!important;
+                        color: black !important;
+                        font-weight: normal !important;
                     } 
+                }
+                &>#disconnect{
+                    border-radius: 0;
+                    margin-top: 1em;
                 }
             }
         }
     }
 }
     
-
-// Tablet
 @media (min-width: 768px){
-    .ui.navbarMobile.menu {
+    #headerMobile{
         display: none;
     }
-    .ui.text.navbarDesktop.menu {
+    #headerDesktop{
         display: flex;
-        &>.left.menu {
-            &>.item.desktopItem{
-                &>.ui.image.desktopLogo{
-                    width: 5em;
+        height: $headerHeight768;
+        margin: 0;
+        &>#leftPartHeader{
+            height: 100%;
+            &>#desktopItem{
+                height: 100%;
+                &>#desktopLogo{
+                    height: 100%;
+                    &>img{
+                        height: 100%;
+                        max-width: none;
+                    }
                 }
+            }
+        }
+        &>.navbarItem{
+            color: white;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            &.active{
+                color: $yellow4;
             }
         }
     }
 }
 
-// Laptop ++
 @media (min-width: 1024px){
-    .ui.text.navbarDesktop.menu{
-        &>.left.menu {
-            &>.item.desktopItem{
+    #headerDesktop{
+        height: $headerHeight1024;
+        padding: 1em 1em 0;
+        &>#leftPartHeader{
+            &>#desktopItem{
                 padding:0 ;
-                &>.ui.image.desktopLogo{
-                    width: 9em;
+                &>#desktopLogo{
+                    width: 7em;
                 }
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-.ui.text.menu.navbar{
-    // display:flex;
-    // justify-content: space-around;
-    // width: 100%;
-    // padding-left: 200px;
-    font-family: $livvic;
-    .item.navbar{
-        color: white;
-        font-size: 1.2em;
-        text-transform: uppercase;
-
-    }
-}
-

@@ -40,118 +40,133 @@ const Goals = ({
   };
 
   return (
-    <Segment inverted className="goalSegment">
-      <Form className="goalForm">
+    <Segment inverted id="goalSegment">
+      <Form id="goalForm">
         <Header className="goalSubtitle" as="h3">Votre objectif</Header>
-        <Form.Group className="goalGroup">
-          <Form.Field className="weightLostField goalField">
+        <Form.Group id="goalsGroup">
+          <Form.Field className="goalField">
             <Radio
+              checked={goal === 'perte-de-poids'}
               className="goalRadio"
               id="perte-de-poids"
               label="Perdre du poids"
               name="radioGroup"
               onChange={handleChangeGoal}
-              checked={goal === 'perte-de-poids'}
             />
             <Image
-              className="icon"
+              className="goalIcon"
               src={iconBalance}
             />
           </Form.Field>
-          <Form.Field className="muscleGainField goalField">
+          <Form.Field className="goalField">
             <Radio
+              checked={goal === 'prise-de-masse'}
               className="goalRadio"
               id="prise-de-masse"
               label="Prendre de la masse musculaire"
               name="radioGroup"
               onChange={handleChangeGoal}
-              checked={goal === 'prise-de-masse'}
-
             />
             <Image
-              className="icon"
+              className="goalIcon"
               src={iconMuscle}
             />
           </Form.Field>
-          <Form.Field className="balanceField goalField">
+          <Form.Field className="goalField">
             <Radio
+              checked={goal === 'remise-en-forme'}
               className="goalRadio"
               id="remise-en-forme"
               label="Nutrition équilibrée"
               name="radioGroup"
               onChange={handleChangeGoal}
-              checked={goal === 'remise-en-forme'}
             />
             <Image
-              className="icon"
+              className="goalIcon"
               src={iconNutrition}
             />
           </Form.Field>
         </Form.Group>
         <Header className="goalSubtitle" as="h3">Vos préférences alimentaires</Header>
-        <Form.Group className="foodPrefGroup">
+        <Form.Group id="foodPrefGroup">
           <Form.Field className="foodPrefField">
             <Checkbox
-              id="sanslactose"
+              checked={sanslactose}
               className="foodPrefCheckbox"
+              id="sanslactose"
               label="Sans lactose"
               onChange={handleChangeRegime}
-              checked={sanslactose}
             />
             <Image
-              className="icon"
+              className="foodPrefIcon"
               src={iconLactose}
             />
           </Form.Field>
           <Form.Field className="foodPrefField">
             <Checkbox
-              id="sansgluten"
+              checked={sansgluten}
               className="foodPrefCheckbox"
+              id="sansgluten"
               label="Sans gluten"
               onChange={handleChangeRegime}
-              checked={sansgluten}
             />
             <Image
-              className="icon"
+              className="foodPrefIcon"
               src={iconGluten}
             />
           </Form.Field>
           <Form.Field className="foodPrefField">
             <Checkbox
-              id="vegan"
+              checked={vegan}
               className="foodPrefCheckbox"
+              id="vegan"
               label="Vegan"
               onChange={handleChangeRegime}
-              checked={vegan}
             />
             <Image
-              className="icon"
+              className="foodPrefIcon"
               src={iconSalad}
             />
           </Form.Field>
         </Form.Group>
       </Form>
-      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
-      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
-
-      <Button className="goalButton" type="submit" onClick={calculAndSend}>Enregistrer</Button>
+      {savedPreference === 'saved' && (
+        <SavedModal
+          content="vos données ont bien été enregistrées"
+          error={false}
+          positive
+        />
+      )}
+      {savedPreference === 'notsaved' && (
+        <SavedModal
+          content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
+          error
+          positive={false}
+        />
+      )}
+      <Button
+        className="goalButton"
+        onClick={calculAndSend}
+        type="submit"
+      >
+        Enregistrer
+      </Button>
     </Segment>
   );
 };
 
 Goals.propTypes = {
+  cal_jour: PropTypes.number.isRequired,
   changeGoal: PropTypes.func.isRequired,
   goal: PropTypes.string.isRequired,
-  selectRegime: PropTypes.func.isRequired,
-  sanslactose: PropTypes.bool.isRequired,
   sansgluten: PropTypes.bool.isRequired,
-  vegan: PropTypes.bool.isRequired,
-  sendToAPI: PropTypes.func.isRequired,
-  savePropMeal: PropTypes.func.isRequired,
-  cal_jour: PropTypes.number.isRequired,
-  sortFood: PropTypes.func.isRequired,
+  sanslactose: PropTypes.bool.isRequired,
   savedPreference: PropTypes.string.isRequired,
+  savePropMeal: PropTypes.func.isRequired,
+  selectRegime: PropTypes.func.isRequired,
+  sendToAPI: PropTypes.func.isRequired,
+  sortFood: PropTypes.func.isRequired,
+  vegan: PropTypes.bool.isRequired,
 };
-
 
 export default Goals;

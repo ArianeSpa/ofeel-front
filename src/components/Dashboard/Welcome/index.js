@@ -2,13 +2,13 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 
-
+// == Import : local
 import './welcome.scss';
 
 // == Composant
 const Welcome = () => (
-  <Container textAlign="center" className="welcomeMessage">
-    <Header as="h3" textAlign="center">
+  <Container id="welcomeBoardMessage">
+    <Header as="h3" id="welcomeBordHeader">
       Bienvenue sur votre tableau de bord!
     </Header>
     <p>Personnalisez votre profil utilisateur, précisez vos

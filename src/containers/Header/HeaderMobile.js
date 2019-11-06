@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import Header from 'src/components/Header';
 
 // Action Creators
-import { updateYPosition, updateHeaderClassname } from 'src/store/reducers/appReducer';
+import { updateYPosition } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   logged: state.userReducer.logged,
+  position: state.userReducer.position,
+
   yPosition: state.appReducer.yPosition,
-  headerClassname: state.appReducer.headerClassname,
 });
 
 /* === Actions === */
@@ -19,16 +20,13 @@ const mapDispatchToProps = (dispatch) => ({
   changeViewPosition: (value) => {
     dispatch(updateYPosition('yPosition', value));
   },
-  changeHeaderClassname: (value) => {
-    dispatch(updateHeaderClassname('headerClassname', value));
-  },
 });
 
 // Container
-const HeaderMobileContainer = connect(
+const HeaderContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Header);
 
 // == Export
-export default HeaderMobileContainer;
+export default HeaderContainer;

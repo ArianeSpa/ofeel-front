@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   changeUserData: (name, value) => {
     dispatch(changeUserValue(name, value));
-  }
+  },
 });
 
 // Container

@@ -14,25 +14,26 @@ const MyFeelingProfile = ({
 }) => (
   <Form.Field className="activityField">
     <Radio
+      checked={checkedvalue === value}
       className="activityRadio"
       label={value}
       name="activity"
-      value={value}
       onChange={onchange}
-      checked={checkedvalue === value}
+      value={value}
     />
     <Popup
-      content={text}
       className="activityPopup"
+      content={text}
       trigger={<Icon name="question circle outline" className="information" />}
     />
   </Form.Field>
 );
 
 MyFeelingProfile.propTypes = {
+  checkedvalue: PropTypes.string.isRequired,
+  onchange: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onchange: PropTypes.func.isRequired,
-  checkedvalue: PropTypes.string.isRequired,
 };
+
 export default MyFeelingProfile;

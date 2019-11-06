@@ -1,166 +1,177 @@
 @import 'src/styles/vars';
 
-@keyframes infomsg {
-    to {
-      font-size: 0.8em;
-      opacity: 1;
-      color: white;
-    }
-}
-
-// MOBILDE FIRST
-.ui.inverted.segment.dashboard{
+#dashboardSegment{
     background: transparent;
     background-image: $background-color-dashboard;
     box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-around;
     margin: 2em auto;
     padding: 0;  
     width: 100%;
-}
-.ui.two.column.grid{
-    height: 100%;
-    margin: 0;
-    width: 100%;
-    &>.row.pers{
-        flex-direction: column;
+    &>#dashboardGrid{
         height: 100%;
-        padding:0;
-        &>.column.left{
-            flex-direction: row;
-            padding: 0;
-            width: 100%;
-        }
-        &>.column.right{
+        margin: 0;
+        width: 100%;
+        &>#dashboardRow{
+            flex-direction: column;
             height: 100%;
-            padding: 1em 0.5em;
-            width:100%;
+            padding:0;
+            &>#tagsColumn{
+                flex-direction: row;
+                padding: 0;
+                width: 100%;
+                &>.dashboardTag{
+                    align-items: center;
+                    background-color: transparent;
+                    background-size: cover;
+                    border: transparent;
+                    border-radius: 0;
+                    box-shadow: inset 0 -5px 5px -3px black;
+                    display: flex;
+                    padding: 0;
+                    flex-direction: column;
+                    height:100%;
+                    justify-content: flex-start;
+                    margin: 0;
+                    &>.tagBorder{
+                        border-radius:0.15em;
+                        height:0.3em;
+                        width:100%;
+                        &#myfeeling{
+                            background-image: $feeling-color;
+                        }
+                        
+                        &#goals {
+                            background-image: $goals-color;
+                        }
+                        
+                        &#mealplan {
+                            background-image: $mealPlan-color;
+                        }
+                        
+                        &#workout {
+                            background-image: $workout-color;
+                        }
+                    }                    
+                    &#focus{
+                        background-image: $background-color-tag-mobile;
+                        border-radius: 6px;
+                        box-shadow: 0 -3px 5px -4px white;
+                        &:after{
+                            color: white;
+                        }
+                    }
+                    &>.tagIcon{
+                        height: 4em;            
+                        margin: auto;
+                        &>.icons{
+                            align-items: center;
+                            background-clip: text;
+                            background-color: black;
+                            display: flex;
+                            font-size: 1.8em;
+                            height: 50%;
+                            justify-content: center;
+                            margin: auto;
+                            position: relative;
+                            top: 10%;
+                            -webkit-text-fill-color: transparent;
+                        }
+                        &>#myfeelingIcon{
+                            background-image: $feeling-color;
+                        }
+                        &>#goalsIcon{
+                            background-image: $goals-color;
+                        }
+                        &>#mealplanIcon{
+                            background-image: $mealPlan-color;
+                        }
+                        &>#workoutIcon{
+                            background-image: $workout-color;
+                        }
+                    }
+                    &:after{
+                        font-size: 0.5em;
+                        left: 0;
+                        line-height: 1em;
+                        opacity: 0;
+                        padding: 0 0.3em;
+                        position: absolute;
+                        text-align: center;
+                        top: 70%;
+                    }
+                    &.myfeelingSegment:after{
+                        content: "Personnalisez votre profil utilisateur";
+                    }
+                    &.goalsSegment:after{
+                        content: "Précisez vos objectifs et préférences alimentaires";
+                    }
+                    &.mealplanSegment:after{
+                        content: "Consultez votre plan alimentaire";
+                    }
+                    &.workoutSegment:after{
+                        content: "Choississez l'entrainement qui vous convient";
+                    }
+                    &:hover:after{
+                        opacity: 1;
+                        transition: opacity 0.4s ease-in-out 1s;
+                    }
+                }
+            }
+            &>#contentColumn{
+                height: 100%;
+                padding: 1em 0.5em;
+                width:100%;
+            }
         }
     }
-}
-.ui.segment.dashboardItem{
-    align-items: center;
-    background-color: transparent;
-    background-size: cover;
-    border: transparent;
-    border-radius: 0;
-    box-shadow: inset 0 -5px 5px -3px black;
-    display: flex;
-    padding: 0;
-    flex-direction: column;
-    height:100%;
-    justify-content: flex-start;
-    margin: 0;
-        
-    //EFFETS BORDURE ONGLET
-    &>.border{
-        border-radius:0.15em;
-        height:0.3em;
-        width:100%;
-        &#myfeeling{
-            background-image: $feeling-color;
-        }
-        
-        &#goals {
-            background-image: $goals-color;
-        }
-        
-        &#mealplan {
-            background-image: $mealPlan-color;
-        }
-        
-        &#workout {
-            background-image: $workout-color;
-        }
-    }
-
-    //EFFETS INFO ANIMATION SURVOLE ONGLET
-    &:after{
-        font-size: 0.6em;
-        left: 0;
-        line-height: 1em;
-        opacity: 0;
-        padding: 0 0.2em;
-        position: absolute;
-        text-align: center;
-        top: 70%;
-    }
-    &:hover:after{
-        opacity: 1;
-        transition: opacity 0.4s ease-in-out 1s;
-    }
-    &.myfeelingSegment:after{
-        content: "Personnalisez votre profil utilisateur";
-    }
-    &.goalsSegment:after{
-        content: "Précisez vos objectifs et préférences alimentaires";
-    }
-    &.mealplanSegment:after{
-        content: "Consultez votre plan alimentaire";
-    }
-    &.workoutSegment:after{
-        content: "Choississez l'entrainement qui vous convient";
-    }
-    &#focus{
-        background-image: $background-color-tag-mobile;
-        border-radius: 6px;
-        box-shadow: 0 -3px 5px -4px white;
-        &:after{
-            color: white;
-        }
-    }
-    // ICONES ONGLET
-    &> .iconTag{
-        height: 4.5em;            
-        margin: auto;
-        &> .icon{
-            align-items: center;
-            display: flex;
-            font-size: 2em;
-            height: 50%;
-            justify-content: center;
-            margin: auto;
-            position: relative;
-            top: 10%;
-        }
-        &> #myfeelingIcon{
-            background: $feeling-color;
-            background-clip: text;
-	        -webkit-text-fill-color: transparent;
-        }
-        &> #goalsIcon{
-            background: $goals-color;
-            background-clip: text;
-	        -webkit-text-fill-color: transparent;
-        }
-        &> #mealplanIcon{
-            background: $mealPlan-color;
-            background-clip: text;
-	        -webkit-text-fill-color: transparent;
-        }
-        &> #workoutIcon{
-            background: $workout-color;
-            background-clip: text;
-	        -webkit-text-fill-color: transparent;
-        }
-    }
-}
-    
+} 
 
 @media (min-width: 768px){
-    .ui.inverted.segment.dashboard{
-        height:70%;
-        .ui.two.column.grid{
-            &>.row.pers{
+    #dashboardSegment{
+        height: 100%;
+        margin: 0 auto;
+        max-height: 30em;
+        max-width: 100%;
+        width: 50em;
+        #dashboardGrid{
+            &>#dashboardRow{
                 flex-direction: row;
-                &>.column.left{
+                &>#tagsColumn{
                     flex-direction: column;
                     width: 20%;
+                    &>.dashboardTag{
+                        box-shadow: inset -5px 0 5px -3px black;
+                        flex-direction: row;
+                        &#focus{
+                            background-image: $background-color-tag;
+                            box-shadow: -3px 0 5px -4px white;
+                        }
+                        &>.tagBorder{
+                            border-radius:0.2em;
+                            height:100%;
+                            width:0.4em;
+                        }
+                        &>.tagIcon{
+                            &>.icons{
+                                font-size: 2.2em;
+                                height: 70%;
+                                top: 5%;
+                            }
+                        }
+                        &:after{
+                            font-size: 0.65em;
+                            margin: 0;
+                            padding: 0 1em;
+                            text-align: center;
+                            top: 70%;
+                            width: 100%;
+                        }
+                    }
                 }
-                &>.column.right{
+                &>#contentColumn{
                     overflow-x: hidden;
                     overflow-y: scroll;
                     padding: 0 1em;
@@ -181,53 +192,43 @@
             }
         }
     }
-    .ui.segment.dashboardItem{
-        box-shadow: inset -5px 0 5px -3px black;
-        flex-direction: row;
-        &>.border{
-            border-radius:0.2em;
-            height:100%;
-            width:0.4em;
-        }
-        &.myfeelingSegment:after, &.goalsSegment:after, &.mealplanSegment:after, &.workoutSegment:after{
-            font-size: 0.7em;
-            margin: 0;
-            padding: 0 1em;
-            text-align: center;
-            top: 70%;
-            width: 100%;
-        }
-        &#focus{
-            background-image: $background-color-tag;
-            box-shadow: -3px 0 5px -4px white;
-        }
-        &> .iconTag{
-            &> .icon{
-                font-size: 2.5em;
-                height: 70%;
-                top: 5%;
-            }
-        }
-    }
 }
 
 @media (min-width: 1024px){
-    .ui.inverted.segment.dashboard{
-        margin: auto;
-        width: 60%;
-    }
-    .ui.segment.dashboardItem{
-        &>.border{
-            border-radius:0.25em;
-            width:0.5em;
-        }
-        &.myfeelingSegment:after, &.goalsSegment:after, &.mealplanSegment:after, &.workoutSegment:after{
-            font-size: 0.8em;
-            line-height: 1.2em;
-        }
-        &> .iconTag{
-            &> .icon{
-                font-size: 3em;
+    #dashboardSegment{
+        margin: 1em auto 0;
+        max-height: 35em;
+        width: 60em;
+        &>#dashboardGrid{
+            &>#dashboardRow{
+                &>#tagsColumn{
+                    width: 15%;
+                    &>.dashboardTag{
+                        &>.tagBorder{
+                            border-radius:0.25em;
+                            width:0.5em;
+                        }
+                        &:after{
+                            font-size: 0.7em;
+                            line-height: 1.2em;
+                        }
+                        &>.tagIcon{
+                            &>.icons{
+                                font-size: 2.5em;
+                            }
+                        }
+                    }
+                }
+                &>#contentColumn{
+                    width: 85%;
+                    &>#mealGrid{
+                        &>#dailyMealRow{
+                            &>.oneMealColumn{
+                                width: 32%;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

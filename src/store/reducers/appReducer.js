@@ -14,6 +14,14 @@ const initialState = {
   loadingfood: true,
   user_metabo: 0,
   cal_jour: 0,
+  q_glu_dej: 30,
+  q_glu_p_dej_din: 20,
+  q_lip_dej: 10,
+  q_lip_p_dej_din: 10,
+  q_prot_dej: 35,
+  q_prot_p_dej_din: 20,
+  yPosition: 0,
+  headerClassname: 'down',
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -24,6 +32,8 @@ const SAVE_USER_DATA = 'SAVE_USER_DATA';
 const FINISH_LOAD_FOOD = 'FINISH_LOAD_FOOD';
 const SAVE_METABO_CALORIE = 'SAVE_METABO_CALORIE';
 const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
+const UPDATE_Y_POSITION = 'UPDATE_Y_POSITION';
+const UPDATE_HEADER_CLASSNAME = 'UPDATE_HEADER_CLASSNAME';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
@@ -57,8 +67,6 @@ const appReducer = (state = initialState, action = {}) => {
         loadingfood: false,
       };
     case SAVE_USER_DATA:
-      console.log('je suis dans appReducer');
-      console.log(action.objectUser.regime);
       return {
         ...state,
         age: action.objectUser.age,
@@ -107,7 +115,16 @@ const appReducer = (state = initialState, action = {}) => {
         q_prot_dej: action.props.q_prot_dej,
         q_prot_p_dej_din: action.props.q_prot_p_dej_din,
       };
-
+    case UPDATE_Y_POSITION:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    case UPDATE_HEADER_CLASSNAME:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     default:
       return state;
   }
@@ -166,6 +183,18 @@ export const saveMC = (metaboBase, calorieJour) => ({
 export const savePMeal = (props) => ({
   type: SAVE_PROP_MEAL,
   props,
+});
+
+export const updateYPosition = (name, value) => ({
+  type: UPDATE_Y_POSITION,
+  value,
+  name,
+});
+
+export const updateHeaderClassname = (name, value) => ({
+  type: UPDATE_HEADER_CLASSNAME,
+  name,
+  value,
 });
 
 export default appReducer;

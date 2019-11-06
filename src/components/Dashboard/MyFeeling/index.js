@@ -31,103 +31,114 @@ const MyFeeling = ({
   };
 
   return (
-    <Segment inverted className="myfeelingSegment">
-      <Form className="myfeelingForm">
+    <Segment inverted id="myfeelingSegment">
+      <Form id="myfeelingForm">
         <Header className="myfeelingSubtitle" as="h3">Parlons un peu de vous!</Header>
-
-        <Form.Group className="genderGroup">
+        <Form.Group id="genderGroup">
           <Form.Field className="genderField">
             <Checkbox
-              value="homme"
-              radio
+              checked={gender === 'homme'}
+              className="genderCheckbox"
+              id="homme"
               label="Homme"
               name="gender"
-              id="homme"
-              className="genderCheckbox"
-              checked={gender === 'homme'}
+              radio
               onChange={handleChangeProfil}
+              value="homme"
             />
           </Form.Field>
           <Form.Field className="genderField">
             <Checkbox
-              value="femme"
-              radio
-              label="Femme"
-              name="gender"
-              id="femme"
-              className="genderCheckbox"
               checked={gender === 'femme'}
+              className="genderCheckbox"
+              label="Femme"
+              id="femme"
+              name="gender"
+              radio
               onChange={handleChangeProfil}
+              value="femme"
             />
           </Form.Field>
         </Form.Group>
-        <Form.Group className="ageheightweightGroup">
+        <Form.Group id="ageheightweightGroup">
           <Dropdown
-            text={`Age : ${age} ans`}
             id="age"
             className="ageheightweightDropdown"
             name="age"
-            value={age}
+            onChange={handleChangeProfil}
             options={ageGenerator()}
             selection
-            onChange={handleChangeProfil}
+            text={`Age : ${age} ans`}
+            value={age}
           />
-
           <Dropdown
-            text={`Taille : ${taille} cm`}
             id="taille"
             className="ageheightweightDropdown"
             name="taille"
-            value={taille}
+            onChange={handleChangeProfil}
             options={heightGenerator()}
             selection
-            onChange={handleChangeProfil}
+            text={`Taille : ${taille} cm`}
+            value={taille}
           />
-
           <Dropdown
-            text={`Poids : ${poids} kg`}
             id="poids"
             className="ageheightweightDropdown"
             name="poids"
-            value={poids}
+            onChange={handleChangeProfil}
             options={weightGenerator()}
             selection
-            onChange={handleChangeProfil}
+            text={`Poids : ${poids} kg`}
+            value={poids}
           />
         </Form.Group>
-
         <Header className="myfeelingSubtitle" as="h3"> Votre profil d'activité physique</Header>
-        <Form.Group className="activityGroup">
-          {/* <Form.Field className="activityFields"> */}
+        <Form.Group id="activityGroup">
           {activityTable.map((currentProfil) => (
             <Activity
-              key={currentProfil.id}
-              value={currentProfil.value}
-              text={currentProfil.text}
-              onchange={handleChangeProfil}
               checkedvalue={activity}
+              key={currentProfil.id}
+              onchange={handleChangeProfil}
+              text={currentProfil.text}
+              value={currentProfil.value}
             />
           ))}
-          {/* </Form.Field> */}
         </Form.Group>
       </Form>
-
-      {savedPreference === 'saved' && <SavedModal content="vos données ont bien été enregistrées" positive error={false} />}
-      {savedPreference === 'notsaved' && <SavedModal content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion" positive={false} error />}
-      <Button className="save myfeelingButton" type="submit" onClick={calculAndSend}>Enregistrer</Button>
+      {savedPreference === 'saved' && (
+        <SavedModal
+          content="vos données ont bien été enregistrées"
+          error={false}
+          positive
+        />
+      )}
+      {savedPreference === 'notsaved' && (
+        <SavedModal
+          content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
+          error
+          positive={false}
+        />
+      )}
+      <Button
+        id="myfeelingButton"
+        onClick={calculAndSend}
+        type="submit"
+      >
+        Enregistrer
+      </Button>
     </Segment>
   );
 };
 
 MyFeeling.propTypes = {
-  gender: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-  taille: PropTypes.number.isRequired,
-  poids: PropTypes.number.isRequired,
-  changeProfil: PropTypes.func.isRequired,
   activity: PropTypes.string.isRequired,
-  sendToAPI: PropTypes.func.isRequired,
-  saveMetaboCalorie: PropTypes.func.isRequired,
+  age: PropTypes.number.isRequired,
+  changeProfil: PropTypes.func.isRequired,
+  gender: PropTypes.string.isRequired,
+  poids: PropTypes.number.isRequired,
   savedPreference: PropTypes.string.isRequired,
+  saveMetaboCalorie: PropTypes.func.isRequired,
+  sendToAPI: PropTypes.func.isRequired,
+  taille: PropTypes.number.isRequired,
 };
 export default MyFeeling;

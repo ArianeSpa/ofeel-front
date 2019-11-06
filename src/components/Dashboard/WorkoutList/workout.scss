@@ -1,21 +1,16 @@
 @import 'src/styles/vars';
 
-@keyframes appear{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
-}
-
-.ui.container.workoutContainer {
+#workoutContainer {
   animation-duration: 0.3s;
-  animation-name: appear;
+  animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
   margin: 0 !important;
   padding: 0.5em;
-  &>.ui.segment.buttonSegment{
+  &>#workoutSubtitle{
+    @include tagSubtitle();
+    color: $pink5;
+  }
+  &>#workoutButtonSegment{
     background-color: transparent;
     box-shadow: none;
     border: none;
@@ -25,11 +20,11 @@
     margin: 0 auto 0.5em;
     max-width: 21em;
     padding: 0;
-    &>.ui.button{
+    &>.button{
       background-color: #fff;
       border: 1px solid transparent;
       color: rgba(0, 0, 0, 0.6);
-      font-size: 0.7em;
+      font-size: 0.6em;
       margin: 0.2em;
       padding: 0.4em;
       &:focus, &:hover{
@@ -64,7 +59,7 @@
           color: $pink1;
         }
       }
-      &.cancelButton{
+      &#cancelButton{
         background-image: $workout-color;
         color: rgba(0, 0, 0, 0.6);
         &:hover{
@@ -74,21 +69,21 @@
       }
     }
   }
-  &>.ui.container.trainingContainer{
+  &>#trainingContainer{
     margin: 0 !important;
-    &>.accordion.ui.fluid.styled.wodAccordion{
+    &>#trainingAccordion{
       background-color: transparent;
       box-shadow: none;
-      &>.title.accordionTitle{
+      &>.wodTitle{
         align-items: center;
         border-top: 0.1em solid $pink5;
         display: flex;
         flex-direction: row;
-        &>i.dropdown.icon {
+        &>.icon {
           color: $pink3;
           font-size: 1.5em;
         }
-        &>.header.accordionHeader{
+        &>.wodHeader{
           color: white;
           display: block;
           font-family: $cabin;
@@ -96,18 +91,21 @@
           padding: 0 1em;
         }
       }
-      &>.content.accordionContent{
+      &>.wodAccordion{
         padding: 0;
-        &>.ui.container.accordionContainer{
+        &>.wodContainer{
           margin: 0.5em 0 !important;
-          &>.image.imageWod>img{
+          &>.imageWod>img{
             width: 10em;
           }
           &>.contentWod{
             margin-bottom: 1em;
             &>p{
               color: white;
-              font-size : 0.8em;
+              font-size : 0.9em;
+              line-height: 1.2em;
+              margin: 0 0 1em;
+
             }
           }
         }
@@ -117,10 +115,11 @@
 }
 
 @media (min-width: 768px){
-  .ui.container.workoutContainer{
-    &>.ui.segment.buttonSegment{
+  #workoutContainer{
+    &>#workoutButtonSegment{
       margin: 0 auto 0.8em;
-      &>.ui.button{
+      max-width: 22em;
+      &>.button{
         font-size: 0.8em;
         margin: 0.2em;
         padding: 0.5em;
@@ -128,7 +127,7 @@
           background-color: rgb(43, 42, 42);
           color: #fff;
         }
-        &.cancelButton{
+        &#cancelButton{
           &:hover{
               background: transparent;
               border: 1px solid $pink2;
@@ -137,20 +136,20 @@
         }
       }
     }
-    &>.ui.container.trainingContainer{
-      &>.accordion.ui.fluid.styled.wodAccordion{
-        &>.title.accordionTitle{
+    &>#trainingContainer{
+      &>#trainingAccordion{
+        &>.wodTitle{
           clear: left;
-          &>.header.accordionHeader{
+          &>.header.wodHeader{
             font-size: 1.1em;
           }
         }
-        &>.content.accordionContent{
+        &>.wodAccordion{
           min-height: 8em;
-          &>.ui.container.accordionContainer{
+          &>.wodContainer{
             display: flex;
             flex-direction: row;
-            &>.image.imageWod{
+            &>.imageWod{
               float: left;
               margin-right: 1em;
               width: 10em;
@@ -163,10 +162,10 @@
 }
 
 @media (min-width: 1024px){
-  .ui.container.workoutContainer{
-    &>.ui.segment.buttonSegment{
+  #workoutContainer{
+    &>#workoutButtonSegment{
       max-width: 26em;
-      &>.ui.button{
+      &>.button{
         font-size: 0.9em;
         margin: 0.3em;
         padding: 0.6em;

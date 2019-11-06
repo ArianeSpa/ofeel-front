@@ -1,42 +1,17 @@
 @import 'src/styles/vars';
 
-.ui.button.deco{
-    background: none;
-    border:none;
-    box-shadow: none;
+#disconnect{
+    @include submitButton();
     margin: 0;
-    align-self: center;
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    &:hover{
-        background-color: transparent;
-        border: 1px solid $yellow4;
-        color: $yellow4;
-    }
+    width: -webkit-fill-available;
 }
 
 // Smartphone
-@media (max-width: 767px){
-    .ui.button.deco{
-        font-size: 0.9em;
-        width: -webkit-fill-available;
-        border-radius: 0;
-        border: none;
+@media (min-width: 767px){
+    #disconnect{
+        align-self: center;
+        width: auto;
     }
 }
 
-// Tablet
-@media (min-width: 768px){
-    .ui.button.deco{
-        font-size: 0.9em;
-        height: 2.5em;
-    }
-}
 
-// Desktop
-@media (min-width: 1024px){
-    .ui.button.deco{
-        font-size: 1em;
-        height: 3em;
-    }
-}
