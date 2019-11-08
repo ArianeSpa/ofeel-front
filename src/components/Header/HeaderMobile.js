@@ -57,7 +57,6 @@ class HeaderMobile extends React.Component {
         changeHeaderClassname('up bg9');
       }
     }
-    console.log(newPosition);
     const { changeViewPosition } = this.props;
     changeViewPosition(newPosition);
   };

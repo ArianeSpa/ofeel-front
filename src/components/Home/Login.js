@@ -8,12 +8,12 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import './form.scss';
-import SavedModal from 'src/containers/Dashboard/SavedModal';
+import MessageModal from 'src/containers/Dashboard/MessageModal';
 
 
 // == Composant
 const Login = ({
-  changeUserData, username, password, doAuthenticate, savedPreference,
+  changeUserData, username, password, doAuthenticate, message,
 }) => {
   const handleChangeData = (event, data) => {
     changeUserData(data.id, data.value);
@@ -51,9 +51,9 @@ const Login = ({
         </Form.Group>
         <Button type="submit" className="submitButton">Submit</Button>
       </Form>
-      {savedPreference === 'notsaved' && (
-        <SavedModal
-          content="Erreur de pseudo ou de mot de passe."
+      {message !== '' && (
+        <MessageModal
+          content={message}
           error
           positive={false}
         />
@@ -72,8 +72,8 @@ const Login = ({
 Login.propTypes = {
   changeUserData: PropTypes.func.isRequired,
   doAuthenticate: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  savedPreference: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
 

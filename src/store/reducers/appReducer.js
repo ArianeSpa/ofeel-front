@@ -5,15 +5,15 @@ const initialState = {
   goal: '',
   gender: '',
   age: 18,
-  taille: 140,
-  poids: 45,
+  height: 140,
+  weight: 45,
   activity: '',
   sansgluten: false,
   vegan: false,
   sanslactose: false,
   loadingfood: true,
-  user_metabo: 0,
-  cal_jour: 0,
+  basalMetabolicRate: 0,
+  energyExpenditure: 0,
   q_glu_dej: 30,
   q_glu_p_dej_din: 20,
   q_lip_dej: 10,
@@ -22,6 +22,7 @@ const initialState = {
   q_prot_p_dej_din: 20,
   yPosition: 0,
   headerClassname: 'down',
+  message: '',
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -34,6 +35,7 @@ const SAVE_METABO_CALORIE = 'SAVE_METABO_CALORIE';
 const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 const UPDATE_Y_POSITION = 'UPDATE_Y_POSITION';
 const UPDATE_HEADER_CLASSNAME = 'UPDATE_HEADER_CLASSNAME';
+const INFORM_USER = 'INFORM_USER';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
@@ -70,8 +72,8 @@ const appReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         age: action.objectUser.age,
-        poids: action.objectUser.poids,
-        taille: action.objectUser.taille,
+        weight: action.objectUser.weight,
+        height: action.objectUser.height,
         gender: action.objectUser.sexe,
         goal: action.objectUser.goal,
         vegan: action.objectUser.regime.includes('Vegan') && true,
@@ -96,8 +98,8 @@ const appReducer = (state = initialState, action = {}) => {
     case SAVE_METABO_CALORIE:
       return {
         ...state,
-        user_metabo: action.metaboBase,
-        cal_jour: action.calorieJour,
+        basalMetabolicRate: action.basalMetabolicRate,
+        energyExpenditure: action.energyExpenditure,
       };
     case SAVE_PROP_MEAL:
       return {
@@ -124,6 +126,12 @@ const appReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
+      };
+    case INFORM_USER:
+    console.log('je veux afficher le message : ' + action.message);
+      return {
+        ...state,
+        [action.name]: action.message,
       };
     default:
       return state;
@@ -174,10 +182,10 @@ export const saveDataUser = (objectUser) => ({
   objectUser,
 });
 
-export const saveMC = (metaboBase, calorieJour) => ({
+export const saveMetabAndCal = (basalMetabolicRate, energyExpenditure) => ({
   type: SAVE_METABO_CALORIE,
-  metaboBase,
-  calorieJour,
+  basalMetabolicRate,
+  energyExpenditure,
 });
 
 export const savePMeal = (props) => ({
@@ -195,6 +203,12 @@ export const updateHeaderClassname = (name, value) => ({
   type: UPDATE_HEADER_CLASSNAME,
   name,
   value,
+});
+
+export const informUser = (name, message) => ({
+  type: INFORM_USER,
+  name,
+  message,
 });
 
 export default appReducer;

@@ -300,10 +300,15 @@ Base pour les form du mealPlan
             }
             &>.menu.transition{
                 left: unset;
+                background-color: $bg2;
+                background-image: $background-color-dashboard;
+                border-color: $pink4;
                 max-width: unset;
+                max-height: 15em;
                 min-width: unset;;
                 right: 0;
-                width: 8em;
+                width: 10em;
+                margin: 0;
                 &::-webkit-scrollbar{
                     width: 5px;
                     &-track{
@@ -315,6 +320,15 @@ Base pour les form du mealPlan
                         &:hover{
                             background-image: $goals-color;
                         }
+                    }
+                }
+                &>.item{
+                    border-top: 1px dotted $pink4;
+                    color: white;
+                    font-size: 0.9em;
+                    &.active{
+                        background-color: $green3;
+                        color: black;
                     }
                 }
             }

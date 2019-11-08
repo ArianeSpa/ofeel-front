@@ -67,9 +67,9 @@
         }
       }
     }
-  }
-  &>#myfeelingButton{
-    @include submitButton();
+    &>#myfeelingButton{
+      @include submitButton();
+    }
   }
 }
 

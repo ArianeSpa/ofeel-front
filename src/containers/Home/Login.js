@@ -11,7 +11,7 @@ import { changeUserValue, authenticate } from 'src/store/reducers/userReducer';
 const mapStateToProps = (state) => ({
   username: state.userReducer.username,
   password: state.userReducer.password,
-  savedPreference: state.userReducer.savedPreference,
+  message: state.appReducer.message,
 });
 
 /* === Actions === */

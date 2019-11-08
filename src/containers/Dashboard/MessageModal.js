@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import SavedModal from 'src/components/Dashboard/SavedModal';
+import MessageModal from 'src/components/Dashboard/MessageModal';
 
 // Action Creators
 import { preferenceUserSaved } from 'src/store/reducers/userReducer';
@@ -23,11 +23,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // Container
-const SavedModalContainer = connect(
+const MessageModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SavedModal);
+)(MessageModal);
 
 // == Export
-export default SavedModalContainer;
+export default MessageModalContainer;
 

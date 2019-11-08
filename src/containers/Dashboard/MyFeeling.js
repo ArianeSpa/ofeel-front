@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import MyFeeling from 'src/components/Dashboard/MyFeeling';
 
 // Action Creators
-import { saveProfil, setMyFeelingAPI, saveMC } from 'src/store/reducers/appReducer';
+import { saveProfil, setMyFeelingAPI, saveMetabAndCal } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
   gender: state.appReducer.gender,
   age: state.appReducer.age,
-  taille: state.appReducer.taille,
-  poids: state.appReducer.poids,
+  height: state.appReducer.height,
+  weight: state.appReducer.weight,
   activity: state.appReducer.activity,
   savedPreference: state.userReducer.savedPreference,
 });
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(action);
   },
   saveMetaboCalorie: (object) => {
-    const action = saveMC(object.metaboBase, object.calorieJour);
+    const action = saveMetabAndCal(object.basalMetabolicRate, object.energyExpenditure);
     dispatch(action);
   },
   sendToAPI: () => {

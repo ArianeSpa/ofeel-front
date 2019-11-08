@@ -12,27 +12,34 @@ import setMetabAndCal from 'src/utils/setMetabAndCal';
 import {
   ageGenerator, heightGenerator, weightGenerator, activityTable,
 } from 'src/datas/myfeeling';
-import SavedModal from 'src/containers/Dashboard/SavedModal';
+import MessageModal from 'src/containers/Dashboard/MessageModal';
 
 
 // == Composant
 const MyFeeling = ({
-  gender, poids, age, taille, changeProfil, activity, sendToAPI, saveMetaboCalorie, savedPreference,
+  gender,
+  weight,
+  age,
+  height,
+  changeProfil,
+  activity,
+  sendToAPI,
+  saveMetaboCalorie,
+  savedPreference,
 }) => {
   const handleChangeProfil = (event, data) => {
     changeProfil(data.name, data.value);
   };
 
   const calculAndSend = () => {
-    saveMetaboCalorie(
-      setMetabAndCal(gender, poids, taille, age, activity),
-    );
+    const metabAndCal = setMetabAndCal(gender, weight, height, age, activity);
+    saveMetaboCalorie(metabAndCal);
     sendToAPI();
   };
 
   return (
     <Segment inverted id="myfeelingSegment">
-      <Form id="myfeelingForm">
+      <Form id="myfeelingForm" onSubmit={calculAndSend}>
         <Header className="myfeelingSubtitle" as="h3">Parlons un peu de vous!</Header>
         <Form.Group id="genderGroup">
           <Form.Field className="genderField">
@@ -72,24 +79,24 @@ const MyFeeling = ({
             value={age}
           />
           <Dropdown
-            id="taille"
+            id="height"
             className="ageheightweightDropdown"
-            name="taille"
+            name="height"
             onChange={handleChangeProfil}
             options={heightGenerator()}
             selection
-            text={`Taille : ${taille} cm`}
-            value={taille}
+            text={`Taille : ${height} cm`}
+            value={height}
           />
           <Dropdown
-            id="poids"
+            id="weight"
             className="ageheightweightDropdown"
-            name="poids"
+            name="weight"
             onChange={handleChangeProfil}
             options={weightGenerator()}
             selection
-            text={`Poids : ${poids} kg`}
-            value={poids}
+            text={`weight : ${weight} kg`}
+            value={weight}
           />
         </Form.Group>
         <Header className="myfeelingSubtitle" as="h3"> Votre profil d'activité physique</Header>
@@ -104,28 +111,28 @@ const MyFeeling = ({
             />
           ))}
         </Form.Group>
+        <Button
+          id="myfeelingButton"
+          type="submit"
+        >
+          Enregistrer
+        </Button>
       </Form>
       {savedPreference === 'saved' && (
-        <SavedModal
+        <MessageModal
           content="vos données ont bien été enregistrées"
           error={false}
           positive
         />
       )}
       {savedPreference === 'notsaved' && (
-        <SavedModal
+        <MessageModal
           content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
           positive={false}
         />
       )}
-      <Button
-        id="myfeelingButton"
-        onClick={calculAndSend}
-        type="submit"
-      >
-        Enregistrer
-      </Button>
+      
     </Segment>
   );
 };
@@ -135,10 +142,10 @@ MyFeeling.propTypes = {
   age: PropTypes.number.isRequired,
   changeProfil: PropTypes.func.isRequired,
   gender: PropTypes.string.isRequired,
-  poids: PropTypes.number.isRequired,
+  weight: PropTypes.number.isRequired,
   savedPreference: PropTypes.string.isRequired,
   saveMetaboCalorie: PropTypes.func.isRequired,
   sendToAPI: PropTypes.func.isRequired,
-  taille: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 };
 export default MyFeeling;

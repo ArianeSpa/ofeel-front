@@ -14,7 +14,7 @@ import iconSalad from 'src/assets/icon/salade.png';
 import iconLactose from 'src/assets/icon/lactose.png';
 import iconGluten from 'src/assets/icon/gluten.png';
 import iconNutrition from 'src/assets/icon/nutrition.png';
-import SavedModal from 'src/containers/Dashboard/SavedModal';
+import MessageModal from 'src/containers/Dashboard/MessageModal';
 
 
 // == Composant
@@ -131,14 +131,14 @@ const Goals = ({
         </Form.Group>
       </Form>
       {savedPreference === 'saved' && (
-        <SavedModal
+        <MessageModal
           content="vos données ont bien été enregistrées"
           error={false}
           positive
         />
       )}
       {savedPreference === 'notsaved' && (
-        <SavedModal
+        <MessageModal
           content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
           positive={false}

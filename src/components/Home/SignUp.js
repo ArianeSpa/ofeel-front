@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import './form.scss';
-import SavedModal from 'src/containers/Dashboard/SavedModal';
+import MessageModal from 'src/containers/Dashboard/MessageModal';
 
 // == Composant
 const SignUp = ({
@@ -21,6 +21,8 @@ const SignUp = ({
   passwordConf,
   savedPreference,
   username,
+  showMessage,
+  message,
 }) => {
   const handleChangeNewsletter = (event, data) => {
     const checked = data.checked ? 1 : 0;
@@ -53,6 +55,13 @@ const SignUp = ({
     // });
   };
 
+  const checkUsername = (event) => {
+    const { value } = event.target;
+    if (value === '') {
+      showMessage('message', 'Attention, vous n\'avez entré aucun pseudo.');
+    }
+  };
+
   return (
     <Segment inverted id="signupSegment">
       <Form id="signupForm" inverted onSubmit={testBefore}>
@@ -73,6 +82,7 @@ const SignUp = ({
             id="username"
             label="Pseudo"
             onChange={handleChangeData}
+            onBlur={checkUsername}
             placeholder="Pseudo"
             value={username}
           />
@@ -124,7 +134,7 @@ const SignUp = ({
         <Button type="submit" className="submitButton">Submit</Button>
       </Form>
       {savedPreference === 'notsaved' && (
-        <SavedModal
+        <MessageModal
           content="Une erreur s'est produite, veuillez réessayer."
           error
           positive={false}
@@ -135,6 +145,13 @@ const SignUp = ({
           content="Votre compte a bien été créé, surveillez vos spams !"
           error={false}
           positive
+        />
+      )}
+      {message !== '' && (
+        <MessageModal
+          content={message}
+          error
+          positive={false}
         />
       )}
 
@@ -155,10 +172,12 @@ SignUp.propTypes = {
   changeUserData: PropTypes.func.isRequired,
   createAccount: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   newsletter: PropTypes.number.isRequired,
   password: PropTypes.string.isRequired,
   passwordConf: PropTypes.string.isRequired,
   savedPreference: PropTypes.string.isRequired,
+  showMessage: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
 };
 

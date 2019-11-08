@@ -1,14 +1,17 @@
 import axios from 'axios';
 import {
-  AUTHENTICATE, saveUser, CREATE_ACCOUNT, preferenceUserSaved,
+  AUTHENTICATE,
+  saveUser,
+  CREATE_ACCOUNT,
+  preferenceUserSaved,
 } from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
   loadFood,
   finishLoadFood,
   ASK_USER_DATA,
-  askUserData,
   saveDataUser,
+  informUser,
 } from 'src/store/reducers/appReducer';
 import {
   ASK_PAGES_POSTS_INFO,
@@ -18,10 +21,15 @@ import {
   finishLoadPosts,
 } from 'src/store/reducers/postReducer';
 import {
-  ASK_PAGES_FOOD_INFO, saveFoodPages, saveFood, sortFoodChoice,
+  ASK_PAGES_FOOD_INFO,
+  saveFood,
+  sortFoodChoice,
 } from 'src/store/reducers/mealPlanReducer';
 import {
-  ASK_PAGES_WORKOUT_INFO, saveWorkoutPages, saveWorkout, loadWorkout,
+  ASK_PAGES_WORKOUT_INFO,
+  saveWorkoutPages,
+  saveWorkout,
+  loadWorkout,
 } from 'src/store/reducers/workoutReducer';
 
 const bodyFormData = new FormData();
@@ -30,14 +38,14 @@ const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
     case AUTHENTICATE:
-      const authForm = new FormData ();
-      authForm.append('username', store.getState().userReducer.username);
-      authForm.append('password', store.getState().userReducer.password);
+      // const authForm = new FormData();
+      bodyFormData.append('username', store.getState().userReducer.username);
+      bodyFormData.append('password', store.getState().userReducer.password);
 
       axios({
         method: 'post',
         url: 'http://localhost/OFEEL/ofeel-back/public/user/authenticate',
-        data: authForm,
+        data: bodyFormData,
         config: {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -45,54 +53,50 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          const user = response.data.data;
-          const test = response.data.find;
-
-         
-          !test && store.dispatch(preferenceUserSaved('notsaved')); 
-
-          if (test) {
+          const { data, find } = response.data[0];
+          if (!find) {
+            store.dispatch(informUser('message', 'Le pseudo avec lequel vous souhaitez vous connecter n\'existe pas.'));
+          }
+          else if (data === 'errorpassword') {
+            store.dispatch(informUser('message', 'Votre mot de passe est incorrect, veuillez réessayer.'));
+          }
+          else if (typeof data === 'object') {
             const objectUser = {
-              age: parseInt(user.age),
-              goal: user.goal,
-              regime: user.diet ? user.diet : '',
-              sexe: user.gender,
-              taille: parseInt(user.height),
-              poids: parseInt(user.weight),
-              activity: user.activity,
-              factorActivity: user.factor_activity,
-              user_metabo: parseInt(user.basal_metabolic_rate),
-              cal_jour: parseInt(user.energy_expenditure),
-              cal_dej: parseInt(user.lunch_calories),
-              cal_obj: parseInt(user.daily_calories),
-              cal_p_dej_din: parseInt(user.breakfast_dinner_calories),
-              prop_glu: parseFloat(user.carb_proportion),
-              prop_lip: parseFloat(user.fat_proportion),
-              prop_prot: parseFloat(user.prot_proportion),
-              q_glu_dej: parseInt(user.lunch_carb_quantity),
-              q_glu_p_dej_din: parseInt(user.breakfast_dinner_carb_quantity),
-              q_lip_dej: parseInt(user.lunch_fat_quantity),
-              q_lip_p_dej_din: parseInt(user.breakfast_dinner_fat_quantity),
-              q_prot_dej: parseInt(user.lunch_prot_quantity),
-              q_prot_p_dej_din: parseInt(user.breakfast_dinner_prot_quantity),
+              age: parseInt(data.age),
+              goal: data.goal,
+              regime: data.diet ? data.diet : '',
+              sexe: data.gender,
+              taille: parseInt(data.height),
+              poids: parseInt(data.weight),
+              activity: data.activity,
+              factorActivity: data.factor_activity,
+              user_metabo: parseInt(data.basal_metabolic_rate),
+              cal_jour: parseInt(data.energy_expenditure),
+              cal_dej: parseInt(data.lunch_calories),
+              cal_obj: parseInt(data.daily_calories),
+              cal_p_dej_din: parseInt(data.breakfast_dinner_calories),
+              prop_glu: parseFloat(data.carb_proportion),
+              prop_lip: parseFloat(data.fat_proportion),
+              prop_prot: parseFloat(data.prot_proportion),
+              q_glu_dej: parseInt(data.lunch_carb_quantity),
+              q_glu_p_dej_din: parseInt(data.breakfast_dinner_carb_quantity),
+              q_lip_dej: parseInt(data.lunch_fat_quantity),
+              q_lip_p_dej_din: parseInt(data.breakfast_dinner_fat_quantity),
+              q_prot_dej: parseInt(data.lunch_prot_quantity),
+              q_prot_p_dej_din: parseInt(data.breakfast_dinner_prot_quantity),
             };
 
             const saveUserData = saveDataUser(objectUser);
-            console.log('je suis après const saveUSerData');
 
             store.dispatch(saveUserData);
-            console.log('je suis après dispatch de saveUSerData');
-
-
             store.dispatch(saveUser('ok'));
-            console.log('je suis après disptach pour changer logged');
 
             store.dispatch(sortFoodChoice(
               store.getState().appReducer.sanslactose,
               store.getState().appReducer.sansgluten,
-              store.getState().appReducer.vegan)
-            );
-          };
+              store.getState().appReducer.vegan,
+            ));
+          }
         })
         .catch((error) => {
           store.dispatch(preferenceUserSaved('notsaved'));
@@ -115,9 +119,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          response.data.response
-           ? store.dispatch(preferenceUserSaved('saved'))
-           : store.dispatch(preferenceUserSaved('notsaved'));
+          response.data.length === 0
+            ? store.dispatch(preferenceUserSaved('saved'))
+            : store.dispatch(preferenceUserSaved('notsaved'));
         })
         .catch((error) => {
           console.log(error);
@@ -166,50 +170,78 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
       // ENVOI DES DONNEES ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_MY_FEELING_API:
-      const regime = [];
-      store.getState().appReducer.vegan && regime.push('vegan');
-      store.getState().appReducer.sansgluten && regime.push('sans-gluten');
-      store.getState().appReducer.sanslactose && regime.push('sans-lactose');
+      bodyFormData.append('gender', store.getState().appReducer.gender);
+      bodyFormData.append('age', store.getState().appReducer.age);
+      bodyFormData.append('height', store.getState().appReducer.height);
+      bodyFormData.append('weight', store.getState().appReducer.weight);
+      bodyFormData.append('activity', store.getState().appReducer.activity);
+      bodyFormData.append('basal_metabolic_rate', store.getState().appReducer.basalMetabolicRate);
+      bodyFormData.append('energy_expenditure', store.getState().appReducer.energyExpenditure);
 
       axios({
         method: 'post',
-        url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/updatemyfeeling',
+        data: bodyFormData,
         config: {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         },
-        data: {
-          poids: store.getState().appReducer.poids,
-          taille: store.getState().appReducer.taille,
-          age: store.getState().appReducer.age,
-          sexe: store.getState().appReducer.gender,
-          objectifs: store.getState().appReducer.goal,
-          regime_alimentaire: regime,
-          user_activity: store.getState().appReducer.activity,
-          user_metabo: store.getState().appReducer.user_metabo,
-          cal_jour: store.getState().appReducer.cal_jour,
-          cal_dej: store.getState().appReducer.cal_dej,
-          cal_obj: store.getState().appReducer.cal_obj,
-          cal_p_dej_din: store.getState().appReducer.cal_p_dej_din,
-          prop_glu: store.getState().appReducer.prop_glu,
-          prop_lip: store.getState().appReducer.prop_lip,
-          prop_prot: store.getState().appReducer.prop_prot,
-          q_glu_dej: store.getState().appReducer.q_glu_dej,
-          q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
-          q_lip_dej: store.getState().appReducer.q_lip_dej,
-          q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
-          q_prot_dej: store.getState().appReducer.q_prot_dej,
-          q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
-        },
       })
         .then((response) => {
+          console.log(response);
           store.dispatch(preferenceUserSaved('saved'));
         })
         .catch((error) => {
           store.dispatch(preferenceUserSaved('notsaved'));
         });
-      break;
+        break;
+    
+    // case SET_GOAL_API:
+    //   const regime = [];
+    //   store.getState().appReducer.vegan && regime.push('vegan');
+    //   store.getState().appReducer.sansgluten && regime.push('sans-gluten');
+    //   store.getState().appReducer.sanslactose && regime.push('sans-lactose');
+
+    //   axios({
+    //     method: 'post',
+    //     url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
+    //     config: {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     },
+    //     data: {
+    //       poids: store.getState().appReducer.poids,
+    //       taille: store.getState().appReducer.taille,
+    //       age: store.getState().appReducer.age,
+    //       sexe: store.getState().appReducer.gender,
+    //       objectifs: store.getState().appReducer.goal,
+    //       regime_alimentaire: regime,
+    //       user_activity: store.getState().appReducer.activity,
+    //       user_metabo: store.getState().appReducer.user_metabo,
+    //       cal_jour: store.getState().appReducer.cal_jour,
+    //       cal_dej: store.getState().appReducer.cal_dej,
+    //       cal_obj: store.getState().appReducer.cal_obj,
+    //       cal_p_dej_din: store.getState().appReducer.cal_p_dej_din,
+    //       prop_glu: store.getState().appReducer.prop_glu,
+    //       prop_lip: store.getState().appReducer.prop_lip,
+    //       prop_prot: store.getState().appReducer.prop_prot,
+    //       q_glu_dej: store.getState().appReducer.q_glu_dej,
+    //       q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
+    //       q_lip_dej: store.getState().appReducer.q_lip_dej,
+    //       q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
+    //       q_prot_dej: store.getState().appReducer.q_prot_dej,
+    //       q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
+    //     },
+    //   })
+    //     .then((response) => {
+    //       store.dispatch(preferenceUserSaved('saved'));
+    //     })
+    //     .catch((error) => {
+    //       store.dispatch(preferenceUserSaved('notsaved'));
+    //     });
+    //   break;
 
     // REQUETE AUPRES DE L'API WP ALIMENTS POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
     case ASK_PAGES_FOOD_INFO:
