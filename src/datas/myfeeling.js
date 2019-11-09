@@ -1,7 +1,11 @@
 export const ageGenerator = () => {
   const ageTable = [];
   let ageUser = 0;
-
+  ageTable.push({
+    key: '-',
+    text: '-',
+    value: '-',
+  });
   for (ageUser = 18; ageUser < 100; ageUser += 1) {
     ageTable.push({
       key: ageUser,
@@ -15,7 +19,11 @@ export const ageGenerator = () => {
 export const heightGenerator = () => {
   const heigthTable = [];
   let heigthUser = 0;
-
+  heigthTable.push({
+    key: '-',
+    text: '-',
+    value: '-',
+  });
   for (heigthUser = 140; heigthUser < 190; heigthUser += 1) {
     heigthTable.push({
       key: heigthUser,
@@ -30,7 +38,11 @@ export const heightGenerator = () => {
 export const weightGenerator = () => {
   const weightTable = [];
   let weightUser = 0;
-
+  weightTable.push({
+    key: '-',
+    text: '-',
+    value: '-',
+  });
   for (weightUser = 45; weightUser < 140; weightUser += 1) {
     weightTable.push({
       key: weightUser,

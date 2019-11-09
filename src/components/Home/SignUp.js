@@ -141,7 +141,7 @@ const SignUp = ({
         />
       )}
       {savedPreference === 'saved' && (
-        <SavedModal
+        <MessageModal
           content="Votre compte a bien été créé, surveillez vos spams !"
           error={false}
           positive

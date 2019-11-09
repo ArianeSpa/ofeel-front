@@ -54,6 +54,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           const { data, find } = response.data[0];
+          console.log(data);
           if (!find) {
             store.dispatch(informUser('message', 'Le pseudo avec lequel vous souhaitez vous connecter n\'existe pas.'));
           }
@@ -62,13 +63,13 @@ const ajaxMiddleware = (store) => (next) => (action) => {
           }
           else if (typeof data === 'object') {
             const objectUser = {
-              age: parseInt(data.age),
+              age: data.age ? parseInt(data.age, 10) : ' - ',
               goal: data.goal,
               regime: data.diet ? data.diet : '',
-              sexe: data.gender,
-              taille: parseInt(data.height),
-              poids: parseInt(data.weight),
-              activity: data.activity,
+              sexe: data.gender ? data.gender : '',
+              height: data.height ? parseInt(data.height, 10) : ' - ',
+              weight: data.weight ? parseInt(data.weight, 10) : ' - ',
+              activity: data.activity ? data.activity : '',
               factorActivity: data.factor_activity,
               user_metabo: parseInt(data.basal_metabolic_rate),
               cal_jour: parseInt(data.energy_expenditure),
