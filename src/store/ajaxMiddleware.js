@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import axios from 'axios';
 import {
   AUTHENTICATE,
@@ -38,9 +39,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     // CREATION DE COMPTE REQUETE POST VERS API PHP
     case CREATE_ACCOUNT:
-      bodyFormData.append('username', store.getState().userReducer.username);
-      bodyFormData.append('email', store.getState().userReducer.email);
-      bodyFormData.append('password', store.getState().userReducer.password);
+      bodyFormData.set('username', store.getState().userReducer.username);
+      bodyFormData.set('email', store.getState().userReducer.email);
+      bodyFormData.set('password', store.getState().userReducer.password);
       axios({
         method: 'post',
         url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
@@ -64,8 +65,8 @@ const ajaxMiddleware = (store) => (next) => (action) => {
     // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR
     // RECUPERATION DES DONNEES SI REUSSITE
     case AUTHENTICATE:
-      bodyFormData.append('username', store.getState().userReducer.username);
-      bodyFormData.append('password', store.getState().userReducer.password);
+      bodyFormData.set('username', store.getState().userReducer.username);
+      bodyFormData.set('password', store.getState().userReducer.password);
 
       axios({
         method: 'post',
@@ -138,13 +139,13 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     // ENVOI DES DONNEES MYFEELING ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_MY_FEELING_API:
-      bodyFormData.append('gender', store.getState().appReducer.gender);
-      bodyFormData.append('age', store.getState().appReducer.age);
-      bodyFormData.append('height', store.getState().appReducer.height);
-      bodyFormData.append('weight', store.getState().appReducer.weight);
-      bodyFormData.append('activity', store.getState().appReducer.activity);
-      bodyFormData.append('basal_metabolic_rate', store.getState().appReducer.basalMetabolicRate);
-      bodyFormData.append('energy_expenditure', store.getState().appReducer.energyExpenditure);
+      bodyFormData.set('gender', store.getState().appReducer.gender);
+      bodyFormData.set('age', store.getState().appReducer.age);
+      bodyFormData.set('height', store.getState().appReducer.height);
+      bodyFormData.set('weight', store.getState().appReducer.weight);
+      bodyFormData.set('activity', store.getState().appReducer.activity);
+      bodyFormData.set('basal_metabolic_rate', store.getState().appReducer.basalMetabolicRate);
+      bodyFormData.set('energy_expenditure', store.getState().appReducer.energyExpenditure);
 
       axios({
         method: 'post',
@@ -167,16 +168,25 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
     // ENVOI DES DONNEES GOAL ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_GOAL_API:
-      bodyFormData.append('goal', store.getState().appReducer.goal);
-      bodyFormData.append('daily_calories', store.getState().appReducer.dailyCalories);
-      bodyFormData.append('breakfast_dinner_calories', store.getState().appReducer.breakfastAndDinnerCalories);
-      bodyFormData.append('lunch_calories', store.getState().appReducer.lunchCalories);
-      bodyFormData.append('breakfast_dinner_carb_quantity', store.getState().appReducer.breakfastAndDinnerCarbsQuantity);
-      bodyFormData.append('lunch_carb_quantity', store.getState().appReducer.lunchCarbsQuantity);
-      bodyFormData.append('breakfast_dinner_prot_quantity', store.getState().appReducer.breakfastAndDinnerProteinQuantity);
-      bodyFormData.append('lunch_prot_quantity', store.getState().appReducer.lunchProteinQuantity);
-      bodyFormData.append('breakfast_dinner_fat_quantity', store.getState().appReducer.breakfastAndDinnerFatQuantity);
-      bodyFormData.append('lunch_fat_quantity', store.getState().appReducer.lunchFatQuantity);
+      bodyFormData.set('goal', store.getState().appReducer.goal);
+      bodyFormData.set('daily_calories', store.getState().appReducer.dailyCalories);
+      bodyFormData.set('breakfast_dinner_calories', store.getState().appReducer.breakfastAndDinnerCalories);
+      bodyFormData.set('lunch_calories', store.getState().appReducer.lunchCalories);
+      bodyFormData.set('breakfast_dinner_carb_quantity', store.getState().appReducer.breakfastAndDinnerCarbsQuantity);
+      bodyFormData.set('lunch_carb_quantity', store.getState().appReducer.lunchCarbsQuantity);
+      bodyFormData.set('breakfast_dinner_prot_quantity', store.getState().appReducer.breakfastAndDinnerProteinQuantity);
+      bodyFormData.set('lunch_prot_quantity', store.getState().appReducer.lunchProteinQuantity);
+      bodyFormData.set('breakfast_dinner_fat_quantity', store.getState().appReducer.breakfastAndDinnerFatQuantity);
+      bodyFormData.set('lunch_fat_quantity', store.getState().appReducer.lunchFatQuantity);
+      store.getState().appReducer.vegan
+        ? bodyFormData.set('vegan', 'Vegan')
+        : bodyFormData.set('vegan', 0);
+      store.getState().appReducer.sansgluten
+        ? bodyFormData.set('gluten_free', 'Sans gluten')
+        : bodyFormData.set('gluten_free', 0);
+      store.getState().appReducer.sanslactose
+        ? bodyFormData.set('lactose_free', 'Sans lactose')
+        : bodyFormData.set('lactose_free', 0);
       axios({
         method: 'post',
         url: 'http://localhost/OFEEL/ofeel-back/public/user/updategoal',
