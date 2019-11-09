@@ -4,9 +4,9 @@
 const initialState = {
   goal: '',
   gender: '',
-  age: 18,
-  height: 140,
-  weight: 45,
+  age: ' - ',
+  height: ' - ',
+  weight: ' - ',
   activity: '',
   sansgluten: false,
   vegan: false,

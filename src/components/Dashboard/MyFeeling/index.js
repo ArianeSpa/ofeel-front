@@ -30,7 +30,6 @@ const MyFeeling = ({
   const handleChangeProfil = (event, data) => {
     changeProfil(data.name, data.value);
   };
-
   const calculAndSend = () => {
     const metabAndCal = setMetabAndCal(gender, weight, height, age, activity);
     saveMetaboCalorie(metabAndCal);
@@ -132,20 +131,27 @@ const MyFeeling = ({
           positive={false}
         />
       )}
-      
     </Segment>
   );
 };
 
+MyFeeling.defaultProps = {
+  age: ' - ',
+  gender: '',
+  height: ' - ',
+  weight: ' - ',
+};
+
 MyFeeling.propTypes = {
   activity: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
+  age: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   changeProfil: PropTypes.func.isRequired,
-  gender: PropTypes.string.isRequired,
-  weight: PropTypes.number.isRequired,
+  gender: PropTypes.string,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   savedPreference: PropTypes.string.isRequired,
   saveMetaboCalorie: PropTypes.func.isRequired,
   sendToAPI: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
+  weight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
+
 export default MyFeeling;
