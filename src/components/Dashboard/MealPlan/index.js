@@ -43,49 +43,47 @@ const MealPlan = ({
     protFromLipAtBreakfast = setFatQuantityFood(
       datafood,
       lipidebreakfast,
-      state.q_lip_p_dej_din,
+      state.breakfastAndDinnerFatQuantity,
     ).protFromLip;
 
     protFromLipAtLunch = setFatQuantityFood(
       datafood,
       lipidelunch,
-      state.q_lip_dej,
+      state.lunchFatQuantity,
     ).protFromLip;
 
     protFromLipAtDiner = setFatQuantityFood(
       datafood,
       lipidedinner,
-      state.q_lip_p_dej_din,
+      state.breakfastAndDinnerFatQuantity,
     ).protFromLip;
 
     protFromCarbAtBreakfast = setCarbQuantityFood(
       datafood,
       glucidebreakfast,
-      state.q_glu_p_dej_din,
+      state.breakfastAndDinnerCarbsQuantity,
     ).protFromCarb;
 
     protFromCarbAtLunch = setCarbQuantityFood(
       datafood,
       glucidelunch,
-      state.q_glu_dej,
+      state.lunchCarbsQuantity,
     ).protFromCarb;
 
     protFromCarbAtDiner = setCarbQuantityFood(
       datafood,
       glucidedinner,
-      state.q_glu_p_dej_din,
+      state.breakfastAndDinnerCarbsQuantity,
     ).protFromCarb;
   }
 
-
   const proteinType = setProteinType(foodToShow);
   const glucideType = setGlucidType(foodToShow);
-  const lipideType = setLipidType(foodToShow);
 
   const protForBreakfast = setProtQuantityFood(
     datafood,
     proteinebreakfast,
-    state.q_prot_p_dej_din,
+    state.breakfastAndDinnerProteinQuantity,
     protFromLipAtBreakfast,
     protFromCarbAtBreakfast,
   );
@@ -93,19 +91,19 @@ const MealPlan = ({
   const fatForBreakfast = setFatQuantityFood(
     datafood,
     lipidebreakfast,
-    state.q_lip_p_dej_din,
+    state.breakfastAndDinnerFatQuantity,
   ).quantityFood;
 
   const carbForBreakfast = setCarbQuantityFood(
     datafood,
     glucidebreakfast,
-    state.q_glu_p_dej_din,
+    state.breakfastAndDinnerCarbsQuantity,
   ).quantityFood;
 
   const protForLunch = setProtQuantityFood(
     datafood,
     proteinelunch,
-    state.q_prot_dej,
+    state.lunchProteinQuantity,
     protFromLipAtLunch,
     protFromCarbAtLunch,
   );
@@ -113,19 +111,19 @@ const MealPlan = ({
   const fatForLunch = setFatQuantityFood(
     datafood,
     lipidelunch,
-    state.q_lip_dej,
+    state.lunchFatQuantity,
   ).quantityFood;
 
   const carbForLunch = setCarbQuantityFood(
     datafood,
     glucidelunch,
-    state.q_glu_dej,
+    state.lunchCarbsQuantity,
   ).quantityFood;
 
   const protForDinner = setProtQuantityFood(
     datafood,
     proteinedinner,
-    state.q_prot_p_dej_din,
+    state.breakfastAndDinnerProteinQuantity,
     protFromLipAtDiner,
     protFromCarbAtDiner,
   );
@@ -133,13 +131,13 @@ const MealPlan = ({
   const fatForDinner = setFatQuantityFood(
     datafood,
     lipidedinner,
-    state.q_lip_p_dej_din,
+    state.breakfastAndDinnerFatQuantity,
   ).quantityFood;
 
   const carbForDinner = setCarbQuantityFood(
     datafood,
     glucidedinner,
-    state.q_glu_p_dej_din,
+    state.breakfastAndDinnerCarbsQuantity,
   ).quantityFood;
 
 

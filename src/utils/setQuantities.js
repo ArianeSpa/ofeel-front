@@ -9,7 +9,7 @@ export const setFatQuantityFood = (datafood, foodChoice, quantityFatForPresentMe
   // Je cherche dans le tableau d'aliment, celui qui correspond à ce que l'utilisateur a sélectionné
   const findFood = datafood.find((food) => food.name === foodChoice);
   // je récupère la quantité de lipides de l'aliment pour 100gr
-  const fatFood = findFood.fat;
+  const fatFood = parseFloat(findFood.fat);
 
   // je calcule la quantité de l'aliment
   let quantityFood = Math.round((quantityFatForPresentMeal * 100) / fatFood);
@@ -26,12 +26,12 @@ export const setFatQuantityFood = (datafood, foodChoice, quantityFatForPresentMe
 
   // certains de ces aliments ont une valeur non négligeable en protéine.
   // on calcul donc la quantité apportée pour la récupérer dans le calcul de la "viande"
-  const protFood = findFood.prot;
+  const protFood = parseFloat(findFood.prot);
   const protFromLip = Math.round((protFood * quantityFood) / 100);
 
   // je reprends les calculs qui concernent nos lipides
   // j'adapte la quantité proposée pour certain cas et l'unité si nécessaire
-  if (foodChoice === 'Avocat') {
+  if (foodChoice === 'avocat') {
     if (quantityFood < 150) {
       quantityFood = '1/2';
     }
@@ -39,19 +39,19 @@ export const setFatQuantityFood = (datafood, foodChoice, quantityFatForPresentMe
       quantityFood = 1;
     }
   }
-  if (foodChoice === 'Beurre de cacahuete') {
+  if (foodChoice === 'beurre de cacahuète') {
     const spoon = (quantityFood - (quantityFood % 20)) / 20;
     quantityFood = `${spoon} CàS`;
   }
-  if (foodChoice.includes('Huile')) {
+  if (foodChoice.includes('huile')) {
     const spoon = quantityFood / 5;
     quantityFood = `${spoon} CàC`;
   }
-  if (foodChoice === 'Cajou' || foodChoice === 'Amande' || foodChoice === 'Noisette' || foodChoice === 'Noix') {
+  if (foodChoice === 'cajou' || foodChoice === 'amandes' || foodChoice === 'noisettes' || foodChoice === 'noix') {
     const handful = (quantityFood - (quantityFood % 15)) / 15;
     quantityFood = `${handful} poignée(s)`;
   }
-  if (foodChoice === 'Lait coco') {
+  if (foodChoice === 'lait de coco') {
     quantityFood = `${quantityFood} mL`;
   }
 
@@ -65,13 +65,13 @@ export const setCarbQuantityFood = (
 ) => {
   // je récup la quantité de glucides que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
-  const carbFood = findFood.carbo;
+  const carbFood = parseFloat(findFood.carb);
 
   let quantityFood = Math.round(((quantityCarbForPresentMeal * 100) / carbFood));
 
   // Comme pour les lipides, certains glucides contiennent une quantité intéressante de prot
   // donc on calcule la quantité de prot apportée par le choix alimentaire
-  const protFood = findFood.prot;
+  const protFood = parseFloat(findFood.prot);
   const protFromCarb = Math.round((protFood * quantityFood) / 100);
 
   // on veut arrondir au 10gr près
@@ -93,7 +93,7 @@ export const setProtQuantityFood = (
 ) => {
   // je récup la quantité de protéine que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
-  const protFood = findFood.prot;
+  const protFood = parseFloat(findFood.prot);
 
   // je calcule le nouveau besoin en prot pour le repas
   // d'après la valeur apportée par les aliments lipidiques
@@ -112,15 +112,15 @@ export const setProtQuantityFood = (
   }
 
   // j'adapte la quantité proposée pour certain cas et l'unité si nécessaire
-  if (foodChoice === 'Jambon') {
+  if (foodChoice.includes('jambon')) {
     const slice = (quantityFood - (quantityFood % 40)) / 40;
     quantityFood = `${slice} tranche(s)`;
   }
-  else if (foodChoice === 'Fromage blanc') {
+  else if (foodChoice.includes('fromage blanc')) {
     const pot = (quantityFood - (quantityFood % 100)) / 100;
     quantityFood = `${pot} pot(s)`;
   }
-  else if (foodChoice === 'Steack hache') {
+  else if (foodChoice.includes('steak')) {
     if (quantityFood <= 175) {
       quantityFood = '1';
     }
@@ -128,11 +128,11 @@ export const setProtQuantityFood = (
       quantityFood = '2';
     }
   }
-  else if (foodChoice === 'Whey') {
+  else if (foodChoice === 'whey') {
     const dose = (quantityFood - (quantityFood % 20)) / 20;
     quantityFood = `${dose} dose(s)`;
   }
-  else if (foodChoice === 'Oeuf') {
+  else if (foodChoice === 'oeuf') {
     // quantityFood vaut probablement 123 gr
     // je calcule le reste de la division par 60 (le poids d'un ooeuf). Ici =3
     // je retire le reste à la valeur quantityfood calculée plus haut =120

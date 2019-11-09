@@ -7,9 +7,9 @@ import {
 } from 'src/store/reducers/userReducer';
 import {
   SET_MY_FEELING_API,
+  SET_GOAL_API,
   loadFood,
   finishLoadFood,
-  ASK_USER_DATA,
   saveDataUser,
   informUser,
 } from 'src/store/reducers/appReducer';
@@ -36,75 +36,7 @@ const bodyFormData = new FormData();
 
 const ajaxMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR AVEC RECUPERATION DU TOKEN
-    case AUTHENTICATE:
-      // const authForm = new FormData();
-      bodyFormData.append('username', store.getState().userReducer.username);
-      bodyFormData.append('password', store.getState().userReducer.password);
-
-      axios({
-        method: 'post',
-        url: 'http://localhost/OFEEL/ofeel-back/public/user/authenticate',
-        data: bodyFormData,
-        config: {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      })
-        .then((response) => {
-          const { data, find } = response.data[0];
-          console.log(data);
-          if (!find) {
-            store.dispatch(informUser('message', 'Le pseudo avec lequel vous souhaitez vous connecter n\'existe pas.'));
-          }
-          else if (data === 'errorpassword') {
-            store.dispatch(informUser('message', 'Votre mot de passe est incorrect, veuillez réessayer.'));
-          }
-          else if (typeof data === 'object') {
-            const objectUser = {
-              age: data.age ? parseInt(data.age, 10) : ' - ',
-              goal: data.goal,
-              regime: data.diet ? data.diet : '',
-              sexe: data.gender ? data.gender : '',
-              height: data.height ? parseInt(data.height, 10) : ' - ',
-              weight: data.weight ? parseInt(data.weight, 10) : ' - ',
-              activity: data.activity ? data.activity : '',
-              factorActivity: data.factor_activity,
-              user_metabo: parseInt(data.basal_metabolic_rate),
-              cal_jour: parseInt(data.energy_expenditure),
-              cal_dej: parseInt(data.lunch_calories),
-              cal_obj: parseInt(data.daily_calories),
-              cal_p_dej_din: parseInt(data.breakfast_dinner_calories),
-              prop_glu: parseFloat(data.carb_proportion),
-              prop_lip: parseFloat(data.fat_proportion),
-              prop_prot: parseFloat(data.prot_proportion),
-              q_glu_dej: parseInt(data.lunch_carb_quantity),
-              q_glu_p_dej_din: parseInt(data.breakfast_dinner_carb_quantity),
-              q_lip_dej: parseInt(data.lunch_fat_quantity),
-              q_lip_p_dej_din: parseInt(data.breakfast_dinner_fat_quantity),
-              q_prot_dej: parseInt(data.lunch_prot_quantity),
-              q_prot_p_dej_din: parseInt(data.breakfast_dinner_prot_quantity),
-            };
-
-            const saveUserData = saveDataUser(objectUser);
-
-            store.dispatch(saveUserData);
-            store.dispatch(saveUser('ok'));
-
-            store.dispatch(sortFoodChoice(
-              store.getState().appReducer.sanslactose,
-              store.getState().appReducer.sansgluten,
-              store.getState().appReducer.vegan,
-            ));
-          }
-        })
-        .catch((error) => {
-          store.dispatch(preferenceUserSaved('notsaved'));
-        });
-      break;
-
-    // CREATION DE COMPTE REQUETE POST VERS API WP
+    // CREATION DE COMPTE REQUETE POST VERS API PHP
     case CREATE_ACCOUNT:
       bodyFormData.append('username', store.getState().userReducer.username);
       bodyFormData.append('email', store.getState().userReducer.email);
@@ -129,47 +61,82 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         });
       break;
 
-    // REQUETE RECUPERATION DES DONNES USER VIA API WP GRACE A TOKEN
-    case ASK_USER_DATA:
+    // AUTHENTIFICATION LORS DE LA CONNEXION DE L'UTILISATEUR
+    // RECUPERATION DES DONNEES SI REUSSITE
+    case AUTHENTICATE:
+      bodyFormData.append('username', store.getState().userReducer.username);
+      bodyFormData.append('password', store.getState().userReducer.password);
+
       axios({
-        method: 'get',
-        url: 'http://ofeel.me/API/wp-json/wp/v2/users/me',
-        headers: { Authorization: `Bearer${store.getState().userReducer.token}` },
+        method: 'post',
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/authenticate',
+        data: bodyFormData,
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
       })
         .then((response) => {
-          const objectUser = {
-            age: parseInt(response.data.age),
-            goal: response.data.goal,
-            regime: response.data.diet,
-            sexe: response.data.gender,
-            taille: parseInt(response.data.height),
-            poids: parseInt(response.data.weight),
-            activity: response.data.activity,
-            user_metabo: parseInt(response.data.basal_metabolic_rate),
-            cal_jour: parseInt(response.data.energy_expenditure),
-            cal_dej: parseInt(response.data.lunch_calories),
-            cal_obj: parseInt(response.data.daily_calories),
-            cal_p_dej_din: parseInt(response.data.breakfast_dinner_calories),
-            prop_glu: parseFloat(response.data.carb_proportion),
-            prop_lip: parseFloat(response.data.fat_proportion),
-            prop_prot: parseFloat(response.data.prot_proportion),
-            q_glu_dej: parseInt(response.data.lunch_carb_quantity),
-            q_glu_p_dej_din: parseInt(response.data.breakfast_dinner_carb_quantity),
-            q_lip_dej: parseInt(response.data.lunch_fat_quantity),
-            q_lip_p_dej_din: parseInt(response.data.breakfast_dinner_fat_quantity),
-            q_prot_dej: parseInt(response.data.lunch_prot_quantity),
-            q_prot_p_dej_din: parseInt(response.data.breakfast_dinner_prot_quantity),
-          };
-          const saveUserData = saveDataUser(objectUser);
-          store.dispatch(saveUserData);
-          store.dispatch(sortFoodChoice(store.getState().appReducer.sanslactose, store.getState().appReducer.sansgluten, store.getState().appReducer.vegan));
+          const { data, find } = response.data[0];
+          if (!find) {
+            store.dispatch(informUser('message', 'Le pseudo avec lequel vous souhaitez vous connecter n\'existe pas.'));
+          }
+          else if (data === 'errorpassword') {
+            store.dispatch(informUser('message', 'Votre mot de passe est incorrect, veuillez réessayer.'));
+          }
+          else if (typeof data === 'object') {
+            const objectUser = {
+              age: data.age ? parseInt(data.age, 10) : ' - ',
+              goal: data.goal,
+              regime: data.diet ? data.diet : '',
+              sexe: data.gender ? data.gender : '',
+              height: data.height ? parseInt(data.height, 10) : ' - ',
+              weight: data.weight ? parseInt(data.weight, 10) : ' - ',
+              activity: data.activity ? data.activity : '',
+              factorActivity: data.factor_activity,
+              basalMetabolicRate: parseInt(data.basal_metabolic_rate, 10),
+              energyExpenditure: parseInt(data.energy_expenditure, 10),
+              dailyCalories: parseInt(data.daily_calories, 10),
+              lunchCalories: parseInt(data.lunch_calories, 10),
+              breakfastAndDinnerCalories: parseInt(data.breakfast_dinner_calories, 10),
+              dailyCarbohydrateProportion: parseFloat(data.carb_proportion),
+              dailyFatProportion: parseFloat(data.fat_proportion),
+              dailyProteinProportion: parseFloat(data.prot_proportion),
+              lunchCarbsQuantity: parseInt(data.lunch_carb_quantity, 10),
+              breakfastAndDinnerCarbsQuantity: parseInt(
+                data.breakfast_dinner_carb_quantity, 10,
+              ),
+              lunchFatQuantity: parseInt(
+                data.lunch_fat_quantity, 10,
+              ),
+              breakfastAndDinnerFatQuantity: parseInt(
+                data.breakfast_dinner_fat_quantity, 10,
+              ),
+              lunchProteinQuantity: parseInt(data.lunch_prot_quantity, 10),
+              breakfastAndDinnerProteinQuantity: parseInt(
+                data.breakfast_dinner_prot_quantity, 10,
+              ),
+            };
+
+            const saveUserData = saveDataUser(objectUser);
+
+            store.dispatch(saveUserData);
+            store.dispatch(saveUser('ok'));
+
+            store.dispatch(sortFoodChoice(
+              store.getState().appReducer.sanslactose,
+              store.getState().appReducer.sansgluten,
+              store.getState().appReducer.vegan,
+            ));
+          }
         })
         .catch((error) => {
-          console.log(error);
+          store.dispatch(preferenceUserSaved('notsaved'));
         });
       break;
 
-      // ENVOI DES DONNEES ENREGISTREES PAR L'UTILISATEUR VERS L'API
+    // ENVOI DES DONNEES MYFEELING ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_MY_FEELING_API:
       bodyFormData.append('gender', store.getState().appReducer.gender);
       bodyFormData.append('age', store.getState().appReducer.age);
@@ -196,58 +163,42 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           store.dispatch(preferenceUserSaved('notsaved'));
         });
-        break;
-    
-    // case SET_GOAL_API:
-    //   const regime = [];
-    //   store.getState().appReducer.vegan && regime.push('vegan');
-    //   store.getState().appReducer.sansgluten && regime.push('sans-gluten');
-    //   store.getState().appReducer.sanslactose && regime.push('sans-lactose');
+      break;
 
-    //   axios({
-    //     method: 'post',
-    //     url: 'http://localhost/OFEEL/ofeel-back/public/user/create',
-    //     config: {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //       },
-    //     },
-    //     data: {
-    //       poids: store.getState().appReducer.poids,
-    //       taille: store.getState().appReducer.taille,
-    //       age: store.getState().appReducer.age,
-    //       sexe: store.getState().appReducer.gender,
-    //       objectifs: store.getState().appReducer.goal,
-    //       regime_alimentaire: regime,
-    //       user_activity: store.getState().appReducer.activity,
-    //       user_metabo: store.getState().appReducer.user_metabo,
-    //       cal_jour: store.getState().appReducer.cal_jour,
-    //       cal_dej: store.getState().appReducer.cal_dej,
-    //       cal_obj: store.getState().appReducer.cal_obj,
-    //       cal_p_dej_din: store.getState().appReducer.cal_p_dej_din,
-    //       prop_glu: store.getState().appReducer.prop_glu,
-    //       prop_lip: store.getState().appReducer.prop_lip,
-    //       prop_prot: store.getState().appReducer.prop_prot,
-    //       q_glu_dej: store.getState().appReducer.q_glu_dej,
-    //       q_glu_p_dej_din: store.getState().appReducer.q_glu_p_dej_din,
-    //       q_lip_dej: store.getState().appReducer.q_lip_dej,
-    //       q_lip_p_dej_din: store.getState().appReducer.q_lip_p_dej_din,
-    //       q_prot_dej: store.getState().appReducer.q_prot_dej,
-    //       q_prot_p_dej_din: store.getState().appReducer.q_prot_p_dej_din,
-    //     },
-    //   })
-    //     .then((response) => {
-    //       store.dispatch(preferenceUserSaved('saved'));
-    //     })
-    //     .catch((error) => {
-    //       store.dispatch(preferenceUserSaved('notsaved'));
-    //     });
-    //   break;
+    // ENVOI DES DONNEES GOAL ENREGISTREES PAR L'UTILISATEUR VERS L'API
+    case SET_GOAL_API:
+      bodyFormData.append('goal', store.getState().appReducer.goal);
+      bodyFormData.append('daily_calories', store.getState().appReducer.dailyCalories);
+      bodyFormData.append('breakfast_dinner_calories', store.getState().appReducer.breakfastAndDinnerCalories);
+      bodyFormData.append('lunch_calories', store.getState().appReducer.lunchCalories);
+      bodyFormData.append('breakfast_dinner_carb_quantity', store.getState().appReducer.breakfastAndDinnerCarbsQuantity);
+      bodyFormData.append('lunch_carb_quantity', store.getState().appReducer.lunchCarbsQuantity);
+      bodyFormData.append('breakfast_dinner_prot_quantity', store.getState().appReducer.breakfastAndDinnerProteinQuantity);
+      bodyFormData.append('lunch_prot_quantity', store.getState().appReducer.lunchProteinQuantity);
+      bodyFormData.append('breakfast_dinner_fat_quantity', store.getState().appReducer.breakfastAndDinnerFatQuantity);
+      bodyFormData.append('lunch_fat_quantity', store.getState().appReducer.lunchFatQuantity);
+      axios({
+        method: 'post',
+        url: 'http://localhost/OFEEL/ofeel-back/public/user/updategoal',
+        data: bodyFormData,
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(preferenceUserSaved('saved'));
+        })
+        .catch((error) => {
+          store.dispatch(preferenceUserSaved('notsaved'));
+        });
+      break;
 
-    // REQUETE AUPRES DE L'API WP ALIMENTS POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
+    // REQUETE AUPRES DE L'API PHP
     case ASK_PAGES_FOOD_INFO:
       store.dispatch(loadFood());
-
       axios({
         method: 'get',
         url: 'http://localhost/OFEEL/ofeel-back/public/food',
@@ -261,52 +212,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error);
         });
-
-      // ANCIENNE METHODE : requête sur REST API WP
-
-      // const numberFoodPages = store.getState().appReducer.foodpages;
-      // let foodpage = 1;
-
-      // do {
-      //   axios({
-      //     method: 'get',
-      //     url: `http://ofeel.me/API/wp-json/wp/v2/aliment/?page=${foodpage}&per_page=99`,
-      //   })
-      //     // eslint-disable-next-line no-loop-func
-      //     .then((response) => {
-
-      //       const numberPages = (response.headers['x-wp-totalpages']);
-      //       const saveNumberFoodPages = saveFoodPages(numberPages);
-      //       store.dispatch(saveNumberFoodPages);
-
-      //       const datafood = [];
-      //       const arrayResponse = response.data;
-      //       console.log(response.data);
-
-      //       arrayResponse.map((index) => {
-      //         datafood.unshift({
-      //           id: index.id,
-      //           name: index.title.rendered,
-      //           type: index.famille[0].slug,
-      //           calories: index.calories,
-      //           glucides: index.glucides,
-      //           proteines: index.proteines,
-      //           lipides: index.lipides,
-      //           regime: index.regime.map((oneregime) => oneregime.slug),
-      //         });
-      //       });
-      //       const saveResults = saveFood(datafood);
-      //       store.dispatch(saveResults);
-      //       if (foodpage >= numberPages) {
-      //         store.dispatch(finishLoadFood());
-      //       }
-      //     })
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
-      //   // eslint-disable-next-line no-plusplus
-      //   foodpage++;
-      // } while (foodpage < numberFoodPages);
       break;
 
     // REQUETE AUPRES DE L'API WP ARTICLES POUR CONNAITRE LE NOMBRE DE PAGES DE RESULTATS
