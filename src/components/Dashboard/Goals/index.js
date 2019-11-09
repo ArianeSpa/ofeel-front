@@ -21,36 +21,35 @@ import MessageModal from 'src/containers/Dashboard/MessageModal';
 const Goals = ({
   changeGoal, goal,
   selectRegime, sanslactose, sansgluten, vegan,
-  sendToAPI, cal_jour, savePropMeal, sortFood, savedPreference,
+  sendToAPI, energyExpenditure, savePropMeal, sortFood, savedPreference,
 }) => {
   const handleChangeGoal = (event) => {
-    const { id } = event.target;
-    changeGoal(id);
+    const { name } = event.target;
+    changeGoal(name);
   };
   const handleChangeRegime = (event, data) => {
     selectRegime(data.id, data.checked);
   };
 
   const calculAndSend = () => {
-    savePropMeal(
-      setProportion(goal, cal_jour),
-    );
+    const proportion = setProportion(goal, energyExpenditure);
+    savePropMeal(proportion);
     sendToAPI();
     sortFood(sanslactose, sansgluten, vegan);
   };
 
   return (
     <Segment inverted id="goalSegment">
-      <Form id="goalForm">
+      <Form id="goalForm" onSubmit={calculAndSend}>
         <Header className="goalSubtitle" as="h3">Votre objectif</Header>
         <Form.Group id="goalsGroup">
           <Form.Field className="goalField">
             <Radio
-              checked={goal === 'perte-de-poids'}
+              checked={goal === 'Perte de poids'}
               className="goalRadio"
               id="perte-de-poids"
               label="Perdre du poids"
-              name="radioGroup"
+              name="Perte de poids"
               onChange={handleChangeGoal}
             />
             <Image
@@ -60,11 +59,11 @@ const Goals = ({
           </Form.Field>
           <Form.Field className="goalField">
             <Radio
-              checked={goal === 'prise-de-masse'}
+              checked={goal === 'Prise de masse'}
               className="goalRadio"
               id="prise-de-masse"
               label="Prendre de la masse musculaire"
-              name="radioGroup"
+              name="Prise de masse"
               onChange={handleChangeGoal}
             />
             <Image
@@ -74,11 +73,11 @@ const Goals = ({
           </Form.Field>
           <Form.Field className="goalField">
             <Radio
-              checked={goal === 'remise-en-forme'}
+              checked={goal === 'Equilibre'}
               className="goalRadio"
               id="remise-en-forme"
               label="Nutrition équilibrée"
-              name="radioGroup"
+              name="Equilibre"
               onChange={handleChangeGoal}
             />
             <Image
@@ -129,6 +128,12 @@ const Goals = ({
             />
           </Form.Field>
         </Form.Group>
+        <Button
+          id="goalButton"
+          type="submit"
+        >
+          Enregistrer
+        </Button>
       </Form>
       {savedPreference === 'saved' && (
         <MessageModal
@@ -144,21 +149,18 @@ const Goals = ({
           positive={false}
         />
       )}
-      <Button
-        className="goalButton"
-        onClick={calculAndSend}
-        type="submit"
-      >
-        Enregistrer
-      </Button>
     </Segment>
   );
 };
 
+Goals.defaultProps = {
+  goal: '',
+};
+
 Goals.propTypes = {
-  cal_jour: PropTypes.number.isRequired,
+  energyExpenditure: PropTypes.number.isRequired,
   changeGoal: PropTypes.func.isRequired,
-  goal: PropTypes.string.isRequired,
+  goal: PropTypes.string,
   sansgluten: PropTypes.bool.isRequired,
   sanslactose: PropTypes.bool.isRequired,
   savedPreference: PropTypes.string.isRequired,

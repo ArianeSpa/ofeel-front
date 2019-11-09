@@ -14,15 +14,21 @@ const initialState = {
   loadingfood: true,
   basalMetabolicRate: 0,
   energyExpenditure: 0,
-  q_glu_dej: 30,
-  q_glu_p_dej_din: 20,
-  q_lip_dej: 10,
-  q_lip_p_dej_din: 10,
-  q_prot_dej: 35,
-  q_prot_p_dej_din: 20,
-  yPosition: 0,
   headerClassname: 'down',
   message: '',
+  dailyCalories: 0,
+  lunchCalories: 0,
+  breakfastAndDinnerCalories: 0,
+  dailyCarbohydrateProportion: 0,
+  dailyFatProportion: 0,
+  dailyProteinProportion: 0,
+  lunchCarbsQuantity: 0,
+  breakfastAndDinnerCarbsQuantity: 0,
+  lunchFatQuantity: 0,
+  breakfastAndDinnerFatQuantity: 0,
+  lunchProteinQuantity: 0,
+  breakfastAndDinnerProteinQuantity: 0,
+  yPosition: 0,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -39,6 +45,7 @@ const INFORM_USER = 'INFORM_USER';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
+export const SET_GOAL_API = 'SET_GOAL_API';
 export const ASK_USER_DATA = 'ASK_USER_DATA';
 
 const appReducer = (state = initialState, action = {}) => {
@@ -80,20 +87,20 @@ const appReducer = (state = initialState, action = {}) => {
         sanslactose: action.objectUser.regime.includes('lactose') && true,
         sansgluten: action.objectUser.regime.includes('gluten') && true,
         activity: action.objectUser.activity,
-        cal_jour: action.objectUser.cal_jour,
-        user_metabo: action.objectUser.user_metabo,
-        cal_dej: action.objectUser.cal_dej,
-        cal_obj: action.objectUser.cal_obj,
-        cal_p_dej_din: action.objectUser.cal_p_dej_din,
-        prop_glu: action.objectUser.prop_glu,
-        prop_lip: action.objectUser.prop_lip,
-        prop_prot: action.objectUser.prop_prot,
-        q_glu_dej: action.objectUser.q_glu_dej,
-        q_glu_p_dej_din: action.objectUser.q_glu_p_dej_din,
-        q_lip_dej: action.objectUser.q_lip_dej,
-        q_lip_p_dej_din: action.objectUser.q_lip_p_dej_din,
-        q_prot_dej: action.objectUser.q_prot_dej,
-        q_prot_p_dej_din: action.objectUser.q_prot_p_dej_din,
+        energyExpenditure: action.objectUser.energyExpenditure,
+        basalMetabolicRate: action.objectUser.basalMetabolicRate,
+        dailyCalories: action.objectUser.dailyCalories,
+        lunchCalories: action.objectUser.lunchCalories,
+        breakfastAndDinnerCalories: action.objectUser.breakfastAndDinnerCalories,
+        dailyCarbohydrateProportion: action.objectUser.dailyCarbohydrateProportion,
+        dailyFatProportion: action.objectUser.dailyFatProportion,
+        dailyProteinProportion: action.objectUser.dailyProteinProportion,
+        lunchCarbsQuantity: action.objectUser.lunchCarbsQuantity,
+        breakfastAndDinnerCarbsQuantity: action.objectUser.breakfastAndDinnerCarbsQuantity,
+        lunchFatQuantity: action.objectUser.lunchFatQuantity,
+        breakfastAndDinnerFatQuantity: action.objectUser.breakfastAndDinnerFatQuantity,
+        lunchProteinQuantity: action.objectUser.lunchProteinQuantity,
+        breakfastAndDinnerProteinQuantity: action.objectUser.breakfastAndDinnerProteinQuantity,
       };
     case SAVE_METABO_CALORIE:
       return {
@@ -104,18 +111,18 @@ const appReducer = (state = initialState, action = {}) => {
     case SAVE_PROP_MEAL:
       return {
         ...state,
-        cal_dej: action.props.cal_dej,
-        cal_obj: action.props.cal_obj,
-        cal_p_dej_din: action.props.cal_p_dej_din,
-        prop_glu: action.props.prop_glu,
-        prop_lip: action.props.prop_lip,
-        prop_prot: action.props.prop_prot,
-        q_glu_dej: action.props.q_glu_dej,
-        q_glu_p_dej_din: action.props.q_glu_p_dej_din,
-        q_lip_dej: action.props.q_lip_dej,
-        q_lip_p_dej_din: action.props.q_lip_p_dej_din,
-        q_prot_dej: action.props.q_prot_dej,
-        q_prot_p_dej_din: action.props.q_prot_p_dej_din,
+        dailyCalories: action.props.dailyCalories,
+        lunchCalories: action.props.lunchCalories,
+        breakfastAndDinnerCalories: action.props.breakfastAndDinnerCalories,
+        dailyCarbohydrateProportion: action.props.dailyCarbohydrateProportion,
+        dailyFatProportion: action.props.dailyFatProportion,
+        dailyProteinProportion: action.props.dailyProteinProportion,
+        lunchCarbsQuantity: action.props.lunchCarbsQuantity,
+        breakfastAndDinnerCarbsQuantity: action.props.breakfastAndDinnerCarbsQuantity,
+        lunchFatQuantity: action.props.lunchFatQuantity,
+        breakfastAndDinnerFatQuantity: action.props.breakfastAndDinnerFatQuantity,
+        lunchProteinQuantity: action.props.lunchProteinQuantity,
+        breakfastAndDinnerProteinQuantity: action.props.breakfastAndDinnerProteinQuantity,
       };
     case UPDATE_Y_POSITION:
       return {
@@ -209,6 +216,10 @@ export const informUser = (name, message) => ({
   type: INFORM_USER,
   name,
   message,
+});
+
+export const setGoalAPI = () => ({
+  type: SET_GOAL_API,
 });
 
 export default appReducer;

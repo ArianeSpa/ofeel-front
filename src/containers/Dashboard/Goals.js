@@ -6,7 +6,7 @@ import Goals from 'src/components/Dashboard/Goals';
 
 // Action Creators
 import {
-  saveGoal, checkRegime, setMyFeelingAPI, savePMeal,
+  saveGoal, checkRegime, setGoalAPI, savePMeal,
 } from 'src/store/reducers/appReducer';
 
 import { sortFoodChoice } from 'src/store/reducers/mealPlanReducer';
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
   sanslactose: state.appReducer.sanslactose,
   sansgluten: state.appReducer.sansgluten,
   vegan: state.appReducer.vegan,
-  cal_jour: state.appReducer.cal_jour,
+  energyExpenditure: state.appReducer.energyExpenditure,
   savedPreference: state.userReducer.savedPreference,
 });
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   sendToAPI: () => {
-    dispatch(setMyFeelingAPI());
+    dispatch(setGoalAPI());
   },
 
   sortFood: (sanslactose, sansgluten, vegan) => {

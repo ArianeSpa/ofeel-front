@@ -55,20 +55,20 @@
         }
       }
     }
+    &>#goalButton{
+      @include submitButton();
+      background-image: $goals-color;
+      &:hover{
+        border: 1px solid $green5;
+        color: $green5;
+      }
+    } 
   }
   &>#saveMessage{
     animation-duration: 0.5s;
     animation-name: opacity0to1;
     animation-timing-function: ease-in-out;
   }
-  &>.goalButton{
-    @include submitButton();
-    background-image: $goals-color;
-    &:hover{
-      border: 1px solid $green5;
-      color: $green5;
-    }
-  } 
 }
 
 @media (min-width: 768px){

@@ -1,89 +1,109 @@
 /* eslint-disable camelcase */
-export default (goal, cal_jour) => {
+export default (goal, energyExpenditure) => {
   // On va calculer en fonction de l'objectif
   // l'apport calorique journalier et les proportion en
   // glucides, lipides et protéines.
 
-  const setVarObjectif = (goal) => {
-    if (goal === 'perte-de-poids') {
-      return 0.75;
-    } if (goal === 'prise-de-masse') {
-      return 1.2;
-    } if (goal === 'remise-en-forme') {
-      return 1;
+  const setVarObjectif = (goalType) => {
+    let factor = 0;
+    if (goalType === 'Perte de poids') {
+      factor = 0.75;
+    } if (goalType === 'Prise de masse') {
+      factor = 1.2;
+    } if (goalType === 'Equilibre') {
+      factor = 1;
     }
+    return factor;
   };
 
   // ici je calcule la quantité kcalorique journalière nécessaire qui dépend de mon objectif
-  const cal_obj = Math.round(cal_jour * setVarObjectif(goal));
+  const dailyCalories = Math.round(energyExpenditure * setVarObjectif(goal));
 
   // je calcule dans les 3 fonctions suivantes
   // les proportions de glucides, protéines et lipides
   // qu'il me faut répartir dans ma journée
 
   // pour les protéines
-  const setPropProt = (goal) => {
-    if (goal === 'perte-de-poids') {
-      return 0.34;
-    } if (goal === 'prise-de-masse') {
-      return 0.292;
-    } if (goal === 'remise-en-forme') {
-      return 0.222;
+  const setPropProt = (goalType) => {
+    let factor = 0;
+    if (goalType === 'Perte de poids') {
+      factor = 0.34;
+    } if (goalType === 'Prise de masse') {
+      factor = 0.292;
+    } if (goalType === 'Equilibre') {
+      factor = 0.222;
     }
+    return factor;
   };
-  const prop_prot = setPropProt(goal);
+  const dailyProteinProportion = setPropProt(goal);
 
   // pour les glucides
-  const setPropGlu = (goal) => {
-    if (goal === 'perte-de-poids') {
-      return 0.33;
-    } if (goal === 'prise-de-masse' || goal == 'remise-en-forme') {
-      return 0.488;
+  const setPropCarb = (goalType) => {
+    let factor = 0;
+    if (goalType === 'Perte de poids') {
+      factor = 0.33;
+    } if (goalType === 'Prise de masse' || goalType === 'Equilibre') {
+      factor = 0.488;
     }
+    return factor;
   };
-  const prop_glu = setPropGlu(goal);
+  const dailyCarbohydrateProportion = setPropCarb(goal);
 
   // pour les lipides
-  const setPropLip = (goal) => {
-    if (goal === 'perte-de-poids') {
-      return 0.33;
-    } if (goal === 'prise-de-masse') {
-      return 0.22;
-    } if (goal === 'remise-en-forme') {
-      return 0.288;
+  const setPropFat = (goalType) => {
+    let factor = 0;
+    if (goalType === 'Perte de poids') {
+      factor = 0.33;
+    } if (goalType === 'Prise de masse') {
+      factor = 0.22;
+    } if (goalType === 'Equilibre') {
+      factor = 0.288;
     }
+    return factor;
   };
-  const prop_lip = setPropLip(goal);
+  const dailyFatProportion = setPropFat(goal);
 
   // on calcule les valeurs caloriques par repas,
   // sachant que le petit déjeuner et le diner ont la même valeur.
-  const cal_p_dej_din = Math.round(cal_obj * 0.3);
-  const cal_dej = Math.round(cal_obj * 0.4);
+  const breakfastAndDinnerCalories = Math.round(dailyCalories * 0.3);
+  const lunchCalories = Math.round(dailyCalories * 0.4);
 
   // on sait quelle proportion de glucides, protéines et lipides on veut pour chaque repas.
-  // Ce qui nous intéresse maintenant c'est l'équivalent en grammes, 
+  // Ce qui nous intéresse maintenant c'est l'équivalent en grammes,
   // sachant que 1g de protéine ou de glucides vaut 4kcal
   // et que 1g de lipides vaut 9kcal.
-  const q_prot_p_dej_din = Math.round((cal_p_dej_din * setPropProt(goal)) / 4);
-  const q_glu_p_dej_din = Math.round((cal_p_dej_din * setPropGlu(goal)) / 4);
-  const q_lip_p_dej_din = Math.round((cal_p_dej_din * setPropLip(goal)) / 9);
-  const q_prot_dej = Math.round((cal_dej * setPropProt(goal)) / 4);
-  const q_glu_dej = Math.round((cal_dej * setPropGlu(goal)) / 4);
-  const q_lip_dej = Math.round((cal_dej * setPropLip(goal)) / 9);
+  const breakfastAndDinnerProteinQuantity = Math.round(
+    (breakfastAndDinnerCalories * setPropProt(goal)) / 4,
+  );
+  const breakfastAndDinnerCarbsQuantity = Math.round(
+    (breakfastAndDinnerCalories * setPropCarb(goal)) / 4,
+  );
+  const breakfastAndDinnerFatQuantity = Math.round(
+    (breakfastAndDinnerCalories * setPropFat(goal)) / 9,
+  );
+  const lunchProteinQuantity = Math.round(
+    (lunchCalories * setPropProt(goal)) / 4,
+  );
+  const lunchCarbsQuantity = Math.round(
+    (lunchCalories * setPropCarb(goal)) / 4,
+  );
+  const lunchFatQuantity = Math.round(
+    (lunchCalories * setPropFat(goal)) / 9,
+  );
 
   const propObject = {
-    cal_dej,
-    cal_obj,
-    cal_p_dej_din,
-    prop_glu,
-    prop_lip,
-    prop_prot,
-    q_glu_dej,
-    q_glu_p_dej_din,
-    q_lip_dej,
-    q_lip_p_dej_din,
-    q_prot_dej,
-    q_prot_p_dej_din,
+    dailyCalories,
+    lunchCalories,
+    breakfastAndDinnerCalories,
+    dailyCarbohydrateProportion,
+    dailyFatProportion,
+    dailyProteinProportion,
+    lunchCarbsQuantity,
+    breakfastAndDinnerCarbsQuantity,
+    lunchFatQuantity,
+    breakfastAndDinnerFatQuantity,
+    lunchProteinQuantity,
+    breakfastAndDinnerProteinQuantity,
   };
   return (propObject);
 };

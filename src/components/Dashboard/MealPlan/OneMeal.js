@@ -88,7 +88,7 @@ OneMeal.propTypes = {
   checkValue: PropTypes.bool.isRequired,
   choiceAction: PropTypes.func.isRequired,
   fat: PropTypes.string.isRequired,
-  fatQuantity: PropTypes.number.isRequired,
+  fatQuantity: PropTypes.string.isRequired,
   foodArray: PropTypes.array.isRequired,
   header: PropTypes.string.isRequired,
   idCheckbox: PropTypes.string.isRequired,
