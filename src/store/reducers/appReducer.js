@@ -50,6 +50,7 @@ const CHANGE_SHOW = 'CHANGE_SHOW';
 const CHANGE_MESSAGE_LIST = 'CHANGE_MESSAGE_LIST';
 const CLEAR_MESSAGE_LIST = 'CLEAR_MESSAGE_LIST';
 const CLEAR_ALL_MESSAGE_AND_INFORM = 'CLEAR_ALL_MESSAGE_AND_INFORM';
+const RESET_MESSAGE_MODAL = 'RESET_MESSAGE_MODAL';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
@@ -177,6 +178,11 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         errorMessagesSignup: [action.value],
       };
+    case RESET_MESSAGE_MODAL:
+      return {
+        ...state,
+        errorMessagesSignup: [],
+      };
     default:
       return state;
   }
@@ -277,6 +283,10 @@ export const clearMessageListValue = (value) => ({
 export const clearAllMessageAndInform = (value) => ({
   type: CLEAR_ALL_MESSAGE_AND_INFORM,
   value,
+});
+
+export const resetMessageModal = () => ({
+  type: RESET_MESSAGE_MODAL,
 });
 
 export default appReducer;

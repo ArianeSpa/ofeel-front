@@ -13,7 +13,7 @@ import {
   finishLoadFood,
   saveDataUser,
   informUser,
-  clearAllMessageAndInform,
+  resetMessageModal,
 } from 'src/store/reducers/appReducer';
 import {
   ASK_PAGES_POSTS_INFO,
@@ -54,9 +54,13 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          response.data.length === 0
-            ? store.dispatch(preferenceUserSaved('saved'))
-            : store.dispatch(preferenceUserSaved('notsaved'));
+          if (response.data.length === 0) {
+            store.dispatch(preferenceUserSaved('saved'));
+            store.dispatch(resetMessageModal());
+          }
+          else {
+            store.dispatch(preferenceUserSaved('notsaved'));
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -125,6 +129,8 @@ const ajaxMiddleware = (store) => (next) => (action) => {
 
             store.dispatch(saveUserData);
             store.dispatch(saveUser('ok'));
+            store.dispatch(resetMessageModal());
+
 
             store.dispatch(sortFoodChoice(
               store.getState().appReducer.sanslactose,
@@ -159,11 +165,9 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response.data);
           const result = response.data[0].response;
           if (result) {
             store.dispatch(preferenceUserSaved('saved'));
-            // store.dispatch(clearAllMessageAndInform());
           }
           !result && store.dispatch(preferenceUserSaved('notsaved'));
         })
@@ -204,7 +208,6 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response);
           store.dispatch(preferenceUserSaved('saved'));
         })
         .catch((error) => {

@@ -6,7 +6,12 @@ import Goals from 'src/components/Dashboard/Goals';
 
 // Action Creators
 import {
-  saveGoal, checkRegime, setGoalAPI, savePMeal,
+  saveGoal,
+  checkRegime,
+  setGoalAPI,
+  savePMeal,
+  clearAllMessageAndInform,
+  resetMessageModal,
 } from 'src/store/reducers/appReducer';
 
 import { sortFoodChoice } from 'src/store/reducers/mealPlanReducer';
@@ -20,6 +25,7 @@ const mapStateToProps = (state) => ({
   vegan: state.appReducer.vegan,
   energyExpenditure: state.appReducer.energyExpenditure,
   savedPreference: state.userReducer.savedPreference,
+  errorMessagesSignup: state.appReducer.errorMessagesSignup,
 });
 
 /* === Actions === */
@@ -46,7 +52,12 @@ const mapDispatchToProps = (dispatch) => ({
     const action = sortFoodChoice(sanslactose, sansgluten, vegan);
     dispatch(action);
   },
-
+  clearAllAndInform: (value) => {
+    dispatch(clearAllMessageAndInform(value));
+  },
+  resetMessage: () => {
+    dispatch(resetMessageModal());
+  },
 });
 
 // Container

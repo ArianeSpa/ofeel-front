@@ -12,6 +12,7 @@ import {
   changeMessageListValue,
   clearMessageListValue,
   clearAllMessageAndInform,
+  resetMessageModal,
 } from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
@@ -48,6 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
 
   clearAllAndInform: (value) => {
     dispatch(clearAllMessageAndInform(value));
+  },
+  resetMessage: () => {
+    dispatch(resetMessageModal());
   },
 });
 // Container

@@ -1,7 +1,7 @@
 // == Import : npm
 import React from 'react';
 import {
-  Header, Form, Radio, Checkbox, Button, Image, Segment,
+  Header, Form, Radio, Checkbox, Button, Image, Segment, Container,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -21,7 +21,11 @@ import MessageModal from 'src/containers/Dashboard/MessageModal';
 const Goals = ({
   changeGoal, goal,
   selectRegime, sanslactose, sansgluten, vegan,
-  sendToAPI, energyExpenditure, savePropMeal, sortFood, savedPreference,
+  sendToAPI, energyExpenditure, savePropMeal, sortFood,
+  savedPreference,
+  clearAllAndInform,
+  errorMessagesSignup,
+  resetMessage,
 }) => {
   const handleChangeGoal = (event) => {
     const { name } = event.target;
@@ -32,6 +36,14 @@ const Goals = ({
   };
 
   const calculAndSend = () => {
+    const messageInfo = 'Même si les informations que vous avez complétées ont été correctement enregistrées dans notre base de données, les informations manquantes nous empêchent de vous fournir un plan alimentaire adapté à votre profil. Vous devez au minimum choisir un objectif';
+    if (goal === '') {
+      clearAllAndInform(messageInfo);
+    }
+    else {
+      resetMessage();
+    }
+
     const proportion = setProportion(goal, energyExpenditure);
     savePropMeal(proportion);
     sendToAPI();
@@ -40,6 +52,11 @@ const Goals = ({
 
   return (
     <Segment inverted id="goalSegment">
+      <Container id="goalInformation">
+        <p>Afin de pouvoir générer votre plan alimentaire personnalisé, il est nécessaire de sélectionner votre objectif.</p>
+        <p>Cette information permet d'établir vos besoins énergétiques et nutritionnels journaliers.</p>
+        <p>Vous n'êtes pas obligé de spécifier vos préférences alimentaires. Cependant, il vous est conseillé de cocher les cases correspondantes à vos restrictions afin de vous proposer uniquement des aliments que vous pouvez consommer.</p>
+      </Container>
       <Form id="goalForm" onSubmit={calculAndSend}>
         <Header className="goalSubtitle" as="h3">Votre objectif</Header>
         <Form.Group id="goalsGroup">
@@ -137,14 +154,24 @@ const Goals = ({
       </Form>
       {savedPreference === 'saved' && (
         <MessageModal
-          content="vos données ont bien été enregistrées"
+          content="Vos données ont bien été enregistrées"
           error={false}
+          list={false}
           positive
         />
       )}
       {savedPreference === 'notsaved' && (
         <MessageModal
-          content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
+          content="Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
+          error
+          list={false}
+          positive={false}
+        />
+      )}
+      {errorMessagesSignup.length !== 0 && (
+        <MessageModal
+          content={false}
+          list={errorMessagesSignup}
           error
           positive={false}
         />
@@ -160,7 +187,12 @@ Goals.defaultProps = {
 Goals.propTypes = {
   energyExpenditure: PropTypes.number.isRequired,
   changeGoal: PropTypes.func.isRequired,
+  clearAllAndInform: PropTypes.func.isRequired,
+  errorMessagesSignup: PropTypes.arrayOf(
+    PropTypes.string,
+  ).isRequired,
   goal: PropTypes.string,
+  resetMessage: PropTypes.func.isRequired,
   sansgluten: PropTypes.bool.isRequired,
   sanslactose: PropTypes.bool.isRequired,
   savedPreference: PropTypes.string.isRequired,
