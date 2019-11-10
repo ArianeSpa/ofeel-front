@@ -168,7 +168,7 @@ Base pour les header nommés subtitle dans chaque onglet
 }
 
 /* 
-Base pour les containers d'information chaque onglet
+Base pour les containers d'information de chaque onglet
 */
 @mixin information{
     font-size: 0.9em;
@@ -181,6 +181,29 @@ Base pour les containers d'information chaque onglet
     }
     @media (min-width: 1024px){
         padding: 0 5em 0 2em;
+    }
+}
+
+/* 
+Base pour les fenêtres modales d'information 
+Issues du composant MessageModal.js
+*/
+@mixin messageModal{
+    animation-duration: 0.3s;
+    animation-name: opacity0to1;
+    animation-timing-function: ease-in-out;
+    >.content{
+        &>p:first-child{
+            margin-right: 1em;
+        }
+    }
+    &.positive{
+        color: $green1;
+        box-shadow: 0 0 0 1px $green1 inset, 0 0 0 0 transparent;
+    }
+    &.error{
+        color: $pink1;
+        box-shadow: 0 0 0 1px $pink1 inset, 0 0 0 0 transparent;
     }
 }
 

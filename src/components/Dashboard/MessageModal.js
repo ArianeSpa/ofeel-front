@@ -21,7 +21,7 @@ class SavedModal extends React.Component {
     return (
       <>
         <Message
-          id="saveMessage"
+          className="messageModal"
           size="tiny"
           compact
           content={content}

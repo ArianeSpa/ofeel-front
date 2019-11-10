@@ -74,6 +74,9 @@
       @include submitButton();
     }
   }
+  &>.messageModal{
+    @include messageModal();
+  }
 }
 
 @media (min-width: 768px){

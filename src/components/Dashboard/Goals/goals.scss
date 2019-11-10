@@ -64,11 +64,6 @@
       }
     } 
   }
-  &>#saveMessage{
-    animation-duration: 0.5s;
-    animation-name: opacity0to1;
-    animation-timing-function: ease-in-out;
-  }
 }
 
 @media (min-width: 768px){

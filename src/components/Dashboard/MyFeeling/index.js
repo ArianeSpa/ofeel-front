@@ -192,6 +192,7 @@ const MyFeeling = ({
         <MessageModal
           content="vos données ont bien été enregistrées"
           error={false}
+          list={false}
           positive
         />
       )}
@@ -199,6 +200,7 @@ const MyFeeling = ({
         <MessageModal
           content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
+          list={false}
           positive={false}
         />
       )}
