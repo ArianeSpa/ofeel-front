@@ -29,6 +29,8 @@ const initialState = {
   lunchProteinQuantity: 0,
   breakfastAndDinnerProteinQuantity: 0,
   yPosition: 0,
+  showPassword: false,
+  showPasswordConf: false,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -42,6 +44,7 @@ const SAVE_PROP_MEAL = 'SAVE_PROP_MEAL';
 const UPDATE_Y_POSITION = 'UPDATE_Y_POSITION';
 const UPDATE_HEADER_CLASSNAME = 'UPDATE_HEADER_CLASSNAME';
 const INFORM_USER = 'INFORM_USER';
+const CHANGE_SHOW = 'CHANGE_SHOW';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
@@ -140,6 +143,11 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.message,
       };
+    case CHANGE_SHOW:
+      return {
+        ...state,
+        [action.name]: !state[action.name],
+      };
     default:
       return state;
   }
@@ -220,6 +228,11 @@ export const informUser = (name, message) => ({
 
 export const setGoalAPI = () => ({
   type: SET_GOAL_API,
+});
+
+export const changeShowValue = (name) => ({
+  type: CHANGE_SHOW,
+  name,
 });
 
 export default appReducer;

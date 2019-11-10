@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  Button, Form, Segment, Container, Checkbox,
+  Button, Form, Segment, Container, Checkbox, Icon,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -23,6 +23,9 @@ const SignUp = ({
   username,
   showMessage,
   message,
+  showPassword,
+  showPasswordConf,
+  changeStateShow,
 }) => {
   const handleChangeNewsletter = (event, data) => {
     const checked = data.checked ? 1 : 0;
@@ -60,6 +63,11 @@ const SignUp = ({
     if (value === '') {
       showMessage('message', 'Attention, vous n\'avez entré aucun pseudo.');
     }
+  };
+
+  const changeShow = (event, data) => {
+    const { id } = data;
+    changeStateShow(id);
   };
 
   return (
@@ -106,8 +114,9 @@ const SignUp = ({
             onBlur={checkPasswordSecurity}
             onChange={handleChangeData}
             placeholder="********"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             value={password}
+            icon={<Icon name={showPassword ? 'eye slash' : 'eye'} id="showPassword" onClick={changeShow} link />}
           />
           <Form.Input
             className="oneField"
@@ -115,8 +124,10 @@ const SignUp = ({
             label="Confirmez votre mot de passe"
             onChange={handleChangeData}
             placeholder="********"
-            type="password"
+            type={showPasswordConf ? 'text' : 'password'}
             value={passwordConf}
+            icon={<Icon name={showPasswordConf ? 'eye slash' : 'eye'} id="showPasswordConf" onClick={changeShow} link />}
+
           />
         </Form.Group>
         <Form.Group
@@ -169,6 +180,7 @@ const SignUp = ({
 
 SignUp.propTypes = {
   changeNewsletter: PropTypes.func.isRequired,
+  changeStateShow: PropTypes.func.isRequired,
   changeUserData: PropTypes.func.isRequired,
   createAccount: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
@@ -178,6 +190,8 @@ SignUp.propTypes = {
   passwordConf: PropTypes.string.isRequired,
   savedPreference: PropTypes.string.isRequired,
   showMessage: PropTypes.func.isRequired,
+  showPassword: PropTypes.bool.isRequired,
+  showPasswordConf: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 
