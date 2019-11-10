@@ -32,6 +32,7 @@ const initialState = {
   showSignupPassword: false,
   showSignupPasswordConf: false,
   showLoginPassword: false,
+  errorMessagesSignup: [],
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';
@@ -46,6 +47,9 @@ const UPDATE_Y_POSITION = 'UPDATE_Y_POSITION';
 const UPDATE_HEADER_CLASSNAME = 'UPDATE_HEADER_CLASSNAME';
 const INFORM_USER = 'INFORM_USER';
 const CHANGE_SHOW = 'CHANGE_SHOW';
+const CHANGE_MESSAGE_LIST = 'CHANGE_MESSAGE_LIST';
+const CLEAR_MESSAGE_LIST = 'CLEAR_MESSAGE_LIST';
+const CLEAR_ALL_MESSAGE_AND_INFORM = 'CLEAR_ALL_MESSAGE_AND_INFORM';
 
 
 export const SET_MY_FEELING_API = 'SET_MY_FEELING_API';
@@ -149,6 +153,31 @@ const appReducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: !state[action.name],
       };
+    case CHANGE_MESSAGE_LIST:
+      if (!state.errorMessagesSignup.includes(action.value)) {
+        return {
+          ...state,
+          errorMessagesSignup: [
+            ...state.errorMessagesSignup,
+            action.value,
+          ],
+        };
+      }
+      return {
+        ...state,
+      };
+    case CLEAR_MESSAGE_LIST:
+      return {
+        ...state,
+        errorMessagesSignup: state.errorMessagesSignup.filter((message) => (
+          message !== action.value
+        )),
+      };
+    case CLEAR_ALL_MESSAGE_AND_INFORM:
+      return {
+        ...state,
+        errorMessagesSignup: [action.value],
+      };
     default:
       return state;
   }
@@ -234,6 +263,21 @@ export const setGoalAPI = () => ({
 export const changeShowValue = (name) => ({
   type: CHANGE_SHOW,
   name,
+});
+
+export const changeMessageListValue = (value) => ({
+  type: CHANGE_MESSAGE_LIST,
+  value,
+});
+
+export const clearMessageListValue = (value) => ({
+  type: CLEAR_MESSAGE_LIST,
+  value,
+});
+
+export const clearAllMessageAndInform = (value) => ({
+  type: CLEAR_ALL_MESSAGE_AND_INFORM,
+  value,
 });
 
 export default appReducer;
