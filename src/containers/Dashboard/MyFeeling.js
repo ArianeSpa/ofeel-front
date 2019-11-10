@@ -23,7 +23,6 @@ const mapStateToProps = (state) => ({
   activity: state.appReducer.activity,
   savedPreference: state.userReducer.savedPreference,
   errorMessagesSignup: state.appReducer.errorMessagesSignup,
-
 });
 
 /* === Actions === */
