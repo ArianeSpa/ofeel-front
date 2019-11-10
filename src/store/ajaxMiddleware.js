@@ -13,6 +13,7 @@ import {
   finishLoadFood,
   saveDataUser,
   informUser,
+  clearAllMessageAndInform,
 } from 'src/store/reducers/appReducer';
 import {
   ASK_PAGES_POSTS_INFO,
@@ -158,8 +159,13 @@ const ajaxMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response);
-          store.dispatch(preferenceUserSaved('saved'));
+          console.log(response.data);
+          const result = response.data[0].response;
+          if (result) {
+            store.dispatch(preferenceUserSaved('saved'));
+            // store.dispatch(clearAllMessageAndInform());
+          }
+          !result && store.dispatch(preferenceUserSaved('notsaved'));
         })
         .catch((error) => {
           store.dispatch(preferenceUserSaved('notsaved'));
