@@ -15,7 +15,9 @@ class SavedModal extends React.Component {
   };
 
   render() {
-    const { content, positive, error } = this.props;
+    const {
+      content, list, positive, error,
+    } = this.props;
     return (
       <>
         <Message
@@ -23,6 +25,7 @@ class SavedModal extends React.Component {
           size="tiny"
           compact
           content={content}
+          list={list}
           onDismiss={this.handleDismiss}
           positive={positive}
           error={error}
@@ -32,9 +35,16 @@ class SavedModal extends React.Component {
   }
 }
 
+SavedModal.defaultProps = {
+  content: '',
+  list: [],
+};
 
 SavedModal.propTypes = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
+  list: PropTypes.arrayOf(
+    PropTypes.string,
+  ),
   preferenceSaved: PropTypes.func.isRequired,
   positive: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,

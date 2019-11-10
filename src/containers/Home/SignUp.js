@@ -6,7 +6,13 @@ import SignUp from 'src/components/Home/SignUp';
 import {
   accountCreation, changeNewsletterBinary, changeUserValue,
 } from 'src/store/reducers/userReducer';
-import { informUser, changeShowValue } from 'src/store/reducers/appReducer';
+import {
+  informUser,
+  changeShowValue,
+  changeMessageListValue,
+  clearMessageListValue,
+  clearAllMessageAndInform,
+} from 'src/store/reducers/appReducer';
 
 // Action Creators
 
@@ -21,6 +27,7 @@ const mapStateToProps = (state) => ({
   message: state.appReducer.message,
   showSignupPassword: state.appReducer.showSignupPassword,
   showSignupPasswordConf: state.appReducer.showSignupPasswordConf,
+  errorMessagesSignup: state.appReducer.errorMessagesSignup,
 });
 
 /* === Actions === */
@@ -43,6 +50,18 @@ const mapDispatchToProps = (dispatch) => ({
 
   changeStateShow: (name) => {
     dispatch(changeShowValue(name));
+  },
+
+  changeMessageList: (value) => {
+    dispatch(changeMessageListValue(value));
+  },
+
+  clearMessageList: (value) => {
+    dispatch(clearMessageListValue(value));
+  },
+
+  clearAllAndInform: (value) => {
+    dispatch(clearAllMessageAndInform(value));
   },
 });
 
