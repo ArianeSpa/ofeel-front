@@ -168,6 +168,24 @@ Base pour les header nommés subtitle dans chaque onglet
 }
 
 /* 
+Base pour les containers d'information chaque onglet
+*/
+@mixin information{
+    font-size: 0.9em;
+    margin-bottom: 2em;
+    @media (min-width: 768px){
+        padding: 0 2em 0 0;
+        &>p{
+            margin: 0 0 0.5em;
+        }
+    }
+    @media (min-width: 1024px){
+        padding: 0 5em 0 2em;
+    }
+}
+
+
+/* 
 Base pour le boutton de soumission des formulaires connexion, inscription, contact,
 myFeeling, Goal et deconnexion
 */

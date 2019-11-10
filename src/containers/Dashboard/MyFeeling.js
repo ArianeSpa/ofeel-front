@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import MyFeeling from 'src/components/Dashboard/MyFeeling';
 
 // Action Creators
-import { saveProfil, setMyFeelingAPI, saveMetabAndCal } from 'src/store/reducers/appReducer';
+import {
+  saveProfil,
+  setMyFeelingAPI,
+  saveMetabAndCal,
+  changeMessageListValue,
+  clearMessageListValue,
+  clearAllMessageAndInform,
+} from 'src/store/reducers/appReducer';
 
 /* === State (données) === */
 const mapStateToProps = (state) => ({
@@ -15,6 +22,8 @@ const mapStateToProps = (state) => ({
   weight: state.appReducer.weight,
   activity: state.appReducer.activity,
   savedPreference: state.userReducer.savedPreference,
+  errorMessagesSignup: state.appReducer.errorMessagesSignup,
+
 });
 
 /* === Actions === */
@@ -30,7 +39,17 @@ const mapDispatchToProps = (dispatch) => ({
   sendToAPI: () => {
     dispatch(setMyFeelingAPI());
   },
+  changeMessageList: (value) => {
+    dispatch(changeMessageListValue(value));
+  },
 
+  clearMessageList: (value) => {
+    dispatch(clearMessageListValue(value));
+  },
+
+  clearAllAndInform: (value) => {
+    dispatch(clearAllMessageAndInform(value));
+  },
 });
 // Container
 const MyFeelingContainer = connect(

@@ -143,7 +143,6 @@ const appReducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case INFORM_USER:
-    console.log('je veux afficher le message : ' + action.message);
       return {
         ...state,
         [action.name]: action.message,
