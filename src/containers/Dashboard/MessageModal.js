@@ -30,4 +30,3 @@ const MessageModalContainer = connect(
 
 // == Export
 export default MessageModalContainer;
-

@@ -26,72 +26,22 @@ const MyFeeling = ({
   sendToAPI,
   saveMetaboCalorie,
   savedPreference,
-  changeMessageList,
-  clearMessageList,
   clearAllAndInform,
   errorMessagesSignup,
+  resetMessage,
 }) => {
   const handleChangeProfil = (event, data) => {
     changeProfil(data.name, data.value);
   };
 
-  console.log(errorMessagesSignup);
-
-  const checkAge = () => {
-    const messageAge = 'Vous n\'avez pas précisé votre age.';
-    if (isNaN(age)) {
-      changeMessageList(messageAge);
-    }
-    else {
-      clearMessageList(messageAge);
-    }
-  };
-
-  const checkHeight = () => {
-    const messageHeight = 'Vous n\'avez pas précisé votre taille.';
-    if (isNaN(height)) {
-      changeMessageList(messageHeight);
-    }
-    else {
-      clearMessageList(messageHeight);
-    }
-  };
-
-  const checkWeight = () => {
-    const messageWeight = 'Vous n\'avez pas précisé votre poids.';
-    if (isNaN(weight)) {
-      changeMessageList(messageWeight);
-    }
-    else {
-      clearMessageList(messageWeight);
-    }
-  };
-
   const calculAndSend = () => {
-    const messageGender = 'Vous n\'avez pas précisé votre sexe.';
-    if (gender === '') {
-      changeMessageList(messageGender);
+    const messageInfo = 'Même si les informations que vous avez complétées ont été correctement enregistrées dans notre base de données, les informations manquantes nous empêchent de vous fournir un plan alimentaire adapté à votre profil. Vous devez compléter tous les champs';
+
+    if (gender === '' || isNaN(age) || isNaN(height) || isNaN(weight) || activity === '') {
+      clearAllAndInform(messageInfo);
     }
     else {
-      clearMessageList(messageGender);
-    }
-
-    const messageActivity = 'Vous n\'avez pas précisé votre profil d\'activité.';
-    if (activity === '') {
-      changeMessageList(messageActivity);
-      console.log(activity);
-    }
-    else {
-      clearMessageList(messageActivity);
-    }
-
-    const messageInfo = 'Même si les informations que vous avez complétées ont été correctement enregistrées dans notre base de données, les informations manquantes nous empêchent de vous fournir un plan alimentaire adapté à votre profil.';
-
-    if (errorMessagesSignup.length === 1 && errorMessagesSignup.includes(messageInfo)) {
-      clearMessageList(messageInfo);
-    }
-    else if (errorMessagesSignup.length > 0) {
-      changeMessageList(messageInfo);
+      resetMessage();
     }
 
     const metabAndCal = setMetabAndCal(gender, weight, height, age, activity);
@@ -104,7 +54,7 @@ const MyFeeling = ({
       <Container id="myfeelingInformation">
         <p>Afin de pouvoir générer votre plan alimentaire personnalisé, il est nécessaire de remplir chacun des champs ci-dessous.</p>
         <p>Les premières informations servent à mesurer votre métabolisme de base.</p>
-        <p>Ensuite, en précisant votre profil d'activité, nous pouvons déterminéer votre dépense calorique journalière.</p>
+        <p>Ensuite, en précisant votre profil d'activité, nous pouvons déterminer votre dépense calorique journalière.</p>
       </Container>
       <Form id="myfeelingForm" onSubmit={calculAndSend}>
         <Header className="myfeelingSubtitle" as="h3">Parlons un peu de vous!</Header>
@@ -139,7 +89,6 @@ const MyFeeling = ({
             id="age"
             className="ageheightweightDropdown"
             name="age"
-            onBlur={checkAge}
             onChange={handleChangeProfil}
             options={ageGenerator()}
             selection
@@ -150,7 +99,6 @@ const MyFeeling = ({
             id="height"
             className="ageheightweightDropdown"
             name="height"
-            onBlur={checkHeight}
             onChange={handleChangeProfil}
             options={heightGenerator()}
             selection
@@ -161,7 +109,6 @@ const MyFeeling = ({
             id="weight"
             className="ageheightweightDropdown"
             name="weight"
-            onBlur={checkWeight}
             onChange={handleChangeProfil}
             options={weightGenerator()}
             selection
@@ -190,7 +137,7 @@ const MyFeeling = ({
       </Form>
       {savedPreference === 'saved' && (
         <MessageModal
-          content="vos données ont bien été enregistrées"
+          content="Vos données ont bien été enregistrées"
           error={false}
           list={false}
           positive
@@ -198,7 +145,7 @@ const MyFeeling = ({
       )}
       {savedPreference === 'notsaved' && (
         <MessageModal
-          content="une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
+          content="Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
           list={false}
           positive={false}
@@ -207,6 +154,7 @@ const MyFeeling = ({
       {errorMessagesSignup.length !== 0 && (
         <MessageModal
           list={errorMessagesSignup}
+          content={false}
           error
           positive={false}
         />
@@ -226,14 +174,13 @@ MyFeeling.propTypes = {
   activity: PropTypes.string.isRequired,
   age: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   changeProfil: PropTypes.func.isRequired,
-  clearMessageList: PropTypes.func.isRequired,
-  changeMessageList: PropTypes.func.isRequired,
   clearAllAndInform: PropTypes.func.isRequired,
   errorMessagesSignup: PropTypes.arrayOf(
     PropTypes.string,
   ).isRequired,
   gender: PropTypes.string,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  resetMessage: PropTypes.func.isRequired,
   savedPreference: PropTypes.string.isRequired,
   saveMetaboCalorie: PropTypes.func.isRequired,
   sendToAPI: PropTypes.func.isRequired,
