@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  Button, Checkbox, Form, Segment, Container,
+  Button, Checkbox, Form, Segment, Container, Icon,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -13,10 +13,20 @@ import MessageModal from 'src/containers/Dashboard/MessageModal';
 
 // == Composant
 const Login = ({
-  changeUserData, username, password, doAuthenticate, message,
+  changeUserData,
+  username,
+  password,
+  doAuthenticate,
+  message,
+  showLoginPassword,
+  changeStateShow,
 }) => {
   const handleChangeData = (event, data) => {
     changeUserData(data.id, data.value);
+  };
+  const changeShow = (event, data) => {
+    const { id } = data;
+    changeStateShow(id);
   };
   return (
     <Segment inverted id="loginSegment">
@@ -40,8 +50,10 @@ const Login = ({
             label="Mot de passe"
             onChange={handleChangeData}
             placeholder="Mot de passe"
-            type="password"
+            type={showLoginPassword ? 'text' : 'password'}
             value={password}
+            icon={<Icon name={showLoginPassword ? 'eye slash' : 'eye'} id="showLoginPassword" onClick={changeShow} link />}
+
           />
         </Form.Group>
         <Form.Group
@@ -70,10 +82,12 @@ const Login = ({
 };
 
 Login.propTypes = {
+  changeStateShow: PropTypes.func.isRequired,
   changeUserData: PropTypes.func.isRequired,
   doAuthenticate: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  showLoginPassword: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 

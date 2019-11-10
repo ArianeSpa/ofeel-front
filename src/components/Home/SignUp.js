@@ -23,8 +23,8 @@ const SignUp = ({
   username,
   showMessage,
   message,
-  showPassword,
-  showPasswordConf,
+  showSignupPassword,
+  showSignupPasswordConf,
   changeStateShow,
 }) => {
   const handleChangeNewsletter = (event, data) => {
@@ -114,9 +114,9 @@ const SignUp = ({
             onBlur={checkPasswordSecurity}
             onChange={handleChangeData}
             placeholder="********"
-            type={showPassword ? 'text' : 'password'}
+            type={showSignupPassword ? 'text' : 'password'}
             value={password}
-            icon={<Icon name={showPassword ? 'eye slash' : 'eye'} id="showPassword" onClick={changeShow} link />}
+            icon={<Icon name={showSignupPassword ? 'eye slash' : 'eye'} id="showSignupPassword" onClick={changeShow} link />}
           />
           <Form.Input
             className="oneField"
@@ -124,9 +124,9 @@ const SignUp = ({
             label="Confirmez votre mot de passe"
             onChange={handleChangeData}
             placeholder="********"
-            type={showPasswordConf ? 'text' : 'password'}
+            type={showSignupPasswordConf ? 'text' : 'password'}
             value={passwordConf}
-            icon={<Icon name={showPasswordConf ? 'eye slash' : 'eye'} id="showPasswordConf" onClick={changeShow} link />}
+            icon={<Icon name={showSignupPasswordConf ? 'eye slash' : 'eye'} id="showSignupPasswordConf" onClick={changeShow} link />}
 
           />
         </Form.Group>
@@ -190,8 +190,8 @@ SignUp.propTypes = {
   passwordConf: PropTypes.string.isRequired,
   savedPreference: PropTypes.string.isRequired,
   showMessage: PropTypes.func.isRequired,
-  showPassword: PropTypes.bool.isRequired,
-  showPasswordConf: PropTypes.bool.isRequired,
+  showSignupPassword: PropTypes.bool.isRequired,
+  showSignupPasswordConf: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 

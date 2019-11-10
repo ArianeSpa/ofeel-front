@@ -29,8 +29,9 @@ const initialState = {
   lunchProteinQuantity: 0,
   breakfastAndDinnerProteinQuantity: 0,
   yPosition: 0,
-  showPassword: false,
-  showPasswordConf: false,
+  showSignupPassword: false,
+  showSignupPasswordConf: false,
+  showLoginPassword: false,
 };
 
 const SAVE_GOAL = 'SAVE_GOAL';

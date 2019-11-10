@@ -19,8 +19,8 @@ const mapStateToProps = (state) => ({
   password: state.userReducer.password,
   passwordConf: state.userReducer.passwordConf,
   message: state.appReducer.message,
-  showPassword: state.appReducer.showPassword,
-  showPasswordConf: state.appReducer.showPasswordConf,
+  showSignupPassword: state.appReducer.showSignupPassword,
+  showSignupPasswordConf: state.appReducer.showSignupPasswordConf,
 });
 
 /* === Actions === */
