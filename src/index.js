@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 // == Import : local
-import App from 'src/containers/App';
-import store from 'src/store';
+import App from '@/containers/App';
+import store from '@/store';
 
 
 import 'semantic-ui-css/semantic.min.css';
