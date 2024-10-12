@@ -1,13 +1,13 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-/* import Contact from 'src/components/Contact'; */
+import Contact from "./Contact";
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { message: any }) => ({
   message: state.message,
 });
 
@@ -15,10 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 // Container
-const ContactContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Contact);
+const ContactContainer = connect(mapStateToProps, mapDispatchToProps)(Contact);
 
 // == Export
 export default ContactContainer;

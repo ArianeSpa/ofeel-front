@@ -1,33 +1,27 @@
 // == Import : npm
-import React from 'react';
-import {
-  Button, Form, Segment, TextArea,
-} from 'semantic-ui-react';
+import React from "react";
+import { Button, Form, Segment, TextArea } from "semantic-ui-react";
 
 // == Import : local
-import './contact.scss';
+import "./contact.scss";
 
 // == Dropdown options
 const subjects = [
-  { key: 'dg', text: 'Demandes d\'ordre générale', value: 'Demandes d\'ordre générale' },
-  { key: 'rs', text: 'Remarques/Suggestions', value: 'Remarques/Suggestions' },
-  { key: 'pt', text: 'Problèmes techniques', value: 'Problèmes techniques' },
+  {
+    key: "dg",
+    text: "Demandes d'ordre générale",
+    value: "Demandes d'ordre générale",
+  },
+  { key: "rs", text: "Remarques/Suggestions", value: "Remarques/Suggestions" },
+  { key: "pt", text: "Problèmes techniques", value: "Problèmes techniques" },
 ];
 
 // == Composant
 const Contact = () => (
   <Segment inverted id="contactSegment">
     <Form inverted className="contactForm">
-      <Form.Group
-        className="formFields"
-        stackable
-        widths={2}
-      >
-        <Form.Input
-          className="oneField"
-          label="Pseudo"
-          placeholder="Pseudo"
-        />
+      <Form.Group className="formFields" stackable widths={2}>
+        <Form.Input className="oneField" label="Pseudo" placeholder="Pseudo" />
         <Form.Input
           className="oneField"
           label="Email"
@@ -53,7 +47,9 @@ const Contact = () => (
           placeholder="Votre message"
         />
       </Form.Group>
-      <Button type="submit" className="submitButton">Envoyer</Button>
+      <Button type="submit" className="submitButton">
+        Envoyer
+      </Button>
     </Form>
   </Segment>
 );
