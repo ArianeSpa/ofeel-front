@@ -1,22 +1,21 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import App from 'src/components/App';
 
 // Action Creators
-import { askPagesFoodInfo } from 'src/store/reducers/mealPlanReducer';
-import { askPagesPostsInfo } from 'src/store/reducers/postReducer';
-import { askPagesWorkoutInfo } from 'src/store/reducers/workoutReducer';
-
+import { askPagesFoodInfo } from "@/store/reducers/mealPlanReducer";
+import { askPagesPostsInfo } from "@/store/reducers/postReducer";
+import { askPagesWorkoutInfo } from "@/store/reducers/workoutReducer";
+import { App } from "./App";
 
 /* === State (données) === */
 const mapStateToProps = () => ({
-//   message: state.message,
+  //   message: state.message,
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   catchFoodInfo: () => {
     const action = askPagesFoodInfo();
     dispatch(action);
@@ -32,10 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // Container
-const AppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 // == Export
 export default AppContainer;
