@@ -1,8 +1,8 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import Goals from 'src/components/Dashboard/Goals';
+import Goals from "@/components/Dashboard/Goals/Goal";
 
 // Action Creators
 import {
@@ -12,13 +12,22 @@ import {
   savePMeal,
   clearAllMessageAndInform,
   resetMessageModal,
-} from 'src/store/reducers/appReducer';
+} from "@/store/reducers/appReducer";
 
-import { sortFoodChoice } from 'src/store/reducers/mealPlanReducer';
-
+import { sortFoodChoice } from "@/store/reducers/mealPlanReducer";
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: {
+  appReducer: {
+    goal: any;
+    sanslactose: any;
+    sansgluten: any;
+    vegan: any;
+    energyExpenditure: any;
+    errorMessagesSignup: any;
+  };
+  userReducer: { savedPreference: any };
+}) => ({
   goal: state.appReducer.goal,
   sanslactose: state.appReducer.sanslactose,
   sansgluten: state.appReducer.sansgluten,
@@ -29,17 +38,28 @@ const mapStateToProps = (state) => ({
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
-  changeGoal: (id) => {
-    const action = saveGoal('goal', id);
+const mapDispatchToProps = (
+  dispatch: (arg0: {
+    type: string;
+    id?: any;
+    name?: any;
+    value?: any;
+    props?: any;
+    vegan?: any;
+    sanslactose?: any;
+    sansgluten?: any;
+  }) => void
+) => ({
+  changeGoal: (id: any) => {
+    const action = saveGoal("goal", id);
     dispatch(action);
   },
-  selectRegime: (name, value) => {
+  selectRegime: (name: any, value: any) => {
     const action = checkRegime(name, value);
     dispatch(action);
   },
 
-  savePropMeal: (props) => {
+  savePropMeal: (props: any) => {
     const action = savePMeal(props);
     dispatch(action);
   },
@@ -48,11 +68,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setGoalAPI());
   },
 
-  sortFood: (sanslactose, sansgluten, vegan) => {
+  sortFood: (sanslactose: any, sansgluten: any, vegan: any) => {
     const action = sortFoodChoice(sanslactose, sansgluten, vegan);
     dispatch(action);
   },
-  clearAllAndInform: (value) => {
+  clearAllAndInform: (value: any) => {
     dispatch(clearAllMessageAndInform(value));
   },
   resetMessage: () => {
@@ -61,10 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // Container
-const GoalsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Goals);
+const GoalsContainer = connect(mapStateToProps, mapDispatchToProps)(Goals);
 
 // == Export
 export default GoalsContainer;
