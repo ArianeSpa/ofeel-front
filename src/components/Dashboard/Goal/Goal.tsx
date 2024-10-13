@@ -13,7 +13,7 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import "./goals.scss";
+import "./goal.scss";
 import setProportion from "@/utils/setProportion";
 import iconMuscle from "@/assets/icon/biceps3.png";
 import iconBalance from "@/assets/icon/balance.png";
@@ -21,23 +21,23 @@ import iconSalad from "@/assets/icon/salade.png";
 import iconLactose from "@/assets/icon/lactose.png";
 import iconGluten from "@/assets/icon/gluten.png";
 import iconNutrition from "@/assets/icon/nutrition.png";
-import MessageModal from "@/containers/Dashboard/MessageModal";
 import { GoalEnum } from "@/models/profil.model";
+import MessageModalContainer from "../MessageModal/MessageModalContainer";
 
 type GoalProps = {
   energyExpenditure: number;
-  changeGoal: (name: any) => {};
-  clearAllAndInform: (messageInfo: any) => {};
+  changeGoal: (name: any) => void;
+  clearAllAndInform: (messageInfo: any) => void;
   errorMessagesSignup: string[];
   goal?: GoalEnum;
-  resetMessage: () => {};
+  resetMessage: () => void;
   sansgluten: boolean;
   sanslactose: boolean;
   savedPreference: string;
-  savePropMeal: (proportion: any) => {};
-  selectRegime: (id: any, checked: any) => {};
-  sendToAPI: () => {};
-  sortFood: (sanslactose: any, sansgluten: any, vegan: any) => {};
+  savePropMeal: (proportion: any) => void;
+  selectRegime: (id: any, checked: any) => void;
+  sendToAPI: () => void;
+  sortFood: (sanslactose: any, sansgluten: any, vegan: any) => void;
   vegan: boolean;
 };
 
@@ -178,28 +178,19 @@ export const Goal: React.FC<GoalProps> = ({
         </Button>
       </Form>
       {savedPreference === "saved" && (
-        <MessageModal
+        <MessageModalContainer
           content="Vos données ont bien été enregistrées"
-          error={false}
-          list={false}
           positive
         />
       )}
       {savedPreference === "notsaved" && (
-        <MessageModal
+        <MessageModalContainer
           content="Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
-          list={false}
-          positive={false}
         />
       )}
       {errorMessagesSignup.length !== 0 && (
-        <MessageModal
-          content={false}
-          list={errorMessagesSignup}
-          error
-          positive={false}
-        />
+        <MessageModalContainer list={errorMessagesSignup} error />
       )}
     </Segment>
   );

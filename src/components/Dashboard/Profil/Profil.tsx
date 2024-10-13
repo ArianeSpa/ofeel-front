@@ -21,9 +21,9 @@ import {
   weightGenerator,
   activityTable,
 } from "@/datas/myfeeling";
-import MessageModal from "@/containers/Dashboard/MessageModal";
 import { ProfilActivity } from "./ProfilActivity/ProfilActivity";
 import { ActivityLevelModel, GenderModel } from "@/models/profil.model";
+import MessageModalContainer from "../MessageModal/MessageModalContainer";
 
 type MetaboCal = {
   basalMetabolicRate: number;
@@ -207,28 +207,19 @@ export const Profil: React.FC<ProfilProps> = ({
         </Button>
       </Form>
       {savedPreference === "saved" && (
-        <MessageModal
+        <MessageModalContainer
           content="Vos données ont bien été enregistrées"
-          error={false}
-          list={false}
           positive
         />
       )}
       {savedPreference === "notsaved" && (
-        <MessageModal
+        <MessageModalContainer
           content="Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
           error
-          list={false}
-          positive={false}
         />
       )}
       {errorMessagesSignup.length !== 0 && (
-        <MessageModal
-          list={errorMessagesSignup}
-          content={false}
-          error
-          positive={false}
-        />
+        <MessageModalContainer list={errorMessagesSignup} error />
       )}
     </Segment>
   );

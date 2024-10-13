@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 
 // == Import : local
-import Goals from "@/components/Dashboard/Goals/Goal";
+import { Goal } from "./Goal";
 
 // Action Creators
 import {
@@ -81,7 +81,7 @@ const mapDispatchToProps = (
 });
 
 // Container
-const GoalsContainer = connect(mapStateToProps, mapDispatchToProps)(Goals);
+const GoalsContainer = connect(mapStateToProps, mapDispatchToProps)(Goal);
 
 // == Export
 export default GoalsContainer;
