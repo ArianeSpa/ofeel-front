@@ -14,8 +14,8 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import MessageSnack from "@/components/Dashboard/MealPlan/MessageSnack";
-import OneMeal from "@/components/Dashboard/MealPlan/OneMeal";
+import { FoodPlanMessageSnack } from "@/components/Dashboard/FoodPlan/FoodPlanMessage/FoodPlanMessageSnack";
+import { FoodPlanMeal } from "@/components/Dashboard/FoodPlan/FoodPlanMeal/FoodPlanMeal";
 import { setProteinQuantity, setSugarQuantity } from "@/utils/setQuantity";
 import { setProteinType, setGlucidType } from "@/utils/setFoodType";
 import {
@@ -23,10 +23,10 @@ import {
   setProtQuantityFood,
   setCarbQuantityFood,
 } from "@/utils/setQuantities";
-import "./mealplan.scss";
+import "./foodplan.scss";
 import { CarbEnum, FatEnum, ProtEnum } from "@/models/food.model";
 
-type MealPlanProps = {
+type FoodPlanProps = {
   changeFoodValue: (value: any, id: any) => void;
   changeCheckValue: (value: any) => void;
   datafood: any[];
@@ -58,7 +58,7 @@ type MealPlanProps = {
 };
 
 // == Composant
-export const MealPlan: React.FC<MealPlanProps> = ({
+export const FoodPlan: React.FC<FoodPlanProps> = ({
   changeFoodValue,
   proteinebreakfast,
   proteinelunch,
@@ -221,7 +221,7 @@ export const MealPlan: React.FC<MealPlanProps> = ({
         <>
           <Grid.Row id="dailyMealRow">
             {/* COLONNE PETIT DEJEUNER */}
-            <OneMeal
+            <FoodPlanMeal
               meal="breakfast"
               header="Petit déjeuner"
               checkAction={handleCheck}
@@ -237,7 +237,7 @@ export const MealPlan: React.FC<MealPlanProps> = ({
               foodArray={foodToShow || []}
             />
             {/* COLONNE LUNCH */}
-            <OneMeal
+            <FoodPlanMeal
               meal="lunch"
               header="Déjeuner"
               checkAction={handleCheck}
@@ -253,7 +253,7 @@ export const MealPlan: React.FC<MealPlanProps> = ({
               foodArray={foodToShow || []}
             />
             {/* COLONNE DINNER */}
-            <OneMeal
+            <FoodPlanMeal
               meal="dinner"
               header="Dîner"
               checkAction={handleCheck}
@@ -321,7 +321,7 @@ export const MealPlan: React.FC<MealPlanProps> = ({
                   <div className="mealVegAndFruit">+ 1 fruit</div>
                 </Form>
               )}
-              {!snackcheck && <MessageSnack />}
+              {!snackcheck && <FoodPlanMessageSnack />}
             </Grid.Column>
           </Grid.Row>
         </>

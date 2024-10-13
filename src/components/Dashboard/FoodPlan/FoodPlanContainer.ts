@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 
 // == Import : local
-import { MealPlan } from "./MealPlan";
+import { FoodPlan } from "./FoodPlan";
 
 // Action Creators
 import {
@@ -106,10 +106,10 @@ const mapDispatchToProps = (
 });
 
 // Container
-const MealPlanContainer = connect(
+const FoodPlanContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MealPlan);
+)(FoodPlan);
 
 // == Export
-export default MealPlanContainer;
+export default FoodPlanContainer;
