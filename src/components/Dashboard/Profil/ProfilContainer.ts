@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch: (arg0: any) => void) => ({
   },
 });
 // Container
-const MyFeelingContainer = connect(mapStateToProps, mapDispatchToProps)(Profil);
+const ProfilContainer = connect(mapStateToProps, mapDispatchToProps)(Profil);
 
 // == Export
-export default MyFeelingContainer;
+export default ProfilContainer;

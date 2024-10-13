@@ -3,7 +3,7 @@ import React from "react";
 import { Segment, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
-enum DashBoardTagEnum {
+export enum DashBoardTagEnum {
   PROFIL = "profil",
   GOAL = "goal",
   FOOD_PLAN = "foodplan",

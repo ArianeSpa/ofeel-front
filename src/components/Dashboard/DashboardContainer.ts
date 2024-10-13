@@ -1,13 +1,13 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import Dashboard from "./Dashboard";
 
 // == Import : local
-import Dashboard from 'src/components/Page/Dashboard';
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { userReducer: { logged: any } }) => ({
   logged: state.userReducer.logged,
 });
 
@@ -17,7 +17,7 @@ const mapDispatchToProps = {};
 // Container
 const DashboardContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Dashboard);
 
 // == Export
