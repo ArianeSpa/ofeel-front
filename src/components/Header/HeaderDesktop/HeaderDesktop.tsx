@@ -1,26 +1,22 @@
 // == Import : npm
-import React from 'react';
-import { Menu, Image } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Menu, Image } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 // == Import : local
-import UserModal from 'src/containers/UserModal';
-import logo from 'src/assets/images/logo_fond_transparent2.png';
-import './header.scss';
+import UserModal from "@/containers/UserModal";
+import logo from "@/assets/images/logo_fond_transparent2.png";
+import "../header.scss";
 
+type HeaderDesktopProps = {
+  logged: boolean;
+};
 // == Composant
-const HeaderDesktop = ({ logged }) => (
+export const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ logged }) => (
   <Menu text id="headerDesktop">
     <Menu.Menu position="left" id="leftPartHeader">
       <Menu.Item id="desktopItem">
-        <Image
-          as={NavLink}
-          exact
-          id="desktopLogo"
-          src={logo}
-          to="/"
-        />
+        <Image as={NavLink} exact id="desktopLogo" src={logo} to="/" />
       </Menu.Item>
     </Menu.Menu>
     {!logged && (
@@ -52,13 +48,6 @@ const HeaderDesktop = ({ logged }) => (
       name="Contact"
       to="/contact"
     />
-    { logged && (<UserModal />) }
+    {logged && <UserModal />}
   </Menu>
-
 );
-
-HeaderDesktop.propTypes = {
-  logged: PropTypes.bool.isRequired,
-};
-
-export default HeaderDesktop;
