@@ -1,15 +1,15 @@
 // == Import : npm
-import React from 'react';
-import { Segment, Button, Container } from 'semantic-ui-react';
+import React from "react";
+import { Segment, Button, Container } from "semantic-ui-react";
 
 // == Import : local
-import './footer.scss';
+import "./footer.scss";
 
 // == Composant
-const Footer = () => (
+export const Footer: React.FC = () => (
   <Segment id="footerSegment">
     <Container id="copyright">
-      <p>&copy; O'Feel d'Ariane 2019</p>
+      <p>&copy; {`O'Feel d'Ariane 2019`}</p>
     </Container>
     <Container id="footerButtons">
       <Button
@@ -57,5 +57,3 @@ const Footer = () => (
     </Container>
   </Segment>
 );
-
-export default Footer;
