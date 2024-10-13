@@ -1,16 +1,32 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import Workout from 'src/components/Dashboard/WorkoutList';
+import { WorkoutList } from "./WorkoutList";
 
 // Action Creators
 import {
-  saveActiveIndex, changeSortBool, sortPost, cancelSortBool,
-} from 'src/store/reducers/workoutReducer';
+  saveActiveIndex,
+  changeSortBool,
+  sortPost,
+  cancelSortBool,
+} from "@/store/reducers/workoutReducer";
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: {
+  workoutReducer: {
+    workoutList: any;
+    loadingWorkout: any;
+    activeIndex: any;
+    course: any;
+    salle: any;
+    maison: any;
+    debutant: any;
+    intermediaire: any;
+    confirme: any;
+    workoutToShow: any;
+  };
+}) => ({
   workoutList: state.workoutReducer.workoutList,
   loadingWorkout: state.workoutReducer.loadingWorkout,
   activeIndex: state.workoutReducer.activeIndex,
@@ -24,16 +40,24 @@ const mapStateToProps = (state) => ({
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
-  changeActiveIndex: (index) => {
-    const action = saveActiveIndex('activeIndex', index);
+const mapDispatchToProps = (
+  dispatch: (arg0: {
+    type: string;
+    index?: any;
+    name?: any;
+    subject?: any;
+    dataposts?: any;
+  }) => void
+) => ({
+  changeActiveIndex: (index: any) => {
+    const action = saveActiveIndex("activeIndex", index);
     dispatch(action);
   },
-  changeSort: (subject) => {
+  changeSort: (subject: any) => {
     const action = changeSortBool(subject);
     dispatch(action);
   },
-  sortWorkoutData: (workoutList) => {
+  sortWorkoutData: (workoutList: any) => {
     const action = sortPost(workoutList);
     dispatch(action);
   },
@@ -46,8 +70,8 @@ const mapDispatchToProps = (dispatch) => ({
 // Container
 const WorkoutListContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(Workout);
+  mapDispatchToProps
+)(WorkoutList);
 
 // == Export
 export default WorkoutListContainer;
