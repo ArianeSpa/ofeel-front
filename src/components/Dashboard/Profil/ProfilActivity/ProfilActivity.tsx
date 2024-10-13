@@ -1,16 +1,22 @@
 // == Import : npm
-import React from 'react';
-import {
-  Form, Radio, Popup, Icon,
-} from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import React, { FormEvent } from "react";
+import { Form, Radio, Popup, Icon, CheckboxProps } from "semantic-ui-react";
 
 // == Import : local
-import './myfeeling.scss';
+import "./myfeeling.scss";
 
+type ProfilActivityProps = {
+  checkedvalue: string;
+  onchange: (_event: FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  text: string;
+  value: string;
+};
 // == Composant
-const MyFeelingProfile = ({
-  value, text, onchange, checkedvalue,
+export const ProfilActivity: React.FC<ProfilActivityProps> = ({
+  value,
+  text,
+  onchange,
+  checkedvalue,
 }) => (
   <Form.Field className="activityField">
     <Radio
@@ -28,12 +34,3 @@ const MyFeelingProfile = ({
     />
   </Form.Field>
 );
-
-MyFeelingProfile.propTypes = {
-  checkedvalue: PropTypes.string.isRequired,
-  onchange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
-
-export default MyFeelingProfile;

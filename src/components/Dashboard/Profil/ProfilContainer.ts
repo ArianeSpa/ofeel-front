@@ -1,8 +1,7 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import MyFeeling from 'src/components/Dashboard/MyFeeling';
 
 // Action Creators
 import {
@@ -13,10 +12,21 @@ import {
   clearMessageListValue,
   clearAllMessageAndInform,
   resetMessageModal,
-} from 'src/store/reducers/appReducer';
+} from "@/store/reducers/appReducer";
+import { Profil } from "./Profil";
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: {
+  appReducer: {
+    gender: any;
+    age: any;
+    height: any;
+    weight: any;
+    activity: any;
+    errorMessagesSignup: any;
+  };
+  userReducer: { savedPreference: any };
+}) => ({
   gender: state.appReducer.gender,
   age: state.appReducer.age,
   height: state.appReducer.height,
@@ -27,27 +37,33 @@ const mapStateToProps = (state) => ({
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
-  changeProfil: (name, value) => {
+const mapDispatchToProps = (dispatch: (arg0: any) => void) => ({
+  changeProfil: (name: any, value: any) => {
     const action = saveProfil(name, value);
     dispatch(action);
   },
-  saveMetaboCalorie: (object) => {
-    const action = saveMetabAndCal(object.basalMetabolicRate, object.energyExpenditure);
+  saveMetaboCalorie: (object: {
+    basalMetabolicRate: any;
+    energyExpenditure: any;
+  }) => {
+    const action = saveMetabAndCal(
+      object.basalMetabolicRate,
+      object.energyExpenditure
+    );
     dispatch(action);
   },
   sendToAPI: () => {
     dispatch(setMyFeelingAPI());
   },
-  changeMessageList: (value) => {
+  changeMessageList: (value: any) => {
     dispatch(changeMessageListValue(value));
   },
 
-  clearMessageList: (value) => {
+  clearMessageList: (value: any) => {
     dispatch(clearMessageListValue(value));
   },
 
-  clearAllAndInform: (value) => {
+  clearAllAndInform: (value: any) => {
     dispatch(clearAllMessageAndInform(value));
   },
   resetMessage: () => {
@@ -55,10 +71,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 // Container
-const MyFeelingContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MyFeeling);
+const MyFeelingContainer = connect(mapStateToProps, mapDispatchToProps)(Profil);
 
 // == Export
 export default MyFeelingContainer;
