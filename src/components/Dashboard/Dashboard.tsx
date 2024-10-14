@@ -13,7 +13,7 @@ import WorkoutListContainer from "./WorkoutList/WorkoutListContainer";
 import { DashboardTag, DashBoardTagEnum } from "./DashBoardTag/DashboardTag";
 
 // == Composant
-const Dashboard = () => (
+export const Dashboard: React.FC = () => (
   <Segment inverted id="dashboardSegment">
     <Grid columns={2} id="dashboardGrid">
       <Grid.Row stretched id="dashboardRow">
@@ -39,5 +39,3 @@ const Dashboard = () => (
     </Grid>
   </Segment>
 );
-
-export default Dashboard;

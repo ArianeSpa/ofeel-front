@@ -1,13 +1,13 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { Main } from "./Main";
 
 // == Import : local
-import Main from 'src/components/Main';
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { userReducer: { logged: any } }) => ({
   logged: state.userReducer.logged,
 });
 
@@ -15,10 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 // Container
-const MainContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Main);
+const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 // == Export
 export default MainContainer;
