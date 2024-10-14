@@ -1,7 +1,10 @@
 // reducer concernant la gestion des articles
 
+import { PostModel } from "@/models/post.model";
+import { ActionModel, PostStateModel } from "@/models/reducer.model";
+
 // == Initial State
-const initialState = {
+const initialState: PostStateModel = {
   activeIndex: -1,
   dataposts: [],
   postsToShow: [],
@@ -15,19 +18,22 @@ const initialState = {
 };
 
 // ACTION TYPE
-const SAVE_ACTIVE_INDEX = 'SAVE_ACTIVE_INDEX';
-const SAVE_POSTS_PAGES = 'SAVE_POSTS_PAGES';
-const SAVE_POSTS = 'SAVE_POSTS';
-const LOAD_POSTS = 'LOAD_POSTS';
-const FINISH_LOAD_POSTS = 'FINISH_LOAD_POSTS';
-const CHANGE_SORT = 'CHANGE_SORT';
-const CANCEL_SORT = 'CANCEL_SORT';
-const SORT_DATAPOSTS = 'SORT_DATAPOSTS';
+const SAVE_ACTIVE_INDEX = "SAVE_ACTIVE_INDEX";
+const SAVE_POSTS_PAGES = "SAVE_POSTS_PAGES";
+const SAVE_POSTS = "SAVE_POSTS";
+const LOAD_POSTS = "LOAD_POSTS";
+const FINISH_LOAD_POSTS = "FINISH_LOAD_POSTS";
+const CHANGE_SORT = "CHANGE_SORT";
+const CANCEL_SORT = "CANCEL_SORT";
+const SORT_DATAPOSTS = "SORT_DATAPOSTS";
 
-export const ASK_PAGES_POSTS_INFO = 'ASK_PAGES_POSTS_INFO';
+export const ASK_PAGES_POSTS_INFO = "ASK_PAGES_POSTS_INFO";
 
-
-const postReducer = (state = initialState, action = {}) => {
+const postReducer = (
+  // eslint-disable-next-line @typescript-eslint/default-param-last
+  state: PostStateModel = initialState,
+  action: ActionModel
+) => {
   switch (action.type) {
     case SAVE_ACTIVE_INDEX:
       if (action.index === state.activeIndex) {
@@ -47,7 +53,6 @@ const postReducer = (state = initialState, action = {}) => {
         ...state,
         postsToShow: action.dataposts,
         dataposts: action.dataposts,
-
       };
     case LOAD_POSTS:
       return {
@@ -59,17 +64,18 @@ const postReducer = (state = initialState, action = {}) => {
         ...state,
         loadingPosts: false,
       };
-    case CHANGE_SORT:
-      if (state[action.subject] === null) {
-        return {
-          ...state,
-          [action.subject]: true,
-        };
-      }
-      return {
-        ...state,
-        [action.subject]: !state[action.subject],
-      };
+    /** @todo FIX */
+    // case CHANGE_SORT:
+    //     if (state[action.subject] === null) {
+    //         return {
+    //             ...state,
+    //             [action.subject]: true,
+    //         };
+    //     }
+    //     return {
+    //         ...state,
+    //         [action.subject]: !state[action.subject],
+    //     };
     case CANCEL_SORT:
       return {
         ...state,
@@ -83,7 +89,12 @@ const postReducer = (state = initialState, action = {}) => {
     case SORT_DATAPOSTS:
       // eslint-disable-next-line no-case-declarations
       const sortedDataposts = state.dataposts.filter((post) => {
-        const keepPost = (state.alimentation && post.tags === 'alimentation') || (state.sante && post.tags === 'sante') || (state.sport && post.tags === 'sport') || (state.recuperation && post.tags === 'recuperation') || (state.divers && post.tags === 'divers');
+        const keepPost =
+          (state.alimentation && post.tags === "alimentation") ||
+          (state.sante && post.tags === "sante") ||
+          (state.sport && post.tags === "sport") ||
+          (state.recuperation && post.tags === "recuperation") ||
+          (state.divers && post.tags === "divers");
         return keepPost;
       });
       return {
@@ -95,7 +106,7 @@ const postReducer = (state = initialState, action = {}) => {
   }
 };
 
-export const saveActiveIndex = (name, index) => ({
+export const saveActiveIndex = (name: string, index: any) => ({
   type: SAVE_ACTIVE_INDEX,
   index,
   name,
@@ -105,12 +116,12 @@ export const askPagesPostsInfo = () => ({
   type: ASK_PAGES_POSTS_INFO,
 });
 
-export const savePostsPages = (numberpages) => ({
+export const savePostsPages = (numberpages: number) => ({
   type: SAVE_POSTS_PAGES,
   numberpages,
 });
 
-export const savePosts = (dataposts) => ({
+export const savePosts = (dataposts: PostModel[]) => ({
   type: SAVE_POSTS,
   dataposts,
 });
@@ -123,7 +134,7 @@ export const finishLoadPosts = () => ({
   type: FINISH_LOAD_POSTS,
 });
 
-export const changeSortBool = (subject) => ({
+export const changeSortBool = (subject: any) => ({
   type: CHANGE_SORT,
   subject,
 });
@@ -132,7 +143,7 @@ export const cancelSortBool = () => ({
   type: CANCEL_SORT,
 });
 
-export const sortPost = (dataposts) => ({
+export const sortPost = (dataposts: PostModel[]) => ({
   type: SORT_DATAPOSTS,
   dataposts,
 });

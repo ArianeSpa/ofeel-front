@@ -1,28 +1,33 @@
 // reducer concernant la gestion du user
 
+import { ActionModel, UserStateModel } from "@/models/reducer.model";
+
 // == Initial State
-const initialState = {
+const initialState: UserStateModel = {
   logged: false,
-  username: '',
-  password: '',
-  passwordConf: '',
-  email: '',
+  username: "",
+  password: "",
+  passwordConf: "",
+  email: "",
   newsletter: 0,
-  savedPreference: '',
+  savedPreference: "",
 };
 
 // == Types
-const SAVE_USER = 'SAVE_USER';
-const LOG_OUT = 'LOG_OUT';
-const CHANGE_NEWSLETTER = 'CHANGE_NEWSLETTER';
-const PREFERENCE_USER_SAVED = 'PREFERENCE_USER_SAVED';
-const SAVE_USER_INFO = 'SAVE_USER_INFO';
+const SAVE_USER = "SAVE_USER";
+const LOG_OUT = "LOG_OUT";
+const CHANGE_NEWSLETTER = "CHANGE_NEWSLETTER";
+const PREFERENCE_USER_SAVED = "PREFERENCE_USER_SAVED";
+const SAVE_USER_INFO = "SAVE_USER_INFO";
 
+export const AUTHENTICATE = "AUTHENTICATE";
+export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
 
-export const AUTHENTICATE = 'AUTHENTICATE';
-export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
-
-const userReducer = (state = initialState, action = {}) => {
+const userReducer = (
+  // eslint-disable-next-line @typescript-eslint/default-param-last
+  state: UserStateModel = initialState,
+  action: ActionModel
+) => {
   switch (action.type) {
     case CHANGE_NEWSLETTER:
       return {
@@ -66,23 +71,23 @@ export const endSession = () => ({
   type: LOG_OUT,
 });
 
-export const saveUser = (token) => ({
+export const saveUser = (token: string) => ({
   type: SAVE_USER,
   token,
 });
 
-export const changeNewsletterBinary = (name, value) => ({
+export const changeNewsletterBinary = (name: string, value: any) => ({
   type: CHANGE_NEWSLETTER,
   value,
   name,
 });
 
-export const preferenceUserSaved = (bool) => ({
+export const preferenceUserSaved = (bool: boolean) => ({
   type: PREFERENCE_USER_SAVED,
   bool,
 });
 
-export const changeUserValue = (name, value) => ({
+export const changeUserValue = (name: string, value: any) => ({
   type: SAVE_USER_INFO,
   name,
   value,

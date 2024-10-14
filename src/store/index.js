@@ -1,17 +1,15 @@
 // == Import : npm
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from "redux";
 
 // == Import : local
-import reducer from 'src/store/reducer';
 // import logMiddleware from './logMiddleware';
-import ajaxMiddleware from './ajaxMiddleware';
+import ajaxMiddleware from "./ajaxMiddleware";
+import reducer from "./reducer";
 
 // == Store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancers = composeEnhancers(
-  applyMiddleware(ajaxMiddleware),
-);
+const enhancers = composeEnhancers(applyMiddleware(ajaxMiddleware));
 
 /*
 // On peut avoir plusieurs middlewares :
@@ -24,10 +22,7 @@ const enhancers = composeEnhancers(
 );
 */
 
-const store = createStore(
-  reducer,
-  enhancers,
-);
+const store = createStore(reducer, enhancers);
 
 // == Export
 export default store;
