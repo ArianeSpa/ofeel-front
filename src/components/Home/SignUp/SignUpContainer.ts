@@ -1,23 +1,40 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import SignUp from 'src/components/Home/SignUp';
 import {
-  accountCreation, changeNewsletterBinary, changeUserValue,
-} from 'src/store/reducers/userReducer';
+  accountCreation,
+  changeNewsletterBinary,
+  changeUserValue,
+} from "@/store/reducers/userReducer";
 import {
   informUser,
   changeShowValue,
   changeMessageListValue,
   clearMessageListValue,
   clearAllMessageAndInform,
-} from 'src/store/reducers/appReducer';
+} from "@/store/reducers/appReducer";
+import { SignUp } from "./SignUp";
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: {
+  userReducer: {
+    username: any;
+    email: any;
+    newsletter: any;
+    savedPreference: any;
+    password: any;
+    passwordConf: any;
+  };
+  appReducer: {
+    message: any;
+    showSignupPassword: any;
+    showSignupPasswordConf: any;
+    errorMessagesSignup: any;
+  };
+}) => ({
   username: state.userReducer.username,
   email: state.userReducer.email,
   newsletter: state.userReducer.newsletter,
@@ -31,9 +48,16 @@ const mapStateToProps = (state) => ({
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
-  changeNewsletter: (checked) => {
-    const action = changeNewsletterBinary('newsletter', checked);
+const mapDispatchToProps = (
+  dispatch: (arg0: {
+    type: string;
+    value?: any;
+    name?: any;
+    message?: any;
+  }) => void
+) => ({
+  changeNewsletter: (checked: any) => {
+    const action = changeNewsletterBinary("newsletter", checked);
     dispatch(action);
   },
 
@@ -41,35 +65,32 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(accountCreation());
   },
 
-  changeUserData: (name, value) => {
+  changeUserData: (name: any, value: any) => {
     dispatch(changeUserValue(name, value));
   },
-  showMessage: (name, message) => {
+  showMessage: (name: any, message: any) => {
     dispatch(informUser(name, message));
   },
 
-  changeStateShow: (name) => {
+  changeStateShow: (name: any) => {
     dispatch(changeShowValue(name));
   },
 
-  changeMessageList: (value) => {
+  changeMessageList: (value: any) => {
     dispatch(changeMessageListValue(value));
   },
 
-  clearMessageList: (value) => {
+  clearMessageList: (value: any) => {
     dispatch(clearMessageListValue(value));
   },
 
-  clearAllAndInform: (value) => {
+  clearAllAndInform: (value: any) => {
     dispatch(clearAllMessageAndInform(value));
   },
 });
 
 // Container
-const SignUpContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SignUp);
+const SignUpContainer = connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 // == Export
 export default SignUpContainer;
