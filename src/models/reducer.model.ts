@@ -1,9 +1,4 @@
-import {
-  DataFoodModel,
-  FoodChoiceCarbModel,
-  FoodChoiceFatModel,
-  FoodChoiceProtModel,
-} from "./food.model";
+import { DataFoodModel, CarbEnum, FatEnum, ProtEnum } from "./food.model";
 import { PostModel } from "./post.model";
 import {
   ActivityLevelModel,
@@ -50,17 +45,17 @@ export type AppStateModel = {
 export type MealPlanStateModel = {
   datafood?: DataFoodModel[];
   foodToShow: [];
-  proteinebreakfast: FoodChoiceProtModel;
-  proteinelunch: FoodChoiceProtModel;
-  proteinedinner: FoodChoiceProtModel;
-  proteinesnack: FoodChoiceProtModel;
-  lipidebreakfast: FoodChoiceFatModel;
-  lipidelunch: FoodChoiceFatModel;
-  lipidedinner: FoodChoiceFatModel;
-  glucidebreakfast: FoodChoiceCarbModel;
-  glucidelunch: FoodChoiceCarbModel;
-  glucidedinner: FoodChoiceCarbModel;
-  glucidesnack: FoodChoiceCarbModel;
+  proteinebreakfast: ProtEnum;
+  proteinelunch: ProtEnum;
+  proteinedinner: ProtEnum;
+  proteinesnack: ProtEnum;
+  lipidebreakfast: FatEnum;
+  lipidelunch: FatEnum;
+  lipidedinner: FatEnum;
+  glucidebreakfast: CarbEnum;
+  glucidelunch: CarbEnum;
+  glucidedinner: CarbEnum;
+  glucidesnack: CarbEnum;
   breakfastcheck: boolean;
   lunchcheck: boolean;
   dinnercheck: boolean;

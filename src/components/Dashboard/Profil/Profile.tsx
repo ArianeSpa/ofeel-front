@@ -13,15 +13,15 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import "./profil.scss";
+import "./profie.scss";
 import setMetabAndCal from "@/utils/setMetabAndCal";
 import {
   ageGenerator,
   heightGenerator,
   weightGenerator,
   activityTable,
-} from "@/datas/myfeeling";
-import { ProfilActivity } from "./ProfilActivity/ProfilActivity";
+} from "@/datas/profile";
+import { ProfileActivity } from "./ProfileActivity/ProfileActivity";
 import { ActivityLevelModel, GenderModel } from "@/models/profil.model";
 import MessageModalContainer from "../MessageModal/MessageModalContainer";
 
@@ -29,7 +29,7 @@ type MetaboCal = {
   basalMetabolicRate: number;
   energyExpenditure: number;
 };
-type ProfilProps = {
+type ProfileProps = {
   activity: ActivityLevelModel;
   age: number;
   changeProfil: (
@@ -48,7 +48,7 @@ type ProfilProps = {
 };
 
 // == Composant
-export const Profil: React.FC<ProfilProps> = ({
+export const Profile: React.FC<ProfileProps> = ({
   gender,
   weight,
   age,
@@ -193,7 +193,7 @@ export const Profil: React.FC<ProfilProps> = ({
         </Header>
         <Form.Group id="activityGroup">
           {activityTable.map((currentProfil) => (
-            <ProfilActivity
+            <ProfileActivity
               checkedvalue={activity}
               key={currentProfil.id}
               onchange={handleChangeProfil}

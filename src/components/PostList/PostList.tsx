@@ -11,7 +11,6 @@ import {
   AccordionTitleProps,
   ButtonProps,
 } from "semantic-ui-react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import DOMPurify from "dompurify";
 
 // == Import : local

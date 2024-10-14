@@ -5,14 +5,14 @@ import { Form, Radio, Popup, Icon, CheckboxProps } from "semantic-ui-react";
 // == Import : local
 import "./myfeeling.scss";
 
-type ProfilActivityProps = {
+type ProfileActivityProps = {
   checkedvalue: string;
   onchange: (_event: FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
   text: string;
   value: string;
 };
 // == Composant
-export const ProfilActivity: React.FC<ProfilActivityProps> = ({
+export const ProfileActivity: React.FC<ProfileActivityProps> = ({
   value,
   text,
   onchange,

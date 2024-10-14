@@ -12,7 +12,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      Start v2
       <AppContainer />
     </Provider>
   </React.StrictMode>

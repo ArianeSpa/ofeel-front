@@ -13,36 +13,35 @@ export type FoodModel = {
   carb: string;
 };
 
-export type FoodChoiceFatModel =
-  | "avocat"
-  | "beurre de cacahuète"
-  | "huile d'olive"
-  | "amandes"
-  | "cajou"
-  | "noisettes"
-  | "noix"
-  | "lait de coco";
+export enum FatEnum {
+  AVOCADO = "avocat",
+  PEANUT = "beurre de cacahuète",
+  OIL = "huile d'olive",
+  ALMOND = "amandes",
+  CASHEW = "cajou",
+  HAZELNUT = "noisettes",
+  NUT = "noix",
+  COCO_MILK = "lait de coco",
+}
 
-export type FoodChoiceCarbModel =
-  | "muesli"
-  | "pain"
-  | "pâtes complètes"
-  | "pâtes complètes"
-  | "riz complet"
-  | "quinoa";
+export enum CarbEnum {
+  MUESLI = "muesli",
+  BREAD = "pain",
+  PASTA = "pâtes complètes",
+  RICE = "riz complet",
+  QUINOA = "quinoa",
+}
 
-export type FoodChoiceProtModel =
-  | "jambon"
-  | "whey"
-  | "oeuf"
-  | "fromage blanc 0% MG"
-  | "steak haché 5% MG"
-  | "poisson blanc";
+export enum ProtEnum {
+  HAM = "jambon",
+  WHEY = "whey",
+  EGG = "oeuf",
+  YOGURT = "fromage blanc 0% MG",
+  BEEF = "steak haché 5% MG",
+  FISH = "poisson blanc",
+}
 
-export type FoodChoiceModel =
-  | FoodChoiceFatModel
-  | FoodChoiceCarbModel
-  | FoodChoiceProtModel;
+export type FoodChoiceModel = FatEnum | CarbEnum | ProtEnum;
 
 export type DataFoodModel = {
   diet: string;

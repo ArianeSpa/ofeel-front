@@ -1,6 +1,5 @@
 // == Import : npm
 import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import DOMPurify from "dompurify";
 
 import {

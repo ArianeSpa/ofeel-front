@@ -13,7 +13,7 @@ import {
   clearAllMessageAndInform,
   resetMessageModal,
 } from "@/store/reducers/appReducer";
-import { Profil } from "./Profil";
+import { Profile } from "./Profile";
 
 /* === State (données) === */
 const mapStateToProps = (state: {
@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch: (arg0: any) => void) => ({
   },
 });
 // Container
-const ProfilContainer = connect(mapStateToProps, mapDispatchToProps)(Profil);
+const ProfilContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 // == Export
 export default ProfilContainer;

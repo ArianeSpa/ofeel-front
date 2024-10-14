@@ -1,10 +1,6 @@
-import {
-  FoodChoiceCarbModel,
-  FoodChoiceFatModel,
-  FoodChoiceProtModel,
-} from "@/models/food.model";
+import { CarbEnum, FatEnum, ProtEnum } from "@/models/food.model";
 
-export const setProteinQuantity = (typeProtein: FoodChoiceProtModel) => {
+export const setProteinQuantity = (typeProtein: ProtEnum) => {
   if (typeProtein === "fromage blanc 0% MG") {
     return "200 gr";
   }
@@ -14,7 +10,7 @@ export const setProteinQuantity = (typeProtein: FoodChoiceProtModel) => {
   return "100 gr";
 };
 
-export const setFatQuantity = (typeFat: FoodChoiceFatModel) => {
+export const setFatQuantity = (typeFat: FatEnum) => {
   if (
     typeFat.includes("huile") ||
     typeFat.includes("beurre") ||
@@ -28,7 +24,7 @@ export const setFatQuantity = (typeFat: FoodChoiceFatModel) => {
   return "1 poignée";
 };
 
-export const setSugarQuantity = (typeSugar: FoodChoiceCarbModel) => {
+export const setSugarQuantity = (typeSugar: CarbEnum) => {
   if (typeSugar.includes("muesli")) {
     return "50 gr";
   }

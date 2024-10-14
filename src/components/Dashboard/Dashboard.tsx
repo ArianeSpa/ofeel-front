@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 // == Import : local
 import "./dashboard.scss";
 import WelcomeContainer from "./Welcome/WelcomeContainer";
-import ProfilContainer from "./Profil/ProfilContainer";
+import ProfilContainer from "./Profil/ProfileContainer";
 import GoalsContainer from "./Goal/GoalContainer";
 import FoodPlanContainer from "./FoodPlan/FoodPlanContainer";
 import WorkoutListContainer from "./WorkoutList/WorkoutListContainer";
