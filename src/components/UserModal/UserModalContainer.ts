@@ -1,19 +1,19 @@
 // == Import : npm
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // == Import : local
-import UserModal from 'src/components/UserModal';
-import { endSession } from 'src/store/reducers/userReducer';
+import { endSession } from "@/store/reducers/userReducer";
+import { UserModal } from "./UserModal";
 
 // Action Creators
 
 /* === State (données) === */
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { userReducer: { logged: any } }) => ({
   logged: state.userReducer.logged,
 });
 
 /* === Actions === */
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: (arg0: { type: string }) => void) => ({
   logout: () => {
     dispatch(endSession());
   },
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 // Container
 const UserModalContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(UserModal);
 
 // == Export

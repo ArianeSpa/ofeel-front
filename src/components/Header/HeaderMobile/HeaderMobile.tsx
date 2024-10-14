@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 // == Import : local
 import logo from "@/sets/images/logo_fond_transparent2.png";
 import "../header.scss";
-import UserModalContainer from "@/containers/UserModal";
+import UserModalContainer from "@/components/UserModal/UserModalContainer";
 
 type HeaderMobileProps = {
   changeViewPosition: (value?: number) => void;

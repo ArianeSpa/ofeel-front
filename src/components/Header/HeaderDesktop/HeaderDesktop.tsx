@@ -4,9 +4,9 @@ import { Menu, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 // == Import : local
-import UserModal from "@/containers/UserModal";
 import logo from "@/assets/images/logo_fond_transparent2.png";
 import "../header.scss";
+import UserModalContainer from "@/components/UserModal/UserModalContainer";
 
 type HeaderDesktopProps = {
   logged: boolean;
@@ -48,6 +48,6 @@ export const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ logged }) => (
       name="Contact"
       to="/contact"
     />
-    {logged && <UserModal />}
+    {logged && <UserModalContainer />}
   </Menu>
 );
