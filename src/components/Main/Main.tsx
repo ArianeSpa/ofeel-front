@@ -4,13 +4,13 @@ import { Route, Navigate, Routes } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 // == Import : local
-import Postslist from "@/containers/PostView/PostsList";
 import Contact from "@/components/Contact/Contact";
 import { Error } from "@/components/Main/Error/Error";
 import "./main.scss";
 import LoginContainer from "../Home/Login/LoginContainer";
 import SignUpContainer from "../Home/SignUp/SignUpContainer";
 import DashboardContainer from "../Dashboard/DashboardContainer";
+import PostListContainer from "../PostList/PostListContainer";
 
 type MainProps = {
   logged: boolean;
@@ -28,7 +28,7 @@ export const Main: React.FC<MainProps> = ({ logged }) => (
 
       {logged && <Route path="/dashboard" element={<DashboardContainer />} />}
 
-      <Route path="/articles" element={<Postslist />} />
+      <Route path="/articles" element={<PostListContainer />} />
       <Route path="/contact" element={<Contact />} />
       <Route element={<Error />} />
     </Routes>
