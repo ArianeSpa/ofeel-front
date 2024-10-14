@@ -3,7 +3,7 @@ import React, { FormEvent } from "react";
 import { Form, Radio, Popup, Icon, CheckboxProps } from "semantic-ui-react";
 
 // == Import : local
-import "./myfeeling.scss";
+import "../profile.scss";
 
 type ProfileActivityProps = {
   checkedvalue: string;

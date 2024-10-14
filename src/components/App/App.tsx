@@ -24,7 +24,6 @@ export const App: React.FC<AppProps> = ({
 
   return (
     <Container id="app" className="globalContainer">
-      Start v2
       <HeaderContainer />
       <MainContainer />
       <Footer />

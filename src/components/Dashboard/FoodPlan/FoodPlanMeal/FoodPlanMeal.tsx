@@ -19,7 +19,7 @@ import {
   setGlucidType,
   setLipidType,
 } from "@/utils/setFoodType";
-import "./mealplan.scss";
+import "../foodplan.scss";
 
 type FoodPlanMealProps = {
   carbohydrate: string;

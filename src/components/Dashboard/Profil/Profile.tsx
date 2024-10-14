@@ -13,7 +13,7 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import "./profie.scss";
+import "./profile.scss";
 import setMetabAndCal from "@/utils/setMetabAndCal";
 import {
   ageGenerator,

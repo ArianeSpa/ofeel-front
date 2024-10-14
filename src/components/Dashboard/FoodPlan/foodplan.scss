@@ -1,4 +1,4 @@
-@import '@/styles/vars';
+@import '../../../styles/vars';
 
 #mealGrid{
   margin: 0;
@@ -126,20 +126,6 @@
 @media (min-width: 768px){
   #mealGrid{
     padding: 1em 0;
-    &>#dailyMealRow{
-      &>.oneMealColumn{
-        &>.oneMealForm{
-          // margin: 0 auto 0 auto;
-        }
-      }
-    }
-  }
-  &>#snackRow{
-    &>#snackColumn{
-      &>#snackForm{
-        // margin: 0 auto 0 auto;
-      }
-    }
   }
 }
 

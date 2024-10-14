@@ -4,7 +4,7 @@ import { Menu, Image, Dropdown } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 // == Import : local
-import logo from "@/sets/images/logo_fond_transparent2.png";
+import logo from "@/assets/images/logo_fond_transparent2.png";
 import "../header.scss";
 import UserModalContainer from "@/components/UserModal/UserModalContainer";
 
