@@ -1,5 +1,5 @@
 // == Import : npm
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "semantic-ui-react";
 
 // == Import : local
@@ -9,19 +9,11 @@ import { HeaderDesktop } from "../Header/HeaderDesktop/HeaderDesktop";
 import { Main } from "../Main/Main";
 import "./app.scss";
 
-type AppProps = {
-  catchFoodInfo: any;
-  catchPostsInfo: any;
-  catchWorkoutInfo: any;
-};
-export const App: React.FC<AppProps> = ({
-  catchFoodInfo,
-  catchPostsInfo,
-  catchWorkoutInfo,
-}) => {
-  catchFoodInfo();
-  catchPostsInfo();
-  catchWorkoutInfo();
+export const App: React.FC = () => {
+  useEffect(() => {
+    // on init request all data for food, posts and workout
+    // data may be request in each page instead of app component ?
+  }, []);
 
   return (
     <Container id="app" className="globalContainer">

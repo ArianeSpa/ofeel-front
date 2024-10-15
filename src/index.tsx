@@ -7,9 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 
 // == Import: local
 import { store } from "./store/store";
-import AppContainer from "./components/App/AppContainer";
 import "./index.css";
 import "semantic-ui-css/semantic.min.css";
+import { App } from "./components/App/App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,7 +19,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <AppContainer />
+        <App />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

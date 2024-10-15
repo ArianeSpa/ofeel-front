@@ -16,6 +16,7 @@ const subjects = [
   { key: "pt", text: "Problèmes techniques", value: "Problèmes techniques" },
 ];
 
+/** @todo add inputs handling and submission */
 // == Composant
 const Contact = () => (
   <Segment inverted id="contactSegment">
