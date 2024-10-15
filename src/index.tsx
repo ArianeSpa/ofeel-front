@@ -1,19 +1,27 @@
+// == Import : npm
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-import store from "./store";
+
+// == Import: local
+import { store } from "./store/store";
 import AppContainer from "./components/App/AppContainer";
+import "./index.css";
+import "semantic-ui-css/semantic.min.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

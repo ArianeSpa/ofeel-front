@@ -1,53 +1,51 @@
 // == Import : npm
 import React from "react";
-import { Menu, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import { Menu, MenuMenu, MenuItem, Image } from "semantic-ui-react";
 
 // == Import : local
 import logo from "@/assets/images/logo_fond_transparent2.png";
+import { useAppSelector } from "@/app/hooks";
+import { LogoutButton } from "@/components/LogoutButton/LogoutButton";
 import "../header.scss";
-import UserModalContainer from "@/components/UserModal/UserModalContainer";
 
-type HeaderDesktopProps = {
-  logged: boolean;
-};
 // == Composant
-export const HeaderDesktop: React.FC<HeaderDesktopProps> = ({ logged }) => (
-  <Menu text id="headerDesktop">
-    <Menu.Menu position="left" id="leftPartHeader">
-      <Menu.Item id="desktopItem">
-        <Image as={NavLink} exact id="desktopLogo" src={logo} to="/" />
-      </Menu.Item>
-    </Menu.Menu>
-    {!logged && (
+export const HeaderDesktop: React.FC = () => {
+  const logged = useAppSelector((state) => state.userReducer.logged);
+
+  return (
+    <Menu text id="headerDesktop">
+      <MenuMenu position="left" id="leftPartHeader">
+        <MenuItem id="desktopItem">
+          <NavLink to="/">
+            <Image alt="" id="desktopLogo" src={logo} />
+          </NavLink>
+        </MenuItem>
+      </MenuMenu>
+      {!logged && (
+        <MenuItem as={NavLink} className="navbarItem" name="Accueil" to="/" />
+      )}
+      {logged && (
+        <MenuItem
+          as={NavLink}
+          className="navbarItem"
+          name="Tableau de bord"
+          to="/dashboard"
+        />
+      )}
       <Menu.Item
         as={NavLink}
         className="navbarItem"
-        exact
-        name="Accueil"
-        to="/"
+        name="Articles"
+        to="/articles"
       />
-    )}
-    {logged && (
       <Menu.Item
         as={NavLink}
         className="navbarItem"
-        name="Tableau de bord"
-        to="/dashboard"
+        name="Contact"
+        to="/contact"
       />
-    )}
-    <Menu.Item
-      as={NavLink}
-      className="navbarItem"
-      name="Articles"
-      to="/articles"
-    />
-    <Menu.Item
-      as={NavLink}
-      className="navbarItem"
-      name="Contact"
-      to="/contact"
-    />
-    {logged && <UserModalContainer />}
-  </Menu>
-);
+      {logged && <LogoutButton />}
+    </Menu>
+  );
+};

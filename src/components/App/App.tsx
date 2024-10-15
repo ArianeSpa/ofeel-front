@@ -3,10 +3,11 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 
 // == Import : local
-import "./app.scss";
 import { Footer } from "../Footer/Footer";
-import HeaderContainer from "../Header/HeaderContainer";
-import MainContainer from "../Main/MainContainer";
+import { HeaderMobile } from "../Header/HeaderMobile/HeaderMobile";
+import { HeaderDesktop } from "../Header/HeaderDesktop/HeaderDesktop";
+import { Main } from "../Main/Main";
+import "./app.scss";
 
 type AppProps = {
   catchFoodInfo: any;
@@ -24,8 +25,9 @@ export const App: React.FC<AppProps> = ({
 
   return (
     <Container id="app" className="globalContainer">
-      <HeaderContainer />
-      <MainContainer />
+      <HeaderMobile />
+      <HeaderDesktop />
+      <Main />
       <Footer />
     </Container>
   );

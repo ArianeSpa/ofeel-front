@@ -16,6 +16,8 @@
     border-radius: 0;
     margin-bottom: 1em;
     padding: 0.4em;
+    display: flex;
+    align-items: center;
     &.up{
         animation-duration: 0.3s;
         animation-name: opacity0to1;
@@ -109,7 +111,6 @@
             &>#desktopItem{
                 height: 100%;
                 &>#desktopLogo{
-                    height: 100%;
                     &>img{
                         height: 100%;
                         max-width: none;

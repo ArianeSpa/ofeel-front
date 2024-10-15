@@ -1,126 +1,126 @@
 // == Import : npm
-import React, { useEffect } from "react";
-import { Menu, Image, Dropdown } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  Menu,
+  Image,
+  Dropdown,
+  MenuItem,
+  DropdownMenu,
+  DropdownItem,
+  MenuMenu,
+} from "semantic-ui-react";
 
 // == Import : local
 import logo from "@/assets/images/logo_fond_transparent2.png";
+import { LogoutButton } from "@/components/LogoutButton/LogoutButton";
+import { useAppSelector } from "@/app/hooks";
 import "../header.scss";
-import UserModalContainer from "@/components/UserModal/UserModalContainer";
-
-type HeaderMobileProps = {
-  changeViewPosition: (value?: number) => void;
-  changeHeaderClassname: (value: string) => void;
-  headerClassname: string;
-  logged: boolean;
-  yPosition: number;
-};
 
 // == Composant
-export const HeaderMobile: React.FC<HeaderMobileProps> = ({
-  yPosition,
-  changeHeaderClassname,
-  logged,
-  headerClassname,
-  changeViewPosition,
-}) => {
+export const HeaderMobile: React.FC = () => {
+  const logged = useAppSelector((state) => state.userReducer.logged);
+  const [headerClassname, setHeaderClassname] = useState<string>("");
+  const [yPosition, setYPosition] = useState<number>(0);
+
   useEffect(() => {
     window.addEventListener("touchmove", handleScroll);
   });
 
   const handleScroll = (ev: TouchEvent) => {
-    const newPosition = ev.view?.scrollY;
+    const newPosition = ev.view?.scrollY || 0;
     const height = ev.view?.window.document.body.scrollHeight;
     const ratio =
       newPosition && height ? Math.round((newPosition * 100) / height) : 0;
-    const diffPosition = newPosition ? newPosition - yPosition : 0;
+    const diffPosition = newPosition - yPosition;
     if (yPosition <= 25) {
-      changeHeaderClassname("");
+      setHeaderClassname("");
     } else if (diffPosition >= 0) {
-      changeHeaderClassname("down");
+      setHeaderClassname("down");
     } else if (diffPosition < 0) {
       if (ratio <= 10) {
-        changeHeaderClassname("up bg2");
+        setHeaderClassname("up bg2");
       }
       if (ratio > 10) {
-        changeHeaderClassname("up bg3");
+        setHeaderClassname("up bg3");
       }
       if (ratio > 25) {
-        changeHeaderClassname("up bg4");
+        setHeaderClassname("up bg4");
       }
       if (ratio > 30) {
-        changeHeaderClassname("up bg5");
+        setHeaderClassname("up bg5");
       }
       if (ratio > 43) {
-        changeHeaderClassname("up bg6");
+        setHeaderClassname("up bg6");
       }
       if (ratio > 50) {
-        changeHeaderClassname("up bg6");
+        setHeaderClassname("up bg6");
       }
       if (ratio > 60) {
-        changeHeaderClassname("up bg7");
+        setHeaderClassname("up bg7");
       }
       if (ratio > 70) {
-        changeHeaderClassname("up bg8");
+        setHeaderClassname("up bg8");
       }
       if (ratio > 78) {
-        changeHeaderClassname("up bg9");
+        setHeaderClassname("up bg9");
       }
     }
-    changeViewPosition(newPosition);
+    setYPosition(newPosition);
   };
 
   return (
     <Menu id="headerMobile" className={headerClassname}>
-      <Menu.Item id="mobileItem">
-        <Image as={NavLink} exact src={logo} to="/" />
-      </Menu.Item>
-      <Menu.Menu position="right" id="rightPartHeader">
-        <Dropdown pointing="right" icon="bars" id="burgerMenu">
-          <Dropdown.Menu id="menuContent">
+      <MenuItem id="mobileItem">
+        <Image as={NavLink} src={logo} to="/" />
+      </MenuItem>
+      <MenuMenu position="right" id="rightPartHeader">
+        <Dropdown id="burgerMenu" pointing="right" icon="bars">
+          <DropdownMenu id="menuContent">
             {!logged && (
-              <Dropdown.Item
+              <DropdownItem
                 as={NavLink}
                 className="burgerListItem"
-                exact
                 name="Accueil"
                 to="/"
               >
                 Accueil
-              </Dropdown.Item>
+              </DropdownItem>
             )}
             {logged && (
-              <Dropdown.Item
+              <DropdownItem
                 as={NavLink}
                 className="burgerListItem"
                 name="Tableau de bord"
                 to="/dashboard"
               >
                 Tableau de bord
-              </Dropdown.Item>
+              </DropdownItem>
             )}
-            <Dropdown.Item
+            <DropdownItem
               as={NavLink}
               className="burgerListItem"
               name="Articles"
               to="/articles"
             >
               Articles
-            </Dropdown.Item>
-            <Dropdown.Item
+            </DropdownItem>
+            <DropdownItem
               as={NavLink}
               className="burgerListItem"
               name="Contact"
               to="/contact"
             >
               Contact
-            </Dropdown.Item>
+            </DropdownItem>
             {logged && (
-              <Dropdown.Item as={<UserModalContainer />} className="navbar" />
+              <DropdownItem className="navbar">
+                <LogoutButton />
+              </DropdownItem>
             )}
-          </Dropdown.Menu>
+          </DropdownMenu>
         </Dropdown>
-      </Menu.Menu>
+      </MenuMenu>
     </Menu>
   );
 };

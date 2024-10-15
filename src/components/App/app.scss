@@ -6,15 +6,9 @@
   color: white; 
   font-size: 2em;
   margin: 0 !important;
-  // min-height: 100vh;
+  height: 100vh;
   padding: 0;
   width: 100%;
-}
-
-@media (min-width: 768px){
-  #app{
-    height: 100vh;
-  }
 }
 
 
