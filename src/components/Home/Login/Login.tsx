@@ -1,89 +1,135 @@
 // == Import : npm
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Button,
-  Checkbox,
   Form,
   Segment,
   Container,
   Icon,
   InputOnChangeData,
+  FormGroup,
+  FormInput,
+  FormCheckbox,
+  CheckboxProps,
+  Modal,
+  ModalHeader,
+  ModalContent,
+  ModalActions,
 } from "semantic-ui-react";
 
 // == Import : local
+import { useAppDistpatch } from "@/app/hooks";
+import { logIn } from "@/store/reducers/user.slice";
 import "../form.scss";
-import MessageModalContainer from "@/components/Dashboard/MessageModal/MessageModalContainer";
 
-type LoginProps = {
-  message: string;
-  password: string;
-  username: string;
-  showLoginPassword: boolean;
-  changeStateShow: (id: any) => void;
-  changeUserData: (id: any, value: string) => void;
-  doAuthenticate: () => void;
-};
 // == Composant
-export const Login: React.FC<LoginProps> = ({
-  changeUserData,
-  username,
-  password,
-  doAuthenticate,
-  message,
-  showLoginPassword,
-  changeStateShow,
-}) => {
-  const handleChangeData = (
+export const Login: React.FC = () => {
+  const dispatch = useAppDistpatch();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [openErrorModal, setOpenErrorModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("remember")) {
+      setRememberMe(true);
+      setUsername(JSON.parse(localStorage.getItem("username") || ""));
+      setPassword(JSON.parse(localStorage.getItem("password") || ""));
+    }
+  }, []);
+
+  const handleUsername = (event: ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePassword = (
     _event: ChangeEvent<HTMLInputElement>,
     data: InputOnChangeData
   ) => {
-    changeUserData(data.id, data.value);
+    setPassword(data.value);
   };
-  const changeShow = (event: any, data: any) => {
-    const { id } = data;
-    changeStateShow(id);
+
+  const handleRememberMe = (
+    event: React.FormEvent<HTMLInputElement>,
+    data: CheckboxProps
+  ) => {
+    setRememberMe(!!data.checked);
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword((state) => !state);
+  };
+
+  const authenticate = () => {
+    if (username && password) {
+      dispatch(logIn({ username, password, rememberMe }));
+    }
   };
   return (
-    <Segment inverted id="loginSegment">
-      <Form inverted onSubmit={doAuthenticate}>
-        <Form.Group className="formFields" id="loginFields" widths={2}>
-          <Form.Input
-            className="oneField"
+    <Segment id="loginSegment">
+      <Form inverted onSubmit={authenticate}>
+        <FormGroup widths={2} className="formFields" id="loginFields">
+          <FormInput
+            required
             id="username"
-            label="Pseudo"
-            onChange={handleChangeData}
-            placeholder="Pseudo"
-            value={username}
-          />
-          <Form.Input
             className="oneField"
+            label="Pseudo"
+            placeholder="Saisissez votre pseudo"
+            type="text"
+            value={username}
+            onChange={handleUsername}
+          />
+
+          <FormInput
+            required
             id="password"
+            className="oneField"
             label="Mot de passe"
-            onChange={handleChangeData}
-            placeholder="Mot de passe"
-            type={showLoginPassword ? "text" : "password"}
+            placeholder="Saisissez votre mot de passe"
+            type={showPassword ? "text" : "password"}
             value={password}
             icon={
               <Icon
-                name={showLoginPassword ? "eye slash" : "eye"}
-                id="showLoginPassword"
-                onClick={changeShow}
                 link
+                id="showLoginPassword"
+                name={showPassword ? "eye slash" : "eye"}
+                onClick={handleShowPassword}
               />
             }
+            onChange={handlePassword}
           />
-        </Form.Group>
-        <Form.Group className="formFields">
-          <Checkbox label="Se souvenir de moi" />
-        </Form.Group>
+        </FormGroup>
+        <FormGroup className="formFields">
+          <FormCheckbox
+            label="Se souvenir de moi"
+            checked={rememberMe}
+            onChange={handleRememberMe}
+          />
+        </FormGroup>
         <Button type="submit" className="submitButton">
           Submit
         </Button>
       </Form>
-      {message !== "" && (
-        <MessageModalContainer content={message} error positive={false} />
-      )}
+
+      {/**  @todo add user info in case of login error */}
+      <Modal
+        size="mini"
+        open={openErrorModal}
+        onClose={() => setOpenErrorModal(false)}
+      >
+        <ModalHeader>{`Une erreur s'est produite`}</ModalHeader>
+        <ModalContent>
+          <p>Message</p>
+        </ModalContent>
+        <ModalActions>
+          <Button positive onClick={() => setOpenErrorModal(false)}>
+            OK
+          </Button>
+        </ModalActions>
+      </Modal>
+
       <Container as={NavLink} className="formLink" to="/signup">
         Pas encore inscrit ? Créez un compte !
       </Container>

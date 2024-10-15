@@ -1,28 +1,31 @@
 import React, { useEffect } from "react";
 import { Message } from "semantic-ui-react";
 
+import { useAppDistpatch } from "@/app/hooks";
+
 type MessageModalProps = {
   content?: string;
   list?: any[];
-  preferenceSaved: (value: string) => void;
   positive?: boolean;
   error?: boolean;
 };
 
 export const MessageModal: React.FC<MessageModalProps> = ({
-  preferenceSaved,
   content,
   list,
   positive,
   error,
 }) => {
+  const dispatch = useAppDistpatch();
+
   useEffect(() => {
     return () => {
       handleDismiss();
     };
   });
   const handleDismiss = () => {
-    preferenceSaved("");
+    // TODO add dispatch
+    // preferenceSaved("");
   };
 
   return (
