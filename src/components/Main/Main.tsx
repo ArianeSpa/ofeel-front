@@ -8,9 +8,9 @@ import { useAppSelector } from "@/app/hooks";
 import Contact from "@/components/Contact/Contact";
 import { Error } from "@/components/Main/Error/Error";
 import DashboardContainer from "../Dashboard/DashboardContainer";
-import PostListContainer from "../PostList/PostListContainer";
 import { Login } from "../Home/Login/Login";
 import { SignUp } from "../Home/SignUp/SignUp";
+import { PostList } from "../PostList/PostList";
 import "./main.scss";
 
 // == Composant
@@ -31,7 +31,7 @@ export const Main: React.FC = () => {
             logged ? <DashboardContainer /> : <Navigate replace to="/" />
           }
         />
-        <Route path="/articles" element={<PostListContainer />} />
+        <Route path="/articles" element={<PostList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Error />} />
       </Routes>

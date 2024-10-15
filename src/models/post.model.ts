@@ -6,5 +6,8 @@ export type PostThemeModel =
   | "divers";
 
 export type PostModel = {
+  id: number;
+  content: string;
+  name: string;
   tags: PostThemeModel;
 };

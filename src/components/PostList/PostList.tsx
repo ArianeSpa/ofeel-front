@@ -1,5 +1,5 @@
 // == Import : npm
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Icon,
@@ -14,71 +14,65 @@ import {
 import DOMPurify from "dompurify";
 
 // == Import : local
-import "./postlist.scss";
 import setIcon from "@/utils/setIcon";
+import "./postlist.scss";
+import { PostModel } from "@/models/post.model";
 
-type PostListProps = {
-  activeIndex: number;
-  alimentation?: boolean;
-  cancelSort: () => void;
-  changeActiveIndex: (index: any) => void;
-  changeSort: (value: any) => void;
-  dataposts: { id: number }[];
-  divers?: boolean;
-  loadingPosts: boolean;
-  postsToShow: any[];
-  recuperation?: boolean;
-  sante?: boolean;
-  sortDataPosts: (
-    dataposts: {
-      id: number;
-    }[],
-    id: any
-  ) => void;
-  sport?: boolean;
-};
+enum SortNameEnum {
+  FOOD = "food",
+  HEALTH = "health",
+  SPORT = "sport",
+  REST = "rest",
+  VARIOUS = "various",
+}
 
 // == Composant
-export const PostList: React.FC<PostListProps> = ({
-  changeActiveIndex,
-  activeIndex,
-  dataposts,
-  loadingPosts,
-  changeSort,
-  sante,
-  sport,
-  alimentation,
-  recuperation,
-  divers,
-  cancelSort,
-  sortDataPosts,
-  postsToShow,
-}) => {
-  const displayContent = (
-    event: React.MouseEvent<HTMLDivElement>,
-    data: AccordionTitleProps
-  ) => {
-    changeActiveIndex(data.index);
-  };
-  const createMarkup = (content: string) => ({
-    __html: DOMPurify.sanitize(content),
-  });
+export const PostList: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
+  const [sortedPosts, setSortedPosts] = useState<PostModel[]>([]);
+  const [sortValue, setSortValue] = useState<string | undefined>();
+
+  /** @todo stock in store instead of state ? */
+  const [dataPosts, setDataPosts] = useState<PostModel[]>([]);
+
+  useEffect(() => {
+    setLoadingPosts(true);
+    /** @todo get posts data on component init ? or App init */
+    const fakeResponse: PostModel[] = [];
+    setDataPosts(fakeResponse);
+    setSortedPosts(fakeResponse);
+    setLoadingPosts(false);
+  }, []);
+
   const sort = (
     event: React.MouseEvent<HTMLButtonElement>,
     data: ButtonProps
   ) => {
-    changeSort(data.id);
-    sortDataPosts(dataposts, data.id);
+    setSortValue(data.id);
+    /** @todo sort post from dataPosts with value selected */
   };
+
+  const displayContent = (
+    event: React.MouseEvent<HTMLDivElement>,
+    data: AccordionTitleProps
+  ) => {
+    setActiveIndex(Number(data.index));
+  };
+
   const cancelSortChoice = () => {
-    cancelSort();
+    setSortedPosts(dataPosts);
+    setSortValue(undefined);
   };
 
   return (
     <Container id="postPageContainer">
       <Segment id="buttonSortSegment">
         <Button
-          className={sante ? "iconFocus sortIcon" : "sortIcon"}
+          className={`${
+            sortValue === SortNameEnum.HEALTH ? "iconFocus " : ""
+          }sortIcon`}
           icon
           id="sante"
           onClick={sort}
@@ -86,7 +80,9 @@ export const PostList: React.FC<PostListProps> = ({
           <Icon name="heartbeat" />
         </Button>
         <Button
-          className={sport ? "iconFocus sortIcon" : "sortIcon"}
+          className={`${
+            sortValue === SortNameEnum.SPORT ? "iconFocus " : ""
+          }sortIcon`}
           icon
           id="sport"
           onClick={sort}
@@ -94,7 +90,9 @@ export const PostList: React.FC<PostListProps> = ({
           <Icon name="football ball" />
         </Button>
         <Button
-          className={recuperation ? "iconFocus sortIcon" : "sortIcon"}
+          className={`${
+            sortValue === SortNameEnum.REST ? "iconFocus " : ""
+          }sortIcon`}
           icon
           id="recuperation"
           onClick={sort}
@@ -102,7 +100,9 @@ export const PostList: React.FC<PostListProps> = ({
           <Icon name="bed" />
         </Button>
         <Button
-          className={alimentation ? "iconFocus sortIcon" : "sortIcon"}
+          className={`${
+            sortValue === SortNameEnum.FOOD ? "iconFocus " : ""
+          }sortIcon`}
           icon
           id="alimentation"
           onClick={sort}
@@ -110,7 +110,9 @@ export const PostList: React.FC<PostListProps> = ({
           <Icon name="food" className="foodSort" />
         </Button>
         <Button
-          className={divers ? "iconFocus sortIcon" : "sortIcon"}
+          className={`${
+            sortValue === SortNameEnum.VARIOUS ? "iconFocus " : ""
+          }sortIcon`}
           icon
           id="divers"
           onClick={sort}
@@ -130,7 +132,7 @@ export const PostList: React.FC<PostListProps> = ({
           )}
 
           {!loadingPosts &&
-            postsToShow.map((post) => (
+            sortedPosts.map((post) => (
               <React.Fragment key={`${post.id}2`}>
                 <Accordion.Title
                   active={activeIndex === post.id}
@@ -141,7 +143,9 @@ export const PostList: React.FC<PostListProps> = ({
                   <Icon name="dropdown" />
                   <div
                     className="titlePost"
-                    dangerouslySetInnerHTML={createMarkup(post.name)}
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(post.name),
+                    }}
                   />
                   <Label
                     className="labelPost"
@@ -150,7 +154,11 @@ export const PostList: React.FC<PostListProps> = ({
                   />
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === post.id}>
-                  <div dangerouslySetInnerHTML={createMarkup(post.content)} />
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(post.content),
+                    }}
+                  />
                 </Accordion.Content>
               </React.Fragment>
             ))}
