@@ -1,16 +1,16 @@
 // == Import : npm
 import React, { useState } from "react";
 import { Grid, Segment } from "semantic-ui-react";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // == Import : local
 import "./dashboard.scss";
-import WelcomeContainer from "./Welcome/WelcomeContainer";
 import ProfilContainer from "./Profil/ProfileContainer";
 import GoalsContainer from "./Goal/GoalContainer";
 import FoodPlanContainer from "./FoodPlan/FoodPlanContainer";
 import WorkoutListContainer from "./WorkoutList/WorkoutListContainer";
 import { DashboardTag, DashBoardTagEnum } from "./DashBoardTag/DashboardTag";
+import { Welcome } from "./Welcome/Welcome";
 
 // == Composant
 export const Dashboard: React.FC = () => {
@@ -47,17 +47,11 @@ export const Dashboard: React.FC = () => {
           </Grid.Column>
           <Grid.Column id="contentColumn">
             <Routes>
-              <Route path="/dashboard/welcome" element={<WelcomeContainer />} />
-              <Route path="/dashboard/profil" element={<ProfilContainer />} />
-              <Route path="/dashboard/goal" element={<GoalsContainer />} />
-              <Route
-                path="/dashboard/foodplan"
-                element={<FoodPlanContainer />}
-              />
-              <Route
-                path="/dashboard/workout"
-                element={<WorkoutListContainer />}
-              />
+              <Route path="/" element={<Welcome />} />
+              {/* <Route path="/profil" element={<ProfilContainer />} />
+              <Route path="/goal" element={<GoalsContainer />} />
+              <Route path="/foodplan" element={<FoodPlanContainer />} />
+              <Route path="/workout" element={<WorkoutListContainer />} /> */}
             </Routes>
           </Grid.Column>
         </Grid.Row>

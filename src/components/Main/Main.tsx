@@ -7,10 +7,10 @@ import { Container } from "semantic-ui-react";
 import { useAppSelector } from "@/app/hooks";
 import Contact from "@/components/Contact/Contact";
 import { Error } from "@/components/Main/Error/Error";
-import DashboardContainer from "../Dashboard/DashboardContainer";
 import { Login } from "../Home/Login/Login";
 import { SignUp } from "../Home/SignUp/SignUp";
 import { PostList } from "../PostList/PostList";
+import { Dashboard } from "../Dashboard/Dashboard";
 import "./main.scss";
 
 // == Composant
@@ -27,9 +27,7 @@ export const Main: React.FC = () => {
         {!logged && <Route path="/signup" element={<SignUp />} />}
         <Route
           path="/dashboard/*"
-          element={
-            logged ? <DashboardContainer /> : <Navigate replace to="/" />
-          }
+          element={logged ? <Dashboard /> : <Navigate replace to="/" />}
         />
         <Route path="/articles" element={<PostList />} />
         <Route path="/contact" element={<Contact />} />
