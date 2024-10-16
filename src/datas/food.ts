@@ -33,4 +33,4 @@ export const glType = [
   { key: "9", text: "Muesli bio", value: "Muesli bio" },
 ];
 
-// export default prType;
+export const food = [...prType, ...glType, ...lpType];

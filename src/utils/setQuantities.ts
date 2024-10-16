@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { FoodChoiceModel, FoodModel } from "@/models/food.model";
+import { FoodChoiceEnum, FoodListModel } from "@/models/food.model";
 
 // FONCTION DE CALCUL DE LA MASSE DE L'ALIMENT LIPIDIQUE CHOISI
 // PARAMS :
@@ -8,14 +8,16 @@ import { FoodChoiceModel, FoodModel } from "@/models/food.model";
 // l'aliment choisi par l'utilisateur
 // la quantité de lipides qu'il doit consommer à ce repas
 export const setFatQuantityFood = (
-  datafood: FoodModel[],
-  foodChoice: FoodChoiceModel,
+  datafood: FoodListModel[],
+  foodChoice: FoodChoiceEnum,
   quantityFatForPresentMeal: number
 ) => {
   // Je cherche dans le tableau d'aliment, celui qui correspond à ce que l'utilisateur a sélectionné
-  const findFood = datafood.find((food: FoodModel) => food.name === foodChoice);
+  const findFood = datafood.find(
+    (food: FoodListModel) => food.name === foodChoice
+  );
   // je récupère la quantité de lipides de l'aliment pour 100gr
-  const fatFood = parseFloat(findFood?.fat || "0");
+  const fatFood = findFood?.fat || 0;
 
   // je calcule la quantité de l'aliment
   let quantityFood = Math.round((quantityFatForPresentMeal * 100) / fatFood);
@@ -31,7 +33,7 @@ export const setFatQuantityFood = (
 
   // certains de ces aliments ont une valeur non négligeable en protéine.
   // on calcul donc la quantité apportée pour la récupérer dans le calcul de la "viande"
-  const protFood = parseFloat(findFood?.prot || "0");
+  const protFood = findFood?.protein || 0;
   const protFromLip = Math.round((protFood * quantityFood) / 100);
 
   // je reprends les calculs qui concernent nos lipides
@@ -71,13 +73,13 @@ export const setFatQuantityFood = (
 };
 
 export const setCarbQuantityFood = (
-  datafood: FoodModel[],
-  foodChoice: FoodChoiceModel,
+  datafood: FoodListModel[],
+  foodChoice: FoodChoiceEnum,
   quantityCarbForPresentMeal: number
 ) => {
   // je récup la quantité de glucides que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
-  const carbFood = parseFloat(findFood?.carb || "0");
+  const carbFood = findFood?.carbs || 0;
 
   const quantityFood = Math.round(
     (quantityCarbForPresentMeal * 100) / carbFood
@@ -85,7 +87,7 @@ export const setCarbQuantityFood = (
 
   // Comme pour les lipides, certains glucides contiennent une quantité intéressante de prot
   // donc on calcule la quantité de prot apportée par le choix alimentaire
-  const protFood = parseFloat(findFood?.prot || "0");
+  const protFood = findFood?.protein || 0;
   const protFromCarb = Math.round((protFood * quantityFood) / 100);
 
   // on veut arrondir au 10gr près
@@ -102,15 +104,15 @@ export const setCarbQuantityFood = (
 };
 
 export const setProtQuantityFood = (
-  datafood: FoodModel[],
-  foodChoice: FoodChoiceModel,
+  datafood: FoodListModel[],
+  foodChoice: FoodChoiceEnum,
   quantityProtForPresentMeal: number,
   protFromLip: number,
   protFromCarb: number
 ) => {
   // je récup la quantité de protéine que contient l'aliment choisi.
   const findFood = datafood.find((food) => food.name === foodChoice);
-  const protFood = parseFloat(findFood?.prot || "0");
+  const protFood = findFood?.protein || 0;
 
   // je calcule le nouveau besoin en prot pour le repas
   // d'après la valeur apportée par les aliments lipidiques

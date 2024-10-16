@@ -11,3 +11,4 @@ add translation EN / FR
 init profil with localstorage data then with DB
 init goal with localstorage data then with DB
 Remove message under button "enregistrer", use toaster instead
+create hook to get each meal proportions fat carbs proteins

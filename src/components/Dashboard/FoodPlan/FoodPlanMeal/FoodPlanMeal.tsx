@@ -1,5 +1,5 @@
 // == Import : npm
-import React, { FormEvent, SyntheticEvent } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import {
   Grid,
   Header,
@@ -8,59 +8,109 @@ import {
   Checkbox,
   Label,
   Dropdown,
-  CheckboxProps,
   DropdownProps,
 } from "semantic-ui-react";
 
 // == Import : local
 import { FoodPlanMessageCheat } from "@/components/Dashboard/FoodPlan/FoodPlanMessage/FoodPlanMessageCheat";
+import { glType, lpType, prType } from "@/datas/food";
+import { datafood } from "@/datas/datafood";
 import {
-  setProteinType,
-  setGlucidType,
-  setLipidType,
-} from "@/utils/setFoodType";
+  CarbEnum,
+  FatEnum,
+  FoodChoiceEnum,
+  ProtEnum,
+} from "@/models/food.model";
+import {
+  setCarbQuantityFood,
+  setFatQuantityFood,
+  setProtQuantityFood,
+} from "@/utils/setQuantities";
 import "../foodplan.scss";
 
 type FoodPlanMealProps = {
-  carbohydrate: string;
-  carbQuantity: string;
-  fat: string;
-  fatQuantity: string;
-  foodArray: any[];
+  carbQuantity: number;
+  fatQuantity: number;
+  protQuantity: number;
   header: string;
-  idCheckbox: string;
   meal: string;
-  proteine: string;
-  protQuantity: string;
-  checkValue: boolean;
-  checkAction: (
-    _event: FormEvent<HTMLInputElement>,
-    data: CheckboxProps
-  ) => void;
-  choiceAction: (
-    _event: SyntheticEvent<HTMLElement, Event>,
-    data: DropdownProps
-  ) => void;
 };
 
 export const FoodPlanMeal: React.FC<FoodPlanMealProps> = ({
   meal,
   header,
-  checkAction,
-  checkValue,
-  idCheckbox,
-  choiceAction,
-  proteine,
-  fat,
-  carbohydrate,
   protQuantity,
   fatQuantity,
   carbQuantity,
-  foodArray,
 }) => {
-  const proteinType = setProteinType(foodArray);
-  const glucideType = setGlucidType(foodArray);
-  const lipideType = setLipidType(foodArray);
+  const [cheat, setCheat] = useState(false);
+  const [proteine, setProteine] = useState<FoodChoiceEnum>(ProtEnum.EGG);
+  const [carbohydrate, setCarbohydrate] = useState<FoodChoiceEnum>(
+    CarbEnum.BREAD
+  );
+  const [fat, setFat] = useState<FoodChoiceEnum>(FatEnum.ALMOND);
+
+  const [carbDisplay, setCarbDisplay] = useState<string>();
+  const [proteinFromCarb, setProteinFromCarb] = useState<number>();
+
+  const [fatDisplay, setFatDisplay] = useState<string>();
+  const [proteinFromLip, setProteinFromLip] = useState<number>();
+
+  const [protDisplay, setProtDisplay] = useState<string>();
+
+  useEffect(() => {
+    const { quantityFood, protFromCarb } = setCarbQuantityFood(
+      datafood,
+      carbohydrate,
+      carbQuantity
+    );
+    setCarbDisplay(quantityFood);
+    setProteinFromCarb(protFromCarb);
+  }, [carbohydrate]);
+
+  useEffect(() => {
+    const { quantityFood, protFromLip } = setFatQuantityFood(
+      datafood,
+      fat,
+      fatQuantity
+    );
+    setFatDisplay(quantityFood);
+    setProteinFromLip(protFromLip);
+  }, [fat]);
+
+  useEffect(() => {
+    if (proteinFromCarb && proteinFromLip) {
+      const prot = setProtQuantityFood(
+        datafood,
+        proteine,
+        protQuantity,
+        proteinFromLip,
+        proteinFromCarb
+      );
+      setProtDisplay(prot);
+    }
+  }, [proteine, proteinFromLip, proteinFromCarb]);
+
+  const handleProtein = (
+    _event: SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    setProteine(data.value as ProtEnum);
+  };
+
+  const handleCarb = (
+    _event: SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    setCarbohydrate(data.value as CarbEnum);
+  };
+
+  const handleFat = (
+    _event: SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    setFat(data.value as FatEnum);
+  };
 
   return (
     <Grid.Column className="oneMealColumn" id={`${meal}Column`}>
@@ -69,51 +119,54 @@ export const FoodPlanMeal: React.FC<FoodPlanMealProps> = ({
           {header}
         </Header>
         <Checkbox
-          checked={checkValue}
+          checked={cheat}
           className="cheatmealCheckbox"
-          id={idCheckbox}
           label="Cheat Meal"
-          onChange={checkAction}
+          onChange={() => setCheat(!cheat)}
           toggle
         />
       </Segment>
 
-      {!checkValue && (
+      {!cheat && (
         <Form inverted className="oneMealForm">
           <Form.Group className="mealFields">
-            <Label className="mealLabel">{protQuantity}</Label>
+            <Label className="mealLabel">{proteine}</Label>
             <Dropdown
-              className="foodDropdown"
               fluid
+              selection
+              className="foodDropdown"
               id={`proteine${meal}`}
-              onChange={choiceAction}
-              options={proteinType}
-              selection
+              text={protDisplay}
               value={proteine}
+              options={prType}
+              disabled={!carbohydrate || !fat}
+              onChange={handleProtein}
             />
           </Form.Group>
           <Form.Group className="mealFields">
-            <Label className="mealLabel">{fatQuantity}</Label>
+            <Label className="mealLabel">{fat}</Label>
             <Dropdown
-              className="foodDropdown"
               fluid
+              selection
+              className="foodDropdown"
               id={`lipide${meal}`}
-              onChange={choiceAction}
-              options={lipideType}
-              selection
+              text={fatDisplay}
               value={fat}
+              options={lpType}
+              onChange={handleFat}
             />
           </Form.Group>
           <Form.Group className="mealFields">
-            <Label className="mealLabel">{carbQuantity}</Label>
+            <Label className="mealLabel">{carbohydrate}</Label>
             <Dropdown
-              className="foodDropdown"
               fluid
-              id={`glucide${meal}`}
-              onChange={choiceAction}
-              options={glucideType}
               selection
+              className="foodDropdown"
+              id={`glucide${meal}`}
+              text={carbDisplay}
               value={carbohydrate}
+              options={glType}
+              onChange={handleCarb}
             />
           </Form.Group>
           <div className="mealVegAndFruit">
@@ -121,7 +174,7 @@ export const FoodPlanMeal: React.FC<FoodPlanMealProps> = ({
           </div>
         </Form>
       )}
-      {checkValue && <FoodPlanMessageCheat />}
+      {cheat && <FoodPlanMessageCheat />}
     </Grid.Column>
   );
 };

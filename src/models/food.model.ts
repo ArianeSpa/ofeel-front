@@ -13,6 +13,15 @@ export type FoodModel = {
   carb: string;
 };
 
+export type FoodListModel = {
+  id: any;
+  name: string;
+  category: "proteine" | "glucide" | "lipide";
+  fat: number;
+  protein: number;
+  carbs: number;
+};
+
 export enum FatEnum {
   AVOCADO = "avocat",
   PEANUT = "beurre de cacahuète",
@@ -41,7 +50,7 @@ export enum ProtEnum {
   FISH = "poisson blanc",
 }
 
-export type FoodChoiceModel = FatEnum | CarbEnum | ProtEnum;
+export type FoodChoiceEnum = FatEnum | CarbEnum | ProtEnum;
 
 export type DataFoodModel = {
   diet: string;
