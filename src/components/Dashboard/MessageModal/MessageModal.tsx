@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Message } from "semantic-ui-react";
 
-import { useAppDistpatch } from "@/app/hooks";
-
 export enum ModalConfigEnum {
   SERVER_ERROR = "serverError",
   ERROR_LIST = "errorList",
@@ -55,8 +53,6 @@ export const MessageModal: React.FC<MessageModalProps> = ({
   positive,
   error,
 }) => {
-  const dispatch = useAppDistpatch();
-
   useEffect(() => {
     return () => {
       handleDismiss();

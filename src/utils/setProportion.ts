@@ -1,76 +1,60 @@
-import { GoalModel } from "@/models/profil.model";
+import { GoalEnum } from "@/models/profil.model";
 
-/* eslint-disable camelcase */
-const setProportion = (goal: GoalModel, energyExpenditure: number) => {
-  // On va calculer en fonction de l'objectif
-  // l'apport calorique journalier et les proportion en
-  // glucides, lipides et protéines.
+export const getGoalFactor = (goal: GoalEnum) => {
+  switch (goal) {
+    case GoalEnum.PP:
+      return 0.75;
+    case GoalEnum.PM:
+      return 1.2;
+    case GoalEnum.E:
+    default:
+      return 1;
+  }
+};
 
-  const setVarObjectif = (goalType: GoalModel) => {
-    let factor = 0;
-    if (goalType === "Perte de poids") {
-      factor = 0.75;
-    }
-    if (goalType === "Prise de masse") {
-      factor = 1.2;
-    }
-    if (goalType === "Equilibre") {
-      factor = 1;
-    }
-    return factor;
-  };
+const getProtFactor = (goal: GoalEnum) => {
+  switch (goal) {
+    case GoalEnum.PP:
+      return 0.34;
+    case GoalEnum.PM:
+      return 1.292;
+    case GoalEnum.E:
+    default:
+      return 0.222;
+  }
+};
+
+const getCarbFactor = (goal: GoalEnum) => {
+  switch (goal) {
+    case GoalEnum.PP:
+      return 0.33;
+    case GoalEnum.PM:
+    case GoalEnum.E:
+    default:
+      return 0.488;
+  }
+};
+
+const getFatFactor = (goal: GoalEnum) => {
+  switch (goal) {
+    case GoalEnum.PP:
+      return 0.33;
+    case GoalEnum.PM:
+      return 0.22;
+    case GoalEnum.E:
+    default:
+      return 0.288;
+  }
+};
+
+export const getProportion = (goal: GoalEnum, energyExpenditure: number) => {
+  const goalFactor = getGoalFactor(goal);
 
   // ici je calcule la quantité kcalorique journalière nécessaire qui dépend de mon objectif
-  const dailyCalories = Math.round(energyExpenditure * setVarObjectif(goal));
-
-  // je calcule dans les 3 fonctions suivantes
-  // les proportions de glucides, protéines et lipides
-  // qu'il me faut répartir dans ma journée
-
-  // pour les protéines
-  const setPropProt = (goalType: GoalModel) => {
-    let factor = 0;
-    if (goalType === "Perte de poids") {
-      factor = 0.34;
-    }
-    if (goalType === "Prise de masse") {
-      factor = 0.292;
-    }
-    if (goalType === "Equilibre") {
-      factor = 0.222;
-    }
-    return factor;
-  };
-  const dailyProteinProportion = setPropProt(goal);
-
-  // pour les glucides
-  const setPropCarb = (goalType: GoalModel) => {
-    let factor = 0;
-    if (goalType === "Perte de poids") {
-      factor = 0.33;
-    }
-    if (goalType === "Prise de masse" || goalType === "Equilibre") {
-      factor = 0.488;
-    }
-    return factor;
-  };
-  const dailyCarbohydrateProportion = setPropCarb(goal);
-
-  // pour les lipides
-  const setPropFat = (goalType: GoalModel) => {
-    let factor = 0;
-    if (goalType === "Perte de poids") {
-      factor = 0.33;
-    }
-    if (goalType === "Prise de masse") {
-      factor = 0.22;
-    }
-    if (goalType === "Equilibre") {
-      factor = 0.288;
-    }
-    return factor;
-  };
-  const dailyFatProportion = setPropFat(goal);
+  const dailyCalories = Math.round(energyExpenditure * goalFactor);
+  const dailyProteinProportion = getProtFactor(goal);
+  const dailyCarbohydrateProportion = getCarbFactor(goal);
+  const dailyFatProportion = getFatFactor(goal);
 
   // on calcule les valeurs caloriques par repas,
   // sachant que le petit déjeuner et le diner ont la même valeur.
@@ -82,23 +66,23 @@ const setProportion = (goal: GoalModel, energyExpenditure: number) => {
   // sachant que 1g de protéine ou de glucides vaut 4kcal
   // et que 1g de lipides vaut 9kcal.
   const breakfastAndDinnerProteinQuantity = Math.round(
-    (breakfastAndDinnerCalories * setPropProt(goal)) / 4
+    (breakfastAndDinnerCalories * getProtFactor(goal)) / 4
   );
   const breakfastAndDinnerCarbsQuantity = Math.round(
-    (breakfastAndDinnerCalories * setPropCarb(goal)) / 4
+    (breakfastAndDinnerCalories * getCarbFactor(goal)) / 4
   );
   const breakfastAndDinnerFatQuantity = Math.round(
-    (breakfastAndDinnerCalories * setPropFat(goal)) / 9
+    (breakfastAndDinnerCalories * getFatFactor(goal)) / 9
   );
   const lunchProteinQuantity = Math.round(
-    (lunchCalories * setPropProt(goal)) / 4
+    (lunchCalories * getProtFactor(goal)) / 4
   );
   const lunchCarbsQuantity = Math.round(
-    (lunchCalories * setPropCarb(goal)) / 4
+    (lunchCalories * getCarbFactor(goal)) / 4
   );
-  const lunchFatQuantity = Math.round((lunchCalories * setPropFat(goal)) / 9);
+  const lunchFatQuantity = Math.round((lunchCalories * getFatFactor(goal)) / 9);
 
-  const propObject = {
+  return {
     dailyCalories,
     lunchCalories,
     breakfastAndDinnerCalories,
@@ -112,7 +96,4 @@ const setProportion = (goal: GoalModel, energyExpenditure: number) => {
     lunchProteinQuantity,
     breakfastAndDinnerProteinQuantity,
   };
-  return propObject;
 };
-
-export default setProportion;

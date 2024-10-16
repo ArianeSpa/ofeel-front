@@ -22,6 +22,7 @@ import iconLactose from "@/assets/icon/lactose.png";
 import iconGluten from "@/assets/icon/gluten.png";
 import iconNutrition from "@/assets/icon/nutrition.png";
 import { GoalEnum } from "@/models/profil.model";
+import { getProportion } from "@/utils/setProportion";
 import {
   MessageModal,
   ModalConfigEnum,
@@ -59,11 +60,19 @@ export const Goal: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    localStorage.setItem("goal", JSON.stringify(goal));
-    localStorage.setItem("lactoseFree", JSON.stringify(lactoseFree));
-    localStorage.setItem("glutenFree", JSON.stringify(glutenFree));
-    localStorage.setItem("vegan", JSON.stringify(vegan));
-    setModalDisplay(ModalConfigEnum.DATA_SAVED);
+    const dailyCalCost = JSON.parse(
+      localStorage.getItem("dailyCalCost") || "0"
+    );
+    if (dailyCalCost && goal) {
+      const proportion = getProportion(goal, dailyCalCost);
+      localStorage.setItem("goal", JSON.stringify(goal));
+      localStorage.setItem("lactoseFree", JSON.stringify(lactoseFree));
+      localStorage.setItem("glutenFree", JSON.stringify(glutenFree));
+      localStorage.setItem("vegan", JSON.stringify(vegan));
+      localStorage.setItem("proportion", JSON.stringify(proportion));
+      return setModalDisplay(ModalConfigEnum.DATA_SAVED);
+    }
+    setModalDisplay(ModalConfigEnum.DATA_NOT_SAVED);
   };
 
   return (

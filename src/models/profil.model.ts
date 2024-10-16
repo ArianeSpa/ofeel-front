@@ -16,7 +16,6 @@ export enum GoalEnum {
   PM = "Prise de masse",
   E = "Equilibre",
 }
-export type GoalModel = "Perte de poids" | "Prise de masse" | "Equilibre";
 export type RegimeModel = "Vegan" | "lactose" | "gluten";
 
 export type ObjecUserModel = {

@@ -24,7 +24,8 @@ import {
 import { ActivityLevelEnum, GenderEnum } from "@/models/profil.model";
 import {
   calculateBasalMetabolism,
-  calculateDailyCalories,
+  getActivityFactor,
+  getDailyCalorieCost,
 } from "@/utils/setMetabAndCal";
 import { ProfileActivity } from "./ProfileActivity/ProfileActivity";
 import {
@@ -42,7 +43,7 @@ export const Profile: React.FC = () => {
   const [weight, setWeight] = useState<number>();
   const [activity, setActivity] = useState<ActivityLevelEnum>();
   const [metab, setMetab] = useState<number | undefined>();
-  const [dailyNeed, setDailyNeed] = useState<number | undefined>();
+  const [activityFactor, setActivityFactor] = useState<number | undefined>();
   const [modalDisplay, setModalDisplay] = useState<
     ModalConfigEnum | undefined
   >();
@@ -58,18 +59,18 @@ export const Profile: React.FC = () => {
       setMetab(newMetab);
     } else {
       setMetab(undefined);
-      setDailyNeed(undefined);
+      setActivityFactor(undefined);
     }
   }, [gender, age, height, weight]);
 
   useEffect(() => {
-    if (metab && activity) {
-      const newDailyNeed = calculateDailyCalories({ metab, activity });
-      setDailyNeed(newDailyNeed);
+    if (activity) {
+      const newActivityFactor = getActivityFactor({ activity });
+      setActivityFactor(newActivityFactor);
     } else {
-      setDailyNeed(undefined);
+      setActivityFactor(undefined);
     }
-  }, [metab, activity]);
+  }, [activity]);
 
   const handleGender = (
     _event: FormEvent<HTMLInputElement>,
@@ -105,18 +106,23 @@ export const Profile: React.FC = () => {
 
   const handleSubmit = () => {
     // Fake submission and success
-    localStorage.setItem("gender", JSON.stringify(gender));
-    localStorage.setItem("weight", JSON.stringify(weight));
-    localStorage.setItem("height", JSON.stringify(height));
-    localStorage.setItem("age", JSON.stringify(age));
-    localStorage.setItem("activity", JSON.stringify(activity));
-    localStorage.setItem("metab", JSON.stringify(metab));
-    localStorage.setItem("dailyNeed", JSON.stringify(dailyNeed));
-    setModalDisplay(ModalConfigEnum.DATA_SAVED);
+    if (metab && activityFactor) {
+      const dailyCalCost = getDailyCalorieCost({ metab, activityFactor });
+      localStorage.setItem("gender", JSON.stringify(gender));
+      localStorage.setItem("weight", JSON.stringify(weight));
+      localStorage.setItem("height", JSON.stringify(height));
+      localStorage.setItem("age", JSON.stringify(age));
+      localStorage.setItem("activity", JSON.stringify(activity));
+      localStorage.setItem("metab", JSON.stringify(metab));
+      localStorage.setItem("activityFactor", JSON.stringify(activityFactor));
+      localStorage.setItem("dailyCalCost", JSON.stringify(dailyCalCost));
+      return setModalDisplay(ModalConfigEnum.DATA_SAVED);
+    }
+    setModalDisplay(ModalConfigEnum.DATA_NOT_SAVED);
   };
 
   const isFormValid = Boolean(
-    gender && weight && height && age && activity && metab && dailyNeed
+    gender && weight && height && age && activity && metab && activityFactor
   );
   return (
     <Segment inverted id="myfeelingSegment">

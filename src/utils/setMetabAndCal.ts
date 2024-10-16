@@ -22,13 +22,10 @@ export const calculateBasalMetabolism = ({
   );
 };
 
-type CalculateDailyCaloriesProps = {
-  metab: number;
+type GetActivityFactorProps = {
   activity: ActivityLevelEnum;
 };
-export const calculateDailyCalories = ({
-  activity,
-}: CalculateDailyCaloriesProps) => {
+export const getActivityFactor = ({ activity }: GetActivityFactorProps) => {
   switch (activity) {
     case ActivityLevelEnum.SEDENTARY:
       return 1.2;
@@ -43,3 +40,12 @@ export const calculateDailyCalories = ({
     default:
   }
 };
+
+type GetDailyCalorieCostProps = {
+  metab: number;
+  activityFactor: number;
+};
+export const getDailyCalorieCost = ({
+  metab,
+  activityFactor,
+}: GetDailyCalorieCostProps) => metab * activityFactor;

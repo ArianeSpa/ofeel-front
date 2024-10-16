@@ -3,7 +3,7 @@ import { PostModel } from "./post.model";
 import {
   ActivityLevelEnum,
   GenderEnum,
-  GoalModel,
+  GoalEnum,
   ObjecUserModel,
 } from "./profil.model";
 import { WorkoutModel } from "./workout.model";
@@ -12,7 +12,7 @@ export type AppStateModel = {
   age: number;
   weight: number;
   height: number;
-  goal: GoalModel;
+  goal: GoalEnum;
   gender: GenderEnum;
   activity: ActivityLevelEnum;
   sansgluten: boolean;

@@ -1,11 +1,11 @@
 // reducer pour l'app en général
 
-import { ActivityLevelEnum, GenderEnum } from "@/models/profil.model";
+import { ActivityLevelEnum, GenderEnum, GoalEnum } from "@/models/profil.model";
 import { ActionModel, AppStateModel } from "@/models/reducer.model";
 
 // == Initial State
 const initialState: AppStateModel = {
-  goal: "Equilibre",
+  goal: GoalEnum.E,
   gender: GenderEnum.MAN,
   age: 0,
   height: 0,
