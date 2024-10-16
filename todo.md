@@ -6,3 +6,4 @@ refacto store, use state when possible
 remove useless comments
 replace all "any" types by real type
 remove all proptypes
+add form validation before submit

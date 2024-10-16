@@ -1,225 +1,218 @@
 // == Import : npm
-import React, { FormEvent, SyntheticEvent } from "react";
+import React, { FormEvent, SyntheticEvent, useEffect, useState } from "react";
 import {
   Header,
   Segment,
   Form,
-  Checkbox,
   Dropdown,
   Button,
   Container,
   CheckboxProps,
   DropdownProps,
+  FormGroup,
+  FormField,
+  Radio,
 } from "semantic-ui-react";
 
 // == Import : local
-import "./profile.scss";
-import setMetabAndCal from "@/utils/setMetabAndCal";
 import {
   ageGenerator,
   heightGenerator,
   weightGenerator,
-  activityTable,
+  activityList,
 } from "@/datas/profile";
+import { ActivityLevelEnum, GenderEnum } from "@/models/profil.model";
+import {
+  calculateBasalMetabolism,
+  calculateDailyCalories,
+} from "@/utils/setMetabAndCal";
 import { ProfileActivity } from "./ProfileActivity/ProfileActivity";
-import { ActivityLevelModel, GenderModel } from "@/models/profil.model";
-import MessageModalContainer from "../MessageModal/MessageModalContainer";
-
-type MetaboCal = {
-  basalMetabolicRate: number;
-  energyExpenditure: number;
-};
-type ProfileProps = {
-  activity: ActivityLevelModel;
-  age: number;
-  changeProfil: (
-    name?: string,
-    value?: string | number | boolean | (string | number | boolean)[]
-  ) => void;
-  clearAllAndInform: (value: string) => void;
-  errorMessagesSignup: string[];
-  gender: GenderModel;
-  height: number;
-  resetMessage: () => void;
-  savedPreference: string;
-  saveMetaboCalorie: (object: MetaboCal) => void;
-  sendToAPI: () => void;
-  weight: number;
-};
+import {
+  MessageModal,
+  ModalConfigEnum,
+  ModalConfigModel,
+} from "../MessageModal/MessageModal";
+import "./profile.scss";
 
 // == Composant
-export const Profile: React.FC<ProfileProps> = ({
-  gender,
-  weight,
-  age,
-  height,
-  changeProfil,
-  activity,
-  sendToAPI,
-  saveMetaboCalorie,
-  savedPreference,
-  clearAllAndInform,
-  errorMessagesSignup,
-  resetMessage,
-}) => {
-  const handleChangeProfil = (
+export const Profile: React.FC = () => {
+  const [gender, setGender] = useState<GenderEnum>();
+  const [age, setAge] = useState<number>();
+  const [height, setHeight] = useState<number>();
+  const [weight, setWeight] = useState<number>();
+  const [activity, setActivity] = useState<ActivityLevelEnum>();
+  const [metab, setMetab] = useState<number | undefined>();
+  const [dailyNeed, setDailyNeed] = useState<number | undefined>();
+  const [modalDisplay, setModalDisplay] = useState<
+    ModalConfigEnum | undefined
+  >();
+
+  useEffect(() => {
+    if (gender && age && height && weight) {
+      const newMetab = calculateBasalMetabolism({
+        gender,
+        weight,
+        height,
+        age,
+      });
+      setMetab(newMetab);
+    } else {
+      setMetab(undefined);
+      setDailyNeed(undefined);
+    }
+  }, [gender, age, height, weight]);
+
+  useEffect(() => {
+    if (metab && activity) {
+      const newDailyNeed = calculateDailyCalories({ metab, activity });
+      setDailyNeed(newDailyNeed);
+    } else {
+      setDailyNeed(undefined);
+    }
+  }, [metab, activity]);
+
+  const handleGender = (
     _event: FormEvent<HTMLInputElement>,
     data: CheckboxProps
   ) => {
-    changeProfil(data.name, data.value);
+    setGender(data.value as GenderEnum);
   };
 
-  const handleCheckBox = (
-    _event: FormEvent<HTMLInputElement>,
-    data: CheckboxProps
-  ) => {
-    changeProfil(data.name, data.value);
-  };
-
-  const handleDropdown = (
-    event: SyntheticEvent<HTMLElement, Event>,
+  const handleAge = (
+    _event: SyntheticEvent<HTMLElement>,
     data: DropdownProps
   ) => {
-    changeProfil(data.name, data.value);
+    setAge(Number(data.value));
   };
 
-  const calculAndSend = () => {
-    const messageInfo =
-      "Même si les informations que vous avez complétées ont été correctement enregistrées dans notre base de données, les informations manquantes nous empêchent de vous fournir un plan alimentaire adapté à votre profil. Vous devez compléter tous les champs";
-
-    if (
-      !gender ||
-      Number.isNaN(age) ||
-      Number.isNaN(height) ||
-      Number.isNaN(weight) ||
-      !activity
-    ) {
-      clearAllAndInform(messageInfo);
-    } else {
-      resetMessage();
-    }
-
-    const metabAndCal: MetaboCal = setMetabAndCal(
-      gender,
-      weight,
-      height,
-      age,
-      activity
-    );
-    saveMetaboCalorie(metabAndCal);
-    sendToAPI();
+  const handleHeight = (
+    _event: SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    setHeight(Number(data.value));
   };
 
+  const handleWeight = (
+    _event: SyntheticEvent<HTMLElement>,
+    data: DropdownProps
+  ) => {
+    setWeight(Number(data.value));
+  };
+
+  const handleActivity = (value: ActivityLevelEnum) => {
+    setActivity(value);
+  };
+
+  const handleSubmit = () => {
+    // Fake submission and success
+    localStorage.setItem("gender", JSON.stringify(gender));
+    localStorage.setItem("weight", JSON.stringify(weight));
+    localStorage.setItem("height", JSON.stringify(height));
+    localStorage.setItem("age", JSON.stringify(age));
+    localStorage.setItem("activity", JSON.stringify(activity));
+    localStorage.setItem("metab", JSON.stringify(metab));
+    localStorage.setItem("dailyNeed", JSON.stringify(dailyNeed));
+    setModalDisplay(ModalConfigEnum.DATA_SAVED);
+  };
+
+  const isFormValid = Boolean(
+    gender && weight && height && age && activity && metab && dailyNeed
+  );
   return (
     <Segment inverted id="myfeelingSegment">
       <Container id="myfeelingInformation">
         <p>
-          {`Afin de pouvoir générer votre plan alimentaire personnalisé, il est
-          nécessaire de remplir chacun des champs ci-dessous.`}
+          Afin de pouvoir générer votre plan alimentaire personnalisé, il est
+          nécessaire de remplir chacun des champs ci-dessous.
         </p>
         <p>
-          {`Les premières informations servent à mesurer votre métabolisme de
-          base.`}
+          Les premières informations servent à mesurer votre métabolisme de
+          base.
         </p>
         <p>
-          {`Ensuite, en précisant votre profil d'activité, nous pouvons déterminer
-          votre dépense calorique journalière.`}
+          Ensuite, en précisant votre profil d'activité, nous pouvons déterminer
+          votre dépense calorique journalière.
         </p>
       </Container>
-      <Form id="myfeelingForm" onSubmit={calculAndSend}>
+      <Form id="myfeelingForm" onSubmit={handleSubmit}>
         <Header className="myfeelingSubtitle" as="h3">
           Parlons un peu de vous!
         </Header>
-        <Form.Group id="genderGroup">
-          <Form.Field className="genderField">
-            <Checkbox
-              checked={gender === "homme"}
+        <FormGroup id="genderGroup">
+          <FormField className="genderField">
+            <Radio
               className="genderCheckbox"
-              id="homme"
-              label="Homme"
-              name="gender"
-              radio
-              onChange={handleCheckBox}
-              value="homme"
+              id={GenderEnum.MAN.toLowerCase()}
+              label={GenderEnum.MAN}
+              value={GenderEnum.MAN}
+              checked={gender === GenderEnum.MAN}
+              onChange={handleGender}
             />
-          </Form.Field>
-          <Form.Field className="genderField">
-            <Checkbox
-              checked={gender === "femme"}
+          </FormField>
+          <FormField className="genderField">
+            <Radio
               className="genderCheckbox"
-              label="Femme"
-              id="femme"
-              name="gender"
-              radio
-              onChange={handleCheckBox}
-              value="femme"
+              id={GenderEnum.WOMAN.toLowerCase()}
+              label={GenderEnum.WOMAN}
+              value={GenderEnum.WOMAN}
+              checked={gender === GenderEnum.WOMAN}
+              onChange={handleGender}
             />
-          </Form.Field>
-        </Form.Group>
-        <Form.Group id="ageheightweightGroup">
+          </FormField>
+        </FormGroup>
+        <FormGroup id="ageheightweightGroup">
           <Dropdown
+            selection
             id="age"
             className="ageheightweightDropdown"
-            name="age"
-            onChange={handleDropdown}
-            options={ageGenerator()}
-            selection
-            text={`Age : ${age} ans`}
+            text={`Age : ${age || "..."} ans`}
             value={age}
+            onChange={handleAge}
+            options={ageGenerator()}
           />
           <Dropdown
+            selection
             id="height"
             className="ageheightweightDropdown"
-            name="height"
-            onChange={handleDropdown}
-            options={heightGenerator()}
-            selection
-            text={`Taille : ${height} cm`}
+            text={`Taille : ${height || "..."} cm`}
             value={height}
+            onChange={handleHeight}
+            options={heightGenerator()}
           />
           <Dropdown
+            selection
             id="weight"
             className="ageheightweightDropdown"
-            name="weight"
-            onChange={handleDropdown}
-            options={weightGenerator()}
-            selection
-            text={`weight : ${weight} kg`}
+            text={`weight : ${weight || "..."} kg`}
             value={weight}
+            onChange={handleWeight}
+            options={weightGenerator()}
           />
-        </Form.Group>
+        </FormGroup>
         <Header className="myfeelingSubtitle" as="h3">
-          {`Votre profil d'activité physique`}
+          Votre profil d'activité physique
         </Header>
         <Form.Group id="activityGroup">
-          {activityTable.map((currentProfil) => (
+          {activityList.map((currentProfil) => (
             <ProfileActivity
-              checkedvalue={activity}
-              key={currentProfil.id}
-              onchange={handleChangeProfil}
-              text={currentProfil.text}
+              key={currentProfil.value}
+              selectedValue={activity}
               value={currentProfil.value}
+              text={currentProfil.text}
+              onChange={handleActivity}
             />
           ))}
         </Form.Group>
-        <Button id="myfeelingButton" type="submit">
+        <Button id="myfeelingButton" type="submit" disabled={!isFormValid}>
           Enregistrer
         </Button>
       </Form>
-      {savedPreference === "saved" && (
-        <MessageModalContainer
-          content="Vos données ont bien été enregistrées"
-          positive
+      {modalDisplay && (
+        <MessageModal
+          content={ModalConfigModel[modalDisplay].message}
+          error={ModalConfigModel[modalDisplay].error}
+          positive={ModalConfigModel[modalDisplay].positive}
         />
-      )}
-      {savedPreference === "notsaved" && (
-        <MessageModalContainer
-          content="Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion"
-          error
-        />
-      )}
-      {errorMessagesSignup.length !== 0 && (
-        <MessageModalContainer list={errorMessagesSignup} error />
       )}
     </Segment>
   );

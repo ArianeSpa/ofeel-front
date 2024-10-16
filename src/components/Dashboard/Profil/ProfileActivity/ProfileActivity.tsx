@@ -1,36 +1,43 @@
 // == Import : npm
-import React, { FormEvent } from "react";
-import { Form, Radio, Popup, Icon, CheckboxProps } from "semantic-ui-react";
+import React from "react";
+import { Radio, Popup, Icon, FormField } from "semantic-ui-react";
 
 // == Import : local
-import "../profile.scss";
+import "./profile_activity.scss";
+import { ActivityLevelEnum } from "@/models/profil.model";
 
 type ProfileActivityProps = {
-  checkedvalue: string;
-  onchange: (_event: FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  selectedValue?: ActivityLevelEnum;
+  onChange: (value: ActivityLevelEnum) => void;
   text: string;
-  value: string;
+  value: ActivityLevelEnum;
 };
 // == Composant
 export const ProfileActivity: React.FC<ProfileActivityProps> = ({
   value,
   text,
-  onchange,
-  checkedvalue,
-}) => (
-  <Form.Field className="activityField">
-    <Radio
-      checked={checkedvalue === value}
-      className="activityRadio"
-      label={value}
-      name="activity"
-      onChange={onchange}
-      value={value}
-    />
-    <Popup
-      className="activityPopup"
-      content={text}
-      trigger={<Icon name="question circle outline" className="information" />}
-    />
-  </Form.Field>
-);
+  onChange,
+  selectedValue,
+}) => {
+  const handleChange = () => {
+    onChange(value);
+  };
+  return (
+    <FormField className="activityField">
+      <Radio
+        className="activityRadio"
+        label={value}
+        value={value}
+        checked={selectedValue === value}
+        onChange={handleChange}
+      />
+      <Popup
+        className="activityPopup"
+        content={text}
+        trigger={
+          <Icon name="question circle outline" className="information" />
+        }
+      />
+    </FormField>
+  );
+};

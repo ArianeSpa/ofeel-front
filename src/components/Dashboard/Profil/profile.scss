@@ -1,6 +1,6 @@
-@import '@/styles/vars';
+@import "@/styles/vars";
 
-#myfeelingSegment{
+#myfeelingSegment {
   animation-duration: 0.3s;
   animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
@@ -8,100 +8,86 @@
   display: flex;
   flex-direction: column;
   padding: 0.5em;
-  &>#myfeelingInformation{
+  & > #myfeelingInformation {
     @include information();
   }
-  &>#myfeelingForm{
+  & > #myfeelingForm {
     display: flex;
     flex-direction: column;
     width: 100%;
-    &>.myfeelingSubtitle{
+    & > .myfeelingSubtitle {
       @include tagSubtitle();
       color: $yellow4;
     }
-    &>#genderGroup, &>#ageheightweightGroup, &>#activityGroup{
+    & > #genderGroup,
+    & > #ageheightweightGroup,
+    & > #activityGroup {
       margin: 0 0 1.5em;
       width: 100%;
     }
-    &>#genderGroup{
+    & > #genderGroup {
       align-self: center;
       justify-content: space-evenly;
       width: 15em;
-      &>.genderField > .genderCheckbox{
-        &>label{
-          color: white; 
-        } 
-        &>input:checked + label{
+      & > .genderField > .genderCheckbox {
+        & > label {
+          color: white;
+        }
+        & > input:checked + label {
           color: $yellow4;
         }
       }
     }
-    &>#ageheightweightGroup{
+    & > #ageheightweightGroup {
       flex-direction: column;
-      &>.ageheightweightDropdown{
+      & > .ageheightweightDropdown {
         margin: 0 auto 0.8em;
-        min-width: 12em;;
-        &>.icon{
+        min-width: 12em;
+        & > .icon {
           color: $yellow1;
           font-size: 1.2em;
           padding: 0.5em;
         }
       }
     }
-    &>#activityGroup{
+    & > #activityGroup {
       display: flex;
       flex-direction: column;
       margin: 0 auto 1.5em;
       width: 15em;
-      &>.activityField{
-        margin: 0 0 0.5em 0;
-        width: 100%;
-        &>.activityRadio{
-          > label{
-            color: white;
-          }
-          &>input:checked + label{
-            color: $yellow4;
-          }
-        }
-        &>.icon.information{
-          color: $yellow5;
-          margin-left: 0.5em;
-        }
-      }
     }
-    &>#myfeelingButton{
+    & > #myfeelingButton {
       @include submitButton();
     }
   }
-  &>.messageModal{
+  & > .messageModal {
     @include messageModal();
   }
 }
 
-@media (min-width: 768px){
-  #myfeelingSegment{
+@media (min-width: 768px) {
+  #myfeelingSegment {
     min-height: min-content;
     padding: 2em 0;
-    &>#myfeelingForm{
+    & > #myfeelingForm {
       width: 100%;
-      &>#ageheightweightGroup{
+      & > #ageheightweightGroup {
         flex-direction: row;
         margin: 0 auto 3em;
         max-width: 35em;
-        &>.ageheightweightDropdown{
-          min-width : 10em;
+        & > .ageheightweightDropdown {
+          min-width: 10em;
         }
       }
     }
   }
 }
 
-@media (min-width: 1024px){
-  #myfeelingSegment{
+@media (min-width: 1024px) {
+  #myfeelingSegment {
     justify-content: center;
-    &>#myfeelingForm{
-      &>#ageheightweightGroup{
+    & > #myfeelingForm {
+      & > #ageheightweightGroup {
         max-width: 40em;
       }
     }

@@ -15,36 +15,12 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import { MessageModal } from "@/components/Dashboard/MessageModal/MessageModal";
+import {
+  MessageModal,
+  ModalConfigModel,
+  ModalConfigEnum,
+} from "@/components/Dashboard/MessageModal/MessageModal";
 import "../form.scss";
-
-enum ModalConfigEnum {
-  SERVER_ERROR = "serverError",
-  ERROR_LIST = "errorList",
-  ACCOUNT_CREATED = "accountCreated",
-}
-
-type ModalConfigProps = {
-  message: string;
-  error?: boolean;
-  positive?: boolean;
-};
-
-const ModalConfig: { [key: string]: ModalConfigProps } = {
-  [ModalConfigEnum.SERVER_ERROR]: {
-    message: "Une erreur s'est produite avec le serveur, veuillez réessayer.",
-    error: true,
-  },
-  [ModalConfigEnum.ERROR_LIST]: {
-    message: "Une erreur s'est produite : ",
-    error: true,
-  },
-  [ModalConfigEnum.ACCOUNT_CREATED]: {
-    message:
-      "Votre compte a bien été créé, vous pouvez maintenant vous connecter !",
-    positive: true,
-  },
-};
 
 // == Composant
 export const SignUp: React.FC = () => {
@@ -254,9 +230,9 @@ export const SignUp: React.FC = () => {
       </Form>
       {modalDisplay && (
         <MessageModal
-          content={ModalConfig[modalDisplay].message}
-          error={ModalConfig[modalDisplay].error}
-          positive={ModalConfig[modalDisplay].positive}
+          content={ModalConfigModel[modalDisplay].message}
+          error={ModalConfigModel[modalDisplay].error}
+          positive={ModalConfigModel[modalDisplay].positive}
         />
       )}
 

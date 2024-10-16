@@ -1,10 +1,16 @@
-export type GenderModel = "homme" | "femme";
-export type ActivityLevelModel =
-  | "Sédentaire"
-  | "Légèrement actif"
-  | "Actif"
-  | "Très actif"
-  | "Extrêmement actif";
+export enum GenderEnum {
+  MAN = "Homme",
+  WOMAN = "Femme",
+}
+
+export enum ActivityLevelEnum {
+  SEDENTARY = "Sédentaire",
+  NOT_VERY_ACTIVE = "Peu actif",
+  ACTIVE = "Actif",
+  VERY_ACTIVE = "Très actif",
+  EXTREMELY_ACTIVE = "Extrêmement actif",
+}
+
 export enum GoalEnum {
   PP = "Perte de poids",
   PM = "Prise de masse",
@@ -17,10 +23,10 @@ export type ObjecUserModel = {
   age: number;
   weight: number;
   height: number;
-  sexe: GenderModel;
+  sexe: GenderEnum;
   goal?: GoalEnum;
   regime: RegimeModel;
-  activity: ActivityLevelModel;
+  activity: ActivityLevelEnum;
   energyExpenditure: number;
   basalMetabolicRate: number;
   dailyCalories: number;

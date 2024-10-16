@@ -1,8 +1,8 @@
 import { DataFoodModel, CarbEnum, FatEnum, ProtEnum } from "./food.model";
 import { PostModel } from "./post.model";
 import {
-  ActivityLevelModel,
-  GenderModel,
+  ActivityLevelEnum,
+  GenderEnum,
   GoalModel,
   ObjecUserModel,
 } from "./profil.model";
@@ -13,8 +13,8 @@ export type AppStateModel = {
   weight: number;
   height: number;
   goal: GoalModel;
-  gender: GenderModel;
-  activity: ActivityLevelModel;
+  gender: GenderEnum;
+  activity: ActivityLevelEnum;
   sansgluten: boolean;
   vegan: boolean;
   sanslactose: boolean;
