@@ -1,3 +1,9 @@
+import { WorkoutSubjectEnum } from "./reducer.model";
+
 export type WorkoutModel = {
-  name: string;
+  id: number;
+  title: string;
+  tags?: WorkoutSubjectEnum[];
+  slug: string;
+  content: string;
 };

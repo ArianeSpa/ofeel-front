@@ -74,85 +74,86 @@ const workoutReducer = (
       };
     case SORT_WORKOUT:
       // eslint-disable-next-line no-case-declarations
-      const sortedWorkoutList = state.workoutList.filter((wod) => {
-        let keepWod = null;
-        if (
-          state.course &&
-          state.debutant &&
-          state.intermediaire &&
-          state.confirme
-        ) {
-          keepWod =
-            wod.name.includes("Course débutant") ||
-            wod.name.includes("Course intermédiaire") ||
-            wod.name.includes("Course confirmé") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.debutant && state.intermediaire) {
-          keepWod =
-            wod.name.includes("Course débutant") ||
-            wod.name.includes("Course intermédiaire") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.debutant && state.confirme) {
-          keepWod =
-            wod.name.includes("Course débutant") ||
-            wod.name.includes("Course confirmé") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.intermediaire && state.confirme) {
-          keepWod =
-            wod.name.includes("Course intermédiaire") ||
-            wod.name.includes("Course confirmé") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.debutant) {
-          keepWod =
-            wod.name.includes("Course débutant") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.intermediaire) {
-          keepWod =
-            wod.name.includes("Course intermédiaire") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else if (state.course && state.confirme) {
-          keepWod =
-            wod.name.includes("Course confirmé") ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round"));
-        } else {
-          keepWod =
-            (state.course && wod.name.includes("Course")) ||
-            (state.salle && wod.name.includes("salle")) ||
-            (state.maison && wod.name.includes("domicile")) ||
-            (state.maison && wod.name.includes("round")) ||
-            (state.debutant && wod.name.includes("débutant")) ||
-            (state.debutant &&
-              state.course &&
-              wod.name.includes("Course débutant")) ||
-            (state.intermediaire &&
-              state.course &&
-              wod.name.includes("Course intermédiaire")) ||
-            (state.intermediaire && wod.name.includes("intermédiaire")) ||
-            (state.confirme &&
-              state.course &&
-              wod.name.includes("Course confirmé")) ||
-            (state.confirme && wod.name.includes("confirmé"));
-        }
-        return keepWod;
-      });
-      return {
-        ...state,
-        workoutToShow: sortedWorkoutList,
-      };
+      // const sortedWorkoutList = state.workoutList.filter((wod) => {
+      //   let keepWod = null;
+      //   if (
+      //     state.course &&
+      //     state.debutant &&
+      //     state.intermediaire &&
+      //     state.confirme
+      //   ) {
+      //     keepWod =
+      //       wod.name.includes("Course débutant") ||
+      //       wod.name.includes("Course intermédiaire") ||
+      //       wod.name.includes("Course confirmé") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.debutant && state.intermediaire) {
+      //     keepWod =
+      //       wod.name.includes("Course débutant") ||
+      //       wod.name.includes("Course intermédiaire") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.debutant && state.confirme) {
+      //     keepWod =
+      //       wod.name.includes("Course débutant") ||
+      //       wod.name.includes("Course confirmé") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.intermediaire && state.confirme) {
+      //     keepWod =
+      //       wod.name.includes("Course intermédiaire") ||
+      //       wod.name.includes("Course confirmé") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.debutant) {
+      //     keepWod =
+      //       wod.name.includes("Course débutant") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.intermediaire) {
+      //     keepWod =
+      //       wod.name.includes("Course intermédiaire") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else if (state.course && state.confirme) {
+      //     keepWod =
+      //       wod.name.includes("Course confirmé") ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round"));
+      //   } else {
+      //     keepWod =
+      //       (state.course && wod.name.includes("Course")) ||
+      //       (state.salle && wod.name.includes("salle")) ||
+      //       (state.maison && wod.name.includes("domicile")) ||
+      //       (state.maison && wod.name.includes("round")) ||
+      //       (state.debutant && wod.name.includes("débutant")) ||
+      //       (state.debutant &&
+      //         state.course &&
+      //         wod.name.includes("Course débutant")) ||
+      //       (state.intermediaire &&
+      //         state.course &&
+      //         wod.name.includes("Course intermédiaire")) ||
+      //       (state.intermediaire && wod.name.includes("intermédiaire")) ||
+      //       (state.confirme &&
+      //         state.course &&
+      //         wod.name.includes("Course confirmé")) ||
+      //       (state.confirme && wod.name.includes("confirmé"));
+      //   }
+      //   return keepWod;
+      // });
+      // return {
+      //   ...state,
+      //   workoutToShow: sortedWorkoutList,
+      // };
+      break;
     case CANCEL_SORT:
       return {
         ...state,

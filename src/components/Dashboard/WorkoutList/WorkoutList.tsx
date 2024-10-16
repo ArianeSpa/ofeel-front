@@ -1,5 +1,5 @@
 // == Import : npm
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 
 import {
@@ -11,45 +11,57 @@ import {
   Accordion,
   Icon,
   Header,
-  ButtonProps,
   AccordionTitleProps,
 } from "semantic-ui-react";
 
 // == Import : local
 import "./workout.scss";
 import setImageWorkout from "@/utils/setImageWorkout";
+import { WorkoutSubjectEnum } from "@/models/reducer.model";
+import { workouts } from "@/datas/workouts";
+import { WorkoutModel } from "@/models/workout.model";
 
-type WorkoutListProps = {
-  activeIndex: number;
-  cancelSort: () => void;
-  changeActiveIndex: (index?: string | number) => void;
-  changeSort: (id: string) => void;
-  confirme: boolean;
-  course: boolean;
-  debutant: boolean;
-  intermediaire: boolean;
-  maison: boolean;
-  salle: boolean;
-  sortWorkoutData: (list: any[], id: string) => void;
-  workoutList: { id: number }[];
-  workoutToShow: any[];
-};
 // == Composant
-export const WorkoutList: React.FC<WorkoutListProps> = ({
-  workoutList,
-  changeActiveIndex,
-  activeIndex,
-  course,
-  salle,
-  maison,
-  debutant,
-  intermediaire,
-  confirme,
-  changeSort,
-  sortWorkoutData,
-  workoutToShow,
-  cancelSort,
-}) => {
+export const WorkoutList: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number>();
+  const [course, setCourse] = useState<boolean>(false);
+  const [salle, setSalle] = useState<boolean>(false);
+  const [maison, setMaison] = useState<boolean>(false);
+  const [debutant, setDebutant] = useState<boolean>(false);
+  const [intermediaire, setIntermediaire] = useState<boolean>(false);
+  const [confirme, setConfirme] = useState<boolean>(false);
+
+  const [workoutToShow, setWorkoutToShow] = useState<WorkoutModel[]>([]);
+
+  const hasFilter =
+    course || maison || salle || debutant || intermediaire || confirme;
+
+  useEffect(() => {
+    if (!hasFilter) {
+      setWorkoutToShow(workouts);
+    } else {
+      const newList = workouts.filter((element) => {
+        const isCourse =
+          course && element.tags?.includes(WorkoutSubjectEnum.course);
+        const isSalle =
+          salle && element.tags?.includes(WorkoutSubjectEnum.salle);
+        const isMaison =
+          maison && element.tags?.includes(WorkoutSubjectEnum.maison);
+        const isDebutant =
+          debutant && element.tags?.includes(WorkoutSubjectEnum.debutant);
+        const isInter =
+          intermediaire &&
+          element.tags?.includes(WorkoutSubjectEnum.intermediaire);
+        const isConfirme =
+          confirme && element.tags?.includes(WorkoutSubjectEnum.confirme);
+        return (
+          isCourse || isSalle || isMaison || isDebutant || isInter || isConfirme
+        );
+      });
+      setWorkoutToShow(newList);
+    }
+  }, [course, maison, salle, debutant, intermediaire, confirme]);
+
   const createMarkup = (content: string) => {
     const deleteLinkTag = content.replace(/<[^>]*a[^>]*>/g, "");
     const transformBlank = deleteLinkTag.replace(/&nbsp;/g, " ");
@@ -57,30 +69,20 @@ export const WorkoutList: React.FC<WorkoutListProps> = ({
     const purifiedContent = { __html: DOMPurify.sanitize(deleteEmTag) };
     return purifiedContent;
   };
+
   const displayContent = (_event: any, data: AccordionTitleProps) => {
-    changeActiveIndex(data.index);
+    setActiveIndex(data.index as number);
   };
-  const sort = (_event: any, data: ButtonProps) => {
-    changeSort(data.id);
-    sortWorkoutData(workoutList, data.id);
+
+  const handleResetFilter = () => {
+    setCourse(false);
+    setSalle(false);
+    setMaison(false);
+    setDebutant(false);
+    setIntermediaire(false);
+    setConfirme(false);
   };
-  const cancelSortChoice = () => {
-    cancelSort();
-  };
-  let cancel = false;
-  if (course || salle || maison || debutant || intermediaire || confirme) {
-    cancel = true;
-  }
-  if (
-    !course &&
-    !salle &&
-    !maison &&
-    !debutant &&
-    !intermediaire &&
-    !confirme
-  ) {
-    cancelSort();
-  }
+
   return (
     <Container id="workoutContainer">
       <Header id="workoutSubtitle" as="h3">
@@ -90,48 +92,48 @@ export const WorkoutList: React.FC<WorkoutListProps> = ({
         <Button
           className={course ? "courseSelected selected" : ""}
           id="course"
-          onClick={sort}
+          onClick={() => setCourse((state) => !state)}
         >
           Course à pied
         </Button>
         <Button
           className={salle ? "salleSelected selected" : ""}
           id="salle"
-          onClick={sort}
+          onClick={() => setSalle((state) => !state)}
         >
           Musculation en salle
         </Button>
         <Button
           className={maison ? "maisonSelected selected" : ""}
           id="maison"
-          onClick={sort}
+          onClick={() => setMaison((state) => !state)}
         >
           A la maison
         </Button>
         <Button
           className={debutant ? "debutantSelected selected" : ""}
           id="debutant"
-          onClick={sort}
+          onClick={() => setDebutant((state) => !state)}
         >
           Débutant
         </Button>
         <Button
           className={intermediaire ? "interSelected selected" : ""}
           id="intermediaire"
-          onClick={sort}
+          onClick={() => setIntermediaire((state) => !state)}
         >
           Intermédiaire
         </Button>
         <Button
           className={confirme ? "confirmeSelected selected" : ""}
           id="confirme"
-          onClick={sort}
+          onClick={() => setConfirme((state) => !state)}
         >
           Confirmé
         </Button>
-        {cancel && (
-          <Button id="cancelButton" onClick={cancelSortChoice}>
-            Annuler le tri
+        {hasFilter && (
+          <Button id="cancelButton" onClick={handleResetFilter}>
+            Effacer les filtres
           </Button>
         )}
       </Segment>
@@ -147,7 +149,7 @@ export const WorkoutList: React.FC<WorkoutListProps> = ({
               >
                 <Icon name="dropdown" />
                 <Item.Header className="wodHeader">
-                  {currentWorkout.name}
+                  {currentWorkout.title}
                 </Item.Header>
               </Accordion.Title>
               <Accordion.Content
