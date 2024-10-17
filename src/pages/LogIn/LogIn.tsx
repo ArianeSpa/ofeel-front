@@ -19,12 +19,12 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import { useAppDistpatch } from "@/app/hooks";
+import { useAppDistpatch } from "@/hooks/store.hook";
 import { logIn } from "@/store/reducers/user.slice";
-import "../form.scss";
+import "./form.scss";
 
 // == Composant
-export const Login: React.FC = () => {
+export const LogIn: React.FC = () => {
   const dispatch = useAppDistpatch();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");

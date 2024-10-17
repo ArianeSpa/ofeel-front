@@ -19,8 +19,8 @@ import {
   MessageModal,
   ModalConfigModel,
   ModalConfigEnum,
-} from "@/components/Dashboard/MessageModal/MessageModal";
-import "../form.scss";
+} from "@/components/organisms/MessageModal/MessageModal";
+import "./form.scss";
 
 // == Composant
 export const SignUp: React.FC = () => {

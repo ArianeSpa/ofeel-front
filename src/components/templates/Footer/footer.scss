@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import "../../../styles/vars";
 
 #footerSegment {
   background-color: transparent;
@@ -13,14 +13,14 @@
   padding: 0.5em;
   text-align: center;
   width: 100%;
-  &>#copyright{
+  & > #copyright {
     color: $bg2;
     font-size: 0.8em;
     font-style: italic;
     height: max-content;
     margin: 0 auto 0.5em;
   }
-  &>#footerButtons{
+  & > #footerButtons {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
@@ -29,7 +29,7 @@
     margin: 0;
     max-width: 100%;
     padding: 0.1em 0;
-    &>.oneButton{
+    & > .oneButton {
       background-color: transparent;
       display: block;
       flex: none;
@@ -37,49 +37,56 @@
       line-height: unset;
       margin: 0 0.4em;
       padding: 0;
-      &>.icon{
+      & > .icon {
         font-size: 1.5em;
       }
-      &>.facebook{
-        color: #3A559F;
+      & > .facebook {
+        color: #3a559f;
       }
-      &>.twitter{
-        color: #1DA1F2;
+      & > .twitter {
+        color: #1da1f2;
       }
-      &>.youtube{
-        color: #FD0100;
+      & > .youtube {
+        color: #fd0100;
       }
-      &>.linkedin{
-        color: #007BB6;
+      & > .linkedin {
+        color: #007bb6;
       }
-      &>.github{
+      & > .github {
         color: black;
       }
-      &>.instagram:before{
-        background-image: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important;
+      & > .instagram:before {
+        background-image: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        ) !important;
         border-radius: 5px;
         color: white;
         padding: 0 0.07em;
       }
-      &>.mail{
-        color:  #EA4335;
+      & > .mail {
+        color: #ea4335;
       }
     }
-    &::after{
+    &::after {
       display: none;
     }
-  } 
+  }
 }
 
-@media (min-width: 768px){
-  #footerSegment{ 
+@media (min-width: 768px) {
+  #footerSegment {
     height: $footerHeight768;
     margin: 0;
     padding: 0.5em;
-    &>#footerButtons{
-      &>.oneButton{
+    & > #footerButtons {
+      & > .oneButton {
         margin: 0 0.7em;
-        &>.icon{
+        & > .icon {
           font-size: 2em;
         }
       }
@@ -87,13 +94,13 @@
   }
 }
 
-@media (min-width: 1024px){
-  #footerSegment{
+@media (min-width: 1024px) {
+  #footerSegment {
     height: $footerHeight1024;
-    &>#footerButtons{
-      &>.oneButton{
+    & > #footerButtons {
+      & > .oneButton {
         margin: 0 1em;
-        &>.icon{
+        & > .icon {
           font-size: 2.1em;
         }
       }

@@ -23,11 +23,7 @@ import iconGluten from "@/assets/icon/gluten.png";
 import iconNutrition from "@/assets/icon/nutrition.png";
 import { GoalEnum } from "@/models/profil.model";
 import { getProportion } from "@/utils/setProportion";
-import {
-  MessageModal,
-  ModalConfigEnum,
-  ModalConfigModel,
-} from "../MessageModal/MessageModal";
+import { MessageModal, ModalConfigEnum, ModalConfigModel } from "@/components";
 import "./goal.scss";
 
 // == Composant

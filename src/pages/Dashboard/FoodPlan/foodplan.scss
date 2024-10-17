@@ -1,17 +1,17 @@
-@import '../../../styles/vars';
+@import "../../../styles//vars";
 
-#mealGrid{
+#mealGrid {
   margin: 0;
   padding: 0;
-  &>#mealplanSubtitle{
+  & > #mealplanSubtitle {
     @include tagSubtitle();
     color: $blue5;
   }
-  &>#dailyMealRow {
+  & > #dailyMealRow {
     flex-direction: column;
     margin-bottom: 1em;
     padding: 0 0 1em;
-    &>.oneMealColumn{
+    & > .oneMealColumn {
       align-items: center;
       border-bottom: 1px solid $blue5;
       display: flex;
@@ -19,43 +19,43 @@
       margin-bottom: 1em;
       padding: 0 0 2em;
       width: 100%;
-      &>.oneMealSegment{
+      & > .oneMealSegment {
         @include mealplanSegment();
-        &>.oneMealHeader{
+        & > .oneMealHeader {
           color: $blue5;
           @include mealplanHeader();
         }
-        &>.cheatmealCheckbox{
+        & > .cheatmealCheckbox {
           @include mealplanToggle;
-          &>input{
-            &:checked + label{
+          & > input {
+            &:checked + label {
               color: $pink5 !important;
-              &::before{
+              &::before {
                 background-color: $pink5 !important;
               }
             }
           }
         }
       }
-      &>.oneMealForm{
+      & > .oneMealForm {
         @include formMealplan();
-        &>.mealFields{
-          &>.foodDropdown.visible > .text:not(.default){
+        & > .mealFields {
+          & > .foodDropdown.visible > .text:not(.default) {
             color: $green2;
           }
-          &>.foodDropdown{
-            &>.icon{
+          & > .foodDropdown {
+            & > .icon {
               color: $blue5;
             }
-            &>.menu.transition{
-              &>.selected.item{
+            & > .menu.transition {
+              & > .selected.item {
                 color: black;
               }
             }
           }
         }
       }
-      &>.messagecheat{
+      & > .messagecheat {
         animation-duration: 0.3s;
         animation-name: opacity0to1;
         animation-timing-function: ease-in-out;
@@ -66,51 +66,51 @@
       }
     }
   }
-  &>#snackRow{
+  & > #snackRow {
     flex-direction: column;
     padding-top: 0;
-    &>#snackColumn{
+    & > #snackColumn {
       display: flex;
       flex-direction: column;
-      padding:  0;
+      padding: 0;
       width: 100%;
-      &>#snackSegment{
+      & > #snackSegment {
         @include mealplanSegment();
-        &>#snackHeader{
+        & > #snackHeader {
           color: $yellow3;
           @include mealplanHeader();
         }
-        &>.cheatmealCheckbox{
+        & > .cheatmealCheckbox {
           @include mealplanToggle;
-          &>input{
-            &:checked + label{
+          & > input {
+            &:checked + label {
               color: $yellow3 !important;
-              &::before{
+              &::before {
                 background-color: $yellow3 !important;
               }
             }
           }
         }
-      }    
-      &>#snackForm{
+      }
+      & > #snackForm {
         @include formMealplan();
-        &>.mealFields{
-          &>.foodDropdown.visible > .text:not(.default){
+        & > .mealFields {
+          & > .foodDropdown.visible > .text:not(.default) {
             color: $yellow1;
           }
-          &>.foodDropdown {
-            &>.icon {
+          & > .foodDropdown {
+            & > .icon {
               color: $yellow1;
             }
-            &>.menu.transition {
-              &>.selected.item{
+            & > .menu.transition {
+              & > .selected.item {
                 color: $yellow1;
               }
             }
           }
         }
       }
-      &>.snackmessage{
+      & > .snackmessage {
         animation-duration: 0.3s;
         animation-name: opacity0to1;
         animation-timing-function: ease-in-out;
@@ -123,55 +123,55 @@
   }
 }
 
-@media (min-width: 768px){
-  #mealGrid{
+@media (min-width: 768px) {
+  #mealGrid {
     padding: 1em 0;
   }
 }
 
-@media (min-width: 1024px){
-  #mealGrid{
-    &>#dailyMealRow{
+@media (min-width: 1024px) {
+  #mealGrid {
+    & > #dailyMealRow {
       border-bottom: 1px solid $blue5;
       flex-direction: row;
       justify-content: space-between;
       margin: 0 auto 1em;
       padding: 0;
-      &>.oneMealColumn{
+      & > .oneMealColumn {
         border-bottom: none;
         flex-grow: 0;
         margin-bottom: 0;
         width: 31%;
-        &>.oneMealSegment{
+        & > .oneMealSegment {
           border-bottom: 2px solid $blue5;
           flex-direction: column;
           margin: 0 auto 2em;
-          &>.oneMealHeader{
+          & > .oneMealHeader {
             margin: 0 0 0.8em;
           }
         }
-        &>.oneMealForm{
+        & > .oneMealForm {
           border-right: 1px solid $blue5;
           margin: 0 0 0 auto;
-          &>.mealFields{
+          & > .mealFields {
             margin: 0 0 1em auto;
             padding-right: 0.5em;
           }
-          &>.mealVegAndFruit{
+          & > .mealVegAndFruit {
             padding-right: 0.5em;
           }
         }
-        &>.messagecheat{
+        & > .messagecheat {
           border-right: 1px solid $blue5;
         }
       }
     }
-    &>#snackRow{
-      &>#snackColumn{
-        &>#snackSegment{
+    & > #snackRow {
+      & > #snackColumn {
+        & > #snackSegment {
           border-bottom: 2px solid $yellow3;
         }
       }
     }
   }
-} 
+}

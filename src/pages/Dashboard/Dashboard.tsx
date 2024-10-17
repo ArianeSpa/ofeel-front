@@ -4,11 +4,11 @@ import { Grid, Segment } from "semantic-ui-react";
 import { Route, Routes } from "react-router-dom";
 
 // == Import : local
-import { DashboardTag, DashBoardTagEnum } from "./DashBoardTag/DashboardTag";
+import { DashboardTag, DashBoardTagEnum } from "@/components";
 import { Welcome } from "./Welcome/Welcome";
-import { Profile } from "./Profil/Profile";
+import { Profile } from "./Profile/Profile";
 import { Goal } from "./Goal/Goal";
-import { FoodPlan } from "./FoodPlan/FoodPlan";
+// import { FoodPlan } from "./FoodPlan/FoodPlan";
 import { WorkoutList } from "./WorkoutList/WorkoutList";
 import "./dashboard.scss";
 
@@ -50,7 +50,7 @@ export const Dashboard: React.FC = () => {
               <Route path="/" element={<Welcome />} />
               <Route path="/profil" element={<Profile />} />
               <Route path="/goal" element={<Goal />} />
-              <Route path="/foodplan" element={<FoodPlan />} />
+              {/* <Route path="/foodplan" element={<FoodPlan />} /> */}
               <Route path="/workout" element={<WorkoutList />} />
             </Routes>
           </Grid.Column>

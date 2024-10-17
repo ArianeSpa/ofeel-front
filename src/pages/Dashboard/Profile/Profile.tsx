@@ -27,12 +27,12 @@ import {
   getActivityFactor,
   getDailyCalorieCost,
 } from "@/utils/setMetabAndCal";
-import { ProfileActivity } from "./ProfileActivity/ProfileActivity";
 import {
+  ProfileActivity,
   MessageModal,
   ModalConfigEnum,
   ModalConfigModel,
-} from "../MessageModal/MessageModal";
+} from "@/components";
 import "./profile.scss";
 
 // == Composant

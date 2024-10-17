@@ -13,10 +13,10 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import { FoodPlanMeal } from "@/components/Dashboard/FoodPlan/FoodPlanMeal/FoodPlanMeal";
+import { FoodPlanMeal } from "@/components/organisms/FoodPlanMeal/FoodPlanMeal";
 import { setProteinQuantity, setSugarQuantity } from "@/utils/setQuantity";
 import { CarbEnum, ProtEnum } from "@/models/food.model";
-import { FoodPlanMessageSnack } from "./FoodPlanMessage/FoodPlanMessageSnack";
+import { FoodPlanMessageSnack } from "@/components";
 import "./foodplan.scss";
 
 // == Composant
