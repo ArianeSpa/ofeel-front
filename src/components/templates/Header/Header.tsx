@@ -33,14 +33,14 @@ export const Header: React.FC<HeaderProps> = ({
         <Logo />
       </NavMenuItem>
       {windowWidth > 768 ? (
-        <>
+        <Flex width="100%" justifyContent="space-between">
           <NavBar menuItems={menuItems} gap={menuItemsGap} />
           {logged && (
             <Button type="submit" onClick={logOut}>
               Deconnexion
             </Button>
           )}
-        </>
+        </Flex>
       ) : (
         <BurgerMenu menuItems={menuItems} />
       )}

@@ -23,11 +23,9 @@ export const NavBar: React.FC<NavBarProps> = ({ menuItems, gap }) => {
         {menuItems.map(
           ({ content, id, hide, to }) =>
             !hide && (
-              <li>
-                <NavMenuItem key={id} id={id} to={to}>
-                  {content}
-                </NavMenuItem>
-              </li>
+              <NavMenuItem key={id} id={id} to={to}>
+                {content}
+              </NavMenuItem>
             )
         )}
       </StyledNavBarContainer>

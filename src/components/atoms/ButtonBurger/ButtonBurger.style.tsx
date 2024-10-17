@@ -13,6 +13,7 @@ export const StyledButtonBurger = styled.button.withConfig(
   forwardConfig
 )<StyledButtonBurgerProps>`
   cursor: pointer;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

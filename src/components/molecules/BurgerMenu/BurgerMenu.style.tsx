@@ -23,11 +23,12 @@ export const StyledBurgerMenu = styled.nav.withConfig(
   gap: 70px;
   height: 100vh;
   justify-content: center;
+  line-height: 30px;
   padding-right: 30px;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
   transition: transform 0.3s ease-in-out;
   z-index: ${({ theme }) => theme?.zIndex.burgerMenu};
-  width: 225px;
+  width: 250px;
 
   @media (max-width: 576px) {
     width: 100%;
