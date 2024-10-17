@@ -12,7 +12,7 @@ import {
 } from "semantic-ui-react";
 
 // == Import : local
-import { FoodPlanMessageCheat } from "@/components/Dashboard/FoodPlan/FoodPlanMessage/FoodPlanMessageCheat";
+import { FoodPlanMessageCheat } from "@/components/organisms/FoodPlanMessage/FoodPlanMessageCheat";
 import { glType, lpType, prType } from "@/datas/food";
 import { datafood } from "@/datas/datafood";
 import {
@@ -26,7 +26,7 @@ import {
   setFatQuantityFood,
   setProtQuantityFood,
 } from "@/utils/setQuantities";
-import "../foodplan.scss";
+import "./foodplan.scss";
 
 type FoodPlanMealProps = {
   carbQuantity: number;
