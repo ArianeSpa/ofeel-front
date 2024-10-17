@@ -178,6 +178,12 @@ export const mainTheme = {
       bg9: "#a2e9f0",
     },
   },
+  zIndex: {
+    burgerButton: 1500,
+    burgerMenu: 1000,
+    modal: 5000,
+    dropdown: 100,
+  },
 };
 
 export type MainTheme = typeof mainTheme;

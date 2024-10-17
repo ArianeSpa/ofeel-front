@@ -3,18 +3,16 @@ import React from "react";
 
 // == Import : local
 import { useWindowSize } from "@/hooks/window.hook";
-import { NavBarDesktop, NavBarDesktopProps } from "../../molecules";
-import { Button, Flex, FlexProps, Logo, NavBarItem } from "../../atoms";
-import { HeaderMobile } from "../HeaderMobile/HeaderMobile";
+import { NavBar, BurgerMenu, MenuItemsProps } from "../../molecules";
+import { Button, Flex, FlexProps, Logo, NavMenuItem } from "../../atoms";
 
 type HeaderProps = {
   logged?: boolean;
+  menuItems: MenuItemsProps[];
   menuItemsGap?: number;
   logOut: () => void;
-} & NavBarDesktopProps &
-  FlexProps;
+} & FlexProps;
 
-// == Composant
 export const Header: React.FC<HeaderProps> = ({
   logged,
   menuItems,
@@ -31,10 +29,12 @@ export const Header: React.FC<HeaderProps> = ({
       padding="8px 16px"
       {...flexProps}
     >
-      <NavBarItem content={<Logo />} id="logo-navbar" to="/" />
+      <NavMenuItem id="logo-navbar" to="/">
+        <Logo />
+      </NavMenuItem>
       {windowWidth > 768 ? (
         <>
-          <NavBarDesktop menuItems={menuItems} gap={menuItemsGap} />
+          <NavBar menuItems={menuItems} gap={menuItemsGap} />
           {logged && (
             <Button type="submit" onClick={logOut}>
               Deconnexion
@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </>
       ) : (
-        <HeaderMobile logOut={logOut} />
+        <BurgerMenu menuItems={menuItems} />
       )}
     </Flex>
   );

@@ -6,14 +6,14 @@ import { Container } from "semantic-ui-react";
 // == Import : local
 import { useAppDistpatch, useAppSelector } from "@/hooks/store.hook";
 import { Footer, Header } from "@/components";
-import { LogIn } from "./pages/LogIn/LogIn";
-import { SignUp } from "./pages/SignUp/SignUp";
-import { PostList } from "./pages/Feed/PostList";
-import Contact from "./pages/Contact/Contact";
-import { Error } from "./pages/Error/Error";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { logOut } from "@/store/reducers/user.slice";
+import { LogIn } from "@/pages/LogIn/LogIn";
+import { SignUp } from "@/pages/SignUp/SignUp";
+import { PostList } from "@/pages/Feed/PostList";
+import Contact from "@/pages/Contact/Contact";
+import { Error } from "@/pages/Error/Error";
+import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import "./app.scss";
-import { logOut } from "./store/reducers/user.slice";
 
 export const App: React.FC = () => {
   const dispatch = useAppDistpatch();
@@ -24,7 +24,7 @@ export const App: React.FC = () => {
   };
 
   const menuItems = [
-    { id: "home-item", content: "Acceuil", to: "/", hide: logged },
+    { id: "home-item", content: "Accueil", to: "/", hide: logged },
     {
       id: "dashboard-item",
       content: "Tableau de bord",
