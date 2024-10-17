@@ -8,6 +8,7 @@ export type StyledFlexProps = {
   flexWrap?: string;
   flexGrow?: number;
   flexShrink?: number;
+  gap?: number;
   justifyContent?: string;
   padding?: string | number;
   width?: string;
@@ -21,6 +22,7 @@ const forwardConfig = {
       "flexWrap",
       "flexGrow",
       "flexShrink",
+      "gap",
       "justifyContent",
       "padding",
       "width",
@@ -35,6 +37,7 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
   flex-direction: ${({ flexDirection }: StyledFlexProps) =>
     flexDirection || "row"};
   flex-wrap: ${(props) => props.flexWrap};
+  gap: ${({ gap }: StyledFlexProps) => `${gap}px`};
   width: ${({ width }: StyledFlexProps) => width};
   padding: ${({ padding }: StyledFlexProps) => padding || 0};
 
