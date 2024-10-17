@@ -1,0 +1,95 @@
+@import "@/styles/vars";
+
+#myfeelingSegment {
+  animation-duration: 0.3s;
+  animation-name: opacity0to1;
+  animation-timing-function: ease-in-out;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  & > #myfeelingInformation {
+    @include information();
+  }
+  & > #myfeelingForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    & > .myfeelingSubtitle {
+      @include tagSubtitle();
+      color: $yellow4;
+    }
+    & > #genderGroup,
+    & > #ageheightweightGroup,
+    & > #activityGroup {
+      margin: 0 0 1.5em;
+      width: 100%;
+    }
+    & > #genderGroup {
+      align-self: center;
+      justify-content: space-evenly;
+      width: 15em;
+      & > .genderField > .genderCheckbox {
+        & > label {
+          color: white;
+        }
+        & > input:checked + label {
+          color: $yellow4;
+        }
+      }
+    }
+    & > #ageheightweightGroup {
+      flex-direction: column;
+      & > .ageheightweightDropdown {
+        margin: 0 auto 0.8em;
+        min-width: 12em;
+        & > .icon {
+          color: $yellow1;
+          font-size: 1.2em;
+          padding: 0.5em;
+        }
+      }
+    }
+    & > #activityGroup {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 1.5em;
+      width: 15em;
+    }
+    & > #myfeelingButton {
+      @include submitButton();
+    }
+  }
+  & > .messageModal {
+    @include messageModal();
+  }
+}
+
+@media (min-width: 768px) {
+  #myfeelingSegment {
+    min-height: min-content;
+    padding: 2em 0;
+    & > #myfeelingForm {
+      width: 100%;
+      & > #ageheightweightGroup {
+        flex-direction: row;
+        margin: 0 auto 3em;
+        max-width: 35em;
+        & > .ageheightweightDropdown {
+          min-width: 10em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  #myfeelingSegment {
+    justify-content: center;
+    & > #myfeelingForm {
+      & > #ageheightweightGroup {
+        max-width: 40em;
+      }
+    }
+  }
+}

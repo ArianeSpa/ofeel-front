@@ -1,0 +1,18 @@
+@import "@/styles/vars";
+
+.activityField {
+  margin: 0 0 0.5em 0;
+  width: 100%;
+  & > .activityRadio {
+    > label {
+      color: white;
+    }
+    & > input:checked + label {
+      color: $yellow4;
+    }
+  }
+  & > .icon.information {
+    color: $yellow5;
+    margin-left: 0.5em;
+  }
+}
