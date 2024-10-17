@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 
 // == Import : local
-import { ButtonBurger, NavMenuItem } from "../../atoms";
+import { Backdrop, ButtonBurger, NavMenuItem } from "../../atoms";
 import { MenuItemsProps } from "../NavBar/NavBar";
 import { StyledBurgerMenu, StyledBurgerMenuProps } from "./BurgerMenu.style";
 import { useOnClickOutside } from "./burgerMenu.hook";
@@ -38,6 +38,7 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ menuItems }) => {
             )
         )}
       </StyledBurgerMenu>
+      {open && <Backdrop />}
     </div>
   );
 };

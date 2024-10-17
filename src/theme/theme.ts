@@ -181,7 +181,8 @@ export const mainTheme = {
   zIndex: {
     burgerButton: 1500,
     burgerMenu: 1000,
-    modal: 5000,
+    modal: 500,
+    backdrop: 400,
     dropdown: 100,
   },
 };
