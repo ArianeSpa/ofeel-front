@@ -6,7 +6,7 @@ import {
   GoalEnum,
   ObjecUserModel,
 } from "./profil.model";
-import { WorkoutModel } from "./workout.model";
+// import { WorkoutModel } from "./workout.model";
 
 export type AppStateModel = {
   age: number;
@@ -73,8 +73,8 @@ export enum WorkoutSubjectEnum {
 }
 
 export type WorkoutStateModel = {
-  workoutList: WorkoutModel[];
-  workoutToShow: WorkoutModel[];
+  workoutList: any[];
+  workoutToShow: any[];
   loadingWorkout: boolean;
   activeIndex: number;
   course: boolean | null;

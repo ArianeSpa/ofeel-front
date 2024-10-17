@@ -3,22 +3,22 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Menu,
-  Image,
   Dropdown,
-  MenuItem,
   DropdownMenu,
   DropdownItem,
   MenuMenu,
 } from "semantic-ui-react";
 
 // == Import : local
-import logo from "@/assets/images/logo_fond_transparent2.png";
-import { LogoutButton } from "@/components/LogoutButton/LogoutButton";
-import { useAppSelector } from "@/app/hooks";
-import "../header.scss";
+import { useAppSelector } from "@/hooks/store.hook";
+import { Button } from "../../atoms";
+import "./header.scss";
 
+type HeaderMobileProps = {
+  logOut: () => void;
+};
 // == Composant
-export const HeaderMobile: React.FC = () => {
+export const HeaderMobile: React.FC<HeaderMobileProps> = ({ logOut }) => {
   const logged = useAppSelector((state) => state.userReducer.logged);
   const [headerClassname, setHeaderClassname] = useState<string>("");
   const [yPosition, setYPosition] = useState<number>(0);
@@ -71,9 +71,6 @@ export const HeaderMobile: React.FC = () => {
 
   return (
     <Menu id="headerMobile" className={headerClassname}>
-      <MenuItem id="mobileItem">
-        <Image as={NavLink} src={logo} to="/" />
-      </MenuItem>
       <MenuMenu position="right" id="rightPartHeader">
         <Dropdown id="burgerMenu" pointing="right" icon="bars">
           <DropdownMenu id="menuContent">
@@ -115,7 +112,9 @@ export const HeaderMobile: React.FC = () => {
             </DropdownItem>
             {logged && (
               <DropdownItem className="navbar">
-                <LogoutButton />
+                <Button type="submit" size="small" onClick={logOut}>
+                  Deconnexion
+                </Button>
               </DropdownItem>
             )}
           </DropdownMenu>

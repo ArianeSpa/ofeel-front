@@ -46,7 +46,7 @@ export const StyledButton = styled.button.withConfig(
   padding: ${({ size }: StyledButtonProps) => {
     switch (size) {
       case "small":
-        return `4px`;
+        return `2px 8px`;
       default:
       case "medium":
         return `8px`;
