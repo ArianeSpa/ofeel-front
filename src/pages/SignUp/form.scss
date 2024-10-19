@@ -1,0 +1,64 @@
+@import "../../styles/vars";
+
+#loginSegment,
+#signupSegment {
+  @include formSegmentBase;
+  & > .formLink {
+    @include links;
+    margin: 1em auto 0;
+    text-align: center;
+  }
+}
+#signupSegment {
+  & > #signupForm {
+    & > #signupInfo {
+      font-size: 0.9em;
+      line-height: 1.4em;
+      margin: 0 auto 0.5em;
+    }
+    & > #passwordList {
+      margin-bottom: 2em;
+      & > .listItem {
+        font-size: 0.9em;
+        font-style: italic;
+        line-height: 1.4em;
+        list-style: disc inside;
+        padding-left: 1em;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #loginSegment {
+    width: 25em;
+    & > .form > #loginFields {
+      flex-direction: column;
+      & > .oneField {
+        width: 100%;
+        margin-bottom: 1em;
+      }
+    }
+  }
+  #signupSegment {
+    & > #signupForm {
+      & > #passwordList {
+        & > .listItem {
+          padding-left: 3em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  #signupSegment {
+    & > #signupForm {
+      & > #passwordList {
+        & > .listItem {
+          padding-left: 8em;
+        }
+      }
+    }
+  }
+}

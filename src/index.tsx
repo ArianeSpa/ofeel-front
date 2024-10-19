@@ -3,13 +3,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import reportWebVitals from "./reportWebVitals";
+import "semantic-ui-css/semantic.min.css";
 
 // == Import: local
 import { store } from "./store/store";
+import { App } from "./App";
 import "./index.css";
-import "semantic-ui-css/semantic.min.css";
-import { App } from "./components/App/App";
+import { mainTheme } from "./theme/theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,9 +20,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <ThemeProvider theme={mainTheme}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
