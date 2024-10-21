@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 import { MainTheme } from "@/theme/theme";
 
+const forwardConfig = {
+  shouldForwardProp: (prop: string) => !["gap"].includes(prop),
+};
 export type StyledNavBarContainerProps = {
   theme?: MainTheme;
   gap?: number;
 };
-export const StyledNavBarContainer = styled.ol<StyledNavBarContainerProps>`
+export const StyledNavBarContainer = styled.ol.withConfig(
+  forwardConfig
+)<StyledNavBarContainerProps>`
   display: flex;
   align-items: center;
   justify-content: start;

@@ -5,11 +5,8 @@ import {
   Icon,
   Container,
   Label,
-  Button,
-  Segment,
   Form,
   AccordionTitleProps,
-  ButtonProps,
 } from "semantic-ui-react";
 import DOMPurify from "dompurify";
 
@@ -17,42 +14,57 @@ import DOMPurify from "dompurify";
 import setIcon from "@/utils/setIcon";
 import "./postlist.scss";
 import { PostModel } from "@/models/post.model";
+import { FeedFilters } from "./FeedFilters/FeedFilters";
+import { ObjectOf } from "@/utils/common";
+import { FeedFiltersEnum } from "./FeedFilterButton/FeedFilterButton";
 
-enum SortNameEnum {
-  FOOD = "food",
-  HEALTH = "health",
-  SPORT = "sport",
-  REST = "rest",
-  VARIOUS = "various",
-}
-
+const initSelectedFilters = {
+  [FeedFiltersEnum.FOOD]: false,
+  [FeedFiltersEnum.HEALTH]: false,
+  [FeedFiltersEnum.SPORT]: false,
+  [FeedFiltersEnum.REST]: false,
+  [FeedFiltersEnum.VARIOUS]: false,
+};
 // == Composant
 export const PostList: React.FC = () => {
+  const [selectedFilters, setSelectedFilters] =
+    useState<ObjectOf<boolean>>(initSelectedFilters);
+  const [filteredPosts, setFilteredPosts] = useState<PostModel[]>([]);
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
-  const [sortedPosts, setSortedPosts] = useState<PostModel[]>([]);
-  const [sortValue, setSortValue] = useState<string | undefined>();
 
   /** @todo stock in store instead of state ? */
   const [dataPosts, setDataPosts] = useState<PostModel[]>([]);
+  const hasOneFilter = Object.values(selectedFilters).some((filter) => filter);
 
   useEffect(() => {
     setLoadingPosts(true);
     /** @todo get posts data on component init ? or App init */
     const fakeResponse: PostModel[] = [];
     setDataPosts(fakeResponse);
-    setSortedPosts(fakeResponse);
+    setFilteredPosts(fakeResponse);
     setLoadingPosts(false);
   }, []);
 
-  const sort = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    data: ButtonProps
-  ) => {
-    setSortValue(data.id);
-    /** @todo sort post from dataPosts with value selected */
+  useEffect(() => {
+    if (!hasOneFilter) {
+      setFilteredPosts(dataPosts);
+    } else {
+      const newFilteredList = dataPosts.filter((post) => post); // TODO
+      setFilteredPosts(newFilteredList);
+    }
+  }, [selectedFilters]);
+
+  const handleSelectedFilters = (name: FeedFiltersEnum) => {
+    setSelectedFilters((state) => ({
+      ...state,
+      [name]: !state[name],
+    }));
   };
+
+  const resetFilters = () => setSelectedFilters(initSelectedFilters);
 
   const displayContent = (
     event: React.MouseEvent<HTMLDivElement>,
@@ -61,68 +73,15 @@ export const PostList: React.FC = () => {
     setActiveIndex(Number(data.index));
   };
 
-  const cancelSortChoice = () => {
-    setSortedPosts(dataPosts);
-    setSortValue(undefined);
-  };
-
   return (
     <Container id="postPageContainer">
-      <Segment id="buttonSortSegment">
-        <Button
-          className={`${
-            sortValue === SortNameEnum.HEALTH ? "iconFocus " : ""
-          }sortIcon`}
-          icon
-          id="sante"
-          onClick={sort}
-        >
-          <Icon name="heartbeat" />
-        </Button>
-        <Button
-          className={`${
-            sortValue === SortNameEnum.SPORT ? "iconFocus " : ""
-          }sortIcon`}
-          icon
-          id="sport"
-          onClick={sort}
-        >
-          <Icon name="football ball" />
-        </Button>
-        <Button
-          className={`${
-            sortValue === SortNameEnum.REST ? "iconFocus " : ""
-          }sortIcon`}
-          icon
-          id="recuperation"
-          onClick={sort}
-        >
-          <Icon name="bed" />
-        </Button>
-        <Button
-          className={`${
-            sortValue === SortNameEnum.FOOD ? "iconFocus " : ""
-          }sortIcon`}
-          icon
-          id="alimentation"
-          onClick={sort}
-        >
-          <Icon name="food" className="foodSort" />
-        </Button>
-        <Button
-          className={`${
-            sortValue === SortNameEnum.VARIOUS ? "iconFocus " : ""
-          }sortIcon`}
-          icon
-          id="divers"
-          onClick={sort}
-        >
-          <Icon name="boxes" />
-        </Button>
-        <Button className="cancelButton" onClick={cancelSortChoice}>
-          Effacer les filtres
-        </Button>
-      </Segment>
+      <FeedFilters
+        hasOneFilter={hasOneFilter}
+        selectedFilters={selectedFilters}
+        handleSelectedFilters={handleSelectedFilters}
+        resetFilters={resetFilters}
+      />
+
       <Container id="postsContainer">
         <Accordion fluid styled>
           {loadingPosts && (
@@ -132,7 +91,7 @@ export const PostList: React.FC = () => {
           )}
 
           {!loadingPosts &&
-            sortedPosts.map((post) => (
+            filteredPosts.map((post) => (
               <React.Fragment key={`${post.id}2`}>
                 <Accordion.Title
                   active={activeIndex === post.id}
@@ -143,6 +102,7 @@ export const PostList: React.FC = () => {
                   <Icon name="dropdown" />
                   <div
                     className="titlePost"
+                    // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(post.name),
                     }}
@@ -155,6 +115,7 @@ export const PostList: React.FC = () => {
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === post.id}>
                   <div
+                    // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(post.content),
                     }}

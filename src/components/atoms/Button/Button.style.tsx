@@ -2,6 +2,18 @@ import styled from "styled-components";
 
 import { MainTheme } from "@/theme/theme";
 
+const getSize = (size?: StyledButtonProps["size"]) => {
+  switch (size) {
+    case "small":
+      return "26px";
+    default:
+    case "medium":
+      return "32px";
+    case "large":
+      return "44px";
+  }
+};
+
 const forwardConfig = {
   shouldForwardProp: (prop: string) => !["size", "width"].includes(prop),
 };
@@ -22,6 +34,7 @@ export const StyledButton = styled.button.withConfig(
   background-image: ${({ theme }: StyledButtonProps) =>
     `linear-gradient(to bottom, ${theme?.color.yellow.y1}, ${theme?.color.yellow.y2}, ${theme?.color.yellow.y3}, ${theme?.color.yellow.y4}, ${theme?.color.yellow.y5})`};
   color: ${({ theme }: StyledButtonProps) => theme?.color.grey.g2};
+  height: ${({ size }: StyledButtonProps) => getSize(size)};
 
   &:hover {
     background-image: none;
@@ -40,18 +53,6 @@ export const StyledButton = styled.button.withConfig(
         return theme?.font.button.medium;
       case "large":
         return theme?.font.button.large;
-    }
-  }};
-
-  padding: ${({ size }: StyledButtonProps) => {
-    switch (size) {
-      case "small":
-        return `2px 8px`;
-      default:
-      case "medium":
-        return `8px`;
-      case "large":
-        return `12px`;
     }
   }};
 `;

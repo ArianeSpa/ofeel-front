@@ -1,59 +1,71 @@
 // == Import : npm
 import React from "react";
-import { Segment, Button, Container } from "semantic-ui-react";
+import { FaGithub, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 // == Import : local
-import "./footer.scss";
+import { ButtonIcon, Flex, ButtonIconProps } from "../../atoms";
+import { StyledCopyright, instaBackground } from "./Footer.style";
+
+type SocialProps = {
+  url: string;
+  name: string;
+  icon: JSX.Element;
+  variant?: ButtonIconProps["variant"];
+  size?: ButtonIconProps["size"];
+  background?: string;
+};
+const socials: SocialProps[] = [
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/ariane-spanneut/",
+    icon: <FaLinkedin color="#0A66C2" fontSize="22px" />,
+  },
+  {
+    name: "github",
+    url: "https://github.com/ArianeSpa",
+    icon: <FaGithub fontSize="40px" />,
+  },
+  {
+    url: "https://www.youtube.com/channel/UCVdtXmsbmewiS6N9QjO8LKA",
+    name: "youtube",
+    icon: <FaYoutube color="#ff0033" fontSize="32px" />,
+  },
+  {
+    name: "instagram",
+    url: "https://www.instagram.com/suis_ton_fil/",
+    icon: <FaInstagram color="white" fontSize="18px" />,
+    variant: "circle",
+    size: "small",
+    background: instaBackground,
+  },
+  {
+    name: "email",
+    url: "mailto:aspanneut.pro@gmail.com?subject=contact%20from%20Ofeel",
+    icon: <SiGmail color="#bf211e" fontSize="22px" />,
+  },
+];
 
 // == Composant
-export const Footer: React.FC = () => (
-  <Segment id="footerSegment">
-    <Container id="copyright">
-      <p>&copy; {`O'Feel d'Ariane 2019`}</p>
-    </Container>
-    <Container id="footerButtons">
-      <Button
-        className="oneButton"
-        href="https://www.facebook.com/Oclock.io/"
-        icon="facebook"
-        target="_blank"
-      />
-      <Button
-        className="oneButton"
-        href="https://twitter.com/Oclock_io?s=17"
-        icon="twitter"
-        target="_blank"
-      />
-      <Button
-        color="red"
-        className="oneButton"
-        href="https://www.youtube.com/channel/UCVdtXmsbmewiS6N9QjO8LKA"
-        icon="youtube"
-        target="_blank"
-      />
-      <Button
-        className="oneButton"
-        href="https://www.linkedin.com/in/ariane-spanneut/"
-        icon="linkedin"
-        target="_blank"
-      />
-      <Button
-        className="oneButton"
-        href="https://github.com/ArianeSpa"
-        icon="github"
-        target="_blank"
-      />
-      <Button
-        className="oneButton"
-        href="https://www.instagram.com/suis_ton_fil/"
-        icon="instagram"
-        target="_blank"
-      />
-      <Button
-        className="oneButton"
-        href="mailto:ariane.spanneut@gmail.com?subject=contact%20from%20Ofeel"
-        icon="mail outline"
-      />
-    </Container>
-  </Segment>
-);
+export const Footer: React.FC = () => {
+  const handleClickSocial = (url: string) => {
+    window.open(url, "_blank");
+  };
+
+  return (
+    <Flex flexDirection="column" gap={2}>
+      <StyledCopyright>&copy; O'Feel d'Ariane 2024</StyledCopyright>
+      <Flex gap={10}>
+        {socials.map(({ url, name, ...props }) => (
+          <ButtonIcon
+            aria-label={name}
+            key={name}
+            role="link"
+            onClick={() => handleClickSocial(url)}
+            {...props}
+          />
+        ))}
+      </Flex>
+    </Flex>
+  );
+};
