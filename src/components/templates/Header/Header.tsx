@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   logOut,
   ...flexProps
 }) => {
-  const { windowWidth } = useWindowSize();
+  const { isDesktop } = useWindowSize();
 
   return (
     <Flex
@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
       <NavMenuItem id="logo-navbar" to="/">
         <Logo />
       </NavMenuItem>
-      {windowWidth > 768 ? (
+      {isDesktop ? (
         <Flex width="100%" justifyContent="space-between">
           <NavBar menuItems={menuItems} gap={menuItemsGap} />
           {logged && (

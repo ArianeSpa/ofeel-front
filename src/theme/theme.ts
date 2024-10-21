@@ -1,3 +1,5 @@
+import { useTheme as useStyledTheme } from "styled-components";
+
 const fontFamily = {
   pacifico: `'Pacifico', cursive`,
   livvic: `'Livvic', sans-serif`,
@@ -188,3 +190,4 @@ export const mainTheme = {
 };
 
 export type MainTheme = typeof mainTheme;
+export const useTheme = useStyledTheme as () => MainTheme;

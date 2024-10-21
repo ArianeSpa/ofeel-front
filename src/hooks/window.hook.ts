@@ -17,5 +17,9 @@ export const useWindowSize = () => {
     };
   }, []);
 
-  return { windowHeight, windowWidth };
+  const isSmartphone = windowWidth <= 512;
+  const isTablet = windowWidth > 512 && windowWidth <= 768;
+  const isDesktop = windowWidth > 768;
+
+  return { windowHeight, windowWidth, isSmartphone, isTablet, isDesktop };
 };

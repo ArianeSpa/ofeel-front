@@ -59,6 +59,7 @@ export const Footer: React.FC = () => {
         {socials.map(({ url, name, ...props }) => (
           <ButtonIcon
             aria-label={name}
+            key={name}
             role="link"
             onClick={() => handleClickSocial(url)}
             {...props}

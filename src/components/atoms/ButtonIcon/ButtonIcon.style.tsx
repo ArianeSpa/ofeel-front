@@ -27,13 +27,14 @@ const getRadius = (variant?: StyledButtonIconProps["variant"]) => {
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
-    !["size", "square", "rounded"].includes(prop),
+    !["size", "variant", "background", "borderColor"].includes(prop),
 };
 export type StyledButtonIconProps = {
   theme?: MainTheme;
   size?: "small" | "medium" | "large";
   variant?: "square" | "rounded" | "circle";
   background?: string;
+  borderColor?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 export const StyledButtonIcon = styled.button.withConfig(
   forwardConfig
@@ -46,10 +47,14 @@ export const StyledButtonIcon = styled.button.withConfig(
   padding: 4px;
   background: ${({ background }: StyledButtonIconProps) =>
     background || "transparent"};
+  border: ${({ borderColor }: StyledButtonIconProps) =>
+    borderColor ? `1px solid ${borderColor}` : "none"};
   border-radius: ${({ variant }: StyledButtonIconProps) => getRadius(variant)};
   height: ${({ size }: StyledButtonIconProps) => getSize(size)};
   width: ${({ size }: StyledButtonIconProps) => getSize(size)};
   &:hover {
     box-shadow: 10px 10px 22px -12px rgba(0, 0, 0, 0.75);
+    border: ${({ borderColor }: StyledButtonIconProps) =>
+      borderColor ? `1px solid ${borderColor}` : "none"};
   }
 `;
