@@ -1,7 +1,8 @@
 {
   "COMMON": {
     "LOGIN": "login",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "SUBMIT": "man"
   },
   "PAGES": {
     "TITLE": {
