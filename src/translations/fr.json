@@ -1,0 +1,14 @@
+{
+  "COMMON": {
+    "LOGIN": "connexion",
+    "LOGOUT": "Déconnexion"
+  },
+  "PAGES": {
+    "TITLE": {
+      "ARTICLES": "articles",
+      "CONTACT": "contact",
+      "DASHBOARD": "tableau de bord",
+      "HOME": "accueil"
+    }
+  }
+}

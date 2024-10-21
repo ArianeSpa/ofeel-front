@@ -1,0 +1,14 @@
+{
+  "COMMON": {
+    "LOGIN": "login",
+    "LOGOUT": "Logout"
+  },
+  "PAGES": {
+    "TITLE": {
+      "ARTICLES": "articles",
+      "CONTACT": "contact",
+      "DASHBOARD": "dashboard",
+      "HOME": "home"
+    }
+  }
+}
