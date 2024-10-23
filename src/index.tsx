@@ -14,13 +14,18 @@ import { App } from "./App";
 import { mainTheme } from "./theme/theme";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import en from "./translations/en.json";
+import fr from "./translations/fr.json";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 i18next.init({
+  lng: "fr",
+  fallbackLng: "fr",
   interpolation: { escapeValue: false }, // React already does escaping
+  resources: { en, fr },
 });
 
 root.render(

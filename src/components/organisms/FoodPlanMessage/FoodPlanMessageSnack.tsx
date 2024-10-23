@@ -1,10 +1,13 @@
 // == Import : npm
 import React from "react";
-
-const msg =
-  "Si vous avez l'intention d'effectuer une séance d'entrainement ce jour, cochez \"je m'entraine\" et découvrez votre collation supplémentaire.";
+import { useTranslation } from "react-i18next";
 
 // == Composant
-export const FoodPlanMessageSnack: React.FC = () => (
-  <div className="message snackmessage">{msg}</div>
-);
+export const FoodPlanMessageSnack: React.FC = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="message snackmessage">
+      {t("PAGES.DASHBOARD.MEAL.SNACK_MESSAGE")}
+    </div>
+  );
+};
