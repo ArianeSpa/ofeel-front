@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
       <Flex gap={10}>
         {socials.map(({ url, name, ...props }) => (
           <ButtonIcon
-            aria-label={name}
+            ariaLabel={name}
             key={name}
             role="link"
             onClick={() => handleClickSocial(url)}

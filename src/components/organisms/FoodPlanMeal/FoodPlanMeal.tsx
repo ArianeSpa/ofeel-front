@@ -1,5 +1,6 @@
 // == Import : npm
 import React, { SyntheticEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Grid,
   Header,
@@ -57,6 +58,8 @@ export const FoodPlanMeal: React.FC<FoodPlanMealProps> = ({
   const [proteinFromLip, setProteinFromLip] = useState<number>();
 
   const [protDisplay, setProtDisplay] = useState<string>();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const { quantityFood, protFromCarb } = setCarbQuantityFood(
@@ -170,7 +173,7 @@ export const FoodPlanMeal: React.FC<FoodPlanMealProps> = ({
             />
           </Form.Group>
           <div className="mealVegAndFruit">
-            Légumes à volonté + 1 à 2 fruit(s)
+            {t("PAGES.DASHBOARD.MEAL.VEGETABLES_PLUS_FRUITS")}
           </div>
         </Form>
       )}

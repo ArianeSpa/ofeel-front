@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { StyledButtonBurger } from "./ButtonBurger.style";
 
 type ButtonBurgerProps = {
@@ -8,9 +9,10 @@ export const ButtonBurger: React.FC<ButtonBurgerProps> = ({
   open,
   setOpen,
 }) => {
+  const { t } = useTranslation();
   return (
     <StyledButtonBurger
-      aria-label="Burger menu"
+      aria-label={t("COMMON.BURGER_MENU")}
       open={open}
       onClick={() => setOpen(!open)}
     >

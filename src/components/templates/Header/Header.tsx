@@ -1,10 +1,11 @@
 // == Import : npm
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // == Import : local
 import { useWindowSize } from "@/hooks/window.hook";
-import { NavBar, BurgerMenu, MenuItemsProps } from "../../molecules";
 import { Button, Flex, FlexProps, Logo, NavMenuItem } from "../../atoms";
+import { BurgerMenu, MenuItemsProps, NavBar } from "../../molecules";
 
 type HeaderProps = {
   logged?: boolean;
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   ...flexProps
 }) => {
   const { isDesktop } = useWindowSize();
+  const { t } = useTranslation();
 
   return (
     <Flex
@@ -37,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
           <NavBar menuItems={menuItems} gap={menuItemsGap} />
           {logged && (
             <Button type="submit" onClick={logOut}>
-              Deconnexion
+              {t("COMMON.LOGOUT")}
             </Button>
           )}
         </Flex>

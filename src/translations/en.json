@@ -1,15 +1,42 @@
 {
-  "COMMON": {
-    "LOGIN": "login",
-    "LOGOUT": "Logout",
-    "MAN": "man"
-  },
-  "PAGES": {
-    "TITLE": {
-      "ARTICLES": "articles",
-      "CONTACT": "contact",
-      "DASHBOARD": "dashboard",
-      "HOME": "home"
+  "translation": {
+    "COMMON": {
+      "BURGER_MENU": "Menu",
+      "LOGIN": "login",
+      "LOGOUT": "Logout",
+      "MAN": "man"
+    },
+    "PAGES": {
+      "CONTACT": {
+        "TITLE": "contact"
+      },
+      "DASHBOARD": {
+        "MEAL": {
+          "CHEAT_MEAL_MESSAGE": "You've opted for a cheat meal. Find all our advice in our articles...",
+          "SNACK_MESSAGE": "If you're planning to workout today, check \"I'm training\" and discover your extra snack.",
+          "VEGETABLES_PLUS_FRUITS": "Vegetables as desired + 1 to 2 fruit(s)"
+        },
+        "TAG": {
+          "FOOD_PLAN": "Food plan",
+          "GOAL": "Goal",
+          "PROFILE": "Profile\n",
+          "WORKOUT": "Workout"
+        },
+        "TITLE": "dashboard"
+      },
+      "FEED": {
+        "FILTER": {
+          "FOOD": "food",
+          "HEALTH": "health",
+          "REST": "rest",
+          "SPORT": "sport",
+          "VARIOUS": "various"
+        },
+        "TITLE": "articles"
+      },
+      "HOME": {
+        "TITLE": "home"
+      }
     }
   }
 }

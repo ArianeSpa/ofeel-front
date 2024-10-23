@@ -1,15 +1,42 @@
 {
-  "COMMON": {
-    "LOGIN": "connexion",
-    "LOGOUT": "Déconnexion",
-    "MAN": "homme"
-  },
-  "PAGES": {
-    "TITLE": {
-      "ARTICLES": "articles",
-      "CONTACT": "contact",
-      "DASHBOARD": "tableau de bord",
-      "HOME": "accueil"
+  "translation": {
+    "COMMON": {
+      "BURGER_MENU": "Menu",
+      "LOGIN": "connexion",
+      "LOGOUT": "Déconnexion",
+      "MAN": "homme"
+    },
+    "PAGES": {
+      "CONTACT": {
+        "TITLE": "contact"
+      },
+      "DASHBOARD": {
+        "MEAL": {
+          "CHEAT_MEAL_MESSAGE": "Vous avez opté pour un cheat meal. Retrouvez tous nos conseils dans nos articles...",
+          "SNACK_MESSAGE": "Si vous avez l'intention d'effectuer une séance d'entraînement ce jour, cochez \"je m'entraîne\" et découvrez votre collation supplémentaire.",
+          "VEGETABLES_PLUS_FRUITS": "Légumes à volonté + 1 à 2 fruit(s)"
+        },
+        "TAG": {
+          "FOOD_PLAN": "Plan alimentaire",
+          "GOAL": "Objectif",
+          "PROFILE": "Profil",
+          "WORKOUT": "Entraînement"
+        },
+        "TITLE": "tableau de bord"
+      },
+      "FEED": {
+        "FILTER": {
+          "FOOD": "alimentation",
+          "HEALTH": "santé",
+          "REST": "récupération",
+          "SPORT": "spor",
+          "VARIOUS": "divers"
+        },
+        "TITLE": "articles"
+      },
+      "HOME": {
+        "TITLE": "accueil"
+      }
     }
   }
 }

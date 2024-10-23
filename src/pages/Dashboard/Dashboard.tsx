@@ -11,6 +11,7 @@ import { Goal } from "./Goal/Goal";
 // import { FoodPlan } from "./FoodPlan/FoodPlan";
 import { WorkoutList } from "./WorkoutList/WorkoutList";
 import "./dashboard.scss";
+import { FoodPlan } from "./FoodPlan/FoodPlan";
 
 // == Composant
 export const Dashboard: React.FC = () => {
@@ -25,8 +26,8 @@ export const Dashboard: React.FC = () => {
         <Grid.Row stretched id="dashboardRow">
           <Grid.Column id="tagsColumn">
             <DashboardTag
-              tag={DashBoardTagEnum.PROFIL}
-              isSelected={currentTag === DashBoardTagEnum.PROFIL}
+              tag={DashBoardTagEnum.PROFILE}
+              isSelected={currentTag === DashBoardTagEnum.PROFILE}
               onClick={handleTagSelection}
             />
             <DashboardTag
@@ -48,10 +49,19 @@ export const Dashboard: React.FC = () => {
           <Grid.Column id="contentColumn">
             <Routes>
               <Route path="/" element={<Welcome />} />
-              <Route path="/profil" element={<Profile />} />
-              <Route path="/goal" element={<Goal />} />
-              {/* <Route path="/foodplan" element={<FoodPlan />} /> */}
-              <Route path="/workout" element={<WorkoutList />} />
+              <Route
+                path={`/${DashBoardTagEnum.PROFILE}`}
+                element={<Profile />}
+              />
+              <Route path={`/${DashBoardTagEnum.GOAL}`} element={<Goal />} />
+              <Route
+                path={`/${DashBoardTagEnum.FOOD_PLAN}`}
+                element={<FoodPlan />}
+              />
+              <Route
+                path={`/${DashBoardTagEnum.WORKOUT}`}
+                element={<WorkoutList />}
+              />
             </Routes>
           </Grid.Column>
         </Grid.Row>

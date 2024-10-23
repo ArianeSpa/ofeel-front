@@ -7,6 +7,7 @@ import {
   FaHeartbeat,
   FaUtensils,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 // == Import: lcoal
 import { useTheme } from "@/theme/theme";
@@ -32,6 +33,8 @@ export const FeedFilterButton: React.FC<FeedFilterButtonProps> = ({
   onClick,
 }) => {
   const { color } = useTheme();
+  const { t } = useTranslation();
+
   const icons: ObjectOf<IconType> = {
     [FeedFiltersEnum.HEALTH]: FaHeartbeat,
     [FeedFiltersEnum.SPORT]: FaFootballBall,
@@ -50,10 +53,20 @@ export const FeedFilterButton: React.FC<FeedFilterButtonProps> = ({
   };
   const iconColor = colors[value];
 
+  const translationKeys: ObjectOf<string> = {
+    [FeedFiltersEnum.HEALTH]: "PAGES.FEED.FILTER.HEALTH",
+    [FeedFiltersEnum.SPORT]: "PAGES.FEED.FILTER.SPORT",
+    [FeedFiltersEnum.REST]: "PAGES.FEED.FILTER.REST",
+    [FeedFiltersEnum.FOOD]: "PAGES.FEED.FILTER.FOOD",
+    [FeedFiltersEnum.VARIOUS]: "PAGES.FEED.FILTER.VARIOUS",
+  };
+  const translatedLabel = t(translationKeys[value]);
+
   const isSelected = selectedFilters[value];
   return (
     <StyledFeedFilterButton
       id={`${value}-filter-button`}
+      ariaLabel={translatedLabel}
       background={color.grey.g5}
       borderColor={isSelected ? color.yellow.y4 : "transparent"}
       isSelected={isSelected}
