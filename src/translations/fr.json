@@ -4,7 +4,15 @@
       "BURGER_MENU": "Menu",
       "LOGIN": "connexion",
       "LOGOUT": "Déconnexion",
-      "MAN": "homme"
+      "MAN": "homme",
+      "MODAL_MESSAGE": {
+        "ACCOUNT_CREATED": "Votre compte a bien été créé, vous pouvez maintenant vous connecter !",
+        "DATA_NOT_SAVED": "Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion.",
+        "DATA_SAVED": "Vos données ont bien été enregistrées.",
+        "ERROR_CUSTOM": "Une erreur s'est produite:",
+        "SERVER_ERROR": "Une erreur s'est produite avec le serveur, veuillez réessayer."
+      },
+      "WOMAN": "femme"
     },
     "PAGES": {
       "CONTACT": {

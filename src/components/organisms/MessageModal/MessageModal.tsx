@@ -1,20 +1,14 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Message } from "semantic-ui-react";
 
 export enum ModalConfigEnum {
   SERVER_ERROR = "serverError",
-  ERROR_LIST = "errorList",
+  ERROR_CUSTOM = "errorCustom",
   ACCOUNT_CREATED = "accountCreated",
   DATA_SAVED = "dataSaved",
   DATA_NOT_SAVED = "dataNotSaved",
 }
-
-type MessageModalProps = {
-  content?: string;
-  list?: any[];
-  positive?: boolean;
-  error?: boolean;
-};
 
 type ModalConfigProps = {
   message: string;
@@ -24,35 +18,41 @@ type ModalConfigProps = {
 
 export const ModalConfigModel: { [key: string]: ModalConfigProps } = {
   [ModalConfigEnum.SERVER_ERROR]: {
-    message: "Une erreur s'est produite avec le serveur, veuillez réessayer.",
+    message: "COMMON.MODAL_MESSAGE.SERVER_ERROR",
     error: true,
   },
-  [ModalConfigEnum.ERROR_LIST]: {
-    message: "Une erreur s'est produite : ",
+  [ModalConfigEnum.ERROR_CUSTOM]: {
+    message: "COMMON.MODAL_MESSAGE.ERROR_CUSTOM",
     error: true,
   },
   [ModalConfigEnum.DATA_NOT_SAVED]: {
-    message:
-      "Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion",
+    message: "COMMON.MODAL_MESSAGE.DATA_NOT_SAVED",
     error: true,
   },
   [ModalConfigEnum.DATA_SAVED]: {
-    message: "Vos données ont bien été enregistrées",
+    message: "COMMON.MODAL_MESSAGE.DATA_SAVED",
     positive: true,
   },
   [ModalConfigEnum.ACCOUNT_CREATED]: {
-    message:
-      "Votre compte a bien été créé, vous pouvez maintenant vous connecter !",
+    message: "COMMON.MODAL_MESSAGE.ACCOUNT_CREATED",
     positive: true,
   },
 };
 
+type MessageModalProps = {
+  content?: string;
+  list?: any[];
+  positive?: boolean;
+  error?: boolean;
+};
 export const MessageModal: React.FC<MessageModalProps> = ({
   content,
   list,
   positive,
   error,
 }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     return () => {
       handleDismiss();
@@ -68,7 +68,7 @@ export const MessageModal: React.FC<MessageModalProps> = ({
       className="messageModal"
       size="tiny"
       compact
-      content={content && content}
+      content={content && t(content)}
       list={list}
       onDismiss={handleDismiss}
       positive={positive}
