@@ -23,7 +23,7 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ menuItems }) => {
   return (
     <div ref={node}>
       <ButtonBurger open={open} setOpen={setOpen} />
-      <StyledBurgerMenu open={open}>
+      <StyledBurgerMenu open={open} as="nav">
         {menuItems.map(
           ({ content, id, hide, to }) =>
             !hide && (
