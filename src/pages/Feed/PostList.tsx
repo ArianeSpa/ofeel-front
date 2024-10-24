@@ -17,6 +17,7 @@ import { PostModel } from "@/models/post.model";
 import { FeedFilters } from "./FeedFilters/FeedFilters";
 import { ObjectOf } from "@/utils/common";
 import { FeedFiltersEnum } from "./FeedFilterButton/FeedFilterButton";
+import { StyledPostList } from "./PostList.style";
 
 const initSelectedFilters = {
   [FeedFiltersEnum.FOOD]: false,
@@ -82,7 +83,7 @@ export const PostList: React.FC = () => {
         resetFilters={resetFilters}
       />
 
-      <Container id="postsContainer">
+      <StyledPostList>
         <Accordion fluid styled>
           {loadingPosts && (
             <Accordion.Title className="titleBox">
@@ -124,7 +125,7 @@ export const PostList: React.FC = () => {
               </React.Fragment>
             ))}
         </Accordion>
-      </Container>
+      </StyledPostList>
     </Container>
   );
 };

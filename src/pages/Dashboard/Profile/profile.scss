@@ -56,9 +56,6 @@
       margin: 0 auto 1.5em;
       width: 15em;
     }
-    & > #myfeelingButton {
-      @include submitButton();
-    }
   }
   & > .messageModal {
     @include messageModal();

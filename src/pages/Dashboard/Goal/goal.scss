@@ -1,6 +1,6 @@
-@import '../../../styles/vars';
+@import "../../../styles/vars";
 
-#goalSegment{
+#goalSegment {
   animation-duration: 0.3s;
   animation-name: opacity0to1;
   animation-timing-function: ease-in-out;
@@ -8,115 +8,107 @@
   display: flex;
   flex-direction: column;
   padding: 1.5em 0.5em 0.5em;
-  &>#goalInformation{
+  & > #goalInformation {
     @include information();
   }
-  &>#goalForm{
+  & > #goalForm {
     display: flex;
     flex-direction: column;
     width: 100%;
-    &>.goalSubtitle{
+    & > .goalSubtitle {
       @include tagSubtitle();
       color: $green5;
     }
-    &>#goalsGroup, &>#foodPrefGroup{
+    & > #goalsGroup,
+    & > #foodPrefGroup {
       margin: 0 0 1.5em;
       width: 100%;
     }
-    &>#goalsGroup{
+    & > #goalsGroup {
       flex-direction: column;
-      &>.goalField{
+      & > .goalField {
         margin: 0 auto 1.5em;
-        &>.goalRadio{
-          &>label{
-            color: white; 
+        & > .goalRadio {
+          & > label {
+            color: white;
             text-align: center;
-          } 
-          &>input:checked + label{
+          }
+          & > input:checked + label {
             color: $green2;
           }
         }
-        &>.goalIcon{
+        & > .goalIcon {
           margin: auto;
         }
       }
     }
-    &>#foodPrefGroup{
+    & > #foodPrefGroup {
       flex-direction: column;
-      &>.foodPrefField{
+      & > .foodPrefField {
         margin: 0 auto 1.5em;
-        &>.foodPrefCheckbox{
-          &>label{
-            color: white; 
-          } 
-          &>input:checked + label{
+        & > .foodPrefCheckbox {
+          & > label {
+            color: white;
+          }
+          & > input:checked + label {
             color: $green2;
           }
         }
-        &>.foodPrefIcon{
+        & > .foodPrefIcon {
           margin: auto;
         }
       }
     }
-    &>#goalButton{
-      @include submitButton();
-      background-image: $goals-color;
-      &:hover{
-        border: 1px solid $green5;
-        color: $green5;
-      }
-    } 
   }
-  &>.messageModal{
+  & > .messageModal {
     @include messageModal();
   }
 }
 
-@media (min-width: 768px){
-  #goalSegment{
+@media (min-width: 768px) {
+  #goalSegment {
     min-height: min-content;
     padding: 2em 0;
-    &>#goalForm{
+    & > #goalForm {
       width: 100%;
-      &>#goalsGroup{
+      & > #goalsGroup {
         flex-direction: row;
         margin: 0 auto 3em;
         width: 100%;
-        &>.goalField{
+        & > .goalField {
           align-items: center;
           display: flex;
           flex-direction: column;
           width: 12em;
-          &>.goalRadio{
-            &>label{
+          & > .goalRadio {
+            & > label {
               width: auto;
             }
           }
         }
       }
-      &>#foodPrefGroup{
+      & > #foodPrefGroup {
         flex-direction: row;
         margin: 0 auto 1em;
         max-width: 30em;
       }
-    } 
+    }
   }
-  
 }
 
-@media (min-width: 1024px){
-  #goalSegment{
+@media (min-width: 1024px) {
+  #goalSegment {
     justify-content: center;
-    &>#goalForm{
-      &>#goalsGroup{
+    & > #goalForm {
+      & > #goalsGroup {
         justify-content: space-between;
         max-width: 40em;
-        &>.goalField{
+        & > .goalField {
           margin: 0;
           padding: 0 1em;
         }
       }
-      &>#foodPrefGroup{
+      & > #foodPrefGroup {
         max-width: 40em;
       }
     }

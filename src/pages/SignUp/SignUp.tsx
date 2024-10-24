@@ -2,7 +2,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  Button,
   Form,
   Segment,
   Container,
@@ -19,7 +18,8 @@ import {
   MessageModal,
   ModalConfigModel,
   ModalConfigEnum,
-} from "@/components/organisms/MessageModal/MessageModal";
+  Button,
+} from "@/components";
 import "./form.scss";
 
 // == Composant
@@ -224,9 +224,7 @@ export const SignUp: React.FC = () => {
           />
         </FormGroup>
 
-        <Button type="submit" className="submitButton">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </Form>
       {modalDisplay && (
         <MessageModal

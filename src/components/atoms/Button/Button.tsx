@@ -5,7 +5,7 @@ import { StyledButton, StyledButtonProps } from "./Button.style";
 export type ButtonProps = {
   children?: ReactNode | string;
   type?: "button" | "submit" | "reset";
-  onClick: () => void;
+  onClick?: () => void;
 } & Omit<StyledButtonProps, "theme">;
 
 const Button: React.FC<ButtonProps> = (props) => {
