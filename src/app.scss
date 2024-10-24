@@ -1,15 +1,5 @@
 @import "./styles//vars";
 
-#app {
-  background-image: $background-color-body;
-  color: white;
-  font-size: 2em;
-  margin: 0 !important;
-  height: 100vh;
-  padding: 0;
-  width: 100%;
-}
-
 #mainContainer {
   margin: 0 !important;
   min-height: 68vh;

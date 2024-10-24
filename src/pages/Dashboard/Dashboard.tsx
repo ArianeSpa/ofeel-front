@@ -1,71 +1,43 @@
 // == Import : npm
-import React, { useState } from "react";
-import { Grid, Segment } from "semantic-ui-react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // == Import : local
-import { DashboardTag, DashBoardTagEnum } from "@/components";
+import { Flex } from "@/components";
+import { useWindowSize } from "@/hooks/window.hook";
 import { Welcome } from "./Welcome/Welcome";
 import { Profile } from "./Profile/Profile";
-import { Goal } from "./Goal/Goal";
-// import { FoodPlan } from "./FoodPlan/FoodPlan";
-import { WorkoutList } from "./WorkoutList/WorkoutList";
-import "./dashboard.scss";
 import { FoodPlan } from "./FoodPlan/FoodPlan";
+import { Goal } from "./Goal/Goal";
+import { WorkoutList } from "./WorkoutList/WorkoutList";
+import { StyledDashboard } from "./DashBoard.style";
+import { DashBoardTabEnum, DashBoardTabs } from "./DashBoardTabs/DashBoardTabs";
 
 // == Composant
 export const Dashboard: React.FC = () => {
-  const [currentTag, setCurrentTag] = useState<DashBoardTagEnum>();
-
-  const handleTagSelection = (tag: DashBoardTagEnum) => {
-    setCurrentTag(tag);
-  };
+  const { isDesktop } = useWindowSize();
   return (
-    <Segment inverted id="dashboardSegment">
-      <Grid columns={2} id="dashboardGrid">
-        <Grid.Row stretched id="dashboardRow">
-          <Grid.Column id="tagsColumn">
-            <DashboardTag
-              tag={DashBoardTagEnum.PROFILE}
-              isSelected={currentTag === DashBoardTagEnum.PROFILE}
-              onClick={handleTagSelection}
-            />
-            <DashboardTag
-              tag={DashBoardTagEnum.GOAL}
-              isSelected={currentTag === DashBoardTagEnum.GOAL}
-              onClick={handleTagSelection}
-            />
-            <DashboardTag
-              tag={DashBoardTagEnum.FOOD_PLAN}
-              isSelected={currentTag === DashBoardTagEnum.FOOD_PLAN}
-              onClick={handleTagSelection}
-            />
-            <DashboardTag
-              tag={DashBoardTagEnum.WORKOUT}
-              isSelected={currentTag === DashBoardTagEnum.WORKOUT}
-              onClick={handleTagSelection}
-            />
-          </Grid.Column>
-          <Grid.Column id="contentColumn">
-            <Routes>
-              <Route path="/" element={<Welcome />} />
-              <Route
-                path={`/${DashBoardTagEnum.PROFILE}`}
-                element={<Profile />}
-              />
-              <Route path={`/${DashBoardTagEnum.GOAL}`} element={<Goal />} />
-              <Route
-                path={`/${DashBoardTagEnum.FOOD_PLAN}`}
-                element={<FoodPlan />}
-              />
-              <Route
-                path={`/${DashBoardTagEnum.WORKOUT}`}
-                element={<WorkoutList />}
-              />
-            </Routes>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+    <StyledDashboard flexDirection={isDesktop ? "row" : "column"}>
+      <DashBoardTabs />
+      <Flex
+        width="100%"
+        padding="20px"
+        style={{ overflow: "hidden", height: "100%" }}
+      >
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path={`/${DashBoardTabEnum.PROFILE}`} element={<Profile />} />
+          <Route path={`/${DashBoardTabEnum.GOAL}`} element={<Goal />} />
+          <Route
+            path={`/${DashBoardTabEnum.FOOD_PLAN}`}
+            element={<FoodPlan />}
+          />
+          <Route
+            path={`/${DashBoardTabEnum.WORKOUT}`}
+            element={<WorkoutList />}
+          />
+        </Routes>
+      </Flex>
+    </StyledDashboard>
   );
 };
