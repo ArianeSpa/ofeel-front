@@ -63,14 +63,6 @@
           color: $pink1;
         }
       }
-      &#cancelButton {
-        background-image: $workout-color;
-        color: rgba(0, 0, 0, 0.6);
-        &:hover {
-          background-image: $workout-color;
-          color: rgba(0, 0, 0, 0.6);
-        }
-      }
     }
   }
 }
