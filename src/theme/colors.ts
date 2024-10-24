@@ -67,12 +67,19 @@ linear-gradient(${
   isDesktop ? "to right" : "to bottom"
 }, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0))
 `;
+
+export enum GradientColor {
+  BLUE = "blue",
+  GREEN = "green",
+  PINK = "pink",
+  YELLOW = "yellow",
+}
 export const gradient = {
   body: bodyGradient,
   dashboard: dashboardGradient,
-  blue: blueGradient,
-  green: greenGradient,
-  pink: pinkGradient,
-  yellow: yellowGradient,
+  [GradientColor.BLUE]: blueGradient,
+  [GradientColor.GREEN]: greenGradient,
+  [GradientColor.PINK]: pinkGradient,
+  [GradientColor.YELLOW]: yellowGradient,
   tab: getTabGradient,
 };

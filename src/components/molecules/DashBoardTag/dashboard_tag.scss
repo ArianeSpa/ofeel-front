@@ -17,12 +17,6 @@
     border-radius: 0.15em;
     height: 0.3em;
     width: 100%;
-    &#foodplan {
-      background-image: $mealPlan-color;
-    }
-    &#workout {
-      background-image: $workout-color;
-    }
   }
   &#focus {
     background-image: $background-color-tag-mobile;
@@ -48,12 +42,6 @@
       position: relative;
       top: 10%;
       -webkit-text-fill-color: transparent;
-    }
-    & > #foodplanIcon {
-      background-image: $mealPlan-color;
-    }
-    & > #workoutIcon {
-      background-image: $workout-color;
     }
   }
   &:after {
