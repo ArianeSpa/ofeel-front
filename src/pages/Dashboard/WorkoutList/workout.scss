@@ -1,4 +1,4 @@
-@import '../../../styles/vars';
+@import "../../../styles/vars";
 
 #workoutContainer {
   animation-duration: 0.3s;
@@ -6,11 +6,12 @@
   animation-timing-function: ease-in-out;
   margin: 0 !important;
   padding: 0.5em;
-  &>#workoutSubtitle{
+  height: 100%;
+  & > #workoutSubtitle {
     @include tagSubtitle();
     color: $pink5;
   }
-  &>#workoutButtonSegment{
+  & > #workoutButtonSegment {
     background-color: transparent;
     box-shadow: none;
     border: none;
@@ -20,93 +21,95 @@
     margin: 0 auto 0.5em;
     max-width: 21em;
     padding: 0;
-    &>.button{
+    & > .button {
       background-color: #fff;
       border: 1px solid transparent;
       color: rgba(0, 0, 0, 0.6);
       font-size: 0.6em;
       margin: 0.2em;
       padding: 0.4em;
-      &:focus, &:hover{
+      &:focus,
+      &:hover {
         background-color: #fff;
         border: 1px solid transparent;
         color: rgba(0, 0, 0, 0.6);
       }
-      &.selected{
+      &.selected {
         background-color: rgb(43, 42, 42);
       }
-      &.courseSelected, &.salleSelected, &.maisonSelected{
+      &.courseSelected,
+      &.salleSelected,
+      &.maisonSelected {
         color: $pink5;
-        &:focus{
+        &:focus {
           color: $pink5;
         }
       }
-      &.debutantSelected{
+      &.debutantSelected {
         color: $green5;
-        &:focus{
+        &:focus {
           color: $green5;
         }
       }
-      &.interSelected{
+      &.interSelected {
         color: $yellow1;
-        &:focus{
+        &:focus {
           color: $yellow1;
         }
       }
-      &.confirmeSelected{
+      &.confirmeSelected {
         color: $pink1;
-        &:focus{
+        &:focus {
           color: $pink1;
         }
       }
-      &#cancelButton{
+      &#cancelButton {
         background-image: $workout-color;
         color: rgba(0, 0, 0, 0.6);
-        &:hover{
+        &:hover {
           background-image: $workout-color;
           color: rgba(0, 0, 0, 0.6);
         }
       }
     }
   }
-  &>#trainingContainer{
-    margin: 0 !important;
-    &>#trainingAccordion{
-      background-color: transparent;
-      box-shadow: none;
-      &>.wodTitle{
-        align-items: center;
-        border-top: 0.1em solid $pink5;
-        display: flex;
-        flex-direction: row;
-        &>.icon {
-          color: $pink3;
-          font-size: 1.5em;
-        }
-        &>.wodHeader{
-          color: white;
-          display: block;
-          font-family: $cabin;
-          font-size: 0.9em;
-          padding: 0 1em;
-        }
+}
+#trainingContainer {
+  margin: 0 !important;
+  & > #trainingAccordion {
+    background-color: transparent;
+    box-shadow: none;
+    & > .wodTitle {
+      align-items: center;
+      border-top: 0.1em solid $pink5;
+      display: flex;
+      flex-direction: row;
+      & > .icon {
+        color: $pink3;
+        font-size: 1.5em;
       }
-      &>.wodAccordion{
-        padding: 0;
-        &>.wodContainer{
-          margin: 0.5em 0 !important;
-          &>.imageWod>img{
-            width: 10em;
-          }
-          &>.contentWod{
-            margin-bottom: 1em;
-            &>p{
-              color: white;
-              font-size : 0.9em;
-              line-height: 1.2em;
-              margin: 0 0 1em;
-
-            }
+      & > .wodHeader {
+        color: white;
+        display: block;
+        font-family: $cabin;
+        font-size: 0.9em;
+        padding: 0 1em;
+      }
+    }
+    & > .wodAccordion {
+      padding: 0;
+      & > .wodContainer {
+        margin: 0.5em 0 !important;
+        & > .imageWod > img {
+          width: 10em;
+        }
+        & > .contentWod {
+          margin-bottom: 1em;
+          & > p {
+            color: white;
+            font-size: 0.9em;
+            line-height: 1.2em;
+            margin: 0 0 1em;
           }
         }
       }
@@ -114,46 +117,46 @@
   }
 }
 
-@media (min-width: 768px){
-  #workoutContainer{
-    &>#workoutButtonSegment{
+@media (min-width: 768px) {
+  #workoutContainer {
+    & > #workoutButtonSegment {
       margin: 0 auto 0.8em;
       max-width: 22em;
-      &>.button{
+      & > .button {
         font-size: 0.8em;
         margin: 0.2em;
         padding: 0.5em;
-        &:hover{
+        &:hover {
           background-color: rgb(43, 42, 42);
           color: #fff;
         }
-        &#cancelButton{
-          &:hover{
-              background: transparent;
-              border: 1px solid $pink2;
-              color: $pink2;
+        &#cancelButton {
+          &:hover {
+            background: transparent;
+            border: 1px solid $pink2;
+            color: $pink2;
           }
         }
       }
     }
-    &>#trainingContainer{
-      &>#trainingAccordion{
-        &>.wodTitle{
-          clear: left;
-          &>.header.wodHeader{
-            font-size: 1.1em;
-          }
+  }
+  #trainingContainer {
+    & > #trainingAccordion {
+      & > .wodTitle {
+        clear: left;
+        & > .header.wodHeader {
+          font-size: 1.1em;
         }
-        &>.wodAccordion{
-          min-height: 8em;
-          &>.wodContainer{
-            display: flex;
-            flex-direction: row;
-            &>.imageWod{
-              float: left;
-              margin-right: 1em;
-              width: 10em;
-            }
+      }
+      & > .wodAccordion {
+        min-height: 8em;
+        & > .wodContainer {
+          display: flex;
+          flex-direction: row;
+          & > .imageWod {
+            float: left;
+            margin-right: 1em;
+            width: 10em;
           }
         }
       }
@@ -161,11 +164,11 @@
   }
 }
 
-@media (min-width: 1024px){
-  #workoutContainer{
-    &>#workoutButtonSegment{
+@media (min-width: 1024px) {
+  #workoutContainer {
+    & > #workoutButtonSegment {
       max-width: 26em;
-      &>.button{
+      & > .button {
         font-size: 0.9em;
         margin: 0.3em;
         padding: 0.6em;

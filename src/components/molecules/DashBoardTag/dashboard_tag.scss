@@ -17,10 +17,6 @@
     border-radius: 0.15em;
     height: 0.3em;
     width: 100%;
-
-    &#goal {
-      background-image: $goals-color;
-    }
     &#foodplan {
       background-image: $mealPlan-color;
     }
@@ -52,10 +48,6 @@
       position: relative;
       top: 10%;
       -webkit-text-fill-color: transparent;
-    }
-
-    & > #goalIcon {
-      background-image: $goals-color;
     }
     & > #foodplanIcon {
       background-image: $mealPlan-color;

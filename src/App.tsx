@@ -1,7 +1,6 @@
 // == Import : npm
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Container } from "semantic-ui-react";
 
 // == Import : local
 import { useAppDistpatch, useAppSelector } from "@/hooks/store.hook";
@@ -14,6 +13,7 @@ import Contact from "@/pages/Contact/Contact";
 import { Error } from "@/pages/Error/Error";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import "./app.scss";
+import { StyledApp, StyledMain } from "./App.style";
 
 export const App: React.FC = () => {
   const dispatch = useAppDistpatch();
@@ -41,7 +41,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <Container id="app" className="globalContainer">
+    <StyledApp flexDirection="column" padding="0 12px" width="100%">
       <Header
         gap={12}
         logged={logged}
@@ -49,13 +49,16 @@ export const App: React.FC = () => {
         menuItemsGap={30}
         logOut={handleLogout}
       />
-      <Container id="mainContainer">
+      <StyledMain>
         <Routes>
           <Route
             path="/"
             element={logged ? <Navigate replace to="/dashboard" /> : <LogIn />}
           />
-          {!logged && <Route path="/signup" element={<SignUp />} />}
+          <Route
+            path="/signup"
+            element={logged ? <Navigate replace to="/dashboard" /> : <SignUp />}
+          />
           <Route
             path="/dashboard/*"
             element={logged ? <Dashboard /> : <Navigate replace to="/" />}
@@ -64,8 +67,8 @@ export const App: React.FC = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Error />} />
         </Routes>
-      </Container>
+      </StyledMain>
       <Footer />
-    </Container>
+    </StyledApp>
   );
 };

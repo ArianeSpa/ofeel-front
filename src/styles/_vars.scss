@@ -1,32 +1,32 @@
 //FONTS
-$pacifico: 'Pacifico', cursive;
-$livvic: 'Livvic', sans-serif;
-$cabin: 'Cabin', sans-serif;
+$pacifico: "Pacifico", cursive;
+$livvic: "Livvic", sans-serif;
+$cabin: "Cabin", sans-serif;
 
 //COLORS
-$yellow1:#ff8a00;
-$yellow2:#fda406;
-$yellow3:#f9bb1d;
-$yellow4:#f4d236;
-$yellow5:#eee851;
+$yellow1: #ff8a00;
+$yellow2: #fda406;
+$yellow3: #f9bb1d;
+$yellow4: #f4d236;
+$yellow5: #eee851;
 
-$green1:#0aa497;
-$green2:#00bb9d;
-$green3:#00d29c;
-$green4:#00e994;
-$green5:#00ff85;
+$green1: #0aa497;
+$green2: #00bb9d;
+$green3: #00d29c;
+$green4: #00e994;
+$green5: #00ff85;
 
-$blue1:#177bdd;
-$blue2:#2d85df;
-$blue3:#3f8fe1;
-$blue4:#5099e2;
-$blue5:#61a3e3;
+$blue1: #177bdd;
+$blue2: #2d85df;
+$blue3: #3f8fe1;
+$blue4: #5099e2;
+$blue5: #61a3e3;
 
-$pink1:#ff0022;
-$pink2:#ff0059;
-$pink3:#ff008b;
-$pink4:#ff3cba;
-$pink5:#e361e3;
+$pink1: #ff0022;
+$pink2: #ff0059;
+$pink3: #ff008b;
+$pink4: #ff3cba;
+$pink5: #e361e3;
 
 $bg1: #480773;
 $bg2: #3f1e80;
@@ -39,14 +39,46 @@ $bg8: #50b1b9;
 $bg9: #a2e9f0;
 
 //DASHBOARD
-$background-color-body: linear-gradient(to bottom, $bg1, $bg2, $bg3, $bg4, $bg5, $bg6, $bg7, $bg8, $bg9, white);
-$background-color-dashboard: radial-gradient(circle,rgba(43, 43, 61, 0.2), rgba(43, 43, 61, 0.3), rgba(43, 43, 61, 0.4), rgba(43, 43, 61, 0.5), rgba(43, 43, 61, 0.6));
-$background-color-tag:linear-gradient(to right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-$background-color-tag-mobile:linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-$feeling-color:linear-gradient(to bottom, $yellow1, $yellow2, $yellow3, $yellow4, $yellow5);
-$goals-color:linear-gradient(to bottom, $green1, $green2, $green3, $green4, $green5);
-$mealPlan-color:linear-gradient(to bottom, $blue1, $blue2, $blue3, $blue4, $blue5);
-$workout-color: linear-gradient(to bottom, $pink1, $pink2, $pink3, $pink4, $pink5);
+// Const created and available in app theme but var used in form, see below
+$background-color-dashboard: radial-gradient(
+  circle,
+  rgba(43, 43, 61, 0.2),
+  rgba(43, 43, 61, 0.3),
+  rgba(43, 43, 61, 0.4),
+  rgba(43, 43, 61, 0.5),
+  rgba(43, 43, 61, 0.6)
+);
+$background-color-tag: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.15),
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0.05),
+  rgba(255, 255, 255, 0)
+);
+$background-color-tag-mobile: linear-gradient(
+  to bottom,
+  rgba(255, 255, 255, 0.15),
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0.05),
+  rgba(255, 255, 255, 0)
+);
+
+$mealPlan-color: linear-gradient(
+  to bottom,
+  $blue1,
+  $blue2,
+  $blue3,
+  $blue4,
+  $blue5
+);
+$workout-color: linear-gradient(
+  to bottom,
+  $pink1,
+  $pink2,
+  $pink3,
+  $pink4,
+  $pink5
+);
 
 $headerHeight768: 15vh;
 $headerHeight1024: 20vh;
@@ -55,93 +87,74 @@ $mainHeight1024: 68vh;
 $footerHeight768: 12vh;
 $footerHeight1024: 12vh;
 
-
-
-
 ///////////////////// MIXINS /////////////////////
 /* 
 Base pour les boutons tri et label
 de la page articles
 */
 @mixin buttonPostsBase {
-    &.bed{
-        color: $blue3;
-    }
-    &.food{
-        color: $green3;
-    }
-    &.football{
-        color: $pink1;
-    }
-    &.heartbeat{
-        color: $pink4;
-    }
-    &.boxes{
-        color: $yellow1;
-    }
+  &.bed {
+    color: $blue3;
+  }
+  &.food {
+    color: $green3;
+  }
+  &.football {
+    color: $pink1;
+  }
+  &.heartbeat {
+    color: $pink4;
+  }
+  &.boxes {
+    color: $yellow1;
+  }
 }
 
 /* 
 Base pour les formulaires de
 connexion, d'inscription et de contact
 */
-@mixin formSegmentBase{
-    background: none;
-    background-image: $background-color-dashboard;
-    box-shadow:  5px 5px 10px 5px rgba(0, 110, 178, .3);
-    margin: 0 auto;
-    width: 20em;
-    max-width: 100%;
-    padding: 1em 0.5em;
-    height: max-content;
-    max-height: 100%;
-    .fields.formFields{
-        margin: 0 0 1em;
-    }
-    
-    .field.oneField{
-        padding: 0;
-        font-size: 1em;
-        &:focus > .input{
-            border-color: 1px solid $green3;
-        }
-    }
-    .button.submitButton{
-        @include submitButton;
-    }
-    @media (min-width: 768px){
-        overflow-y: scroll;
-        padding: 1em;
-        width: 35em;
-        &::-webkit-scrollbar{
-            width: 0.5em;
+@mixin formSegmentBase {
+  background: none;
+  background-image: $background-color-dashboard;
+  box-shadow: 5px 5px 10px 5px rgba(0, 110, 178, 0.3);
+  margin: 0 auto;
+  width: 20em;
+  max-width: 100%;
+  padding: 1em 0.5em;
+  height: max-content;
+  max-height: 100%;
+  .fields.formFields {
+    margin: 0 0 1em;
+  }
 
-            &-track{
-                background-color: transparent;
-                border-radius: 5px;
-            }
-            &-thumb{
-                background-image: $mealPlan-color;
-                &:hover{
-                    background-image: $goals-color;
-                }
-            }
-        }
-        .fields.formFields{
-            margin: 0 0.5em 1em;
-            justify-content: space-between;
-        }
-        .field.oneField{
-            width: 15.5em;
-        }
+  .field.oneField {
+    padding: 0;
+    font-size: 1em;
+    &:focus > .input {
+      border-color: 1px solid $green3;
     }
-    @media (min-width: 1024px){
-        margin: 0 auto;
-        width: 45em;
-        .field.oneField{
-            width: 20.5em;
-        }
+  }
+
+  @media (min-width: 768px) {
+    overflow-y: scroll;
+    padding: 1em;
+    width: 35em;
+    .fields.formFields {
+      margin: 0 0.5em 1em;
+      justify-content: space-between;
     }
+    .field.oneField {
+      width: 15.5em;
+    }
+  }
+  @media (min-width: 1024px) {
+    margin: 0 auto;
+    width: 45em;
+    .field.oneField {
+      width: 20.5em;
+    }
+  }
 }
 
 /*
@@ -149,250 +162,211 @@ Base pour les liens
 connexion, inscription
 */
 @mixin links {
-    color:$green3;
-    font-size: 0.8em;
-    text-decoration: underline;
-    &:hover{
-        color:$green5;
-    }
+  color: $green3;
+  font-size: 0.8em;
+  text-decoration: underline;
+  &:hover {
+    color: $green5;
+  }
 }
 
 /* 
 Base pour les header nommés subtitle dans chaque onglet
 */
-@mixin tagSubtitle{
-    font-family: $cabin;
-    font-size: 1.2em;
-    margin: 0 auto 1em;
-    text-align: center;
+@mixin tagSubtitle {
+  font-family: $cabin;
+  font-size: 1.2em;
+  margin: 0 auto 1em;
+  text-align: center;
 }
 
 /* 
 Base pour les containers d'information de chaque onglet
 */
-@mixin information{
-    font-size: 0.9em;
-    margin-bottom: 2em;
-    @media (min-width: 768px){
-        padding: 0 2em 0 0;
-        &>p{
-            margin: 0 0 0.5em;
-        }
+@mixin information {
+  font-size: 0.9em;
+  margin-bottom: 2em;
+  @media (min-width: 768px) {
+    padding: 0 2em 0 0;
+    & > p {
+      margin: 0 0 0.5em;
     }
-    @media (min-width: 1024px){
-        padding: 0 5em 0 2em;
-    }
+  }
+  @media (min-width: 1024px) {
+    padding: 0 5em 0 2em;
+  }
 }
 
 /* 
 Base pour les fenêtres modales d'information 
 Issues du composant MessageModal.js
 */
-@mixin messageModal{
-    animation-duration: 0.3s;
-    animation-name: opacity0to1;
-    animation-timing-function: ease-in-out;
-    >.content{
-        &>p:first-child{
-            margin-right: 1em;
-        }
+@mixin messageModal {
+  animation-duration: 0.3s;
+  animation-name: opacity0to1;
+  animation-timing-function: ease-in-out;
+  > .content {
+    & > p:first-child {
+      margin-right: 1em;
     }
-    &.positive{
-        color: $green1;
-        box-shadow: 0 0 0 1px $green1 inset, 0 0 0 0 transparent;
-    }
-    &.error{
-        color: $pink1;
-        box-shadow: 0 0 0 1px $pink1 inset, 0 0 0 0 transparent;
-    }
-}
-
-
-/* 
-Base pour le boutton de soumission des formulaires connexion, inscription, contact,
-myFeeling, Goal et deconnexion
-*/
-@mixin submitButton {
-    background-image: $feeling-color;
-    border: 1px solid transparent;
-    box-shadow: none;
-    display: block;
-    font-size: 0.9em;
-    margin: 1.5em auto 0.5em;
-    &:hover{
-        background-image: none;
-        background-color: transparent;
-        border: 1px solid $yellow4;
-        color: $yellow4;
-    }
-    @media (min-width: 768px){
-        font-size: 0.8em;
-        // height: 2.5em;
-    }
-    @media (min-width: 1024px){
-        font-size: 0.9em;
-    }
+  }
+  &.positive {
+    color: $green1;
+    box-shadow: 0 0 0 1px $green1 inset, 0 0 0 0 transparent;
+  }
+  &.error {
+    color: $pink1;
+    box-shadow: 0 0 0 1px $pink1 inset, 0 0 0 0 transparent;
+  }
 }
 
 /* 
 Base pour les segments du mealPlan
 */
-@mixin mealplanSegment{
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    flex-direction: row;
-    display: flex;
-    margin: 0 auto 0.8em;
-    max-width: 20em;
-    padding: 0;
+@mixin mealplanSegment {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  flex-direction: row;
+  display: flex;
+  margin: 0 auto 0.8em;
+  max-width: 20em;
+  padding: 0;
 }
 
 /* 
 Base pour les header repas du mealPlan
 */
-@mixin mealplanHeader{
-    font-size: 0.8em;
-    height: unset;
-    margin: 0 2em 0 0;
-    padding: 0;
-    text-transform: uppercase;
-    vertical-align: middle;
+@mixin mealplanHeader {
+  font-size: 0.8em;
+  height: unset;
+  margin: 0 2em 0 0;
+  padding: 0;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 /* 
 Base pour les bouton togle du mealPlan
 */
-@mixin mealplanToggle{
-    font-size: 0.9em;
+@mixin mealplanToggle {
+  font-size: 0.9em;
+  min-height: 0;
+  & > input {
+    &:checked ~ label:after,
+    :checked ~ .box:after {
+      left: 21px;
+    }
+  }
+  & > label {
+    color: white;
+    font-style: italic;
     min-height: 0;
-    &>input{
-        &:checked ~ label:after, :checked ~ .box:after{
-            left: 21px;
-        }
+    padding: 0 0 0 2.8em;
+    &::before {
+      height: 14px;
+      width: 32px;
     }
-    &>label{
-        color: white;
-        font-style: italic;
-        min-height: 0;
-        padding: 0 0 0 2.8em;
-        &::before{
-            height: 14px;
-            width: 32px;
-        }
-        &::after{
-            box-shadow: 0 0 1px black;
-            height: 14px;
-            width: 14px;
-        }
+    &::after {
+      box-shadow: 0 0 1px black;
+      height: 14px;
+      width: 14px;
     }
+  }
 }
 
 /* 
 Base pour les form du mealPlan
 */
-@mixin formMealplan{
-    animation-duration: 0.3s;
-    animation-name: opacity0to1;
-    animation-timing-function: ease-in-out;
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    margin: 0 0.5em 0 auto;
+@mixin formMealplan {
+  animation-duration: 0.3s;
+  animation-name: opacity0to1;
+  animation-timing-function: ease-in-out;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.5em 0 auto;
+  width: max-content;
+  & > .mealFields {
+    border-bottom: 1px dotted $pink4;
+    height: max-content;
+    margin: 0 0 0.5em;
     width: max-content;
-    &>.mealFields{
-        border-bottom: 1px dotted $pink4;
-        height: max-content;
-        margin: 0 0 0.5em;
-        width: max-content;
-        &>.mealLabel{
-            align-self: center;
-            background-color: transparent;
-            color: white;
-            font-size: 0.9em;
-            height: max-content;
-            margin: 0 1em 0 0;
-            padding: 0;
-        }
-        &>.foodDropdown{
-            align-items: center;
-            background-color: transparent;
-            border: none;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            height: max-content;
-            line-height: unset;
-            min-height: 1.8em;
-            padding:  0;
-            width: max-content;
-            &>.text{
-                color: white;
-                font-size: 0.9em;
-                height: max-content;
-                margin: 0 0.7em 0 0;
-            }
-            &>.icon{
-                float: none;
-                margin: 0;
-                padding: 0;
-                position: static;
-            }
-            &>.menu.transition{
-                left: unset;
-                background-color: $bg2;
-                background-image: $background-color-dashboard;
-                border-color: $pink4;
-                max-width: unset;
-                max-height: 15em;
-                min-width: unset;;
-                right: 0;
-                width: 10em;
-                margin: 0;
-                &::-webkit-scrollbar{
-                    width: 5px;
-                    &-track{
-                    background-color: transparent;
-                    border-radius: 2.5px;
-                    }
-                    &-thumb{
-                        background-image: $goals-color;
-                        &:hover{
-                            background-image: $goals-color;
-                        }
-                    }
-                }
-                &>.item{
-                    border-top: 1px dotted $pink4;
-                    color: white;
-                    font-size: 0.9em;
-                    &.active{
-                        background-color: $green3;
-                        color: black;
-                    }
-                }
-            }
-        }
+    & > .mealLabel {
+      align-self: center;
+      background-color: transparent;
+      color: white;
+      font-size: 0.9em;
+      height: max-content;
+      margin: 0 1em 0 0;
+      padding: 0;
     }
-    &>.mealVegAndFruit{
+    & > .foodDropdown {
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      height: max-content;
+      line-height: unset;
+      min-height: 1.8em;
+      padding: 0;
+      width: max-content;
+      & > .text {
+        color: white;
         font-size: 0.9em;
-        font-weight: bold;
-        margin: 0.5em 0 1em;
-        text-align: right;
-    }
-    @media (min-width: 768px){
-        margin: 0 auto;
-    }
-}  
+        height: max-content;
+        margin: 0 0.7em 0 0;
+      }
+      & > .icon {
+        float: none;
+        margin: 0;
+        padding: 0;
+        position: static;
+      }
+      & > .menu.transition {
+        left: unset;
+        background-color: $bg2;
+        background-image: $background-color-dashboard;
+        border-color: $pink4;
+        max-width: unset;
+        max-height: 15em;
+        min-width: unset;
+        right: 0;
+        width: 10em;
+        margin: 0;
 
-
-///////////////////// KEYFRAMES /////////////////////
-@keyframes opacity0to1{
-    from{
-      opacity: 0;
-    }
-    to{
-      opacity: 1;
+        & > .item {
+          border-top: 1px dotted $pink4;
+          color: white;
+          font-size: 0.9em;
+          &.active {
+            background-color: $green3;
+            color: black;
+          }
+        }
+      }
     }
   }
+  & > .mealVegAndFruit {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0.5em 0 1em;
+    text-align: right;
+  }
+  @media (min-width: 768px) {
+    margin: 0 auto;
+  }
+}
+
+///////////////////// KEYFRAMES /////////////////////
+@keyframes opacity0to1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
