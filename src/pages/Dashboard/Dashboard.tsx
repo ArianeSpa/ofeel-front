@@ -20,9 +20,8 @@ export const Dashboard: React.FC = () => {
     <StyledDashboard flexDirection={isDesktop ? "row" : "column"}>
       <DashBoardTabs />
       <Flex
-        width="100%"
         padding="20px"
-        style={{ overflow: "hidden", height: "100%" }}
+        style={{ overflow: "hidden", height: "100%", width: "100%" }}
       >
         <Routes>
           <Route path="/" element={<Welcome />} />

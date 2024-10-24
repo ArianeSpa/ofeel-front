@@ -44,7 +44,8 @@ export const StyledTabMenuItem = styled.a.withConfig(
 `;
 
 const forwardBorderConfig = {
-  shouldForwardProp: (prop: string) => !["gradientColor"].includes(prop),
+  shouldForwardProp: (prop: string) =>
+    !["gradientColor", "isDesktop"].includes(prop),
 };
 type StyledBorderProps = {
   theme?: MainTheme;

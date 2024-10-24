@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
   padding: 1.5em 0.5em 0.5em;
+  width: 100%;
+
   & > #goalInformation {
     @include information();
   }
