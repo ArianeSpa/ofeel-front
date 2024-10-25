@@ -4,73 +4,70 @@
   margin: 1em 0 !important;
   width: 100%;
 
-  & > #postsContainer {
-    margin: 0 !important;
-    & > .accordion {
-      & > .title.titleBox {
-        align-items: center;
-        color: $blue5;
-        display: flex;
-        flex-direction: row;
-        font-size: 0.6em;
-        justify-content: space-between;
-        padding: 0.5em;
-        & > .dropdown.icon {
-          color: $green1;
-        }
-        &:hover {
-          background-color: #e8e8e8;
-          color: $green1;
-          & > .labelPost {
-            background-color: #fff;
-          }
-        }
-        & > .titlePost {
-          font-size: 0.8em;
-          justify-self: left;
-          margin: 0 auto 0 0;
-          max-width: 60%;
-        }
+  & > .accordion {
+    & > .title.titleBox {
+      align-items: center;
+      color: $blue5;
+      display: flex;
+      flex-direction: row;
+      font-size: 0.6em;
+      justify-content: space-between;
+      padding: 0.5em;
+      & > .dropdown.icon {
+        color: $green1;
+      }
+      &:hover {
+        background-color: #e8e8e8;
+        color: $green1;
         & > .labelPost {
-          align-self: center;
-          font-size: 0.5em;
-          height: 100%;
-          min-width: 30% !important;
-          padding: 0.3em;
-          text-align: center;
-          width: 12%;
-          word-break: break-word;
-          & > i.food {
-            color: $green3;
-          }
-          & > .icon {
-            @include buttonPostsBase();
-          }
+          background-color: #fff;
         }
       }
-      & > .content div {
-        & > h1,
-        & > h2,
-        & > h3,
-        & > h4 {
-          color: black;
-          font-size: 0.6em;
-          margin: 1.5em 0 0.5em;
+      & > .titlePost {
+        font-size: 0.8em;
+        justify-self: left;
+        margin: 0 auto 0 0;
+        max-width: 60%;
+      }
+      & > .labelPost {
+        align-self: center;
+        font-size: 0.5em;
+        height: 100%;
+        min-width: 30% !important;
+        padding: 0.3em;
+        text-align: center;
+        width: 12%;
+        word-break: break-word;
+        & > i.food {
+          color: $green3;
         }
-        & > p {
-          color: black;
-          font-size: 0.5em;
-          line-height: 1.2em;
+        & > .icon {
+          @include buttonPostsBase();
         }
-        & > ul {
-          color: black;
-          font-size: 0.5em;
-          & > li {
-            list-style: square;
-            list-style-position: inside;
-            margin: 1em 0 0.5em;
-            padding-left: 2em;
-          }
+      }
+    }
+    & > .content div {
+      & > h1,
+      & > h2,
+      & > h3,
+      & > h4 {
+        color: black;
+        font-size: 0.6em;
+        margin: 1.5em 0 0.5em;
+      }
+      & > p {
+        color: black;
+        font-size: 0.5em;
+        line-height: 1.2em;
+      }
+      & > ul {
+        color: black;
+        font-size: 0.5em;
+        & > li {
+          list-style: square;
+          list-style-position: inside;
+          margin: 1em 0 0.5em;
+          padding-left: 2em;
         }
       }
     }
@@ -83,33 +80,19 @@
     margin: auto !important;
     width: 20em;
 
-    & > #postsContainer {
-      height: 85%;
-      margin: 0 1em;
-      overflow-y: scroll;
-      &::-webkit-scrollbar {
-        &-track {
-          background-image: $feeling-color;
-          border-radius: 5px;
+    & > .accordion {
+      width: 100%;
+      & > .title.titleBox {
+        font-size: 0.7em;
+        & > .titlePost {
+          max-width: none;
+          width: 80%;
         }
-        &-thumb {
-          background: rgba(0, 0, 0, 0.4);
-        }
-      }
-      & > .accordion {
-        width: 100%;
-        & > .title.titleBox {
+        & > .labelPost {
           font-size: 0.7em;
-          & > .titlePost {
-            max-width: none;
-            width: 80%;
-          }
-          & > .labelPost {
-            font-size: 0.7em;
-            min-width: 18% !important;
-            & > i.food {
-              color: $green3;
-            }
+          min-width: 18% !important;
+          & > i.food {
+            color: $green3;
           }
         }
       }

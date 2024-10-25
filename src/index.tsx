@@ -13,7 +13,7 @@ import { store } from "./store/store";
 import { App } from "./App";
 import { mainTheme } from "./theme/theme";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import "./index.scss";
 import en from "./translations/en.json";
 import fr from "./translations/fr.json";
 

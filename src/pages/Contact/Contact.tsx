@@ -1,8 +1,9 @@
 // == Import : npm
 import React from "react";
-import { Button, Form, Segment, TextArea } from "semantic-ui-react";
+import { Form, Segment, TextArea } from "semantic-ui-react";
 
 // == Import : local
+import { Button } from "@/components";
 import "./contact.scss";
 
 // == Dropdown options
@@ -48,9 +49,7 @@ const Contact = () => (
           placeholder="Votre message"
         />
       </Form.Group>
-      <Button type="submit" className="submitButton">
-        Envoyer
-      </Button>
+      <Button type="submit">Envoyer</Button>
     </Form>
   </Segment>
 );

@@ -5,7 +5,6 @@ import {
   Segment,
   Form,
   Dropdown,
-  Button,
   Container,
   CheckboxProps,
   DropdownProps,
@@ -32,6 +31,7 @@ import {
   MessageModal,
   ModalConfigEnum,
   ModalConfigModel,
+  Button,
 } from "@/components";
 import "./profile.scss";
 
@@ -209,7 +209,7 @@ export const Profile: React.FC = () => {
             />
           ))}
         </Form.Group>
-        <Button id="myfeelingButton" type="submit" disabled={!isFormValid}>
+        <Button type="submit" disabled={!isFormValid}>
           Enregistrer
         </Button>
       </Form>

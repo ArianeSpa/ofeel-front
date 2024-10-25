@@ -5,7 +5,6 @@ import {
   Form,
   Radio,
   Checkbox,
-  Button,
   Image,
   Segment,
   Container,
@@ -23,7 +22,12 @@ import iconGluten from "@/assets/icon/gluten.png";
 import iconNutrition from "@/assets/icon/nutrition.png";
 import { GoalEnum } from "@/models/profil.model";
 import { getProportion } from "@/utils/setProportion";
-import { MessageModal, ModalConfigEnum, ModalConfigModel } from "@/components";
+import {
+  Button,
+  MessageModal,
+  ModalConfigEnum,
+  ModalConfigModel,
+} from "@/components";
 import "./goal.scss";
 
 // == Composant
@@ -163,7 +167,7 @@ export const Goal: React.FC = () => {
             <Image className="foodPrefIcon" src={iconSalad} />
           </Form.Field>
         </Form.Group>
-        <Button id="goalButton" type="submit" disabled={!goal}>
+        <Button type="submit" disabled={!goal}>
           Enregistrer
         </Button>
       </Form>

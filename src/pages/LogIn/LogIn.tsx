@@ -2,7 +2,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  Button,
   Form,
   Segment,
   Container,
@@ -16,12 +15,14 @@ import {
   ModalHeader,
   ModalContent,
   ModalActions,
+  Button as SemanticButton,
 } from "semantic-ui-react";
 
 // == Import : local
 import { useAppDistpatch } from "@/hooks/store.hook";
 import { logIn } from "@/store/reducers/user.slice";
 import "./form.scss";
+import { Button } from "@/components";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -108,9 +109,7 @@ export const LogIn: React.FC = () => {
             onChange={handleRememberMe}
           />
         </FormGroup>
-        <Button type="submit" className="submitButton">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </Form>
 
       {/**  @todo add user info in case of login error */}
@@ -124,9 +123,9 @@ export const LogIn: React.FC = () => {
           <p>Message</p>
         </ModalContent>
         <ModalActions>
-          <Button positive onClick={() => setOpenErrorModal(false)}>
+          <SemanticButton positive onClick={() => setOpenErrorModal(false)}>
             OK
-          </Button>
+          </SemanticButton>
         </ModalActions>
       </Modal>
 

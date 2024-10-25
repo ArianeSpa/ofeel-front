@@ -20,6 +20,7 @@ import setImageWorkout from "@/utils/setImageWorkout";
 import { WorkoutSubjectEnum } from "@/models/reducer.model";
 import { workouts } from "@/datas/workouts";
 import { WorkoutModel } from "@/models/workout.model";
+import { StyledWorkoutList } from "./WorkoutList.style";
 
 // == Composant
 export const WorkoutList: React.FC = () => {
@@ -137,45 +138,47 @@ export const WorkoutList: React.FC = () => {
           </Button>
         )}
       </Segment>
-      <Container stackable="true" id="trainingContainer">
-        <Accordion fluid styled id="trainingAccordion">
-          {workoutToShow.map((currentWorkout) => (
-            <React.Fragment key={currentWorkout.id}>
-              <Accordion.Title
-                active={activeIndex === currentWorkout.id}
-                className="wodTitle"
-                index={currentWorkout.id}
-                onClick={displayContent}
-              >
-                <Icon name="dropdown" />
-                <Item.Header className="wodHeader">
-                  {currentWorkout.title}
-                </Item.Header>
-              </Accordion.Title>
-              <Accordion.Content
-                active={activeIndex === currentWorkout.id}
-                className="wodAccordion"
-              >
-                <Container className="wodContainer">
-                  <Image
-                    className="imageWod"
-                    spaced="left"
-                    src={setImageWorkout(currentWorkout.slug)}
-                    ui={false}
-                    wrapped
-                  />
-                  <div
-                    className="contentWod"
-                    dangerouslySetInnerHTML={createMarkup(
-                      currentWorkout.content
-                    )}
-                  />
-                </Container>
-              </Accordion.Content>
-            </React.Fragment>
-          ))}
-        </Accordion>
-      </Container>
+      <StyledWorkoutList>
+        <Container stackable="true" id="trainingContainer">
+          <Accordion fluid styled id="trainingAccordion">
+            {workoutToShow.map((currentWorkout) => (
+              <React.Fragment key={currentWorkout.id}>
+                <Accordion.Title
+                  active={activeIndex === currentWorkout.id}
+                  className="wodTitle"
+                  index={currentWorkout.id}
+                  onClick={displayContent}
+                >
+                  <Icon name="dropdown" />
+                  <Item.Header className="wodHeader">
+                    {currentWorkout.title}
+                  </Item.Header>
+                </Accordion.Title>
+                <Accordion.Content
+                  active={activeIndex === currentWorkout.id}
+                  className="wodAccordion"
+                >
+                  <Container className="wodContainer">
+                    <Image
+                      className="imageWod"
+                      spaced="left"
+                      src={setImageWorkout(currentWorkout.slug)}
+                      ui={false}
+                      wrapped
+                    />
+                    <div
+                      className="contentWod"
+                      dangerouslySetInnerHTML={createMarkup(
+                        currentWorkout.content
+                      )}
+                    />
+                  </Container>
+                </Accordion.Content>
+              </React.Fragment>
+            ))}
+          </Accordion>
+        </Container>
+      </StyledWorkoutList>
     </Container>
   );
 };

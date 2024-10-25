@@ -5,3 +5,5 @@ export * from "./ButtonIcon/ButtonIcon";
 export * from "./Flex/Flex";
 export * from "./Logo/Logo";
 export * from "./NavMenuItem/NavMenuItem";
+export * from "./SVGGradient/SVGGradient";
+export * from "./SVGGradientIcon/SVGGradientIcon";
