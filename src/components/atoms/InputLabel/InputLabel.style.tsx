@@ -2,17 +2,21 @@ import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
 const forwardConfig = {
-  shouldForwardProp: (prop: string) => !["fontSize", "required"].includes(prop),
+  shouldForwardProp: (prop: string) =>
+    !["fontSize", "required", "error"].includes(prop),
 };
 export type StyledInputLabelProps = {
   theme?: MainTheme;
   fontSize?: number;
   required?: boolean;
+  error?: boolean;
 };
 export const StyledInputLabel = styled.label.withConfig(
   forwardConfig
 )<StyledInputLabelProps>`
-  color: ${({ theme }: StyledInputLabelProps) => theme?.color.grey.g5};
+  display: block;
+  color: ${({ theme, error }: StyledInputLabelProps) =>
+    error ? theme?.color.pink.p5 : theme?.color.grey.g5};
   font-size: ${({ fontSize }: StyledInputLabelProps) =>
     fontSize ? `${fontSize}px` : "inherit"};
   font-weight: 600;

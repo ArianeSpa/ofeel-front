@@ -10,10 +10,11 @@ type InputDescriptionProps = {
 } & StyledInputDescriptionProps;
 export const InputDescription: React.FC<InputDescriptionProps> = ({
   description,
+  error,
   ...props
 }) => {
   return (
-    <StyledInputDescription {...props}>
+    <StyledInputDescription error={error} {...props}>
       {capitalize(description)}
     </StyledInputDescription>
   );

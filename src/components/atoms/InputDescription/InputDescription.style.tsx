@@ -1,30 +1,20 @@
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
-type GetColorProps = {
-  status?: StyledInputDescriptionProps["status"];
-  theme?: MainTheme;
-};
-const getColor = ({ status, theme }: GetColorProps) => {
-  switch (status) {
-    case "error":
-      return theme?.color.pink.p5;
-    case "info":
-      return theme?.color.blue.b5;
-    default:
-      return theme?.color.grey.g5;
-  }
-};
 const forwardConfig = {
-  shouldForwardProp: (prop: string) => !["status"].includes(prop),
+  shouldForwardProp: (prop: string) => !["error"].includes(prop),
 };
 export type StyledInputDescriptionProps = {
   theme?: MainTheme;
-  status?: "error" | "info";
+  error?: boolean;
 };
 export const StyledInputDescription = styled.span.withConfig(
   forwardConfig
 )<StyledInputDescriptionProps>`
-  color: ${({ status, theme }: StyledInputDescriptionProps) =>
-    getColor({ status, theme })};
+  display: block;
+  color: ${({ theme, error }: StyledInputDescriptionProps) =>
+    error ? theme?.color.pink.p5 : theme?.color.grey.g5};
+  width: 100%;
+  font-size: 0.85em;
+  font-style: italic;
 `;
