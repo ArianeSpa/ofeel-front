@@ -3,6 +3,7 @@ export * from "./Button/Button";
 export * from "./ButtonBurger/ButtonBurger";
 export * from "./ButtonIcon/ButtonIcon";
 export * from "./Flex/Flex";
+export * from "./InputLabel/InputLabel";
 export * from "./Logo/Logo";
 export * from "./NavMenuItem/NavMenuItem";
 export * from "./SVGGradient/SVGGradient";
