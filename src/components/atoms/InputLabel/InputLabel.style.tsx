@@ -18,7 +18,7 @@ export const StyledInputLabel = styled.label.withConfig(
   font-weight: 600;
   &::after {
     content: ${({ required }: StyledInputLabelProps) => required && `'*'`};
-    color: ${({ theme }: StyledInputLabelProps) => theme?.color.pink.p1};
+    color: ${({ theme }: StyledInputLabelProps) => theme?.color.pink.p5};
     vertical-align: top;
     display: inmine-block;
     margin-left: 3px;
