@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
@@ -10,7 +11,7 @@ export type StyledInputLabelProps = {
   fontSize?: number;
   required?: boolean;
   error?: boolean;
-};
+} & HTMLAttributes<HTMLLabelElement>;
 export const StyledInputLabel = styled.label.withConfig(
   forwardConfig
 )<StyledInputLabelProps>`

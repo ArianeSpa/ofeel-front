@@ -1,4 +1,7 @@
+// == Import : npm
 import { capitalize } from "lodash";
+
+// == Import : local
 import { StyledInputLabel, StyledInputLabelProps } from "./InputLabel.style";
 
 type InputLabelProps = {
