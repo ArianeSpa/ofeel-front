@@ -53,9 +53,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <Flex as="footer" flexDirection="column" gap={2}>
+    <Flex as="footer" gap={2}>
       <StyledCopyright>&copy; O'Feel d'Ariane 2024</StyledCopyright>
-      <Flex gap={10}>
+      <Flex flexDirection="row" gap={10}>
         {socials.map(({ url, name, ...props }) => (
           <ButtonIcon
             ariaLabel={name}
