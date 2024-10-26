@@ -1,14 +1,12 @@
 // == Import : npm
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import {
   Form,
   Segment,
   Container,
-  Icon,
-  InputOnChangeData,
   FormGroup,
-  FormInput,
   FormCheckbox,
   CheckboxProps,
   Modal,
@@ -22,7 +20,7 @@ import {
 import { useAppDistpatch } from "@/hooks/store.hook";
 import { logIn } from "@/store/reducers/user.slice";
 import "./form.scss";
-import { Button } from "@/components";
+import { Button, Flex, FormInput } from "@/components";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -45,11 +43,8 @@ export const LogIn: React.FC = () => {
     setUsername(event.target.value);
   };
 
-  const handlePassword = (
-    _event: ChangeEvent<HTMLInputElement>,
-    data: InputOnChangeData
-  ) => {
-    setPassword(data.value);
+  const handlePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
   };
 
   const handleRememberMe = (
@@ -70,38 +65,31 @@ export const LogIn: React.FC = () => {
   };
   return (
     <Segment id="loginSegment">
-      <Form inverted onSubmit={authenticate}>
-        <FormGroup widths={2} className="formFields" id="loginFields">
-          <FormInput
-            required
-            id="username"
-            className="oneField"
-            label="Pseudo"
-            placeholder="Saisissez votre pseudo"
-            type="text"
-            value={username}
-            onChange={handleUsername}
-          />
+      <Flex gap={20} width="100%">
+        <FormInput
+          required
+          id="username-input"
+          label="Pseudo"
+          placeholder="Saisissez votre pseudo"
+          value={username}
+          onChange={handleUsername}
+        />
+        <FormInput
+          required
+          id="password-input"
+          label="Mot de passe"
+          placeholder="Saisissez votre mot de passe"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          iconPosition="left"
+          icon={showPassword ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
+          onChange={handlePassword}
+          onIconClick={handleShowPassword}
+        />
+      </Flex>
 
-          <FormInput
-            required
-            id="password"
-            className="oneField"
-            label="Mot de passe"
-            placeholder="Saisissez votre mot de passe"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            icon={
-              <Icon
-                link
-                id="showLoginPassword"
-                name={showPassword ? "eye slash" : "eye"}
-                onClick={handleShowPassword}
-              />
-            }
-            onChange={handlePassword}
-          />
-        </FormGroup>
+      <Form inverted onSubmit={authenticate}>
+        <FormGroup widths={2} className="formFields" id="loginFields" />
         <FormGroup className="formFields">
           <FormCheckbox
             label="Se souvenir de moi"

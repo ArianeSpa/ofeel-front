@@ -42,7 +42,7 @@ export const StyledInputBase = styled.span.withConfig(
     justify-content: center;
     color: ${({ theme, disabled }: StyledInputBaseProps) =>
       disabled ? theme?.color.grey.g4 : theme?.color.grey.g1};
-
+    opacity: 0.5;
     &:hover {
       opacity: ${({ clickableIcon, disabled }: StyledInputBaseProps) =>
         clickableIcon && !disabled ? 1 : 0.5};
@@ -63,7 +63,6 @@ export const StyledInputBase = styled.span.withConfig(
     width: 100%;
     font-size: 16px;
 
-    padding-top: 4px;
     padding-right: ${({ hasIcon, iconPosition }: StyledInputBaseProps) =>
       hasIcon && iconPosition === "right" ? "35px" : "10px"};
     padding-left: ${({ hasIcon, iconPosition }: StyledInputBaseProps) =>
@@ -81,6 +80,9 @@ export const StyledInputBase = styled.span.withConfig(
         `inset 0 0 1px 2px ${
           error ? theme?.color.pink.p5 : theme?.color.blue.b5
         }`};
+    }
+    &[type="password"] {
+      padding-top: 4px;
     }
   }
 `;
