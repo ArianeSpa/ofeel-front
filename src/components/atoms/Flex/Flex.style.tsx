@@ -35,7 +35,7 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
   justify-content: ${({ justifyContent }: StyledFlexProps) =>
     justifyContent || "center"};
   flex-direction: ${({ flexDirection }: StyledFlexProps) =>
-    flexDirection || "row"};
+    flexDirection || "column"};
   flex-wrap: ${(props) => props.flexWrap};
   gap: ${({ gap }: StyledFlexProps) => `${gap || 0}px`};
   width: ${({ width }: StyledFlexProps) => width};

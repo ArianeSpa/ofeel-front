@@ -27,6 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <Flex
       as="header"
+      flexDirection="row"
       justifyContent="space-between"
       width="100%"
       padding="8px 0"
@@ -36,7 +37,12 @@ export const Header: React.FC<HeaderProps> = ({
         <Logo />
       </NavMenuItem>
       {isDesktop ? (
-        <Flex width="100%" justifyContent="space-between" as="nav">
+        <Flex
+          width="100%"
+          flexDirection="row"
+          justifyContent="space-between"
+          as="nav"
+        >
           <NavBar menuItems={menuItems} gap={menuItemsGap} />
           {logged && (
             <Button type="submit" onClick={logOut}>

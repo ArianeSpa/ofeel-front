@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import { StyledButtonIcon, StyledButtonIconProps } from "./ButtonIcon.style";
 
 export type ButtonIconProps = {
-  ariaLabel: string; // accessibility requirement
+  ariaLabel?: string;
   icon: ReactNode;
   onClick?: () => void;
 } & Omit<StyledButtonIconProps, "theme">;
@@ -17,6 +17,11 @@ export const ButtonIcon: React.FC<ButtonIconProps> = ({
   onClick,
   ...styledProps
 }) => {
+  if (!ariaLabel) {
+    console.warn(
+      "According to accessibility rules, FormInput should receive at least a label or an aria-label"
+    );
+  }
   return (
     <StyledButtonIcon
       aria-label={ariaLabel}

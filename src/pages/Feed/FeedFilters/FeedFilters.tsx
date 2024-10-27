@@ -21,7 +21,7 @@ export const FeedFilters: React.FC<FeedFiltersProps> = ({
 }) => {
   const { isSmartphone } = useWindowSize();
   return (
-    <Flex gap={4} justifyContent="flex-end">
+    <Flex flexDirection="row" gap={4} justifyContent="flex-end">
       {hasOneFilter && (
         <Button onClick={resetFilters}>
           {isSmartphone ? "Effacer" : "Effacer les filtres"}
