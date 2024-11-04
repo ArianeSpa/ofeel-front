@@ -1,5 +1,5 @@
 // == Import : npm
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ import {
   FormCheckbox,
   FormInput,
 } from "@/components";
-import { StyledForm } from "./Login.style";
+import { StyledForm } from "./LogIn.style";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -47,7 +47,8 @@ export const LogIn: React.FC = () => {
     setShowPassword((state) => !state);
   };
 
-  const authenticate = () => {
+  const authenticate = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (username && password) {
       dispatch(logIn({ username, password, rememberMe }));
     }
