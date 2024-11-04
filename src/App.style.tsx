@@ -10,6 +10,7 @@ export const StyledApp = styled(Flex)<StyledAppProps>`
   height: 100%;
   margin: 0;
   overflow: hidden;
+  box-sizing: border-box;
 `;
 
 export const StyledMain = styled.main<StyledAppProps>`

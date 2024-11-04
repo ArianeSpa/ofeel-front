@@ -3,7 +3,8 @@ import { MainTheme } from "@/theme/theme";
 
 export type StyledFlexProps = {
   theme?: MainTheme;
-  alignItems?: string;
+  alignItems?: string | undefined;
+  backgroundColor?: string;
   flexDirection?: string;
   flexWrap?: string;
   flexGrow?: number;
@@ -13,11 +14,11 @@ export type StyledFlexProps = {
   padding?: string | number;
   width?: string;
 };
-
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
     ![
       "alignItems",
+      "backgroundColor",
       "flexDirection",
       "flexWrap",
       "flexGrow",
@@ -40,6 +41,9 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
   gap: ${({ gap }: StyledFlexProps) => `${gap || 0}px`};
   width: ${({ width }: StyledFlexProps) => width};
   padding: ${({ padding }: StyledFlexProps) => padding || 0};
+  background-color: ${({ backgroundColor }: StyledFlexProps) =>
+    backgroundColor || "inherit"};
+  box-sizing: border-box;
 
   ${({ flexGrow }: StyledFlexProps) =>
     flexGrow ? `flex-grow: ${flexGrow};` : ""}
