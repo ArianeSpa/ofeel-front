@@ -1,4 +1,7 @@
-import { HtmlHTMLAttributes, ReactNode } from "react";
+// == Import : npm
+import { ReactNode } from "react";
+
+// == Import : local
 import { StyledInputBaseProps, StyledInputBase } from "./InputBase.style";
 
 export type InputBaseProps = {
@@ -7,8 +10,7 @@ export type InputBaseProps = {
   value?: any;
   type?: string;
   onIconClick?: () => void;
-} & StyledInputBaseProps &
-  HtmlHTMLAttributes<HTMLInputElement>;
+} & Omit<StyledInputBaseProps, "theme">;
 export const InputBase: React.FC<InputBaseProps> = ({
   disabled,
   error,

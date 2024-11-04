@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { get } from "lodash";
 import { ColorThemeKeys, MainTheme } from "@/theme/theme";
 
+const forwardConfig = {
+  shouldForwardProp: (prop: string) =>
+    !["color", "fontSize", "fontStyle", "margin"].includes(prop),
+};
 type StyledTypoProps = {
   theme?: MainTheme;
   color?: ColorThemeKeys;
@@ -9,7 +13,7 @@ type StyledTypoProps = {
   fontStyle?: string;
   margin?: string;
 };
-export const StyleTypo = styled.p<StyledTypoProps>`
+export const StyleTypo = styled.p.withConfig(forwardConfig)<StyledTypoProps>`
   color: ${({ color, theme }: StyledTypoProps) =>
     color ? get(theme?.color, color) : "inherit"};
   font-style: ${({ fontStyle }: StyledTypoProps) => fontStyle || "none"};

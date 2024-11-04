@@ -3,7 +3,7 @@ import { MainTheme } from "@/theme/theme";
 
 export type StyledFlexProps = {
   theme?: MainTheme;
-  alignItems?: string | undefined;
+  alignItems?: string;
   backgroundColor?: string;
   flexDirection?: string;
   flexWrap?: string;

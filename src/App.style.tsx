@@ -7,7 +7,7 @@ type StyledAppProps = {
 };
 export const StyledApp = styled(Flex)<StyledAppProps>`
   background-image: ${({ theme }: StyledAppProps) => theme?.gradient.body};
-  height: 100%;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;

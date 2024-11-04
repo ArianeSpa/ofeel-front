@@ -1,4 +1,7 @@
+// == Import : npm
 import { capitalize } from "lodash";
+
+// == Import : local
 import {
   StyledInputDescription,
   StyledInputDescriptionProps,
@@ -7,14 +10,13 @@ import {
 type InputDescriptionProps = {
   description: string;
   id: string;
-} & StyledInputDescriptionProps;
+} & Omit<StyledInputDescriptionProps, "theme">;
 export const InputDescription: React.FC<InputDescriptionProps> = ({
   description,
-  error,
   ...props
 }) => {
   return (
-    <StyledInputDescription error={error} {...props}>
+    <StyledInputDescription {...props}>
       {capitalize(description)}
     </StyledInputDescription>
   );

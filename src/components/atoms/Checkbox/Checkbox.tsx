@@ -1,4 +1,7 @@
+// == Import : npm
 import { FaCheck } from "react-icons/fa";
+
+// == Import : local
 import { StyledCheckbox, StyledCheckboxProps } from "./Checkbox.style";
 import { useTheme } from "@/theme/theme";
 

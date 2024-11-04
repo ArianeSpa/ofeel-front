@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
+const forwardConfig = {
+  shouldForwardProp: (prop: string) => !["checked"].includes(prop),
+};
 export type StyledFormTemplateProps = {
   theme?: MainTheme;
   width?: string;
 };
-export const StyledFormTemplate = styled.form<StyledFormTemplateProps>`
+export const StyledFormTemplate = styled.form.withConfig(
+  forwardConfig
+)<StyledFormTemplateProps>`
   background-image: ${({ theme }: StyledFormTemplateProps) =>
     theme?.gradient.dashboard};
   max-width: ${({ width }: StyledFormTemplateProps) => width || "350px"};

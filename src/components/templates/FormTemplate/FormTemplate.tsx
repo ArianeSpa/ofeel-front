@@ -17,7 +17,7 @@ type FormTemplateProps = {
     to: string;
   };
   onSubmit: () => void;
-} & StyledFormTemplateProps;
+} & Omit<StyledFormTemplateProps, "theme">;
 export const FormTemplate: React.FC<FormTemplateProps> = ({
   buttonLabel,
   children,

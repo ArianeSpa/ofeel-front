@@ -5,7 +5,7 @@ const forwardConfig = {
   shouldForwardProp: (prop: string) => !["open"].includes(prop),
 };
 
-export type StyledBurgerMenuProps = {
+type StyledBurgerMenuProps = {
   theme?: MainTheme;
   open?: boolean;
 };

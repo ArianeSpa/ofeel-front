@@ -1,4 +1,7 @@
+// == Import : npm
 import { useTranslation } from "react-i18next";
+
+// == Import : local
 import { StyledButtonBurger } from "./ButtonBurger.style";
 
 type ButtonBurgerProps = {

@@ -22,4 +22,8 @@ export const StyledCheckbox = styled.button.withConfig(
   background-color: ${({ theme }: StyledCheckboxProps) => theme?.color.grey.g5};
   border: ${({ theme, checked }: StyledCheckboxProps) =>
     `2px solid ${checked ? theme?.color.blue.b1 : theme?.color.grey.g4}`};
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
 `;
