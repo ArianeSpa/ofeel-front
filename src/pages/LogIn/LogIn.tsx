@@ -1,19 +1,11 @@
 // == Import : npm
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // == Import : local
 import { useAppDistpatch } from "@/hooks/store.hook";
 import { logIn } from "@/store/reducers/user.slice";
-import {
-  Button,
-  CustomLink,
-  Flex,
-  FormCheckbox,
-  FormInput,
-} from "@/components";
-import { StyledForm } from "./LogIn.style";
+import { Flex, FormCheckbox, FormInput, FormTemplate } from "@/components";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -47,15 +39,19 @@ export const LogIn: React.FC = () => {
     setShowPassword((state) => !state);
   };
 
-  const authenticate = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const authenticate = () => {
     if (username && password) {
       dispatch(logIn({ username, password, rememberMe }));
     }
   };
+
+  const link = {
+    to: "./signup",
+    label: "Pas encore inscrit ? Créez un compte !",
+  };
   return (
-    <StyledForm onSubmit={authenticate}>
-      <Flex gap={20} width="100%" alignItems="start" padding="20px 30px">
+    <FormTemplate buttonLabel="Submit" link={link} onSubmit={authenticate}>
+      <Flex gap={20} width="100%" alignItems="start">
         <FormInput
           required
           id="username-input"
@@ -83,14 +79,8 @@ export const LogIn: React.FC = () => {
           onChange={handleRememberMe}
         />
       </Flex>
-      <Flex gap={6} padding="20px 0px">
-        <Button type="submit">Submit</Button>
-        <CustomLink as={NavLink} to="/signup">
-          Pas encore inscrit ? Créez un compte !
-        </CustomLink>
-      </Flex>
 
       {/**  @todo add toaster */}
-    </StyledForm>
+    </FormTemplate>
   );
 };

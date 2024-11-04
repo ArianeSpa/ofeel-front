@@ -1,0 +1,43 @@
+// == Import : npm
+import { FormEvent, ReactNode } from "react";
+import { NavLink } from "react-router-dom";
+
+// == Import : local
+import { Button, CustomLink, Flex } from "../../atoms";
+import { StyledFormTemplate } from "./FormTemplate.style";
+
+type FormTemplateProps = {
+  buttonLabel: string;
+  children: ReactNode;
+  link?: {
+    label: string;
+    to: string;
+  };
+  onSubmit: () => void;
+};
+export const FormTemplate: React.FC<FormTemplateProps> = ({
+  buttonLabel,
+  children,
+  link,
+  onSubmit,
+}) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit();
+  };
+
+  return (
+    <StyledFormTemplate onSubmit={handleSubmit}>
+      {children}
+
+      <Flex gap={14} padding="50px 0px 0px">
+        <Button type="submit">{buttonLabel}</Button>
+        {link && (
+          <CustomLink as={NavLink} to={link.to}>
+            {link.label}
+          </CustomLink>
+        )}
+      </Flex>
+    </StyledFormTemplate>
+  );
+};
