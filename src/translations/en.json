@@ -1,50 +1,90 @@
 {
-  "translation": {
-    "COMMON": {
-      "BURGER_MENU": "Menu",
-      "LOGIN": "login",
-      "LOGOUT": "Logout",
-      "MAN": "man",
-      "MODAL_MESSAGE": {
-        "ACCOUNT_CREATED": "Your account has been created successfully, you can now log in !",
-        "DATA_NOT_SAVED": "An error occurred, your data won't be saved after logout.",
-        "DATA_SAVED": "Your data has been saved successfully.",
-        "ERROR_CUSTOM": "An error occurred: ",
-        "SERVER_ERROR": "An error occurred with the server, please try again"
-      },
-      "WOMAN": "woman"
+  "COMMON": {
+    "BURGER_MENU": "Menu",
+    "LOGIN": "login",
+    "LOGOUT": "Logout",
+    "MAN": "man",
+    "MODAL_MESSAGE": {
+      "ACCOUNT_CREATED": "Your account has been created successfully, you can now log in !",
+      "DATA_NOT_SAVED": "An error occurred, your data won't be saved after logout.",
+      "DATA_SAVED": "Your data has been saved successfully.",
+      "ERROR_CUSTOM": "An error occurred: ",
+      "SERVER_ERROR": "An error occurred with the server, please try again"
     },
-    "PAGES": {
-      "CONTACT": {
-        "TITLE": "contact"
+    "SEND": "send",
+    "SUBMIT": "submit",
+    "WOMAN": "woman"
+  },
+  "FORM": {
+    "ERROR": {
+      "EMAIL": "The email provided is invalid.",
+      "PASSWORD": "Your password must contains at least",
+      "PASSWORD_CONFIRMATION": "The password provided is different.",
+      "USERNAME": "Enter at least 3 characters."
+    },
+    "INFO": {
+      "PASSWORD_CONDITION": "To create an account, choose a username and provide your contact email. For security reasons, your password must contains at least :",
+      "PASSWORD_CONDITION_CHARACTERS": "8 characters",
+      "PASSWORD_CONDITION_DIGIT": "1 digit",
+      "PASSWORD_CONDITION_LETTER": "1 letter"
+    },
+    "LABEL": {
+      "CONTACT_SUBJECT": "Subject",
+      "CONTACT_SUBJECT_GENERAL": "General inquiries",
+      "CONTACT_SUBJECT_SUGGESTIONS": "Comments / Suggestions",
+      "CONTACT_SUBJECT_TECHNICAL": "Technical problems",
+      "EMAIL": "Email",
+      "NEWSLETTER": "Subscription to newsletter",
+      "PASSWORD": "password",
+      "PASSWORD_CONFIRMATION": "confirm your password",
+      "REMEMBER_ME": "Remember me",
+      "USERNAME": "username"
+    },
+    "PLACEHOLDER": {
+      "CONTACT_MESSAGE": "Your message",
+      "CONTACT_SUBJECT": "Your request concerns...",
+      "PASSWORD": "Enter your password",
+      "USERNAME": "Enter the username"
+    }
+  },
+  "LINK": {
+    "ALREADY_REGISTERED": "Already registered ? Log in !",
+    "NOT_REGISTERED": "Not already registered? Create an account !"
+  },
+  "PAGES": {
+    "CONTACT": {
+      "TITLE": "contact"
+    },
+    "DASHBOARD": {
+      "MEAL": {
+        "CHEAT_MEAL_MESSAGE": "You've opted for a cheat meal. Find all our advice in our articles...",
+        "SNACK_MESSAGE": "If you're planning to workout today, check \"I'm training\" and discover your extra snack.",
+        "VEGETABLES_PLUS_FRUITS": "Vegetables as desired + 1 to 2 fruit(s)"
       },
-      "DASHBOARD": {
-        "MEAL": {
-          "CHEAT_MEAL_MESSAGE": "You've opted for a cheat meal. Find all our advice in our articles...",
-          "SNACK_MESSAGE": "If you're planning to workout today, check \"I'm training\" and discover your extra snack.",
-          "VEGETABLES_PLUS_FRUITS": "Vegetables as desired + 1 to 2 fruit(s)"
-        },
-        "TAG": {
-          "FOOD_PLAN": "Food plan",
-          "GOAL": "Goal",
-          "PROFILE": "Profile\n",
-          "WORKOUT": "Workout"
-        },
-        "TITLE": "dashboard"
+      "TAG": {
+        "FOOD_PLAN": "Food plan",
+        "GOAL": "Goal",
+        "PROFILE": "Profile\n",
+        "WORKOUT": "Workout"
       },
-      "FEED": {
-        "FILTER": {
-          "FOOD": "food",
-          "HEALTH": "health",
-          "REST": "rest",
-          "SPORT": "sport",
-          "VARIOUS": "various"
-        },
-        "TITLE": "articles"
+      "TITLE": "dashboard"
+    },
+    "ERROR": {
+      "HOME_LINK": "Click here to go back to home page.",
+      "UNREACHABLE": "Oops ! Page not found."
+    },
+    "FEED": {
+      "FILTER": {
+        "FOOD": "food",
+        "HEALTH": "health",
+        "REST": "rest",
+        "SPORT": "sport",
+        "VARIOUS": "various"
       },
-      "HOME": {
-        "TITLE": "home"
-      }
+      "TITLE": "articles"
+    },
+    "HOME": {
+      "TITLE": "home"
     }
   }
 }

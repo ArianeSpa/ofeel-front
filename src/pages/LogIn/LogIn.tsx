@@ -1,5 +1,6 @@
 // == Import : npm
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // == Import : local
@@ -10,6 +11,7 @@ import { Flex, FormCheckbox, FormInput, FormTemplate } from "@/components";
 // == Composant
 export const LogIn: React.FC = () => {
   const dispatch = useAppDistpatch();
+  const { t } = useTranslation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -45,26 +47,29 @@ export const LogIn: React.FC = () => {
     }
   };
 
-  const link = {
-    to: "./signup",
-    label: "Pas encore inscrit ? Créez un compte !",
-  };
   return (
-    <FormTemplate buttonLabel="Submit" link={link} onSubmit={authenticate}>
+    <FormTemplate
+      buttonLabel={t("COMMON.LOGIN")}
+      link={{
+        to: "./signup",
+        label: t("LINK.NOT_REGISTERED"),
+      }}
+      onSubmit={authenticate}
+    >
       <Flex gap={20} width="100%" alignItems="start">
         <FormInput
           required
           id="username-input"
-          label="Pseudo"
-          placeholder="Saisissez votre pseudo"
+          label={t("FORM.LABEL.USERNAME")}
+          placeholder={t("FORM.PLACEHOLDER.USERNAME")}
           value={username}
           onChange={handleUsername}
         />
         <FormInput
           required
           id="password-input"
-          label="Mot de passe"
-          placeholder="Saisissez votre mot de passe"
+          label={t("FORM.LABEL.PASSWORD")}
+          placeholder={t("FORM.PLACEHOLDER.PASSWORD")}
           type={showPassword ? "text" : "password"}
           value={password}
           iconPosition="right"
@@ -74,7 +79,7 @@ export const LogIn: React.FC = () => {
         />
         <FormCheckbox
           id="remember-me-checkbox"
-          label="Se souvenir de moi"
+          label={t("FORM.LABEL.REMEMBER_ME")}
           checked={rememberMe}
           onChange={handleRememberMe}
         />

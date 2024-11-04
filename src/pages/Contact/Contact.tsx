@@ -1,22 +1,14 @@
 // == Import : npm
 import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Form, TextArea } from "semantic-ui-react";
 
 // == Import : local
 import { Flex, FormInput, FormTemplate } from "@/components";
-import "./contact.scss";
 import { useWindowSize } from "@/hooks/window.hook";
+import "./contact.scss";
 
 // == Dropdown options
-const subjects = [
-  {
-    key: "dg",
-    text: "Demandes d'ordre générale",
-    value: "Demandes d'ordre générale",
-  },
-  { key: "rs", text: "Remarques/Suggestions", value: "Remarques/Suggestions" },
-  { key: "pt", text: "Problèmes techniques", value: "Problèmes techniques" },
-];
 
 const handleSubmit = () => {
   /** @todo add submission */
@@ -24,10 +16,12 @@ const handleSubmit = () => {
 
 // == Composant
 export const Contact = () => {
+  const { t } = useTranslation();
+  const { isDesktop } = useWindowSize();
+
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
-  const { isDesktop } = useWindowSize();
   const handleUsername = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
@@ -35,8 +29,30 @@ export const Contact = () => {
     setEmail(event.target.value);
   };
 
+  const subjects = [
+    {
+      key: "dg",
+      text: t("FORM.LABEL.CONTACT_SUBJECT_GENERAL"),
+      value: "Demandes d'ordre générale",
+    },
+    {
+      key: "rs",
+      text: t("FORM.LABEL.CONTACT_SUBJECT_SUGGESTIONS"),
+      value: "Remarques/Suggestions",
+    },
+    {
+      key: "pt",
+      text: t("FORM.LABEL.CONTACT_SUBJECT_TECHNICAL"),
+      value: "Problèmes techniques",
+    },
+  ];
+
   return (
-    <FormTemplate buttonLabel="Envoyer" width="600px" onSubmit={handleSubmit}>
+    <FormTemplate
+      buttonLabel={t("COMMON.LOGIN")}
+      width="600px"
+      onSubmit={handleSubmit}
+    >
       <Flex
         gap={12}
         flexDirection="row"
@@ -46,15 +62,15 @@ export const Contact = () => {
         <FormInput
           required
           id="username"
-          label="Pseudo"
-          placeholder="Saisissez un pseudo"
+          label={t("FORM.LABEL.USERNAME")}
+          placeholder={t("FORM.PLACEHOLDER.USERNAME")}
           value={username}
           onChange={handleUsername}
         />
         <FormInput
           required
           id="email"
-          label="Email"
+          label={t("FORM.LABEL.EMAIL")}
           placeholder="email@example.com"
           value={email}
           onChange={handleEmail}
@@ -65,15 +81,15 @@ export const Contact = () => {
         <Form.Group>
           <Form.Select
             fluid
-            label="Sujet"
+            label={t("FORM.LABEL.CONTACT_SUBJECT")}
+            placeholder={t("FORM.PLACEHOLDER.CONTACT_SUBJECT")}
             options={subjects}
-            placeholder="Votre demande concerne"
           />
         </Form.Group>
         <Form.Group>
           <TextArea
-            label="votre message"
-            placeholder="Votre message"
+            label={t("FORM.PLACEHOLDER.CONTACT_MESSAGE")}
+            placeholder={t("FORM.PLACEHOLDER.CONTACT_MESSAGE")}
             style={{ width: "100%", minHeight: "150px" }}
           />
         </Form.Group>

@@ -25,7 +25,10 @@ i18next.init({
   lng: "fr",
   fallbackLng: "fr",
   interpolation: { escapeValue: false }, // React already does escaping
-  resources: { en, fr },
+  resources: {
+    en: { translation: en },
+    fr: { translation: fr },
+  },
 });
 
 root.render(
