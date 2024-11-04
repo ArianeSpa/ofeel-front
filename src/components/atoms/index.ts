@@ -12,3 +12,4 @@ export * from "./Logo/Logo";
 export * from "./NavMenuItem/NavMenuItem";
 export * from "./SVGGradient/SVGGradient";
 export * from "./SVGGradientIcon/SVGGradientIcon";
+export * from "./Typo/Typo";
