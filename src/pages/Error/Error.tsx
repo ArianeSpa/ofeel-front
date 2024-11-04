@@ -1,16 +1,18 @@
 // == Import : npm
 import React from "react";
-import { Segment, Header, Container } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+
+// == Import : local
+import { CustomLink, Flex, Typo } from "@/components";
 
 // == Composant
 export const Error: React.FC = () => (
-  <Segment id="errorSegment">
-    <Header as="h3" id="errorTitle">
+  <Flex gap={16} margin="50px">
+    <Typo color="grey.g5" fontSize={24}>
       Oups ! Page introuvable.
-    </Header>
-    <Container as={NavLink} exact id="homeReturn" name="Accueil" to="/">
-      {`Cliquez ici pour retourner sur la page d'accueil.`}
-    </Container>
-  </Segment>
+    </Typo>
+    <CustomLink as={NavLink} to="/">
+      Cliquez ici pour retourner sur la page d'accueil.
+    </CustomLink>
+  </Flex>
 );
