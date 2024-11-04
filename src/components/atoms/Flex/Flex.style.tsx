@@ -11,6 +11,7 @@ export type StyledFlexProps = {
   flexShrink?: number;
   gap?: number;
   justifyContent?: string;
+  margin?: string;
   padding?: string | number;
   width?: string;
 };
@@ -25,6 +26,7 @@ const forwardConfig = {
       "flexShrink",
       "gap",
       "justifyContent",
+      "margin",
       "padding",
       "width",
     ].includes(prop),
@@ -37,7 +39,7 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
     justifyContent || "center"};
   flex-direction: ${({ flexDirection }: StyledFlexProps) =>
     flexDirection || "column"};
-  flex-wrap: ${(props) => props.flexWrap};
+  flex-wrap: ${({ flexWrap }: StyledFlexProps) => flexWrap};
   gap: ${({ gap }: StyledFlexProps) => `${gap || 0}px`};
   width: ${({ width }: StyledFlexProps) => width};
   padding: ${({ padding }: StyledFlexProps) => padding || 0};
@@ -49,4 +51,6 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
     flexGrow ? `flex-grow: ${flexGrow};` : ""}
   ${({ flexShrink }: StyledFlexProps) =>
     flexShrink ? `flex-shrink: ${flexShrink};` : ""}
+
+    ${({ margin }: StyledFlexProps) => (margin ? `margin: ${margin};` : "")}
 `;

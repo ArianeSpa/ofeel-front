@@ -4,22 +4,26 @@ import { NavLink } from "react-router-dom";
 
 // == Import : local
 import { Button, CustomLink, Flex } from "../../atoms";
-import { StyledFormTemplate } from "./FormTemplate.style";
+import {
+  StyledFormTemplate,
+  StyledFormTemplateProps,
+} from "./FormTemplate.style";
 
 type FormTemplateProps = {
   buttonLabel: string;
-  children: ReactNode;
+  children: ReactNode | ReactNode[];
   link?: {
     label: string;
     to: string;
   };
   onSubmit: () => void;
-};
+} & StyledFormTemplateProps;
 export const FormTemplate: React.FC<FormTemplateProps> = ({
   buttonLabel,
   children,
   link,
   onSubmit,
+  ...formProps
 }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,7 +31,7 @@ export const FormTemplate: React.FC<FormTemplateProps> = ({
   };
 
   return (
-    <StyledFormTemplate onSubmit={handleSubmit}>
+    <StyledFormTemplate onSubmit={handleSubmit} {...formProps}>
       {children}
 
       <Flex gap={14} padding="50px 0px 0px">

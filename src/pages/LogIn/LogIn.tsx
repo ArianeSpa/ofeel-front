@@ -67,7 +67,7 @@ export const LogIn: React.FC = () => {
           placeholder="Saisissez votre mot de passe"
           type={showPassword ? "text" : "password"}
           value={password}
-          iconPosition="left"
+          iconPosition="right"
           icon={showPassword ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
           onChange={handlePassword}
           onIconClick={handleShowPassword}

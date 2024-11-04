@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
-type StyledFormTemplateProps = {
+export type StyledFormTemplateProps = {
   theme?: MainTheme;
+  width?: string;
 };
 export const StyledFormTemplate = styled.form<StyledFormTemplateProps>`
   background-image: ${({ theme }: StyledFormTemplateProps) =>
     theme?.gradient.dashboard};
-  width: 350px;
+  max-width: ${({ width }: StyledFormTemplateProps) => width || "350px"};
   margin: 20px auto;
   box-sizing: border-box;
   padding: 20px 30px;
