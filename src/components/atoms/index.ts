@@ -3,6 +3,7 @@ export * from "./Button/Button";
 export * from "./ButtonBurger/ButtonBurger";
 export * from "./ButtonIcon/ButtonIcon";
 export * from "./Checkbox/Checkbox";
+export * from "./CustomLink/CustomLink";
 export * from "./Flex/Flex";
 export * from "./InputBase/InputBase";
 export * from "./InputDescription/InputDescription";
