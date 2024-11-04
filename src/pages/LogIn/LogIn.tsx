@@ -2,25 +2,18 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import {
-  Form,
-  Segment,
-  Container,
-  FormGroup,
-  FormCheckbox,
-  CheckboxProps,
-  Modal,
-  ModalHeader,
-  ModalContent,
-  ModalActions,
-  Button as SemanticButton,
-} from "semantic-ui-react";
 
 // == Import : local
 import { useAppDistpatch } from "@/hooks/store.hook";
 import { logIn } from "@/store/reducers/user.slice";
-import "./form.scss";
-import { Button, Flex, FormInput } from "@/components";
+import {
+  Button,
+  CustomLink,
+  Flex,
+  FormCheckbox,
+  FormInput,
+} from "@/components";
+import { StyledForm } from "./Login.style";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -29,7 +22,6 @@ export const LogIn: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [openErrorModal, setOpenErrorModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem("remember")) {
@@ -47,11 +39,8 @@ export const LogIn: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const handleRememberMe = (
-    event: React.FormEvent<HTMLInputElement>,
-    data: CheckboxProps
-  ) => {
-    setRememberMe(!!data.checked);
+  const handleRememberMe = (value: boolean) => {
+    setRememberMe(value);
   };
 
   const handleShowPassword = () => {
@@ -64,8 +53,8 @@ export const LogIn: React.FC = () => {
     }
   };
   return (
-    <Segment id="loginSegment">
-      <Flex gap={20} width="100%">
+    <StyledForm onSubmit={authenticate}>
+      <Flex gap={20} width="100%" alignItems="start" padding="20px 30px">
         <FormInput
           required
           id="username-input"
@@ -86,40 +75,21 @@ export const LogIn: React.FC = () => {
           onChange={handlePassword}
           onIconClick={handleShowPassword}
         />
+        <FormCheckbox
+          id="remember-me-checkbox"
+          label="Se souvenir de moi"
+          checked={rememberMe}
+          onChange={handleRememberMe}
+        />
+      </Flex>
+      <Flex gap={6} padding="20px 0px">
+        <Button type="submit">Submit</Button>
+        <CustomLink as={NavLink} to="/signup">
+          Pas encore inscrit ? Créez un compte !
+        </CustomLink>
       </Flex>
 
-      <Form inverted onSubmit={authenticate}>
-        <FormGroup widths={2} className="formFields" id="loginFields" />
-        <FormGroup className="formFields">
-          <FormCheckbox
-            label="Se souvenir de moi"
-            checked={rememberMe}
-            onChange={handleRememberMe}
-          />
-        </FormGroup>
-        <Button type="submit">Submit</Button>
-      </Form>
-
-      {/**  @todo add user info in case of login error */}
-      <Modal
-        size="mini"
-        open={openErrorModal}
-        onClose={() => setOpenErrorModal(false)}
-      >
-        <ModalHeader>{`Une erreur s'est produite`}</ModalHeader>
-        <ModalContent>
-          <p>Message</p>
-        </ModalContent>
-        <ModalActions>
-          <SemanticButton positive onClick={() => setOpenErrorModal(false)}>
-            OK
-          </SemanticButton>
-        </ModalActions>
-      </Modal>
-
-      <Container as={NavLink} className="formLink" to="/signup">
-        Pas encore inscrit ? Créez un compte !
-      </Container>
-    </Segment>
+      {/**  @todo add toaster */}
+    </StyledForm>
   );
 };
