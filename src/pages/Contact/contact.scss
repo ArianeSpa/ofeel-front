@@ -1,18 +1,3 @@
-@import '@/styles/vars';
-
-#contactSegment{
-  @include formSegmentBase;
-  #subject > .field.oneField{
-    width: 100%;
-  }
-  #contactDropdown > i.dropdown.icon{
-    color: $yellow1;
-    font-size: 1.2em;
-    padding:0;
-    right: 1.5em;
-    top: 60%;
-  } 
-  #contactTextArea{
-    min-height: 15em;
-  }
+label {
+  color: white;
 }
