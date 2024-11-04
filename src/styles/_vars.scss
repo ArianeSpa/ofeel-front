@@ -94,66 +94,6 @@ de la page articles
 }
 
 /* 
-Base pour les formulaires de
-connexion, d'inscription et de contact
-*/
-@mixin formSegmentBase {
-  background: none;
-  background-image: $background-color-dashboard;
-  box-shadow: 5px 5px 10px 5px rgba(0, 110, 178, 0.3);
-  margin: 0 auto;
-  width: 20em;
-  max-width: 100%;
-  padding: 1em 0.5em;
-  height: max-content;
-  max-height: 100%;
-  .fields.formFields {
-    margin: 0 0 1em;
-  }
-
-  .field.oneField {
-    padding: 0;
-    font-size: 1em;
-    &:focus > .input {
-      border-color: 1px solid $green3;
-    }
-  }
-
-  @media (min-width: 768px) {
-    overflow-y: scroll;
-    padding: 1em;
-    width: 35em;
-    .fields.formFields {
-      margin: 0 0.5em 1em;
-      justify-content: space-between;
-    }
-    .field.oneField {
-      width: 15.5em;
-    }
-  }
-  @media (min-width: 1024px) {
-    margin: 0 auto;
-    width: 45em;
-    .field.oneField {
-      width: 20.5em;
-    }
-  }
-}
-
-/*
-Base pour les liens
-connexion, inscription
-*/
-@mixin links {
-  color: $green3;
-  font-size: 0.8em;
-  text-decoration: underline;
-  &:hover {
-    color: $green5;
-  }
-}
-
-/* 
 Base pour les header nommés subtitle dans chaque onglet
 */
 @mixin tagSubtitle {

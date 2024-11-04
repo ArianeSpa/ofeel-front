@@ -19,13 +19,14 @@ export const StyledInputLabel = styled.label.withConfig(
   color: ${({ theme, error }: StyledInputLabelProps) =>
     error ? theme?.color.pink.p5 : theme?.color.grey.g5};
   font-size: ${({ fontSize }: StyledInputLabelProps) =>
-    fontSize ? `${fontSize}px` : "inherit"};
+    fontSize ? `${fontSize}px` : "14px"};
   font-weight: 600;
+  line-height: 1;
   &::after {
     content: ${({ required }: StyledInputLabelProps) => required && `'*'`};
     color: ${({ theme }: StyledInputLabelProps) => theme?.color.pink.p5};
     vertical-align: top;
-    display: inmine-block;
+    display: inline-block;
     margin-left: 3px;
   }
 `;

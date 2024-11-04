@@ -9,10 +9,9 @@ import { logOut } from "@/store/reducers/user.slice";
 import { LogIn } from "@/pages/LogIn/LogIn";
 import { SignUp } from "@/pages/SignUp/SignUp";
 import { PostList } from "@/pages/Feed/PostList";
-import Contact from "@/pages/Contact/Contact";
+import { Contact } from "@/pages/Contact/Contact";
 import { Error } from "@/pages/Error/Error";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
-import "./app.scss";
 import { StyledApp, StyledMain } from "./App.style";
 
 export const App: React.FC = () => {

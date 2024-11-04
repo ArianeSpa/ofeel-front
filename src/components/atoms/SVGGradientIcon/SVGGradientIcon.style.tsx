@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
-    !["gradientId", "isActive"].includes(prop),
+    !["gradientId", "color", "type"].includes(prop),
 };
 export type StyledSVGGradientIconProps = {
-  theme?: MainTheme;
   gradientId: string;
   color?: string;
   type?: "gradient" | "color";

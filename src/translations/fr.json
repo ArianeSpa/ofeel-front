@@ -1,50 +1,90 @@
 {
-  "translation": {
-    "COMMON": {
-      "BURGER_MENU": "Menu",
-      "LOGIN": "connexion",
-      "LOGOUT": "Déconnexion",
-      "MAN": "homme",
-      "MODAL_MESSAGE": {
-        "ACCOUNT_CREATED": "Votre compte a bien été créé, vous pouvez maintenant vous connecter !",
-        "DATA_NOT_SAVED": "Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion.",
-        "DATA_SAVED": "Vos données ont bien été enregistrées.",
-        "ERROR_CUSTOM": "Une erreur s'est produite:",
-        "SERVER_ERROR": "Une erreur s'est produite avec le serveur, veuillez réessayer."
-      },
-      "WOMAN": "femme"
+  "COMMON": {
+    "BURGER_MENU": "Menu",
+    "LOGIN": "se connecter",
+    "LOGOUT": "Déconnexion",
+    "MAN": "homme",
+    "MODAL_MESSAGE": {
+      "ACCOUNT_CREATED": "Votre compte a bien été créé, vous pouvez maintenant vous connecter !",
+      "DATA_NOT_SAVED": "Une erreur s'est produite, vos données ne seront pas enregistrées après déconnexion.",
+      "DATA_SAVED": "Vos données ont bien été enregistrées.",
+      "ERROR_CUSTOM": "Une erreur s'est produite:",
+      "SERVER_ERROR": "Une erreur s'est produite avec le serveur, veuillez réessayer."
     },
-    "PAGES": {
-      "CONTACT": {
-        "TITLE": "contact"
+    "SEND": "envoyer",
+    "SUBMIT": "envoyer",
+    "WOMAN": "femme"
+  },
+  "FORM": {
+    "ERROR": {
+      "EMAIL": "L'e-mail fourni n'est pas valide.",
+      "PASSWORD": "Votre mot de passe doit contenir au moins",
+      "PASSWORD_CONFIRMATION": "Le mot de passe fourni est différent;",
+      "USERNAME": "Saisir au moins 3 caractères."
+    },
+    "INFO": {
+      "PASSWORD_CONDITION": "Pour créer un compte, choisissez un pseudo et indiquez votre email de contact. Pour des raisons de sécurité, votre mot de passe doit contenir au moins :",
+      "PASSWORD_CONDITION_CHARACTERS": "8 caractères",
+      "PASSWORD_CONDITION_DIGIT": "1 nombre",
+      "PASSWORD_CONDITION_LETTER": "1 lettre"
+    },
+    "LABEL": {
+      "CONTACT_SUBJECT": "Sujet",
+      "CONTACT_SUBJECT_GENERAL": "Demandes de renseignements généraux",
+      "CONTACT_SUBJECT_SUGGESTIONS": "Commentaires / Suggestions",
+      "CONTACT_SUBJECT_TECHNICAL": "Problèmes techniques",
+      "EMAIL": "E-mail",
+      "NEWSLETTER": "Inscription à la newsletter",
+      "PASSWORD": "mot de passe",
+      "PASSWORD_CONFIRMATION": "confirmez votre mot de passe",
+      "REMEMBER_ME": "Se souvenir de moi",
+      "USERNAME": "nom d'utilisateur"
+    },
+    "PLACEHOLDER": {
+      "CONTACT_MESSAGE": "Votre message",
+      "CONTACT_SUBJECT": "Votre demande concerne...",
+      "PASSWORD": "Saisissez votre mot de passe",
+      "USERNAME": "Entrez le nom d'utilisateur"
+    }
+  },
+  "LINK": {
+    "ALREADY_REGISTERED": "Déjà inscrit ? Connectez-vous !",
+    "NOT_REGISTERED": "Vous n'êtes pas encore inscrit ? Créez un compte !"
+  },
+  "PAGES": {
+    "CONTACT": {
+      "TITLE": "contact"
+    },
+    "DASHBOARD": {
+      "MEAL": {
+        "CHEAT_MEAL_MESSAGE": "Vous avez opté pour un cheat meal. Retrouvez tous nos conseils dans nos articles...",
+        "SNACK_MESSAGE": "Si vous avez l'intention d'effectuer une séance d'entraînement ce jour, cochez \"je m'entraîne\" et découvrez votre collation supplémentaire.",
+        "VEGETABLES_PLUS_FRUITS": "Légumes à volonté + 1 à 2 fruit(s)"
       },
-      "DASHBOARD": {
-        "MEAL": {
-          "CHEAT_MEAL_MESSAGE": "Vous avez opté pour un cheat meal. Retrouvez tous nos conseils dans nos articles...",
-          "SNACK_MESSAGE": "Si vous avez l'intention d'effectuer une séance d'entraînement ce jour, cochez \"je m'entraîne\" et découvrez votre collation supplémentaire.",
-          "VEGETABLES_PLUS_FRUITS": "Légumes à volonté + 1 à 2 fruit(s)"
-        },
-        "TAG": {
-          "FOOD_PLAN": "Plan alimentaire",
-          "GOAL": "Objectif",
-          "PROFILE": "Profil",
-          "WORKOUT": "Entraînement"
-        },
-        "TITLE": "tableau de bord"
+      "TAG": {
+        "FOOD_PLAN": "Plan alimentaire",
+        "GOAL": "Objectif",
+        "PROFILE": "Profil",
+        "WORKOUT": "Entraînement"
       },
-      "FEED": {
-        "FILTER": {
-          "FOOD": "alimentation",
-          "HEALTH": "santé",
-          "REST": "récupération",
-          "SPORT": "spor",
-          "VARIOUS": "divers"
-        },
-        "TITLE": "articles"
+      "TITLE": "tableau de bord"
+    },
+    "ERROR": {
+      "HOME_LINK": "Cliquez ici pour revenir à la page d’accueil.",
+      "UNREACHABLE": "Oups! Page introuvable."
+    },
+    "FEED": {
+      "FILTER": {
+        "FOOD": "alimentation",
+        "HEALTH": "santé",
+        "REST": "récupération",
+        "SPORT": "spor",
+        "VARIOUS": "divers"
       },
-      "HOME": {
-        "TITLE": "accueil"
-      }
+      "TITLE": "articles"
+    },
+    "HOME": {
+      "TITLE": "accueil"
     }
   }
 }

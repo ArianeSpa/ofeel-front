@@ -13,7 +13,6 @@ import { store } from "./store/store";
 import { App } from "./App";
 import { mainTheme } from "./theme/theme";
 import reportWebVitals from "./reportWebVitals";
-import "./index.scss";
 import en from "./translations/en.json";
 import fr from "./translations/fr.json";
 
@@ -25,7 +24,10 @@ i18next.init({
   lng: "fr",
   fallbackLng: "fr",
   interpolation: { escapeValue: false }, // React already does escaping
-  resources: { en, fr },
+  resources: {
+    en: { translation: en },
+    fr: { translation: fr },
+  },
 });
 
 root.render(

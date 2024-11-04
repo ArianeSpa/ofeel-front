@@ -14,6 +14,21 @@ const getSize = (size?: StyledButtonProps["size"]) => {
   }
 };
 
+const getFont = (
+  size?: StyledButtonProps["size"],
+  theme?: StyledButtonProps["theme"]
+) => {
+  switch (size) {
+    case "small":
+      return theme?.font.button.small;
+    default:
+    case "medium":
+      return theme?.font.button.medium;
+    case "large":
+      return theme?.font.button.large;
+  }
+};
+
 const forwardConfig = {
   shouldForwardProp: (prop: string) => !["size", "width"].includes(prop),
 };
@@ -36,6 +51,7 @@ export const StyledButton = styled.button.withConfig(
   color: ${({ theme }: StyledButtonProps) => theme?.color.grey.g2};
   height: ${({ size }: StyledButtonProps) => getSize(size)};
   opacity: ${({ disabled }: StyledButtonProps) => (disabled ? 0.7 : 1)};
+  padding: 0px 14px;
   &:hover {
     ${({ disabled, theme }: StyledButtonProps) =>
       !disabled &&
@@ -47,15 +63,5 @@ export const StyledButton = styled.button.withConfig(
     `}
   }
 
-  ${({ theme, size }: StyledButtonProps) => {
-    switch (size) {
-      case "small":
-        return theme?.font.button.small;
-      default:
-      case "medium":
-        return theme?.font.button.medium;
-      case "large":
-        return theme?.font.button.large;
-    }
-  }};
+  ${({ theme, size }: StyledButtonProps) => getFont(size, theme)};
 `;

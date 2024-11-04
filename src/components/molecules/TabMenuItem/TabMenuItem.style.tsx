@@ -6,7 +6,7 @@ import { GradientColor } from "@/theme/colors";
 const forwardConfig = {
   shouldForwardProp: (prop: string) => !["isDesktop"].includes(prop),
 };
-export type StyledTabMenuItemProps = {
+type StyledTabMenuItemProps = {
   theme?: MainTheme;
   isDesktop?: boolean;
 };

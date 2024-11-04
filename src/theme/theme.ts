@@ -1,5 +1,6 @@
 import { useTheme as useStyledTheme } from "styled-components";
 import { color, gradient } from "./colors";
+import { DeepNestedKeyOf } from "@/utils/common";
 
 const fontFamily = {
   pacifico: `'Pacifico', cursive`,
@@ -142,3 +143,5 @@ export const mainTheme = {
 
 export type MainTheme = typeof mainTheme;
 export const useTheme = useStyledTheme as () => MainTheme;
+
+export type ColorThemeKeys = DeepNestedKeyOf<MainTheme["color"]>;

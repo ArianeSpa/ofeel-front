@@ -61,7 +61,7 @@ export const StyledInputBase = styled.span.withConfig(
     border-radius: 4px;
     height: 35px;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
 
     padding-right: ${({ hasIcon, iconPosition }: StyledInputBaseProps) =>
       hasIcon && iconPosition === "right" ? "35px" : "10px"};
