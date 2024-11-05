@@ -15,7 +15,7 @@ export const StyledFormTemplate = styled.form.withConfig(
   background-image: ${({ theme }: StyledFormTemplateProps) =>
     theme?.gradient.dashboard};
   box-sizing: border-box;
-  max-width: ${({ width }: StyledFormTemplateProps) => width || "350px"};
+  max-width: ${({ width }: StyledFormTemplateProps) => width ?? "350px"};
   margin: 20px auto;
   padding: 20px 30px;
   ${getGutters}

@@ -37,7 +37,7 @@ export const SignUp: React.FC = () => {
   };
   const emailValidators = () => {
     const validFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    const isValid = email.match(validFormat);
+    const isValid = RegExp(validFormat).exec(email);
     if (isValid) return;
     return t("FORM.ERROR.EMAIL");
   };

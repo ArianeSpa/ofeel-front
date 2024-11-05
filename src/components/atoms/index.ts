@@ -8,6 +8,7 @@ export * from "./Flex/Flex";
 export * from "./InputBase/InputBase";
 export * from "./InputDescription/InputDescription";
 export * from "./InputLabel/InputLabel";
+export * from "./LinkIcon/LinkIcon";
 export * from "./Logo/Logo";
 export * from "./NavMenuItem/NavMenuItem";
 export * from "./SVGGradient/SVGGradient";

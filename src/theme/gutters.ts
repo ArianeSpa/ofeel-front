@@ -19,10 +19,10 @@ type GetMarginStyleProps = {
   ml?: number;
 };
 const getMarginStyle = ({ m, mx, my, mt, mr, mb, ml }: GetMarginStyleProps) => {
-  const topMargin = m || my || mt;
-  const rightMargin = m || mx || mr;
-  const bottomMargin = m || my || mb;
-  const leftMargin = m || mx || ml;
+  const topMargin = m ?? my ?? mt;
+  const rightMargin = m ?? mx ?? mr;
+  const bottomMargin = m ?? my ?? mb;
+  const leftMargin = m ?? mx ?? ml;
   return {
     top: topMargin
       ? getGutterStyle({ position: "top", type: "margin", value: topMargin })
@@ -69,10 +69,10 @@ const getPaddingStyle = ({
   pb,
   pl,
 }: GetPaddingStyleProps) => {
-  const topPadding = p || py || pt;
-  const rightPadding = p || px || pr;
-  const bottomPadding = p || py || pb;
-  const leftPadding = p || px || pl;
+  const topPadding = p ?? py ?? pt;
+  const rightPadding = p ?? px ?? pr;
+  const bottomPadding = p ?? py ?? pb;
+  const leftPadding = p ?? px ?? pl;
   return {
     top: topPadding
       ? getGutterStyle({ position: "top", type: "padding", value: topPadding })

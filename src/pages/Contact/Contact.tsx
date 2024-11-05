@@ -11,7 +11,7 @@ import "./contact.scss";
 // == Dropdown options
 
 const handleSubmit = () => {
-  /** @todo add submission */
+  // TODO
 };
 
 // == Composant

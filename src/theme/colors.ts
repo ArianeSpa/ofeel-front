@@ -45,12 +45,21 @@ export const background = {
   bg9: "#a2e9f0",
 };
 
+export const socials = {
+  linkedin: "#0A66C2",
+  github: "#000000",
+  youtube: "#ff0033",
+  instagram: "#ffffff",
+  gmail: "#bf211e",
+};
+
 export const color = {
   background,
   blue,
   green,
   grey,
   pink,
+  socials,
   yellow,
 };
 

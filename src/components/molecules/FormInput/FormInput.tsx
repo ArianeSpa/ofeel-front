@@ -28,12 +28,17 @@ export const FormInput: React.FC<FormInputProps> = ({
   id,
   label,
   required,
-  validators,
+  validators = () => undefined,
   onChange,
   onBlur,
   ...inputProps
 }) => {
-  if (!label && !inputProps["aria-label"]) {
+  if (
+    !label &&
+    !inputProps["aria-label"] &&
+    process.env.NODE_ENV === "development"
+  ) {
+    // eslint-disable-next-line no-console
     console.warn(
       "According to accessibility rules, FormInput should receive at least a label or an aria-label"
     );
@@ -42,7 +47,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   const descriptionId = `${id}-description`;
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const message = validators && validators();
+    const message = validators();
     setErrorMessage(message);
     if (onBlur) {
       onBlur(event);
@@ -56,7 +61,7 @@ export const FormInput: React.FC<FormInputProps> = ({
     }
   };
 
-  const descriptionValue = errorMessage || description;
+  const descriptionValue = errorMessage ?? description;
   return (
     <div style={{ width: "100%" }}>
       {label && (

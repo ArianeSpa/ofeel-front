@@ -20,8 +20,8 @@ export const LogIn: React.FC = () => {
   useEffect(() => {
     if (localStorage.getItem("remember")) {
       setRememberMe(true);
-      setUsername(JSON.parse(localStorage.getItem("username") || ""));
-      setPassword(JSON.parse(localStorage.getItem("password") || ""));
+      setUsername(JSON.parse(localStorage.getItem("username") ?? ""));
+      setPassword(JSON.parse(localStorage.getItem("password") ?? ""));
     }
   }, []);
 
