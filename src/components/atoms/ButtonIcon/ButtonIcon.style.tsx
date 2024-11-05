@@ -5,11 +5,11 @@ const getSize = (size?: StyledButtonIconProps["size"]) => {
   switch (size) {
     case "small":
       return "26px";
-    default:
-    case "medium":
-      return "32px";
     case "large":
       return "44px";
+    case "medium":
+    default:
+      return "32px";
   }
 };
 
@@ -17,11 +17,11 @@ const getRadius = (variant?: StyledButtonIconProps["variant"]) => {
   switch (variant) {
     case "square":
       return "0";
-    default:
-    case "rounded":
-      return "4px";
     case "circle":
       return "50%";
+    case "rounded":
+    default:
+      return "4px";
   }
 };
 
@@ -46,7 +46,7 @@ export const StyledButtonIcon = styled.button.withConfig(
   border: none;
   padding: 4px;
   background: ${({ background }: StyledButtonIconProps) =>
-    background || "transparent"};
+    background ?? "transparent"};
   border: ${({ borderColor }: StyledButtonIconProps) =>
     borderColor ? `1px solid ${borderColor}` : "none"};
   border-radius: ${({ variant }: StyledButtonIconProps) => getRadius(variant)};

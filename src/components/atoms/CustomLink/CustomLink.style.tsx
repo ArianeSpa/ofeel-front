@@ -12,7 +12,7 @@ export const StyledCustomLink = styled.span.withConfig(
   forwardConfig
 )<StyledCustomLinkProps>`
   color: ${({ theme }: StyledCustomLinkProps) => theme?.color.green.g3};
-  font-size: ${({ fontSize }: StyledCustomLinkProps) => `${fontSize || 12}px`};
+  font-size: ${({ fontSize }: StyledCustomLinkProps) => `${fontSize ?? 12}px`};
   text-decoration: underline;
   &:hover {
     color: ${({ theme }: StyledCustomLinkProps) => theme?.color.green.g5};

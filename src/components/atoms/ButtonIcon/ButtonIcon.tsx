@@ -18,6 +18,7 @@ export const ButtonIcon: React.FC<ButtonIconProps> = ({
   ...styledProps
 }) => {
   if (!ariaLabel) {
+    // eslint-disable-next-line no-console
     console.warn(
       "According to accessibility rules, FormInput should receive at least a label or an aria-label"
     );

@@ -17,7 +17,7 @@ type StyledTypoProps = {
 export const StyleTypo = styled.p.withConfig(forwardConfig)<StyledTypoProps>`
   color: ${({ color, theme }: StyledTypoProps) =>
     color ? get(theme?.color, color) : "inherit"};
-  font-style: ${({ fontStyle }: StyledTypoProps) => fontStyle || "none"};
+  font-style: ${({ fontStyle }: StyledTypoProps) => fontStyle ?? "none"};
   margin: 0;
   ${({ margin }: StyledTypoProps) => (margin ? `margin: ${margin};` : "")}
   font-size: ${({ fontSize }: StyledTypoProps) =>
