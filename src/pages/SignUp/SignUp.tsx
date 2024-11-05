@@ -85,7 +85,7 @@ export const SignUp: React.FC = () => {
       width="600px"
       onSubmit={handleSubmit}
     >
-      <Flex gap={8} alignItems="start" margin="0 0 20px">
+      <Flex gap={8} alignItems="start" mb={5}>
         <Typo color="grey.g5">{t("FORM.INFO.PASSWORD_CONDITION")}</Typo>
         <Typo color="grey.g5" as="ul">
           <Typo as="li" fontStyle="italic">

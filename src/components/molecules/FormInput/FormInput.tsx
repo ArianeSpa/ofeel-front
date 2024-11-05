@@ -61,11 +61,11 @@ export const FormInput: React.FC<FormInputProps> = ({
     <div style={{ width: "100%" }}>
       {label && (
         <InputLabel
+          mb={1}
           label={label}
           htmlFor={id}
           required={required}
           error={!!errorMessage}
-          style={{ marginBottom: 4 }}
         />
       )}
       <InputBase

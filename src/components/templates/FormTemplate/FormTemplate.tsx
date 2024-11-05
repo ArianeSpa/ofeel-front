@@ -34,7 +34,7 @@ export const FormTemplate: React.FC<FormTemplateProps> = ({
     <StyledFormTemplate onSubmit={handleSubmit} {...formProps}>
       {children}
 
-      <Flex gap={14} padding="50px 0px 0px">
+      <Flex gap={14} pt={12}>
         <Button type="submit">{buttonLabel}</Button>
         {link && (
           <CustomLink as={NavLink} to={link.to}>

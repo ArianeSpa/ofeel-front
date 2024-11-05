@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
       flexDirection="row"
       justifyContent="space-between"
       width="100%"
-      padding="8px 0"
+      py={2}
       {...flexProps}
     >
       <NavMenuItem id="logo-navbar" to="/">
