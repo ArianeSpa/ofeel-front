@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { CustomLink, Flex, Typo } from "@/components";
 
 // == Composant
-export const Error: React.FC = () => {
+export const ErrorPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <Flex gap={30} m={12}>

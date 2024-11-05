@@ -6,11 +6,11 @@ const getSize = (size?: StyledButtonProps["size"]) => {
   switch (size) {
     case "small":
       return "26px";
-    default:
-    case "medium":
-      return "32px";
     case "large":
       return "44px";
+    case "medium":
+    default:
+      return "32px";
   }
 };
 
@@ -21,11 +21,11 @@ const getFont = (
   switch (size) {
     case "small":
       return theme?.font.button.small;
-    default:
-    case "medium":
-      return theme?.font.button.medium;
     case "large":
       return theme?.font.button.large;
+    case "medium":
+    default:
+      return theme?.font.button.medium;
   }
 };
 
@@ -46,7 +46,7 @@ export const StyledButton = styled.button.withConfig(
   cursor: pointer;
   border-radius: 4px;
   border: 1px solid transparent;
-  width: ${({ width }: StyledButtonProps) => width || "auto"};
+  width: ${({ width }: StyledButtonProps) => width ?? "auto"};
   background-image: ${({ theme }: StyledButtonProps) => theme?.gradient.yellow};
   color: ${({ theme }: StyledButtonProps) => theme?.color.grey.g2};
   height: ${({ size }: StyledButtonProps) => getSize(size)};

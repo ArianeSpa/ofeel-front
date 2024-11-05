@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 
-const getSize = (size?: StyledButtonIconProps["size"]) => {
+const getSize = (size?: StyledLinkIconProps["size"]) => {
   switch (size) {
     case "small":
       return "26px";
@@ -13,48 +13,35 @@ const getSize = (size?: StyledButtonIconProps["size"]) => {
   }
 };
 
-const getRadius = (variant?: StyledButtonIconProps["variant"]) => {
-  switch (variant) {
-    case "square":
-      return "0";
-    case "circle":
-      return "50%";
-    case "rounded":
-    default:
-      return "4px";
-  }
-};
-
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
     !["size", "variant", "background", "borderColor"].includes(prop),
 };
-export type StyledButtonIconProps = {
+export type StyledLinkIconProps = {
   theme?: MainTheme;
   size?: "small" | "medium" | "large";
   variant?: "square" | "rounded" | "circle";
   background?: string;
   borderColor?: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-export const StyledButtonIcon = styled.button.withConfig(
+} & React.LinkHTMLAttributes<HTMLLinkElement>;
+export const StyledLinkIcon = styled.a.withConfig(
   forwardConfig
-)<StyledButtonIconProps>`
-  cursor: pointer;
+)<StyledLinkIconProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   padding: 4px;
-  background: ${({ background }: StyledButtonIconProps) =>
+  background: ${({ background }: StyledLinkIconProps) =>
     background ?? "transparent"};
-  border: ${({ borderColor }: StyledButtonIconProps) =>
+  border: ${({ borderColor }: StyledLinkIconProps) =>
     borderColor ? `1px solid ${borderColor}` : "none"};
-  border-radius: ${({ variant }: StyledButtonIconProps) => getRadius(variant)};
-  height: ${({ size }: StyledButtonIconProps) => getSize(size)};
-  width: ${({ size }: StyledButtonIconProps) => getSize(size)};
+  border-radius: 50%;
+  height: ${({ size }: StyledLinkIconProps) => getSize(size)};
+  width: ${({ size }: StyledLinkIconProps) => getSize(size)};
   &:hover {
     box-shadow: 10px 10px 22px -12px rgba(0, 0, 0, 0.75);
-    border: ${({ borderColor }: StyledButtonIconProps) =>
+    border: ${({ borderColor }: StyledLinkIconProps) =>
       borderColor ? `1px solid ${borderColor}` : "none"};
   }
 `;

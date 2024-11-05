@@ -66,7 +66,7 @@ export const FeedFilterButton: React.FC<FeedFilterButtonProps> = ({
   return (
     <StyledFeedFilterButton
       id={`${value}-filter-button`}
-      ariaLabel={translatedLabel}
+      aria-label={translatedLabel}
       background={color.grey.g5}
       borderColor={isSelected ? color.yellow.y4 : "transparent"}
       isSelected={isSelected}

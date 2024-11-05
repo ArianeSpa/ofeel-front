@@ -21,7 +21,7 @@ export const SVGGradientIcon: React.FC<SVGGradientIconProps> = ({
   return (
     <StyledSVGGradientIcon
       gradientId={gradientId}
-      color={color || theme?.color?.grey?.g1}
+      color={color ?? theme?.color?.grey?.g1}
       type={type}
     >
       {icon}

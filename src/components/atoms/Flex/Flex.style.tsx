@@ -31,16 +31,16 @@ const forwardConfig = {
 
 export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
   display: flex;
-  align-items: ${({ alignItems }: StyledFlexProps) => alignItems || "center"};
+  align-items: ${({ alignItems }: StyledFlexProps) => alignItems ?? "center"};
   justify-content: ${({ justifyContent }: StyledFlexProps) =>
-    justifyContent || "center"};
+    justifyContent ?? "center"};
   flex-direction: ${({ flexDirection }: StyledFlexProps) =>
-    flexDirection || "column"};
+    flexDirection ?? "column"};
   flex-wrap: ${({ flexWrap }: StyledFlexProps) => flexWrap};
-  gap: ${({ gap }: StyledFlexProps) => `${gap || 0}px`};
+  gap: ${({ gap }: StyledFlexProps) => `${gap ?? 0}px`};
   width: ${({ width }: StyledFlexProps) => width};
   background-color: ${({ backgroundColor }: StyledFlexProps) =>
-    backgroundColor || "inherit"};
+    backgroundColor ?? "inherit"};
   box-sizing: border-box;
 
   ${({ flexGrow }: StyledFlexProps) =>
