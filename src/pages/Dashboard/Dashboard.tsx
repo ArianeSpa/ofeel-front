@@ -19,10 +19,7 @@ export const Dashboard: React.FC = () => {
   return (
     <StyledDashboard flexDirection={isDesktop ? "row" : "column"}>
       <DashBoardTabs />
-      <Flex
-        padding="20px"
-        style={{ overflow: "hidden", height: "100%", width: "100%" }}
-      >
+      <Flex p={5} style={{ overflow: "hidden", height: "100%", width: "100%" }}>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path={`/${DashBoardTabEnum.PROFILE}`} element={<Profile />} />

@@ -40,7 +40,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <StyledApp flexDirection="column" padding="0 12px" width="100%">
+    <StyledApp flexDirection="column" px={12} width="100%">
       <Header
         gap={12}
         logged={logged}

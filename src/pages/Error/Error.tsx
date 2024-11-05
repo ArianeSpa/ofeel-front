@@ -10,7 +10,7 @@ import { CustomLink, Flex, Typo } from "@/components";
 export const Error: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Flex gap={30} margin="50px">
+    <Flex gap={30} m={12}>
       <Typo color="grey.g5" fontSize={32}>
         {t("PAGES.ERROR.UNREACHABLE")}
       </Typo>

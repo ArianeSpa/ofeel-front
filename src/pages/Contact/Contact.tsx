@@ -76,7 +76,7 @@ export const Contact = () => {
           onChange={handleEmail}
         />
       </Flex>
-      <Flex gap={12} alignItems="stretch" margin="30px 0 0">
+      <Flex gap={12} alignItems="stretch" mt={8}>
         {/* @dodo replace with lib components when created */}
         <Form.Group>
           <Form.Select

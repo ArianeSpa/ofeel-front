@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { get } from "lodash";
 import { ColorThemeKeys, MainTheme } from "@/theme/theme";
+import { getGutters, GetGuttersProps } from "@/theme/gutters";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
@@ -12,7 +13,7 @@ type StyledTypoProps = {
   fontSize?: number;
   fontStyle?: string;
   margin?: string;
-};
+} & GetGuttersProps;
 export const StyleTypo = styled.p.withConfig(forwardConfig)<StyledTypoProps>`
   color: ${({ color, theme }: StyledTypoProps) =>
     color ? get(theme?.color, color) : "inherit"};
@@ -21,4 +22,5 @@ export const StyleTypo = styled.p.withConfig(forwardConfig)<StyledTypoProps>`
   ${({ margin }: StyledTypoProps) => (margin ? `margin: ${margin};` : "")}
   font-size: ${({ fontSize }: StyledTypoProps) =>
     fontSize ? `${fontSize}px` : "14px"};
+  ${getGutters}
 `;

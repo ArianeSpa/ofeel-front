@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
+import { getGutters, GetGuttersProps } from "@/theme/gutters";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
@@ -11,7 +12,8 @@ export type StyledInputLabelProps = {
   fontSize?: number;
   required?: boolean;
   error?: boolean;
-} & HTMLAttributes<HTMLLabelElement>;
+} & HTMLAttributes<HTMLLabelElement> &
+  GetGuttersProps;
 export const StyledInputLabel = styled.label.withConfig(
   forwardConfig
 )<StyledInputLabelProps>`
@@ -29,4 +31,5 @@ export const StyledInputLabel = styled.label.withConfig(
     display: inline-block;
     margin-left: 3px;
   }
+  ${getGutters}
 `;
