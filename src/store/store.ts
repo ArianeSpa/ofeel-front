@@ -6,11 +6,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 // import mealPlanReducer from "./reducers/mealPlanReducer";
 // import postReducer from "./reducers/postReducer";
 // import userReducer from "./reducers/userReducer";
-import userReducer from "./reducers/user.slice";
+import { appReducer, userReducer } from "./reducers";
 // import workoutReducer from "./reducers/workoutReducer";
 // import ajaxMiddleware from "./ajaxMiddleware";
 
 const rootReducer = combineReducers({
+  appReducer,
   userReducer,
   // oldAppReducer,
   // mealPlanReducer,
