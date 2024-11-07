@@ -1,19 +1,18 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import { MainTheme } from "@/theme/theme";
 
-export type StyledNavMenuItemProps = {
+export type StyledNavLinkProps = {
   theme?: MainTheme;
-} & React.LiHTMLAttributes<HTMLElement>;
-export const StyledNavMenuItem = styled.li<StyledNavMenuItemProps>`
-  color: ${({ theme }: StyledNavMenuItemProps) => theme?.color.grey.g5};
+};
+export const StyledNavLink = styled(NavLink)<StyledNavLinkProps>`
+  color: ${({ theme }: StyledNavLinkProps) => theme?.color.grey.g5};
   font-size: 20px;
   font-weight: 600;
-  font-family: ${({ theme }: StyledNavMenuItemProps) =>
-    theme?.font.family.livvic};
+  font-family: ${({ theme }: StyledNavLinkProps) => theme?.font.family.livvic};
   letter-spacing: 6px;
   text-align: center;
   text-transform: uppercase;
-  text-decoration: none;
   text-wrap: balance;
   transition: color 0.3s linear;
 
@@ -32,9 +31,9 @@ export const StyledNavMenuItem = styled.li<StyledNavMenuItemProps>`
   }
 
   &:hover {
-    color: ${({ theme }: StyledNavMenuItemProps) => theme?.color.grey.g4};
+    color: ${({ theme }: StyledNavLinkProps) => theme?.color.grey.g4};
   }
   &.active {
-    color: ${({ theme }: StyledNavMenuItemProps) => theme?.color.yellow.y4};
+    color: ${({ theme }: StyledNavLinkProps) => theme?.color.yellow.y4};
   }
 `;

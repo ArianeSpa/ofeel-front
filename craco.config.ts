@@ -9,6 +9,4 @@ const config: CracoConfig = {
   },
 };
 
-console.log("CRACO config loaded");
-
 export default config;

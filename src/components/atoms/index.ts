@@ -1,6 +1,5 @@
 export * from "./Backdrop/Backdrop";
 export * from "./Button/Button";
-export * from "./ButtonBurger/ButtonBurger";
 export * from "./ButtonIcon/ButtonIcon";
 export * from "./Checkbox/Checkbox";
 export * from "./CustomLink/CustomLink";
@@ -10,6 +9,7 @@ export * from "./InputDescription/InputDescription";
 export * from "./InputLabel/InputLabel";
 export * from "./LinkIcon/LinkIcon";
 export * from "./Logo/Logo";
+export * from "./NavMenu/NavMenu";
 export * from "./NavMenuItem/NavMenuItem";
 export * from "./SVGGradient/SVGGradient";
 export * from "./SVGGradientIcon/SVGGradientIcon";
