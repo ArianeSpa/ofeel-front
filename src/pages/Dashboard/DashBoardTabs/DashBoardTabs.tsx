@@ -3,7 +3,7 @@ import { FaBook, FaCrosshairs, FaRunning, FaUser } from "react-icons/fa";
 
 // == Import : local
 import { Flex, TabMenuItem } from "@/components";
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 import { GradientColor } from "@/theme/colors";
 
 export enum DashBoardTabEnum {

@@ -5,7 +5,7 @@ import { Form, TextArea } from "semantic-ui-react";
 
 // == Import : local
 import { Flex, FormInput, FormTemplate } from "@/components";
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 import "./contact.scss";
 
 // == Dropdown options

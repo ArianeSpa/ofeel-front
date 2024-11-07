@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 // == Import : local
 import { Flex } from "@/components";
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 import { Welcome } from "./Welcome/Welcome";
 import { Profile } from "./Profile/Profile";
 import { FoodPlan } from "./FoodPlan/FoodPlan";

@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 
 // == Import : local
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 import { GradientColor } from "@/theme/colors";
 import { SVGGradient, SVGGradientId, SVGGradientIcon } from "../../atoms";
 import { StyledBorder, StyledTabMenuItem } from "./TabMenuItem.style";

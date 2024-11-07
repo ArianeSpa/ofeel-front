@@ -2,7 +2,7 @@
 import React from "react";
 
 // == Import : local
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 import logo from "@/assets/images/logo_fond_transparent2.png";
 
 export const Logo: React.FC = () => {

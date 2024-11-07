@@ -11,7 +11,7 @@ import {
   FormInput,
   FormCheckbox,
 } from "@/components";
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 
 // == Composant
 export const SignUp: React.FC = () => {

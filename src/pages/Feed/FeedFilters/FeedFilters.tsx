@@ -5,7 +5,7 @@ import {
   FeedFilterButton,
   FeedFiltersEnum,
 } from "../FeedFilterButton/FeedFilterButton";
-import { useWindowSize } from "@/hooks/window.hook";
+import { useWindowSize } from "@/hooks";
 
 type FeedFiltersProps = {
   hasOneFilter: boolean;
