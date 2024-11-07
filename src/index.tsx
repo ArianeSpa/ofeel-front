@@ -15,6 +15,7 @@ import { mainTheme } from "./theme/theme";
 import reportWebVitals from "./reportWebVitals";
 import en from "./translations/en.json";
 import fr from "./translations/fr.json";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
