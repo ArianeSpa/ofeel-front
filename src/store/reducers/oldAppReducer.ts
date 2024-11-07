@@ -59,7 +59,7 @@ export const SET_MY_FEELING_API = "SET_MY_FEELING_API";
 export const SET_GOAL_API = "SET_GOAL_API";
 export const ASK_USER_DATA = "ASK_USER_DATA";
 
-const appReducer = (
+const oldAppReducer = (
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state: AppStateModel = initialState,
   action: ActionModel
@@ -298,4 +298,4 @@ export const resetMessageModal = () => ({
   type: RESET_MESSAGE_MODAL,
 });
 
-export default appReducer;
+export default oldAppReducer;

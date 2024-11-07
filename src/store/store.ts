@@ -2,7 +2,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 // == Import : local
-// import appReducer from "./reducers/appReducer";
+// import oldAppReducer from "./reducers/oldAppReducer";
 // import mealPlanReducer from "./reducers/mealPlanReducer";
 // import postReducer from "./reducers/postReducer";
 // import userReducer from "./reducers/userReducer";
@@ -12,7 +12,7 @@ import userReducer from "./reducers/user.slice";
 
 const rootReducer = combineReducers({
   userReducer,
-  // appReducer,
+  // oldAppReducer,
   // mealPlanReducer,
   // postReducer,
   // workoutReducer,

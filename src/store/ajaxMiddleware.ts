@@ -14,7 +14,7 @@ import {
   // saveDataUser,
   // informUser,
   // resetMessageModal,
-} from "./reducers/appReducer";
+} from "./reducers/oldAppReducer";
 import {
   ASK_PAGES_POSTS_INFO,
   savePostsPages,
@@ -135,9 +135,9 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
       //         store.dispatch(resetMessageModal());
 
       //         store.dispatch(sortFoodChoice(
-      //           store.getState().appReducer.sanslactose,
-      //           store.getState().appReducer.sansgluten,
-      //           store.getState().appReducer.vegan,
+      //           store.getState().oldAppReducer.sanslactose,
+      //           store.getState().oldAppReducer.sansgluten,
+      //           store.getState().oldAppReducer.vegan,
       //         ));
       //       }
       //     })
@@ -148,18 +148,18 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
 
     // ENVOI DES DONNEES MYFEELING ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_MY_FEELING_API:
-      bodyFormData.set("gender", store.getState().appReducer.gender);
-      bodyFormData.set("age", store.getState().appReducer.age);
-      bodyFormData.set("height", store.getState().appReducer.height);
-      bodyFormData.set("weight", store.getState().appReducer.weight);
-      bodyFormData.set("activity", store.getState().appReducer.activity);
+      bodyFormData.set("gender", store.getState().oldAppReducer.gender);
+      bodyFormData.set("age", store.getState().oldAppReducer.age);
+      bodyFormData.set("height", store.getState().oldAppReducer.height);
+      bodyFormData.set("weight", store.getState().oldAppReducer.weight);
+      bodyFormData.set("activity", store.getState().oldAppReducer.activity);
       bodyFormData.set(
         "basal_metabolic_rate",
-        store.getState().appReducer.basalMetabolicRate
+        store.getState().oldAppReducer.basalMetabolicRate
       );
       bodyFormData.set(
         "energy_expenditure",
-        store.getState().appReducer.energyExpenditure
+        store.getState().oldAppReducer.energyExpenditure
       );
 
       /** @todo fix */
@@ -187,50 +187,50 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
 
     // ENVOI DES DONNEES GOAL ENREGISTREES PAR L'UTILISATEUR VERS L'API
     case SET_GOAL_API:
-      bodyFormData.set("goal", store.getState().appReducer.goal);
+      bodyFormData.set("goal", store.getState().oldAppReducer.goal);
       bodyFormData.set(
         "daily_calories",
-        store.getState().appReducer.dailyCalories
+        store.getState().oldAppReducer.dailyCalories
       );
       bodyFormData.set(
         "breakfast_dinner_calories",
-        store.getState().appReducer.breakfastAndDinnerCalories
+        store.getState().oldAppReducer.breakfastAndDinnerCalories
       );
       bodyFormData.set(
         "lunch_calories",
-        store.getState().appReducer.lunchCalories
+        store.getState().oldAppReducer.lunchCalories
       );
       bodyFormData.set(
         "breakfast_dinner_carb_quantity",
-        store.getState().appReducer.breakfastAndDinnerCarbsQuantity
+        store.getState().oldAppReducer.breakfastAndDinnerCarbsQuantity
       );
       bodyFormData.set(
         "lunch_carb_quantity",
-        store.getState().appReducer.lunchCarbsQuantity
+        store.getState().oldAppReducer.lunchCarbsQuantity
       );
       bodyFormData.set(
         "breakfast_dinner_prot_quantity",
-        store.getState().appReducer.breakfastAndDinnerProteinQuantity
+        store.getState().oldAppReducer.breakfastAndDinnerProteinQuantity
       );
       bodyFormData.set(
         "lunch_prot_quantity",
-        store.getState().appReducer.lunchProteinQuantity
+        store.getState().oldAppReducer.lunchProteinQuantity
       );
       bodyFormData.set(
         "breakfast_dinner_fat_quantity",
-        store.getState().appReducer.breakfastAndDinnerFatQuantity
+        store.getState().oldAppReducer.breakfastAndDinnerFatQuantity
       );
       bodyFormData.set(
         "lunch_fat_quantity",
-        store.getState().appReducer.lunchFatQuantity
+        store.getState().oldAppReducer.lunchFatQuantity
       );
-      //   store.getState().appReducer.vegan
+      //   store.getState().oldAppReducer.vegan
       //     ? bodyFormData.set('vegan', 'Vegan')
       //     : bodyFormData.set('vegan', 0);
-      //   store.getState().appReducer.sansgluten
+      //   store.getState().oldAppReducer.sansgluten
       //     ? bodyFormData.set('gluten_free', 'Sans gluten')
       //     : bodyFormData.set('gluten_free', 0);
-      //   store.getState().appReducer.sanslactose
+      //   store.getState().oldAppReducer.sanslactose
       //     ? bodyFormData.set('lactose_free', 'Sans lactose')
       //     : bodyFormData.set('lactose_free', 0);
 
