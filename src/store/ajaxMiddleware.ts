@@ -268,7 +268,7 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
           store.dispatch(finishLoadFood());
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
       break;
 
@@ -310,7 +310,7 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
             }
           })
           .catch((error) => {
-            console.log("erreur");
+            // console.log("erreur");
           });
         // eslint-disable-next-line no-plusplus
         postspage++;
@@ -351,7 +351,7 @@ const ajaxMiddleware = (store: any) => (next: any) => (action: ActionModel) => {
             store.dispatch(saveResults);
           })
           .catch((error) => {
-            console.log("erreur");
+            // console.log("erreur");
           });
         workoutpage += 1;
       } while (workoutpage < numberWorkoutPages);

@@ -1,1 +1,3 @@
-export { StyledBackdrop as Backdrop } from "./Backdrop.style";
+import { StyledBackdrop } from "./Backdrop.style";
+
+export const Backdrop = () => <StyledBackdrop aria-hidden />;

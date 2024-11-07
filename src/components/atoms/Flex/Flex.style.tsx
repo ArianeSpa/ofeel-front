@@ -2,18 +2,6 @@ import styled from "styled-components";
 import { MainTheme } from "@/theme/theme";
 import { getGutters, GetGuttersProps } from "@/theme/gutters";
 
-export type StyledFlexProps = {
-  theme?: MainTheme;
-  alignItems?: string;
-  backgroundColor?: string;
-  flexDirection?: string;
-  flexWrap?: string;
-  flexGrow?: number;
-  flexShrink?: number;
-  gap?: number;
-  justifyContent?: string;
-  width?: string;
-} & GetGuttersProps;
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
     ![
@@ -28,7 +16,18 @@ const forwardConfig = {
       "width",
     ].includes(prop),
 };
-
+export type StyledFlexProps = {
+  theme?: MainTheme;
+  alignItems?: string;
+  backgroundColor?: string;
+  flexDirection?: string;
+  flexWrap?: string;
+  flexGrow?: number;
+  flexShrink?: number;
+  gap?: number;
+  justifyContent?: string;
+  width?: string;
+} & GetGuttersProps;
 export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
   display: flex;
   align-items: ${({ alignItems }: StyledFlexProps) => alignItems ?? "center"};

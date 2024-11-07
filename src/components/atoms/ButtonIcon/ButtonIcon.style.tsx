@@ -50,8 +50,8 @@ export const StyledButtonIcon = styled.button.withConfig(
   border: ${({ borderColor }: StyledButtonIconProps) =>
     borderColor ? `1px solid ${borderColor}` : "none"};
   border-radius: ${({ variant }: StyledButtonIconProps) => getRadius(variant)};
-  height: ${({ size }: StyledButtonIconProps) => getSize(size)};
-  width: ${({ size }: StyledButtonIconProps) => getSize(size)};
+  min-height: ${({ size }: StyledButtonIconProps) => getSize(size)};
+  min-width: ${({ size }: StyledButtonIconProps) => getSize(size)};
   &:hover {
     box-shadow: 10px 10px 22px -12px rgba(0, 0, 0, 0.75);
     border: ${({ borderColor }: StyledButtonIconProps) =>
