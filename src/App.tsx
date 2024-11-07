@@ -1,37 +1,45 @@
 // == Import : npm
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // == Import : local
-import { useAppDistpatch, useAppSelector } from "@/hooks/store.hook";
-import { Footer, Header } from "@/components";
-import { logOut } from "@/store/reducers/user.slice";
+import { useAppDistpatch, useAppSelector, useWindowSize } from "@/hooks";
+import { Drawer, Footer, Header, NavMenu, NavMenuItem } from "@/components";
+import { logOut, setHasBackdrop } from "@/store";
 import { LogIn } from "@/pages/LogIn/LogIn";
 import { SignUp } from "@/pages/SignUp/SignUp";
 import { PostList } from "@/pages/Feed/PostList";
 import { Contact } from "@/pages/Contact/Contact";
 import { ErrorPage } from "@/pages/ErrorPage/ErrorPage";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
+import { startAxe } from "@/utils";
 import { StyledApp, StyledMain } from "./App.style";
 
 export const App: React.FC = () => {
   const dispatch = useAppDistpatch();
+  const { isDesktop } = useWindowSize();
+  const { t } = useTranslation();
   const logged = useAppSelector((state) => state.userReducer.logged);
+  const hasBackdrop = useAppSelector((state) => state.appReducer.hasBackdrop);
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+
+  startAxe();
 
   const handleLogout = () => {
     dispatch(logOut());
   };
 
   const menuItems = [
-    { id: "home-item", content: "Accueil", to: "/", hide: logged },
+    { id: "home-item", content: t("LINK.HOME"), to: "/", hide: logged },
     {
       id: "dashboard-item",
-      content: "Tableau de bord",
+      content: t("LINK.DASHBOARD"),
       to: "/dashboard",
       hide: !logged,
     },
-    { id: "article-item", content: "Articles", to: "/articles" },
-    { id: "contact-item", content: "Contact", to: "/contact" },
+    { id: "article-item", content: t("LINK.ARTICLES"), to: "/articles" },
+    { id: "contact-item", content: t("LINK.CONTACT"), to: "/contact" },
   ];
 
   useEffect(() => {
@@ -39,35 +47,73 @@ export const App: React.FC = () => {
     // data may be request in each page instead of app component ?
   }, []);
 
+  const handleOpenDrawer = (value: boolean) => {
+    dispatch(setHasBackdrop(value));
+    setOpenDrawer(value);
+  };
+
   return (
-    <StyledApp flexDirection="column" px={12} width="100%">
-      <Header
-        gap={12}
-        logged={logged}
-        menuItems={menuItems}
-        menuItemsGap={30}
-        logOut={handleLogout}
-      />
-      <StyledMain>
-        <Routes>
-          <Route
-            path="/"
-            element={logged ? <Navigate replace to="/dashboard" /> : <LogIn />}
-          />
-          <Route
-            path="/signup"
-            element={logged ? <Navigate replace to="/dashboard" /> : <SignUp />}
-          />
-          <Route
-            path="/dashboard/*"
-            element={logged ? <Dashboard /> : <Navigate replace to="/" />}
-          />
-          <Route path="/articles" element={<PostList />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </StyledMain>
-      <Footer />
-    </StyledApp>
+    <>
+      <StyledApp
+        flexDirection="column"
+        px={isDesktop ? 12 : 8}
+        width="100%"
+        aria-hidden={hasBackdrop}
+      >
+        <Header
+          gap={12}
+          logged={logged}
+          menuItems={menuItems}
+          logOut={handleLogout}
+          onBurgerMenuClick={() => handleOpenDrawer(true)}
+        />
+        <StyledMain>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                logged ? <Navigate replace to="/dashboard" /> : <LogIn />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                logged ? <Navigate replace to="/dashboard" /> : <SignUp />
+              }
+            />
+            <Route
+              path="/dashboard/*"
+              element={logged ? <Dashboard /> : <Navigate replace to="/" />}
+            />
+            <Route path="/articles" element={<PostList />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </StyledMain>
+        <Footer />
+      </StyledApp>
+      <Drawer disableClickOutside open={openDrawer} setOpen={handleOpenDrawer}>
+        <NavMenu
+          flexDirection="column"
+          justifyContent="center"
+          gap={70}
+          pt={10}
+        >
+          {menuItems.map(
+            ({ content, id, hide, to }) =>
+              !hide && (
+                <NavMenuItem
+                  key={id}
+                  id={id}
+                  to={to}
+                  onClick={() => handleOpenDrawer(false)}
+                >
+                  {content}
+                </NavMenuItem>
+              )
+          )}
+        </NavMenu>
+      </Drawer>
+    </>
   );
 };

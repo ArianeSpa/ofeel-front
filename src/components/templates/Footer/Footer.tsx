@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
     {
       name: "email",
       url: "mailto:aspanneut.pro@gmail.com?subject=contact%20from%20Ofeel",
-      icon: <SiGmail color={color.socials.gmail} fontSize="22px" />,
+      icon: <SiGmail aria-hidden color={color.socials.gmail} fontSize="22px" />,
     },
   ];
   return (
