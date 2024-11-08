@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 // == Import : local
 import { useWindowSize } from "@/hooks";
-import { GradientColor } from "@/theme/colors";
+import { GradientColor } from "@/theme";
 import { SVGGradient, SVGGradientId, SVGGradientIcon } from "../../atoms";
 import { StyledBorder, StyledTabMenuItem } from "./TabMenuItem.style";
 

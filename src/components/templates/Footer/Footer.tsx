@@ -4,17 +4,16 @@ import { FaGithub, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
 // == Import : local
-import { Flex, ButtonIconProps, LinkIcon } from "../../atoms";
-import { StyledCopyright, instaBackground } from "./Footer.style";
-import { useTheme } from "@/theme/theme";
+import { Flex, LinkIcon, LinkIconProps, Typo } from "../../atoms";
+import { useTheme } from "@/theme";
 
 type SocialProps = {
   url: string;
   name: string;
   icon: JSX.Element;
-  variant?: ButtonIconProps["variant"];
-  size?: ButtonIconProps["size"];
-  background?: string;
+  variant?: LinkIconProps["variant"];
+  size?: LinkIconProps["size"];
+  backgroundImage?: LinkIconProps["backgroundImage"];
 };
 
 // == Composant
@@ -42,7 +41,7 @@ export const Footer: React.FC = () => {
       icon: <FaInstagram color={color.socials.instagram} fontSize="18px" />,
       variant: "circle",
       size: "small",
-      background: instaBackground,
+      backgroundImage: "instagram",
     },
     {
       name: "email",
@@ -51,9 +50,11 @@ export const Footer: React.FC = () => {
     },
   ];
   return (
-    <Flex as="footer" gap={2}>
-      <StyledCopyright>&copy; O'Feel d'Ariane 2024</StyledCopyright>
-      <Flex flexDirection="row" gap={10}>
+    <Flex as="footer" gap={1} p={1}>
+      <Typo fontStyle="italic" fontSize={12} color="background.bg2">
+        &copy; O'Feel d'Ariane 2024
+      </Typo>
+      <Flex flexDirection="row" gap={10} p={2}>
         {socials.map(({ url, name, ...props }) => (
           <LinkIcon key={name} aria-label={name} to={url} {...props} />
         ))}

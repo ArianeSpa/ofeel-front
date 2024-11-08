@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
+import { get } from "lodash";
+import { ColorThemeKeys, GradienthemeKeys, MainTheme } from "@/theme";
 
 const getSize = (size?: StyledLinkIconProps["size"]) => {
   switch (size) {
@@ -15,14 +16,21 @@ const getSize = (size?: StyledLinkIconProps["size"]) => {
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
-    !["size", "variant", "background", "borderColor"].includes(prop),
+    ![
+      "size",
+      "variant",
+      "backgroundColor",
+      "backgroundImage",
+      "borderColor",
+    ].includes(prop),
 };
 export type StyledLinkIconProps = {
   theme?: MainTheme;
   size?: "small" | "medium" | "large";
   variant?: "square" | "rounded" | "circle";
-  background?: string;
-  borderColor?: string;
+  backgroundColor?: ColorThemeKeys;
+  backgroundImage?: GradienthemeKeys;
+  borderColor?: ColorThemeKeys;
 } & React.LinkHTMLAttributes<HTMLLinkElement>;
 export const StyledLinkIcon = styled.a.withConfig(
   forwardConfig
@@ -32,16 +40,20 @@ export const StyledLinkIcon = styled.a.withConfig(
   justify-content: center;
   border: none;
   padding: 4px;
-  background: ${({ background }: StyledLinkIconProps) =>
-    background ?? "transparent"};
-  border: ${({ borderColor }: StyledLinkIconProps) =>
-    borderColor ? `1px solid ${borderColor}` : "none"};
+  background-color: ${({ backgroundColor, theme }: StyledLinkIconProps) =>
+    backgroundColor ? get(theme?.color, backgroundColor) : "transparent"};
+
+  ${({ backgroundImage, theme }: StyledLinkIconProps) =>
+    backgroundImage &&
+    `background-image: ${get(theme?.gradient, backgroundImage)}`};
+
+  border: ${({ theme, borderColor }: StyledLinkIconProps) =>
+    borderColor ? `1px solid ${get(theme?.color, borderColor)}` : "none"};
+
   border-radius: 50%;
   height: ${({ size }: StyledLinkIconProps) => getSize(size)};
   width: ${({ size }: StyledLinkIconProps) => getSize(size)};
   &:hover {
     box-shadow: 10px 10px 22px -12px rgba(0, 0, 0, 0.75);
-    border: ${({ borderColor }: StyledLinkIconProps) =>
-      borderColor ? `1px solid ${borderColor}` : "none"};
   }
 `;

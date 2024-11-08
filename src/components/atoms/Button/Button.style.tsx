@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { MainTheme } from "@/theme/theme";
+import { MainTheme } from "@/theme";
 
 const getSize = (size?: StyledButtonProps["size"]) => {
   switch (size) {

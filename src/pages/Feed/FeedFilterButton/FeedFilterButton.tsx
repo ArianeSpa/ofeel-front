@@ -10,9 +10,9 @@ import {
 import { useTranslation } from "react-i18next";
 
 // == Import: lcoal
-import { useTheme } from "@/theme/theme";
+import { useTheme } from "@/theme";
 import { ObjectOf } from "@/utils/common";
-import { StyledFeedFilterButton } from "./FeedFilterButton.style";
+import { ButtonIcon } from "@/components";
 
 export enum FeedFiltersEnum {
   FOOD = "food",
@@ -64,12 +64,14 @@ export const FeedFilterButton: React.FC<FeedFilterButtonProps> = ({
 
   const isSelected = selectedFilters[value];
   return (
-    <StyledFeedFilterButton
+    <ButtonIcon
       id={`${value}-filter-button`}
       aria-label={translatedLabel}
-      background={color.grey.g5}
-      borderColor={isSelected ? color.yellow.y4 : "transparent"}
-      isSelected={isSelected}
+      backgroundColor="grey.g5"
+      borderColor={isSelected ? "yellow.y4" : "grey.g5"}
+      hoverBorderColor="yellow.y4"
+      opacity={isSelected ? 1 : 0.7}
+      hoverOpacity={1}
       icon={<Icon color={isSelected ? iconColor : color.grey.g2} />}
       onClick={() => onClick(value)}
     />

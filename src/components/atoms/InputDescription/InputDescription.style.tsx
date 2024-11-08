@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
+import { MainTheme } from "@/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) => !["error"].includes(prop),

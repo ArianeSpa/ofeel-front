@@ -1,4 +1,4 @@
-import { GradientColor } from "@/theme/colors";
+import { GradientColor } from "@/theme";
 import { GradientBlue } from "./GradientBlue";
 import { GradientGreen } from "./GradientGreen";
 import { GradientPink } from "./GradientPink";

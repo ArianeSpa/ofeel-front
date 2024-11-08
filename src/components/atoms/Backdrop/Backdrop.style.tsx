@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { MainTheme } from "@/theme";
 
-export const StyledBackdrop = styled.div`
+type StyledBackdropProps = {
+  theme?: MainTheme;
+};
+export const StyledBackdrop = styled.div<StyledBackdropProps>`
   position: absolute;
   top: 0;
   right: 0;

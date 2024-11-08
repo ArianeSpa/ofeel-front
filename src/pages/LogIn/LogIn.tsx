@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // == Import : local
-import { useAppDistpatch } from "@/hooks/store.hook";
-import { logIn } from "@/store/reducers/user.slice";
+import { useAppDistpatch } from "@/hooks";
+import { logIn } from "@/store";
 import { Flex, FormCheckbox, FormInput, FormTemplate } from "@/components";
 
 // == Composant

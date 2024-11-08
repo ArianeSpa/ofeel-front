@@ -2,7 +2,6 @@
 import { ReactNode } from "react";
 
 // == Import : local
-import { useTheme } from "@/theme/theme";
 import {
   StyledSVGGradientIcon,
   StyledSVGGradientIconProps,
@@ -10,18 +9,17 @@ import {
 
 type SVGGradientIconProps = {
   icon: ReactNode;
-} & StyledSVGGradientIconProps;
+} & Omit<StyledSVGGradientIconProps, "theme">;
 export const SVGGradientIcon: React.FC<SVGGradientIconProps> = ({
   gradientId,
   color,
   icon,
   type = "gradient",
 }) => {
-  const theme = useTheme();
   return (
     <StyledSVGGradientIcon
       gradientId={gradientId}
-      color={color ?? theme?.color?.grey?.g1}
+      color={color ?? "grey.g1"}
       type={type}
     >
       {icon}

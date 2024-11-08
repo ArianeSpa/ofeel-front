@@ -1,17 +1,26 @@
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
-import { getGutters, GetGuttersProps } from "@/theme/gutters";
+import { HTMLAttributes } from "react";
+import { get } from "lodash";
+import {
+  ColorThemeKeys,
+  MainTheme,
+  getGutters,
+  GetGuttersProps,
+  GradienthemeKeys,
+} from "@/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
     ![
       "alignItems",
       "backgroundColor",
+      "backgroundImage",
       "flexDirection",
       "flexWrap",
       "flexGrow",
       "flexShrink",
       "gap",
+      "height",
       "justifyContent",
       "width",
     ].includes(prop),
@@ -19,16 +28,20 @@ const forwardConfig = {
 export type StyledFlexProps = {
   theme?: MainTheme;
   alignItems?: string;
-  backgroundColor?: string;
+  backgroundColor?: ColorThemeKeys;
+  backgroundImage?: GradienthemeKeys;
   flexDirection?: string;
   flexWrap?: string;
   flexGrow?: number;
   flexShrink?: number;
   gap?: number;
+  height?: string;
   justifyContent?: string;
   width?: string;
-} & GetGuttersProps;
+} & GetGuttersProps &
+  HTMLAttributes<HTMLDivElement>;
 export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
+  overflow: hidden;
   display: flex;
   align-items: ${({ alignItems }: StyledFlexProps) => alignItems ?? "center"};
   justify-content: ${({ justifyContent }: StyledFlexProps) =>
@@ -37,9 +50,14 @@ export const StyledFlex = styled.div.withConfig(forwardConfig)<StyledFlexProps>`
     flexDirection ?? "column"};
   flex-wrap: ${({ flexWrap }: StyledFlexProps) => flexWrap};
   gap: ${({ gap }: StyledFlexProps) => `${gap ?? 0}px`};
-  width: ${({ width }: StyledFlexProps) => width};
-  background-color: ${({ backgroundColor }: StyledFlexProps) =>
-    backgroundColor ?? "inherit"};
+  ${({ width }: StyledFlexProps) => width && `width: ${width}`};
+  ${({ height }: StyledFlexProps) => height && `height: ${height}`};
+
+  background-color: ${({ backgroundColor, theme }: StyledFlexProps) =>
+    backgroundColor ? get(theme?.color, backgroundColor) : "inherit"};
+  ${({ backgroundImage, theme }: StyledFlexProps) =>
+    backgroundImage &&
+    `background-image: ${get(theme?.gradient, backgroundImage)}`};
   box-sizing: border-box;
 
   ${({ flexGrow }: StyledFlexProps) =>

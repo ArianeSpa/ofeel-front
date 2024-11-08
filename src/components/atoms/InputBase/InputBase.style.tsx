@@ -1,6 +1,6 @@
 import { HtmlHTMLAttributes } from "react";
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
+import { MainTheme } from "@/theme";
 
 const forwardSpanConfig = {
   shouldForwardProp: (prop: string) =>

@@ -4,7 +4,7 @@ import { FaBook, FaCrosshairs, FaRunning, FaUser } from "react-icons/fa";
 // == Import : local
 import { Flex, TabMenuItem } from "@/components";
 import { useWindowSize } from "@/hooks";
-import { GradientColor } from "@/theme/colors";
+import { GradientColor } from "@/theme";
 
 export enum DashBoardTabEnum {
   PROFILE = "profile",

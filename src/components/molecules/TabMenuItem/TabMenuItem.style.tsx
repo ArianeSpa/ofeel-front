@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { MainTheme } from "@/theme/theme";
-import { GradientColor } from "@/theme/colors";
+import { MainTheme, GradientColor } from "@/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) => !["isDesktop"].includes(prop),

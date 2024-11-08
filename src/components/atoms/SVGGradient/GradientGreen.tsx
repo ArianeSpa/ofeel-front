@@ -1,4 +1,4 @@
-import { useTheme } from "@/theme/theme";
+import { useTheme } from "@/theme";
 
 type GradientGreenProps = {
   id: string;

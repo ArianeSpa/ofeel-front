@@ -69,6 +69,14 @@ linear-gradient(to bottom, ${background.bg1}, ${background.bg2}, ${background.bg
 export const dashboardGradient = `radial-gradient(circle,rgba(43, 43, 61, 0.2), rgba(43, 43, 61, 0.3), rgba(43, 43, 61, 0.4), rgba(43, 43, 61, 0.5), rgba(43, 43, 61, 0.6))`;
 export const blueGradient = `linear-gradient(to bottom, ${blue.b1}, ${blue.b2}, ${blue.b3}, ${blue.b4}, ${blue.b5})`;
 export const greenGradient = `linear-gradient(to bottom, ${green.g1}, ${green.g2}, ${green.g3}, ${green.g4}, ${green.g5})`;
+export const instaGradient = `radial-gradient(
+  circle farthest-corner at 28% 100%,
+ #fcdf8f 0%,
+  #fbd377 10%,
+  #fa8e37 22%,
+  #f73344 35%,
+  transparent 65%
+), linear-gradient(145deg, #3051f1 10%, #c92bb7 70%)`;
 export const pinkGradient = `linear-gradient(to bottom, ${pink.p1}, ${pink.p2}, ${pink.p3}, ${pink.p4}, ${pink.p5})`;
 export const yellowGradient = `linear-gradient(to bottom, ${yellow.y1}, ${yellow.y2}, ${yellow.y3}, ${yellow.y4}, ${yellow.y5})`;
 export const getTabGradient = (isDesktop: boolean) => `
@@ -86,6 +94,7 @@ export enum GradientColor {
 export const gradient = {
   body: bodyGradient,
   dashboard: dashboardGradient,
+  instagram: instaGradient,
   [GradientColor.BLUE]: blueGradient,
   [GradientColor.GREEN]: greenGradient,
   [GradientColor.PINK]: pinkGradient,

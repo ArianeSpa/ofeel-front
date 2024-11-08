@@ -145,3 +145,4 @@ export type MainTheme = typeof mainTheme;
 export const useTheme = useStyledTheme as () => MainTheme;
 
 export type ColorThemeKeys = DeepNestedKeyOf<MainTheme["color"]>;
+export type GradienthemeKeys = DeepNestedKeyOf<MainTheme["gradient"]>;

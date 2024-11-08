@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { MainTheme } from "@/theme/theme";
+import { MainTheme } from "@/theme";
 
 export type StyledNavLinkProps = {
   theme?: MainTheme;

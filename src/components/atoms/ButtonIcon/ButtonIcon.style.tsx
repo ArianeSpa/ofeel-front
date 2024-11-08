@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MainTheme } from "@/theme/theme";
+import { get } from "lodash";
+import { ColorThemeKeys, MainTheme } from "@/theme";
 
 const getSize = (size?: StyledButtonIconProps["size"]) => {
   switch (size) {
@@ -27,14 +28,25 @@ const getRadius = (variant?: StyledButtonIconProps["variant"]) => {
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
-    !["size", "variant", "background", "borderColor"].includes(prop),
+    ![
+      "size",
+      "variant",
+      "backgroundColor",
+      "borderColor",
+      "hoverBorderColor",
+      "opacity",
+      "hoverOpacity",
+    ].includes(prop),
 };
 export type StyledButtonIconProps = {
   theme?: MainTheme;
   size?: "small" | "medium" | "large";
   variant?: "square" | "rounded" | "circle";
-  background?: string;
-  borderColor?: string;
+  backgroundColor?: ColorThemeKeys;
+  borderColor?: ColorThemeKeys;
+  hoverBorderColor?: ColorThemeKeys;
+  opacity?: number;
+  hoverOpacity?: number;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 export const StyledButtonIcon = styled.button.withConfig(
   forwardConfig
@@ -45,16 +57,21 @@ export const StyledButtonIcon = styled.button.withConfig(
   justify-content: center;
   border: none;
   padding: 4px;
-  background: ${({ background }: StyledButtonIconProps) =>
-    background ?? "transparent"};
-  border: ${({ borderColor }: StyledButtonIconProps) =>
-    borderColor ? `1px solid ${borderColor}` : "none"};
+  background-color: ${({ backgroundColor, theme }: StyledButtonIconProps) =>
+    backgroundColor ? get(theme?.color, backgroundColor) : "transparent"};
+  border: ${({ theme, borderColor }: StyledButtonIconProps) =>
+    borderColor ? `1px solid ${get(theme?.color, borderColor)}` : "none"};
   border-radius: ${({ variant }: StyledButtonIconProps) => getRadius(variant)};
   min-height: ${({ size }: StyledButtonIconProps) => getSize(size)};
   min-width: ${({ size }: StyledButtonIconProps) => getSize(size)};
+  opacity: ${({ opacity }: StyledButtonIconProps) => opacity ?? 1};
   &:hover {
     box-shadow: 10px 10px 22px -12px rgba(0, 0, 0, 0.75);
-    border: ${({ borderColor }: StyledButtonIconProps) =>
-      borderColor ? `1px solid ${borderColor}` : "none"};
+    border: ${({ theme, hoverBorderColor }: StyledButtonIconProps) =>
+      hoverBorderColor
+        ? `1px solid ${get(theme?.color, hoverBorderColor)}`
+        : "inherit"};
+    opacity: ${({ hoverOpacity }: StyledButtonIconProps) =>
+      hoverOpacity ?? "inherit"};
   }
 `;

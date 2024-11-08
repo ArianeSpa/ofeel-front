@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { get } from "lodash";
-import { ColorThemeKeys, MainTheme } from "@/theme/theme";
-import { getGutters, GetGuttersProps } from "@/theme/gutters";
+import {
+  ColorThemeKeys,
+  MainTheme,
+  getGutters,
+  GetGuttersProps,
+} from "@/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>

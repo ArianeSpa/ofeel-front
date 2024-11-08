@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FaBars } from "react-icons/fa";
 
 // == Import : local
+import { useTheme } from "@/theme";
 import { useWindowSize } from "@/hooks";
 import {
   Button,
@@ -14,7 +15,6 @@ import {
   NavMenu,
   NavMenuItem,
 } from "../../atoms";
-import { useTheme } from "@/theme/theme";
 
 type MenuItemsProps = {
   id: string;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { MainTheme } from "@/theme/theme";
-import { getGutters, GetGuttersProps } from "@/theme/gutters";
+import { MainTheme, getGutters, GetGuttersProps } from "@/theme";
 
 const forwardConfig = {
   shouldForwardProp: (prop: string) =>
