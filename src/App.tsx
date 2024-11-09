@@ -5,7 +5,15 @@ import { useTranslation } from "react-i18next";
 
 // == Import : local
 import { useAppDistpatch, useAppSelector, useWindowSize } from "@/hooks";
-import { Drawer, Footer, Header, NavMenu, NavMenuItem } from "@/components";
+import {
+  Drawer,
+  Flex,
+  Footer,
+  Header,
+  Main,
+  NavMenu,
+  NavMenuItem,
+} from "@/components";
 import { logOut, setHasBackdrop } from "@/store";
 import { LogIn } from "@/pages/LogIn/LogIn";
 import { SignUp } from "@/pages/SignUp/SignUp";
@@ -14,7 +22,6 @@ import { Contact } from "@/pages/Contact/Contact";
 import { ErrorPage } from "@/pages/ErrorPage/ErrorPage";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { startAxe } from "@/utils";
-import { StyledApp, StyledMain } from "./App.style";
 
 export const App: React.FC = () => {
   const dispatch = useAppDistpatch();
@@ -54,10 +61,12 @@ export const App: React.FC = () => {
 
   return (
     <>
-      <StyledApp
+      <Flex
+        backgroundImage="body"
         flexDirection="column"
         px={isDesktop ? 12 : 8}
         width="100%"
+        height="100%"
         aria-hidden={hasBackdrop}
       >
         <Header
@@ -67,7 +76,7 @@ export const App: React.FC = () => {
           logOut={handleLogout}
           onBurgerMenuClick={() => handleOpenDrawer(true)}
         />
-        <StyledMain>
+        <Main>
           <Routes>
             <Route
               path="/"
@@ -89,9 +98,9 @@ export const App: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
-        </StyledMain>
+        </Main>
         <Footer />
-      </StyledApp>
+      </Flex>
       <Drawer disableClickOutside open={openDrawer} setOpen={handleOpenDrawer}>
         <NavMenu
           flexDirection="column"

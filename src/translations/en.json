@@ -49,6 +49,10 @@
   },
   "LINK": {
     "ALREADY_REGISTERED": "Already registered ? Log in !",
+    "ARTICLES": "articles",
+    "CONTACT": "contact",
+    "DASHBOARD": "dashboard",
+    "HOME": "home",
     "NOT_REGISTERED": "Not already registered? Create an account !"
   },
   "PAGES": {

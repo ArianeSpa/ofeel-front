@@ -49,6 +49,10 @@
   },
   "LINK": {
     "ALREADY_REGISTERED": "Déjà inscrit ? Connectez-vous !",
+    "ARTICLES": "articles",
+    "CONTACT": "contact",
+    "DASHBOARD": "tableau de bord",
+    "HOME": "accueil",
     "NOT_REGISTERED": "Vous n'êtes pas encore inscrit ? Créez un compte !"
   },
   "PAGES": {
