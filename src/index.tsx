@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import { ThemeProvider } from "styled-components";
+import { GutterUnitEnum, RocketThemeProvider } from "react-rocket-ui";
 import "semantic-ui-css/semantic.min.css";
 
 // == Import: local
@@ -36,9 +37,18 @@ root.render(
     <I18nextProvider i18n={i18next}>
       <BrowserRouter>
         <ThemeProvider theme={mainTheme}>
-          <Provider store={store}>
-            <App />
-          </Provider>
+          <RocketThemeProvider
+            theme={{
+              palette: mainTheme.color,
+              gradients: mainTheme.gradient,
+              gutter: { unit: GutterUnitEnum.PX, size: 2 },
+            }}
+            disableDefaultTheme
+          >
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </RocketThemeProvider>
         </ThemeProvider>
       </BrowserRouter>
     </I18nextProvider>

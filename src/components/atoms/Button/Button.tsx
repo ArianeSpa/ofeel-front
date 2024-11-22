@@ -10,7 +10,7 @@ export type ButtonProps = {
   onClick?: () => void;
 } & Omit<StyledButtonProps, "theme">;
 
-const Button: React.FC<ButtonProps> = (props) => {
+export const Button: React.FC<ButtonProps> = (props) => {
   const {
     onClick,
     children,
@@ -32,5 +32,3 @@ const Button: React.FC<ButtonProps> = (props) => {
     </StyledButton>
   );
 };
-
-export { Button, type StyledButtonProps };

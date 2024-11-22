@@ -2,6 +2,17 @@ import styled from "styled-components";
 
 import { MainTheme } from "@/theme";
 
+const forwardConfig = {
+  shouldForwardProp: (prop: string) => !["size", "width"].includes(prop),
+};
+
+export type StyledButtonProps = {
+  theme?: MainTheme;
+  size?: "small" | "medium" | "large";
+  width?: string;
+  disabled?: boolean;
+};
+
 const getSize = (size?: StyledButtonProps["size"]) => {
   switch (size) {
     case "small":
@@ -27,17 +38,6 @@ const getFont = (
     default:
       return theme?.font.button.medium;
   }
-};
-
-const forwardConfig = {
-  shouldForwardProp: (prop: string) => !["size", "width"].includes(prop),
-};
-
-export type StyledButtonProps = {
-  theme?: MainTheme;
-  size?: "small" | "medium" | "large";
-  width?: string;
-  disabled?: boolean;
 };
 
 export const StyledButton = styled.button.withConfig(

@@ -1,9 +1,10 @@
 // == Import : npm
 import { FormEvent, ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+import { Flex } from "react-rocket-ui";
 
 // == Import : local
-import { Button, CustomLink, Flex } from "../../atoms";
+import { Button, CustomLink } from "../../atoms";
 import {
   StyledFormTemplate,
   StyledFormTemplateProps,
@@ -34,7 +35,7 @@ export const FormTemplate: React.FC<FormTemplateProps> = ({
     <StyledFormTemplate onSubmit={handleSubmit} {...formProps}>
       {children}
 
-      <Flex gap={14} pt={12}>
+      <Flex gap={7} pt={6}>
         <Button type="submit">{buttonLabel}</Button>
         {link && (
           <CustomLink as={NavLink} to={link.to}>

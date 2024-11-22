@@ -1,5 +1,8 @@
+// == Import : NPM
+import { Flex } from "react-rocket-ui";
+
 // == Import : local
-import { Checkbox, Flex, InputLabel, InputDescription } from "../../atoms";
+import { Checkbox, InputLabel, InputDescription } from "../../atoms";
 
 type FormCheckboxProps = {
   checked?: boolean;
@@ -23,7 +26,7 @@ export const FormCheckbox: React.FC<FormCheckboxProps> = ({
 
   return (
     <Flex
-      gap={10}
+      gap={5}
       flexDirection={labelPosition === "right" ? "row" : "row-reverse"}
       justifyContent="start"
     >

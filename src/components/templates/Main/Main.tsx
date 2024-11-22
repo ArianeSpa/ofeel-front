@@ -1,10 +1,7 @@
 // == Import : npm
 import { ReactNode } from "react";
 import { capitalize, upperCase } from "lodash";
-
-// == Import : local
-import { StyledMain } from "./Main.style";
-import { Typo } from "../../atoms";
+import { Flex, Typo } from "react-rocket-ui";
 
 type MainProps = {
   h1?: string;
@@ -17,12 +14,12 @@ export const Main: React.FC<MainProps> = ({ h1, subtitle, children }) => {
     .join(" - ");
 
   return (
-    <StyledMain>
-      <Typo as="h1" color="yellow.y5" fontSize={24}>
+    <Flex as="main" fullHeight fullWidth style={{ overflow: "hidden" }}>
+      <Typo as="h1" color="yellow.y5" fontSize={12}>
         {pageTitle}
       </Typo>
 
       {children}
-    </StyledMain>
+    </Flex>
   );
 };

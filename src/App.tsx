@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Flex, Paper } from "react-rocket-ui";
 
 // == Import : local
 import { useAppDistpatch, useAppSelector, useWindowSize } from "@/hooks";
 import {
   Drawer,
-  Flex,
   Footer,
   Header,
   Main,
@@ -60,13 +60,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <>
+    <Paper fullHeight fullWidth backgroundImage="body" px={isDesktop ? 6 : 4}>
       <Flex
-        backgroundImage="body"
+        fullHeight
+        fullWidth
         flexDirection="column"
-        px={isDesktop ? 12 : 8}
-        width="100%"
-        height="100%"
         aria-hidden={hasBackdrop}
       >
         <Header
@@ -123,6 +121,6 @@ export const App: React.FC = () => {
           )}
         </NavMenu>
       </Drawer>
-    </>
+    </Paper>
   );
 };

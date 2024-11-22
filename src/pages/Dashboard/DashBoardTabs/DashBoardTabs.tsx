@@ -1,8 +1,9 @@
 // == Import : npm
 import { FaBook, FaCrosshairs, FaRunning, FaUser } from "react-icons/fa";
+import { Flex } from "react-rocket-ui";
 
 // == Import : local
-import { Flex, TabMenuItem } from "@/components";
+import { TabMenuItem } from "@/components";
 import { useWindowSize } from "@/hooks";
 import { GradientColor } from "@/theme";
 
@@ -51,9 +52,7 @@ export const DashBoardTabs: React.FC = () => {
     <Flex
       flexDirection={isDesktop ? "column" : "row"}
       width={isDesktop ? "170px" : "100%"}
-      style={{
-        height: isDesktop ? "100%" : "100px",
-      }}
+      height={isDesktop ? "100%" : "100px"}
       justifyContent="space-evenly"
     >
       {tabs.map((tab) => (

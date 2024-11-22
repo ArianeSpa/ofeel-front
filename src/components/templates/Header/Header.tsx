@@ -2,19 +2,12 @@
 import React, { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { FaBars } from "react-icons/fa";
+import { Flex, FlexProps } from "react-rocket-ui";
 
 // == Import : local
 import { useTheme } from "@/theme";
 import { useWindowSize } from "@/hooks";
-import {
-  Button,
-  ButtonIcon,
-  Flex,
-  FlexProps,
-  Logo,
-  NavMenu,
-  NavMenuItem,
-} from "../../atoms";
+import { Button, ButtonIcon, Logo, NavMenu, NavMenuItem } from "../../atoms";
 
 type MenuItemsProps = {
   id: string;
@@ -45,8 +38,8 @@ export const Header: React.FC<HeaderProps> = ({
       as="header"
       flexDirection="row"
       justifyContent={isDesktop ? "space-between" : "end"}
-      width="100%"
-      py={2}
+      fullWidth
+      py={1}
       {...flexProps}
     >
       <NavMenu gap={30} px={4}>

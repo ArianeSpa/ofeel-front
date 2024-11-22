@@ -2,9 +2,10 @@
 import React from "react";
 import { FaGithub, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import { Flex, Typo } from "react-rocket-ui";
 
 // == Import : local
-import { Flex, LinkIcon, LinkIconProps, Typo } from "../../atoms";
+import { LinkIcon, LinkIconProps } from "../../atoms";
 import { useTheme } from "@/theme";
 
 type SocialProps = {
@@ -50,11 +51,11 @@ export const Footer: React.FC = () => {
     },
   ];
   return (
-    <Flex as="footer" gap={1} p={1}>
-      <Typo fontStyle="italic" fontSize={12} color="background.bg2">
+    <Flex as="footer" gap={0.5} p={0.5}>
+      <Typo fontStyle="italic" fontSize={6} color="background.bg2">
         &copy; O'Feel d'Ariane 2024
       </Typo>
-      <Flex flexDirection="row" gap={10} p={2}>
+      <Flex flexDirection="row" gap={5} p={1}>
         {socials.map(({ url, name, ...props }) => (
           <LinkIcon key={name} aria-label={name} to={url} {...props} />
         ))}

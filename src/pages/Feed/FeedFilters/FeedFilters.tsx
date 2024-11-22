@@ -1,5 +1,8 @@
-// == Import: lcoal
-import { Button, Flex } from "@/components";
+// == Import: NPM
+import { Flex } from "react-rocket-ui";
+
+// == Import: local
+import { Button } from "@/components";
 import { ObjectOf } from "@/utils/common";
 import {
   FeedFilterButton,
@@ -21,7 +24,7 @@ export const FeedFilters: React.FC<FeedFiltersProps> = ({
 }) => {
   const { isSmartphone } = useWindowSize();
   return (
-    <Flex flexDirection="row" gap={4} justifyContent="flex-end">
+    <Flex flexDirection="row" gap={2} justifyContent="flex-end">
       {hasOneFilter && (
         <Button onClick={resetFilters}>
           {isSmartphone ? "Effacer" : "Effacer les filtres"}

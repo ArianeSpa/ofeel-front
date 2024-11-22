@@ -2,9 +2,10 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Form, TextArea } from "semantic-ui-react";
+import { Flex } from "react-rocket-ui";
 
 // == Import : local
-import { Flex, FormInput, FormTemplate } from "@/components";
+import { FormInput, FormTemplate } from "@/components";
 import { useWindowSize } from "@/hooks";
 import "./contact.scss";
 
@@ -54,7 +55,7 @@ export const Contact = () => {
       onSubmit={handleSubmit}
     >
       <Flex
-        gap={12}
+        gap={6}
         flexDirection="row"
         alignItems="start"
         flexWrap={isDesktop ? "no-wrap" : "wrap"}

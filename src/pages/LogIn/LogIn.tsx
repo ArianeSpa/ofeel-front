@@ -2,11 +2,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Flex } from "react-rocket-ui";
 
 // == Import : local
 import { useAppDistpatch } from "@/hooks";
 import { logIn } from "@/store";
-import { Flex, FormCheckbox, FormInput, FormTemplate } from "@/components";
+import { FormCheckbox, FormInput, FormTemplate } from "@/components";
 
 // == Composant
 export const LogIn: React.FC = () => {
@@ -56,7 +57,7 @@ export const LogIn: React.FC = () => {
       }}
       onSubmit={authenticate}
     >
-      <Flex gap={20} width="100%" alignItems="start">
+      <Flex gap={10} fullWidth alignItems="start">
         <FormInput
           required
           id="username-input"

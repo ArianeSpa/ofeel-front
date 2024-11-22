@@ -2,15 +2,10 @@
 import React, { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Flex, Typo } from "react-rocket-ui";
 
 // == Import : local
-import {
-  FormTemplate,
-  Typo,
-  Flex,
-  FormInput,
-  FormCheckbox,
-} from "@/components";
+import { FormTemplate, FormInput, FormCheckbox } from "@/components";
 import { useWindowSize } from "@/hooks";
 
 // == Composant
@@ -85,7 +80,7 @@ export const SignUp: React.FC = () => {
       width="600px"
       onSubmit={handleSubmit}
     >
-      <Flex gap={8} alignItems="start" mb={5}>
+      <Flex gap={4} alignItems="start" mb={2.5}>
         <Typo color="grey.g5">{t("FORM.INFO.PASSWORD_CONDITION")}</Typo>
         <Typo color="grey.g5" as="ul">
           <Typo as="li" fontStyle="italic">
@@ -99,9 +94,9 @@ export const SignUp: React.FC = () => {
           </Typo>
         </Typo>
       </Flex>
-      <Flex gap={20} alignItems="stretch">
+      <Flex gap={10} alignItems="stretch">
         <Flex
-          gap={12}
+          gap={6}
           flexDirection="row"
           alignItems="start"
           flexWrap={isDesktop ? "no-wrap" : "wrap"}
@@ -126,7 +121,7 @@ export const SignUp: React.FC = () => {
           />
         </Flex>
         <Flex
-          gap={12}
+          gap={6}
           flexDirection="row"
           alignItems="start"
           flexWrap={isDesktop ? "no-wrap" : "wrap"}
